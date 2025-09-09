@@ -43,7 +43,7 @@ export default function PackagesPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card className={`h-full glass glow-hover relative ${
+                <Card className={`h-full glass glow-hover relative flex flex-col ${
                   plan.slug === 'professional' ? 'border-primary/50' : ''
                 }`}>
                   {plan.slug === 'professional' && (
@@ -75,12 +75,12 @@ export default function PackagesPage() {
                     )}
                   </CardHeader>
                   
-                  <CardContent className="space-y-6">
+                  <CardContent className="space-y-6 flex-1 flex flex-col">
                     <p className="text-muted-foreground leading-relaxed">
                       {plan.blurb}
                     </p>
                     
-                    <div className="space-y-3">
+                    <div className="space-y-3 flex-1">
                       <h4 className="font-semibold">What&apos;s included:</h4>
                       <ul className="space-y-2">
                         {plan.features.map((feature: string) => (
@@ -92,7 +92,7 @@ export default function PackagesPage() {
                       </ul>
                     </div>
                     
-                    <div className="pt-4 space-y-3">
+                    <div className="pt-4 space-y-3 mt-auto">
                       <Button asChild className="w-full btn-primary" size="lg">
                         <Link href={`/packages/${plan.slug}`}>
                           {plan.slug === 'custom' ? 'Get Custom Quote' : 'Learn More & Get Started'}

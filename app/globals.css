@@ -186,7 +186,6 @@ body {
 }
 
 .glow-hover:hover {
-  transform: translateY(-3px);
   box-shadow: 
     0 12px 40px rgba(90, 227, 255, 0.15),
     0 0 20px rgba(90, 227, 255, 0.1);
@@ -253,7 +252,6 @@ body {
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
   box-shadow: 
     0 8px 30px rgba(90, 227, 255, 0.4),
     0 0 20px rgba(90, 227, 255, 0.2),
@@ -262,7 +260,6 @@ body {
 }
 
 .btn-primary:active {
-  transform: translateY(-1px);
   transition: transform 0.1s ease;
 }
 
@@ -299,7 +296,6 @@ body {
 }
 
 .btn-secondary:hover {
-  transform: translateY(-2px);
   border-color: rgba(90, 227, 255, 0.6);
   box-shadow: 
     0 8px 25px rgba(90, 227, 255, 0.2),
