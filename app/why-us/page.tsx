@@ -1,3 +1,5 @@
+'use client'
+
 export default function WhyUsPage() {
   return (
     <div className="min-h-screen py-20 px-4">

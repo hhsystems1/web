@@ -1,3 +1,5 @@
+'use client'
+
 export default function ServicesPage() {
   return (
     <div className="min-h-screen py-20 px-4">
