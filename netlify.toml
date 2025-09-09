@@ -1,15 +1,22 @@
 [build]
-  command = "npm run build"
+  command = "npm install && npm run build"
   publish = ".next"
 
 [build.environment]
   NODE_VERSION = "18"
-
-[functions]
-  directory = ".netlify/functions"
+  NPM_FLAGS = "--production=false"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[functions]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
 
 [dev]
   command = "npm run dev"

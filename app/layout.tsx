@@ -8,8 +8,6 @@ import { Footer } from '../components/Footer'
 import { Background } from '../components/Background'
 import './globals.css'
 
-export const dynamic = 'force-dynamic'
-
 const inter = Inter({ 
   subsets: ['latin'],
   display: 'swap',
@@ -42,7 +40,6 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
         </div>
-        <Analytics />
       </body>
     </html>
   )
