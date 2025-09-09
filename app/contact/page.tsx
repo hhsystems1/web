@@ -19,20 +19,19 @@ export default function ContactPage() {
     setIsLoading(true)
     
     const formData = new FormData(e.currentTarget)
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      company: formData.get('company'),
-      message: formData.get('message'),
-    }
-
+    
     try {
-      const response = await fetch('/api/contact', {
+      // Submit to Netlify Forms
+      const response = await fetch('/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          'form-name': 'contact',
+          name: formData.get('name') as string,
+          email: formData.get('email') as string,
+          company: formData.get('company') as string || '',
+          message: formData.get('message') as string,
+        }).toString()
       })
 
       if (response.ok) {
@@ -97,7 +96,14 @@ export default function ContactPage() {
                   ) : (
                     <>
                       <h2 className="text-2xl font-bold mb-6">Send us a message</h2>
-                      <form onSubmit={handleSubmit} className="space-y-6">
+                      <form 
+                        name="contact" 
+                        method="POST" 
+                        data-netlify="true"
+                        onSubmit={handleSubmit} 
+                        className="space-y-6"
+                      >
+                        <input type="hidden" name="form-name" value="contact" />
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
                             <label htmlFor="name" className="block text-sm font-medium mb-2">
