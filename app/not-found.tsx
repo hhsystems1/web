@@ -4,7 +4,7 @@ import { Container } from '../components/Container'
 
 export default function NotFound() {
   return (
-    <div className="pt-16">
+    <div>
       <section className="min-h-[70vh] flex items-center py-24">
         <Container>
           <div className="text-center">

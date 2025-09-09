@@ -118,6 +118,35 @@ body {
   border: 1px solid rgba(90, 227, 255, 0.1);
 }
 
+/* Floating Island Navigation */
+.floating-island {
+  backdrop-filter: blur(16px);
+  background: rgba(13, 19, 33, 0.95);
+  border: 1px solid rgba(90, 227, 255, 0.15);
+  border-radius: 2rem;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(90, 227, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.floating-island:hover {
+  transform: translateY(-1px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(90, 227, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Enhanced glass effect for cards */
+.glass-card {
+  backdrop-filter: blur(16px);
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(90, 227, 255, 0.15);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+}
+
 /* Video backdrop filter */
 .video-overlay {
   backdrop-filter: blur(2px) brightness(0.7);
@@ -152,15 +181,17 @@ body {
 
 /* Custom button styles */
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  color: var(--bg);
+  background: linear-gradient(135deg, #5AE3FF, #9B8CFF);
+  color: #070A12;
   border: none;
   transition: all 0.3s ease;
+  font-weight: 600;
 }
 
 .btn-primary:hover {
   transform: translateY(-1px);
   box-shadow: 0 8px 25px rgba(90, 227, 255, 0.3);
+  background: linear-gradient(135deg, #4DD8F7, #8F7FFF);
 }
 
 /* Section spacing */
@@ -176,9 +207,10 @@ body {
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    border-color: hsl(220 30% 12%);
+    outline-color: hsl(195 100% 66%);
   }
   body {
-    @apply text-foreground;
+    color: hsl(220 20% 90%);
   }
 }

@@ -33,7 +33,7 @@ const workflowSteps = [
 
 export default function WhyUsPage() {
   return (
-    <div className="pt-16">
+    <div>
       <Section>
         <Container>
           <div className="text-center mb-12">
