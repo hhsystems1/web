@@ -11,18 +11,11 @@ import { useState, useEffect } from 'react'
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const { scrollY } = useScroll()
-
-  // Transform values based on scroll
-  const headerOpacity = useTransform(scrollY, [0, 150], [0, 1])
-  const headerScale = useTransform(scrollY, [0, 150], [0.85, 1])
-  const headerY = useTransform(scrollY, [0, 150], [-30, 0])
-  const headerBlur = useTransform(scrollY, [0, 150], [0, 16])
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY
-      setScrolled(scrollPosition > 80)
+      setScrolled(scrollPosition > 50)
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -100,11 +93,16 @@ export function Header() {
       {/* Floating Island Header */}
       <motion.header
         className="fixed top-6 left-1/2 z-30 pointer-events-none"
-        style={{
-          opacity: headerOpacity,
-          scale: headerScale,
-          y: headerY,
-          x: "-50%",
+        initial={{ opacity: 0, scale: 0.8, y: -30, x: "-50%" }}
+        animate={{ 
+          opacity: scrolled ? 1 : 0,
+          scale: scrolled ? 1 : 0.8,
+          y: scrolled ? 0 : -30,
+          x: "-50%"
+        }}
+        transition={{ 
+          duration: 0.3,
+          ease: [0.25, 0.1, 0.25, 1]
         }}
       >
         <motion.div
@@ -114,16 +112,16 @@ export function Header() {
             width: scrolled ? "auto" : "auto",
           }}
           transition={{ 
-            duration: 0.8,
-            ease: [0.23, 1, 0.32, 1]
+            duration: 0.3,
+            ease: [0.25, 0.1, 0.25, 1]
           }}
         >
           <div className="px-8 py-4">
             <div className="flex items-center justify-between gap-12">
               <motion.div
                 initial={{ opacity: 0, x: -15 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                animate={{ opacity: scrolled ? 1 : 0, x: scrolled ? 0 : -15 }}
+                transition={{ duration: 0.3, delay: scrolled ? 0.1 : 0 }}
               >
                 <Link 
                   href="/" 
@@ -137,15 +135,21 @@ export function Header() {
               <motion.nav 
                 className="hidden lg:flex items-center space-x-8"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                animate={{ opacity: scrolled ? 1 : 0 }}
+                transition={{ duration: 0.3, delay: scrolled ? 0.15 : 0 }}
               >
                 {siteConfig.nav.map((item: { name: string; href: string }, index: number) => (
                   <motion.div
                     key={`floating-${item.name}`}
                     initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.5 + index * 0.08 }}
+                    animate={{ 
+                      opacity: scrolled ? 1 : 0, 
+                      y: scrolled ? 0 : 15 
+                    }}
+                    transition={{ 
+                      duration: 0.3, 
+                      delay: scrolled ? 0.2 + index * 0.03 : 0 
+                    }}
                   >
                     <Link 
                       href={item.href}
@@ -160,8 +164,8 @@ export function Header() {
               {/* CTA Button - Floating */}
               <motion.div
                 initial={{ opacity: 0, x: 15 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
+                animate={{ opacity: scrolled ? 1 : 0, x: scrolled ? 0 : 15 }}
+                transition={{ duration: 0.3, delay: scrolled ? 0.3 : 0 }}
                 className="hidden md:block"
               >
                 <Button asChild size="sm" className="btn-primary whitespace-nowrap">
