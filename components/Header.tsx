@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Button } from './ui/button'
 import { siteConfig } from '../site.config'
@@ -36,9 +37,18 @@ export function Header() {
             >
               <Link 
                 href="/" 
-                className="text-xl font-bold text-white drop-shadow-lg hover:text-primary/80 transition-colors"
+                className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
               >
-                {siteConfig.name}
+                <Image
+                  src="/hhs-logo.png"
+                  alt="HHS Logo"
+                  width={45}
+                  height={45}
+                  className="drop-shadow-lg"
+                />
+                <span className="text-xl font-bold text-white drop-shadow-lg">
+                  {siteConfig.name}
+                </span>
               </Link>
             </motion.div>
 
@@ -125,9 +135,17 @@ export function Header() {
               >
                 <Link 
                   href="/" 
-                  className="text-lg font-bold text-primary hover:text-primary/80 transition-all duration-300 whitespace-nowrap nav-link"
+                  className="flex items-center space-x-2 hover:text-primary/80 transition-all duration-300 whitespace-nowrap nav-link"
                 >
-                  {siteConfig.name}
+                  <Image
+                    src="/hhs-logo.png"
+                    alt="HHS Logo"
+                    width={36}
+                    height={36}
+                  />
+                  <span className="text-lg font-bold text-primary">
+                    {siteConfig.name}
+                  </span>
                 </Link>
               </motion.div>
 

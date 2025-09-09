@@ -23,6 +23,16 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: 'Helping Hands Web - Futuristic Web Development',
   description: 'Web experiences that look like the future, function like a dream.',
+  icons: {
+    icon: [
+      { url: '/hhs-logo.png', sizes: '32x32', type: 'image/png' },
+      { url: '/hhs-logo.png', sizes: '16x16', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: [
+      { url: '/hhs-logo.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
 }
 
 export default function RootLayout({
