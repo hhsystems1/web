@@ -44,7 +44,7 @@ export function Packages() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className={`h-full glass glow-hover relative flex flex-col ${
+              <Card className={`h-full glass glow-hover relative ${
                 plan.slug === 'professional' ? 'border-primary/50' : ''
               }`}>
                 {plan.slug === 'professional' && (
@@ -76,12 +76,12 @@ export function Packages() {
                   )}
                 </CardHeader>
                 
-                <CardContent className="space-y-4 flex-1 flex flex-col">
+                <CardContent className="space-y-4">
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     {plan.blurb}
                   </p>
                   
-                  <ul className="space-y-2 flex-1">
+                  <ul className="space-y-2">
                     {plan.features.slice(0, 6).map((feature: string) => (
                       <li key={feature} className="flex items-center text-sm">
                         <Check className="w-4 h-4 text-success mr-2 flex-shrink-0" />
@@ -95,7 +95,7 @@ export function Packages() {
                     )}
                   </ul>
                   
-                  <div className="pt-4 mt-auto">
+                  <div className="pt-4">
                     <Button asChild className="w-full btn-primary">
                       <Link href={`/packages/${plan.slug}`}>
                         {plan.slug === 'custom' ? 'Get Quote' : 'Learn More'}

@@ -13,8 +13,8 @@ export function BadgePill({ children, className, variant = 'default' }: BadgePil
       variant={variant}
       className={cn(
         'px-3 py-1 rounded-full text-sm font-medium',
-        'bg-[#5AE3FF]/10 text-[#5AE3FF] border border-[#5AE3FF]/20',
-        'hover:bg-[#5AE3FF]/20 transition-colors',
+        'bg-primary/10 text-primary border border-primary/20',
+        'hover:bg-primary/20 transition-colors',
         className
       )}
     >

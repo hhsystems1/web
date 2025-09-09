@@ -33,7 +33,7 @@ const faqData = [
 
 export default function ServicesPage() {
   return (
-    <div>
+    <div className="pt-16">
       <Section>
         <Container>
           <div className="text-center mb-12">

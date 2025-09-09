@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
 import { Inter, Outfit } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
-// import { DefaultSeo } from 'next-seo'
-// import { SEO } from '../next-seo.config'
+import { DefaultSeo } from 'next-seo'
+import { SEO } from '../next-seo.config'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import { Background } from '../components/Background'
 import './globals.css'
+
+export const dynamic = 'force-dynamic'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -23,16 +25,6 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: 'Helping Hands Web - Futuristic Web Development',
   description: 'Web experiences that look like the future, function like a dream.',
-  icons: {
-    icon: [
-      { url: '/hhs-logo.png', sizes: '32x32', type: 'image/png' },
-      { url: '/hhs-logo.png', sizes: '16x16', type: 'image/png' },
-    ],
-    shortcut: '/favicon.ico',
-    apple: [
-      { url: '/hhs-logo.png', sizes: '180x180', type: 'image/png' },
-    ],
-  },
 }
 
 export default function RootLayout({
@@ -43,6 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
       <body className={`${inter.className} antialiased`}>
+        <DefaultSeo {...SEO} />
         <Background />
         <div className="relative z-10">
           <Header />
