@@ -14,31 +14,32 @@ export function Header() {
   const { scrollY } = useScroll()
 
   // Transform values based on scroll
-  const headerOpacity = useTransform(scrollY, [0, 100], [0, 1])
-  const headerScale = useTransform(scrollY, [0, 100], [0.8, 1])
-  const headerY = useTransform(scrollY, [0, 100], [-20, 0])
+  const headerOpacity = useTransform(scrollY, [0, 150], [0, 1])
+  const headerScale = useTransform(scrollY, [0, 150], [0.85, 1])
+  const headerY = useTransform(scrollY, [0, 150], [-30, 0])
+  const headerBlur = useTransform(scrollY, [0, 150], [0, 16])
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY
-      setScrolled(scrollPosition > 50)
+      setScrolled(scrollPosition > 80)
     }
 
     window.addEventListener('scroll', handleScroll)
+    handleScroll() // Check initial position
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
     <>
       {/* Invisible header at top for text visibility */}
-      <div className="absolute top-0 left-0 right-0 z-40 pointer-events-none">
+      <div className="absolute top-0 left-0 right-0 z-40">
         <Container>
           <div className="flex h-16 items-center justify-between">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: scrolled ? 0 : 1, x: 0 }}
               transition={{ duration: 0.3 }}
-              className="pointer-events-auto"
             >
               <Link 
                 href="/" 
@@ -50,7 +51,7 @@ export function Header() {
 
             {/* Desktop Navigation - Top */}
             <motion.nav 
-              className="hidden md:flex items-center space-x-8 pointer-events-auto"
+              className="hidden md:flex items-center space-x-8"
               animate={{ opacity: scrolled ? 0 : 1 }}
               transition={{ duration: 0.3 }}
             >
@@ -63,7 +64,7 @@ export function Header() {
                 >
                   <Link 
                     href={item.href}
-                    className="text-white/90 hover:text-primary transition-colors font-medium drop-shadow-lg"
+                    className="text-white/90 hover:text-primary transition-colors font-medium drop-shadow-lg nav-link"
                   >
                     {item.name}
                   </Link>
@@ -75,7 +76,7 @@ export function Header() {
             <motion.div
               animate={{ opacity: scrolled ? 0 : 1 }}
               transition={{ duration: 0.3 }}
-              className="hidden md:block pointer-events-auto"
+              className="hidden md:block"
             >
               <Button asChild className="btn-primary shadow-lg backdrop-blur-sm">
                 <Link href="/contact">Get Started</Link>
@@ -84,7 +85,7 @@ export function Header() {
 
             {/* Mobile Menu Button - Top */}
             <motion.button
-              className="md:hidden p-2 text-white drop-shadow-lg pointer-events-auto"
+              className="md:hidden p-2 text-white drop-shadow-lg"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
               animate={{ opacity: scrolled ? 0 : 1 }}
@@ -98,7 +99,7 @@ export function Header() {
 
       {/* Floating Island Header */}
       <motion.header
-        className="fixed top-4 left-1/2 z-50 pointer-events-none"
+        className="fixed top-6 left-1/2 z-30 pointer-events-none"
         style={{
           opacity: headerOpacity,
           scale: headerScale,
@@ -113,20 +114,20 @@ export function Header() {
             width: scrolled ? "auto" : "auto",
           }}
           transition={{ 
-            duration: 0.6,
-            ease: [0.16, 1, 0.3, 1]
+            duration: 0.8,
+            ease: [0.23, 1, 0.32, 1]
           }}
         >
-          <div className="px-6 py-3">
-            <div className="flex items-center justify-between gap-8">
+          <div className="px-8 py-4">
+            <div className="flex items-center justify-between gap-12">
               <motion.div
-                initial={{ opacity: 0, x: -10 }}
+                initial={{ opacity: 0, x: -15 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
               >
                 <Link 
                   href="/" 
-                  className="text-lg font-bold text-primary hover:text-primary/80 transition-colors whitespace-nowrap"
+                  className="text-lg font-bold text-primary hover:text-primary/80 transition-all duration-300 whitespace-nowrap nav-link"
                 >
                   {siteConfig.name}
                 </Link>
@@ -134,21 +135,21 @@ export function Header() {
 
               {/* Desktop Navigation - Floating */}
               <motion.nav 
-                className="hidden lg:flex items-center space-x-6"
+                className="hidden lg:flex items-center space-x-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.4, delay: 0.3 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
               >
                 {siteConfig.nav.map((item: { name: string; href: string }, index: number) => (
                   <motion.div
                     key={`floating-${item.name}`}
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.4 + index * 0.05 }}
+                    transition={{ duration: 0.6, delay: 0.5 + index * 0.08 }}
                   >
                     <Link 
                       href={item.href}
-                      className="text-foreground/80 hover:text-primary transition-colors font-medium whitespace-nowrap text-sm"
+                      className="text-foreground/80 hover:text-primary transition-all duration-300 font-medium whitespace-nowrap nav-link"
                     >
                       {item.name}
                     </Link>
@@ -158,9 +159,9 @@ export function Header() {
 
               {/* CTA Button - Floating */}
               <motion.div
-                initial={{ opacity: 0, x: 10 }}
+                initial={{ opacity: 0, x: 15 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.5 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
                 className="hidden md:block"
               >
                 <Button asChild size="sm" className="btn-primary whitespace-nowrap">
@@ -195,7 +196,7 @@ export function Header() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-20 left-1/2 -translate-x-1/2 w-[280px]"
+            className={`absolute ${scrolled ? 'top-20' : 'top-16'} left-1/2 -translate-x-1/2 w-[280px]`}
           >
             <div className="floating-island p-6">
               <div className="flex flex-col space-y-4">
@@ -208,7 +209,7 @@ export function Header() {
                   >
                     <Link
                       href={item.href}
-                      className="text-foreground/80 hover:text-primary transition-colors font-medium block py-2"
+                      className="text-foreground/80 hover:text-primary transition-colors font-medium block py-2 nav-link"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {item.name}

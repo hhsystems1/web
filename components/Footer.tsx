@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Container } from './Container'
 import { siteConfig } from '../site.config'
+import { Mail, Phone } from 'lucide-react'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -9,7 +10,7 @@ export function Footer() {
     <footer className="border-t border-border bg-card/50">
       <Container>
         <div className="py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Brand */}
             <div className="space-y-4">
               <Link 
@@ -40,34 +41,47 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* Social Links */}
+            {/* Legal */}
             <div className="space-y-4">
-              <h3 className="font-semibold text-foreground">Connect</h3>
-              <div className="flex space-x-4">
-                <Link 
-                  href={siteConfig.social.twitter}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                  target="_blank"
-                  rel="noopener noreferrer"
+              <h3 className="font-semibold text-foreground">Legal</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link 
+                    href="/privacy-policy"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href="/terms-conditions"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    Terms & Conditions
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div className="space-y-4">
+              <h3 className="font-semibold text-foreground">Contact</h3>
+              <div className="space-y-3">
+                <a 
+                  href="tel:+18337851847"
+                  className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
                 >
-                  Twitter
-                </Link>
-                <Link 
-                  href={siteConfig.social.linkedin}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  <Phone className="w-4 h-4" />
+                  +1 833-785-1847
+                </a>
+                <a 
+                  href="mailto:info@helpinghandsystems.com"
+                  className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
                 >
-                  LinkedIn
-                </Link>
-                <Link 
-                  href={siteConfig.social.github}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  GitHub
-                </Link>
+                  <Mail className="w-4 h-4" />
+                  info@helpinghandsystems.com
+                </a>
               </div>
             </div>
           </div>
