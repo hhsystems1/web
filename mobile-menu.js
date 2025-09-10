@@ -177,10 +177,17 @@ function removeDesktopBranding() {
 
 // Mobile menu functions
 function initializeMobileMenu() {
+    // Get ALL mobile menu buttons from BOTH navbars
     const mobileMenuBtns = document.querySelectorAll('[aria-label="Toggle menu"]');
     
-    mobileMenuBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
+    console.log(`Found ${mobileMenuBtns.length} mobile menu buttons`);
+    
+    mobileMenuBtns.forEach((btn, index) => {
+        console.log(`Initializing button ${index + 1}:`, btn);
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Mobile menu button clicked:', this);
             toggleMobileMenu(this);
         });
     });
@@ -191,6 +198,33 @@ function initializeMobileMenu() {
             closeMobileMenus();
         }
     });
+    
+    // Force click event binding for both navbar types
+    setTimeout(() => {
+        // Top navbar button
+        const topNavBtn = document.querySelector('.absolute.top-0 button[aria-label="Toggle menu"]');
+        if (topNavBtn && !topNavBtn.hasAttribute('data-mobile-menu-bound')) {
+            topNavBtn.setAttribute('data-mobile-menu-bound', 'true');
+            topNavBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Top navbar mobile menu clicked');
+                toggleMobileMenu(this);
+            });
+        }
+        
+        // Floating island button
+        const floatingNavBtn = document.querySelector('.floating-island button[aria-label="Toggle menu"]');
+        if (floatingNavBtn && !floatingNavBtn.hasAttribute('data-mobile-menu-bound')) {
+            floatingNavBtn.setAttribute('data-mobile-menu-bound', 'true');
+            floatingNavBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Floating navbar mobile menu clicked');
+                toggleMobileMenu(this);
+            });
+        }
+    }, 500);
 }
 
 function toggleMobileMenu(button) {
@@ -211,8 +245,22 @@ function toggleMobileMenu(button) {
 }
 
 function createMobileMenu(navbar) {
-    const navLinks = navbar.querySelectorAll('nav a, header a');
-    const getStartedBtn = navbar.querySelector('[href*="contact"], [href*="packages"]');
+    // Get links from BOTH navbar structures - top navbar and floating island
+    let navLinks;
+    let getStartedBtn;
+    
+    // Try to get links from the specific navbar first
+    navLinks = navbar.querySelectorAll('nav a, header a');
+    getStartedBtn = navbar.querySelector('[href*="contact"], [href*="packages"]');
+    
+    // If no links found, get from the entire document (fallback)
+    if (navLinks.length === 0) {
+        console.log('No links found in specific navbar, searching entire document');
+        navLinks = document.querySelectorAll('nav a, header a, .absolute.top-0 a, .floating-island a');
+        getStartedBtn = document.querySelector('[href*="contact"], [href*="packages"]');
+    }
+    
+    console.log(`Found ${navLinks.length} navigation links for mobile menu`);
     
     const mobileMenu = document.createElement('div');
     mobileMenu.className = 'mobile-menu';
@@ -446,12 +494,6 @@ function openMobileMenu(mobileMenu, button) {
     document.body.style.width = '100%';
     document.body.style.height = '100%';
     document.documentElement.style.overflow = 'hidden';
-    
-    // Update button state
-    if (button) {
-        button.setAttribute('aria-expanded', 'true');
-    }
-}
     
     // Update button state
     if (button) {

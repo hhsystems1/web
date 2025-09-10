@@ -205,6 +205,7 @@ header .flex.items-center.space-x-2 {
         margin: 0 auto !important;
     }
     
+    /* FLOATING ISLAND WIDTH IMPROVEMENTS */
     .floating-island .px-8 {
         padding-left: 2.5rem !important;
         padding-right: 2.5rem !important;
@@ -219,6 +220,54 @@ header .flex.items-center.space-x-2 {
     nav + .hidden.md\\:block {
         margin-left: 2rem !important;
     }
+}
+
+/* FLOATING ISLAND RESPONSIVE WIDTH - WIDER ON TABLETS AND MOBILE */
+.floating-island {
+    min-width: 90vw !important;
+    max-width: 95vw !important;
+    width: auto !important;
+}
+
+@media (min-width: 640px) {
+    /* Small tablets and large phones */
+    .floating-island {
+        min-width: 85vw !important;
+        max-width: 90vw !important;
+    }
+}
+
+@media (min-width: 768px) {
+    /* Tablets */
+    .floating-island {
+        min-width: 75vw !important;
+        max-width: 85vw !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    /* Desktop */
+    .floating-island {
+        min-width: auto !important;
+        max-width: none !important;
+        width: auto !important;
+    }
+}
+
+/* Enhanced mobile menu button visibility for both navbars */
+button[aria-label="Toggle menu"] {
+    min-width: 44px !important;
+    min-height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Ensure both navbar mobile buttons work */
+.absolute.top-0 button[aria-label="Toggle menu"],
+.floating-island button[aria-label="Toggle menu"] {
+    z-index: 50 !important;
+    position: relative !important;
 }
 
 /* iOS Safari Mobile Menu Fixes */
