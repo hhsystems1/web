@@ -58,15 +58,32 @@ function createMobileMenu(navbar) {
     const navLinks = navbar.querySelectorAll('nav a, header a');
     const getStartedBtn = navbar.querySelector('[href*="contact"], [href*="packages"]');
     
-    // Create mobile menu with proper positioning
+    // Create mobile menu with full-screen overlay
     const mobileMenu = document.createElement('div');
-    mobileMenu.className = 'mobile-menu fixed left-0 right-0 opacity-0 transition-all duration-300 ease-in-out';
+    mobileMenu.className = 'mobile-menu';
     
-    // Set proper z-index and let CSS handle positioning
-    mobileMenu.style.zIndex = '50';
+    // Full-screen overlay styles
+    mobileMenu.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(13, 19, 33, 0.98);
+        backdrop-filter: blur(12px);
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    `;
     
     const menuContent = document.createElement('div');
-    menuContent.className = 'px-6 py-4 space-y-2 w-full max-w-full';
+    menuContent.className = 'space-y-6 text-center w-full max-w-md';
     
     // Add navigation links
     navLinks.forEach(link => {
@@ -74,7 +91,7 @@ function createMobileMenu(navbar) {
             const menuLink = document.createElement('a');
             menuLink.href = link.href;
             menuLink.textContent = link.textContent;
-            menuLink.className = 'block py-3 px-4 text-foreground hover:text-primary transition-all duration-300 rounded-lg hover:bg-primary/10 border-b border-border/10';
+            menuLink.className = 'block py-4 px-6 text-2xl text-white/90 hover:text-primary transition-all duration-300 rounded-lg hover:bg-primary/10';
             menuContent.appendChild(menuLink);
         }
     });
@@ -84,7 +101,7 @@ function createMobileMenu(navbar) {
         const menuBtn = document.createElement('a');
         menuBtn.href = getStartedBtn.href;
         menuBtn.textContent = 'Get Started';
-        menuBtn.className = 'block w-full px-6 py-3 rounded-lg mt-4 text-center btn-primary';
+        menuBtn.className = 'block w-full px-8 py-4 rounded-lg mt-8 text-center text-lg btn-primary bg-primary text-primary-foreground hover:bg-primary/90';
         menuContent.appendChild(menuBtn);
     }
     
@@ -103,8 +120,10 @@ function openMobileMenu(mobileMenu, button) {
     // Animate hamburger to X
     animateHamburgerToX(button);
     
-    // Show menu - let CSS handle all positioning
+    // Show menu with full-screen overlay
     mobileMenu.classList.add('show');
+    mobileMenu.style.opacity = '1';
+    mobileMenu.style.visibility = 'visible';
     
     // Prevent body scroll
     document.body.style.overflow = 'hidden';
@@ -114,8 +133,10 @@ function closeMobileMenu(mobileMenu, button) {
     // Animate X to hamburger
     animateXToHamburger(button);
     
-    // Hide menu - let CSS handle all positioning
+    // Hide menu
     mobileMenu.classList.remove('show');
+    mobileMenu.style.opacity = '0';
+    mobileMenu.style.visibility = 'hidden';
     
     // Restore body scroll
     document.body.style.overflow = '';
