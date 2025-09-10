@@ -26,7 +26,7 @@ export default function PackageCard({ name, price, features, href, popular = fal
     >
       {popular && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-          <span className="bg-gradient-to-r from-emerald-500 to-blue-500 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg ring-2 ring-white/20 backdrop-blur-sm">
+          <span className="bg-gradient-to-r from-emerald-500 to-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg ring-2 ring-white/20 backdrop-blur-sm whitespace-nowrap">
             ✨ Most Popular
           </span>
         </div>
