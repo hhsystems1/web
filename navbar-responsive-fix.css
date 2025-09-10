@@ -9,36 +9,91 @@
 }
 
 /* Desktop and Tablet spacing improvements */
+/* Desktop navbar spacing improvements and logo-only navigation */
 @media (min-width: 768px) {
-    /* Top navbar improvements for all desktop/tablet */
-    .absolute.top-0 nav.hidden.md\:flex {
-        gap: 2rem !important;
+    /* Desktop navbar improvements */
+    .container.mx-auto nav.hidden.md\:flex.items-center {
+        gap: 2rem;
     }
     
-    .absolute.top-0 nav.hidden.md\:flex a {
-        padding: 0.5rem 1rem;
-        font-size: 1rem;
-        margin: 0 0.25rem;
+    .container.mx-auto .flex.h-16.items-center.justify-between {
+        padding: 0 2rem;
     }
     
-    /* Floating header improvements for all desktop/tablet */
-    .floating-island nav.hidden.lg\:flex {
-        gap: 2.5rem !important;
+    .floating-island .px-8 {
+        padding-left: 2rem;
+        padding-right: 2rem;
     }
     
-    .floating-island nav.hidden.lg\:flex a {
-        padding: 0.625rem 1.25rem;
-        font-size: 1rem;
-        margin: 0 0.25rem;
+    .floating-island nav.hidden.lg\:flex.items-center {
+        gap: 2rem;
     }
-    
-    /* Better button spacing */
-    .floating-island .hidden.md\:block a,
-    .absolute.top-0 .hidden.md\:block a {
-        padding: 0.75rem 1.5rem;
-        font-size: 1rem;
-        margin-left: 1rem;
+}
+
+/* Hide "Helping Hands Web" text from both navbars - logo only */
+/* Top navbar logo text */
+nav .flex.items-center.space-x-2 span,
+header .flex.items-center.space-x-2 span {
+    display: none !important;
+}
+
+/* Floating navbar logo text */
+.floating-island .flex.items-center.space-x-2 span {
+    display: none !important;
+}
+
+/* Ensure logos remain visible and properly spaced */
+nav .flex.items-center.space-x-2,
+header .flex.items-center.space-x-2,
+.floating-island .flex.items-center.space-x-2 {
+    gap: 0 !important;
+}
+
+/* iOS Safari Mobile Menu Fixes */
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+    .mobile-menu {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        max-width: none !important;
+        max-height: none !important;
+        z-index: 99999 !important;
+        -webkit-transform: translateZ(0) !important;
+        transform: translateZ(0) !important;
+        -webkit-backface-visibility: hidden !important;
+        backface-visibility: hidden !important;
     }
+}
+
+/* iPhone and iPad specific fixes */
+@supports (-webkit-touch-callout: none) {
+    .mobile-menu {
+        position: fixed !important;
+        top: 0px !important;
+        left: 0px !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        z-index: 99999 !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+}
+
+/* Footer branding update via CSS content replacement */
+footer .space-y-4 a[href="/"] {
+    font-size: 0 !important;
+}
+
+footer .space-y-4 a[href="/"]::after {
+    content: "Helping Hands Systems" !important;
+    font-size: 1.25rem !important;
+    font-weight: bold !important;
+    color: var(--primary) !important;
 }
 
 /* Tablet specific adjustments */

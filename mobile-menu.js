@@ -1,4 +1,4 @@
-// Mobile Menu Functionality
+// Mobile Menu Functionality - iOS Safari Compatible
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize mobile menu for both navbars
     initializeMobileMenu();
@@ -8,10 +8,59 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize animations
     initializeAnimations();
+    
+    // Update branding
+    updateBranding();
 });
 
+function updateBranding() {
+    // Update footer branding from "Helping Hands Web" to "Helping Hands Systems"
+    function updateFooterBranding() {
+        // Find footer links with "Helping Hands Web"
+        const footerLinks = document.querySelectorAll('footer a');
+        footerLinks.forEach(link => {
+            if (link.textContent.includes('Helping Hands Web')) {
+                link.textContent = 'Helping Hands Systems';
+            }
+        });
+        
+        // Also update any footer text nodes
+        const footerTexts = document.querySelectorAll('footer p');
+        footerTexts.forEach(p => {
+            if (p.textContent.includes('Helping Hands Web')) {
+                p.textContent = p.textContent.replace('Helping Hands Web', 'Helping Hands Systems');
+            }
+        });
+    }
+    
+    // Run immediately
+    updateFooterBranding();
+    
+    // Run again after a short delay in case content loads dynamically
+    setTimeout(updateFooterBranding, 1000);
+    setTimeout(updateFooterBranding, 2000);
+    
+    // Also observe for dynamic content changes
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList') {
+                updateFooterBranding();
+            }
+        });
+    });
+    
+    // Start observing footer changes
+    const footer = document.querySelector('footer');
+    if (footer) {
+        observer.observe(footer, {
+            childList: true,
+            subtree: true
+        });
+    }
+}
+
 function initializeMobileMenu() {
-    // Get all mobile menu buttons and menus
+    // Get all mobile menu buttons
     const mobileMenuBtns = document.querySelectorAll('[aria-label="Toggle menu"]');
     
     mobileMenuBtns.forEach(btn => {
@@ -26,27 +75,6 @@ function initializeMobileMenu() {
             closeMobileMenus();
         }
     });
-    
-        // Click outside to close
-    mobileMenu.addEventListener('click', (e) => {
-        if (e.target === mobileMenu) {
-            const button = document.querySelector('[aria-label="Toggle menu"]');
-            if (button) {
-                closeMobileMenu(mobileMenu, button);
-            }
-        }
-    });
-    
-    // iOS viewport fix on orientation change
-    window.addEventListener('resize', () => {
-        if (mobileMenu.classList.contains('show') && /iPad|iPhone|iPod/.test(navigator.userAgent)) {
-            setTimeout(() => {
-                mobileMenu.style.height = window.innerHeight + 'px';
-            }, 100);
-        }
-    });
-    
-    return mobileMenu;
 }
 
 function toggleMobileMenu(button) {
@@ -72,38 +100,67 @@ function createMobileMenu(navbar) {
     const navLinks = navbar.querySelectorAll('nav a, header a');
     const getStartedBtn = navbar.querySelector('[href*="contact"], [href*="packages"]');
     
-    // Create mobile menu with full-screen overlay
+    // Create mobile menu with aggressive iOS-compatible full-screen overlay
     const mobileMenu = document.createElement('div');
     mobileMenu.className = 'mobile-menu';
     
-    // Full-screen overlay styles with iOS compatibility
-    mobileMenu.style.cssText = `
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        height: 100dvh !important;
-        background: rgba(13, 19, 33, 0.98) !important;
-        backdrop-filter: blur(12px) !important;
-        -webkit-backdrop-filter: blur(12px) !important;
-        z-index: 9999 !important;
+    // Force immediate styles - iOS Safari workaround
+    const setImmediateStyles = () => {
+        const vh = window.innerHeight;
+        const vw = window.innerWidth;
+        
+        // Direct DOM style manipulation - bypasses all CSS
+        mobileMenu.style.cssText = `
+            position: fixed !important;
+            top: 0px !important;
+            left: 0px !important;
+            right: 0px !important;
+            bottom: 0px !important;
+            width: ${vw}px !important;
+            height: ${vh}px !important;
+            max-width: none !important;
+            max-height: none !important;
+            min-width: ${vw}px !important;
+            min-height: ${vh}px !important;
+            background: rgba(13, 19, 33, 0.98) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            z-index: 99999 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            padding: 2rem !important;
+            margin: 0 !important;
+            border: none !important;
+            outline: none !important;
+            box-sizing: border-box !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            transition: opacity 0.4s ease, visibility 0.4s ease !important;
+            overflow: hidden !important;
+            -webkit-overflow-scrolling: touch !important;
+            transform: translateZ(0) !important;
+            -webkit-transform: translateZ(0) !important;
+        `;
+    };
+    
+    setImmediateStyles();
+    
+    // Create menu content
+    const menuContent = document.createElement('div');
+    menuContent.style.cssText = `
         display: flex !important;
         flex-direction: column !important;
-        justify-content: center !important;
         align-items: center !important;
-        padding: 2rem !important;
-        opacity: 0 !important;
-        visibility: hidden !important;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        -webkit-overflow-scrolling: touch !important;
-        overflow: hidden !important;
+        justify-content: center !important;
+        width: 100% !important;
+        max-width: 400px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        text-align: center !important;
+        gap: 1.5rem !important;
     `;
-    
-    const menuContent = document.createElement('div');
-    menuContent.className = 'space-y-6 text-center w-full max-w-md';
     
     // Add navigation links
     navLinks.forEach(link => {
@@ -111,7 +168,33 @@ function createMobileMenu(navbar) {
             const menuLink = document.createElement('a');
             menuLink.href = link.href;
             menuLink.textContent = link.textContent;
-            menuLink.className = 'block py-4 px-6 text-2xl text-white/90 hover:text-primary transition-all duration-300 rounded-lg hover:bg-primary/10';
+            
+            menuLink.style.cssText = `
+                display: block !important;
+                padding: 1rem 2rem !important;
+                font-size: 1.5rem !important;
+                font-weight: 500 !important;
+                color: rgba(230, 234, 242, 0.9) !important;
+                text-decoration: none !important;
+                border-radius: 12px !important;
+                transition: all 0.3s ease !important;
+                border: none !important;
+                background: transparent !important;
+                width: 100% !important;
+                text-align: center !important;
+                box-sizing: border-box !important;
+            `;
+            
+            menuLink.addEventListener('mouseenter', () => {
+                menuLink.style.backgroundColor = 'rgba(90, 227, 255, 0.1)';
+                menuLink.style.color = '#5AE3FF';
+            });
+            
+            menuLink.addEventListener('mouseleave', () => {
+                menuLink.style.backgroundColor = 'transparent';
+                menuLink.style.color = 'rgba(230, 234, 242, 0.9)';
+            });
+            
             menuContent.appendChild(menuLink);
         }
     });
@@ -121,13 +204,60 @@ function createMobileMenu(navbar) {
         const menuBtn = document.createElement('a');
         menuBtn.href = getStartedBtn.href;
         menuBtn.textContent = 'Get Started';
-        menuBtn.className = 'block w-full px-8 py-4 rounded-lg mt-8 text-center text-lg btn-primary bg-primary text-primary-foreground hover:bg-primary/90';
+        
+        menuBtn.style.cssText = `
+            display: block !important;
+            padding: 1rem 2rem !important;
+            font-size: 1.25rem !important;
+            font-weight: 600 !important;
+            color: white !important;
+            text-decoration: none !important;
+            border-radius: 12px !important;
+            background: linear-gradient(135deg, #5AE3FF, #7C3AED) !important;
+            border: none !important;
+            margin-top: 1rem !important;
+            width: 100% !important;
+            text-align: center !important;
+            box-sizing: border-box !important;
+            transition: all 0.3s ease !important;
+        `;
+        
+        menuBtn.addEventListener('mouseenter', () => {
+            menuBtn.style.transform = 'scale(1.05)';
+        });
+        
+        menuBtn.addEventListener('mouseleave', () => {
+            menuBtn.style.transform = 'scale(1)';
+        });
+        
         menuContent.appendChild(menuBtn);
     }
     
     mobileMenu.appendChild(menuContent);
     
-    // Append to body instead of navbar to prevent overflow issues
+    // Click outside to close
+    mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) {
+            const button = document.querySelector('[aria-label="Toggle menu"]');
+            if (button) {
+                closeMobileMenu(mobileMenu, button);
+            }
+        }
+    });
+    
+    // iOS viewport fix on orientation change and resize
+    const handleViewportChange = () => {
+        if (mobileMenu.classList.contains('show')) {
+            setImmediateStyles();
+        }
+    };
+    
+    window.addEventListener('resize', handleViewportChange);
+    window.addEventListener('orientationchange', () => {
+        setTimeout(handleViewportChange, 100);
+    });
+    
+    // Append to body
     document.body.appendChild(mobileMenu);
     
     return mobileMenu;
@@ -140,21 +270,117 @@ function openMobileMenu(mobileMenu, button) {
     // Animate hamburger to X
     animateHamburgerToX(button);
     
-    // Show menu with full-screen overlay
+    // iOS Safari aggressive viewport and positioning fix
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    
+    if (isIOS) {
+        // Temporarily adjust viewport for iOS Safari
+        let viewport = document.querySelector('meta[name="viewport"]');
+        if (viewport) {
+            viewport.content = 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover';
+        }
+        
+        // Force Safari to recalculate viewport
+        window.scrollTo(0, 0);
+    }
+    
+    // Force iOS-compatible full screen positioning with immediate viewport calculation
+    const vh = window.innerHeight;
+    const vw = window.innerWidth;
+    
+    // Ultra-aggressive positioning - override everything
+    mobileMenu.style.cssText = `
+        position: fixed !important;
+        top: 0px !important;
+        left: 0px !important;
+        right: 0px !important;
+        bottom: 0px !important;
+        width: ${vw}px !important;
+        height: ${vh}px !important;
+        max-width: none !important;
+        max-height: none !important;
+        min-width: ${vw}px !important;
+        min-height: ${vh}px !important;
+        background: rgba(13, 19, 33, 0.98) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        z-index: 99999 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 2rem !important;
+        margin: 0 !important;
+        border: none !important;
+        outline: none !important;
+        box-sizing: border-box !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transition: opacity 0.4s ease, visibility 0.4s ease !important;
+        overflow: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        transform: translateZ(0) !important;
+        -webkit-transform: translateZ(0) !important;
+    `;
+    
     mobileMenu.classList.add('show');
-    mobileMenu.style.opacity = '1';
-    mobileMenu.style.visibility = 'visible';
     
-    // Prevent body scroll and fix iOS viewport issues
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.width = '100%';
-    document.body.style.height = '100%';
+    // Prevent body scroll with iOS-specific fixes
+    const scrollY = window.scrollY;
+    document.body.style.cssText = `
+        overflow: hidden !important;
+        position: fixed !important;
+        top: -${scrollY}px !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100vh !important;
+        -webkit-overflow-scrolling: touch !important;
+    `;
     
-    // iOS Safari specific fixes
-    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-        document.body.style.webkitOverflowScrolling = 'touch';
-        mobileMenu.style.height = window.innerHeight + 'px';
+    // Store scroll position for restoration
+    mobileMenu.dataset.scrollY = scrollY;
+    
+    // Force reflow on iOS with multiple aggressive attempts
+    if (isIOS) {
+        // Force hardware acceleration and absolute positioning
+        mobileMenu.style.webkitTransform = 'translate3d(0,0,0)';
+        mobileMenu.style.transform = 'translate3d(0,0,0)';
+        mobileMenu.style.webkitBackfaceVisibility = 'hidden';
+        mobileMenu.style.backfaceVisibility = 'hidden';
+        
+        // Force immediate recalculation
+        mobileMenu.offsetHeight; // Force reflow
+        document.documentElement.offsetHeight; // Force document reflow
+        
+        // Multiple aggressive positioning attempts
+        const setIOSPosition = () => {
+            const currentVH = window.innerHeight;
+            const currentVW = window.innerWidth;
+            
+            mobileMenu.style.height = currentVH + 'px';
+            mobileMenu.style.width = currentVW + 'px';
+            mobileMenu.style.minHeight = currentVH + 'px';
+            mobileMenu.style.minWidth = currentVW + 'px';
+            mobileMenu.style.maxHeight = currentVH + 'px';
+            mobileMenu.style.maxWidth = currentVW + 'px';
+        };
+        
+        setIOSPosition();
+        
+        // Multiple attempts with different timings
+        setTimeout(setIOSPosition, 10);
+        setTimeout(setIOSPosition, 50);
+        setTimeout(setIOSPosition, 100);
+        setTimeout(setIOSPosition, 200);
+        
+        // Force Safari address bar to minimize
+        setTimeout(() => {
+            window.scrollTo(0, 1);
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+                setIOSPosition();
+            }, 10);
+        }, 300);
     }
 }
 
@@ -167,12 +393,18 @@ function closeMobileMenu(mobileMenu, button) {
     mobileMenu.style.opacity = '0';
     mobileMenu.style.visibility = 'hidden';
     
-    // Restore body scroll and remove iOS fixes
-    document.body.style.overflow = '';
-    document.body.style.position = '';
-    document.body.style.width = '';
-    document.body.style.height = '';
-    document.body.style.webkitOverflowScrolling = '';
+    // Restore body scroll and position
+    const scrollY = mobileMenu.dataset.scrollY || 0;
+    document.body.style.cssText = '';
+    window.scrollTo(0, parseInt(scrollY));
+    
+    // Restore original viewport for iOS
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+        let viewport = document.querySelector('meta[name="viewport"]');
+        if (viewport) {
+            viewport.content = 'width=device-width, initial-scale=1';
+        }
+    }
 }
 
 function closeMobileMenus() {
@@ -265,7 +497,7 @@ function initializeAnimations() {
 function handleResize() {
     if (window.innerWidth >= 768) {
         closeMobileMenus();
-        document.body.style.overflow = '';
+        document.body.style.cssText = '';
     }
 }
 
