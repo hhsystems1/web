@@ -18,7 +18,7 @@
     <style>
         :root {
             --primary: #5AE3FF;
-            --accent: #9B59B6;
+            --accent: #3A86FF;
             --background: #0D1321;
             --foreground: #E6EAF2;
             --muted: rgba(230, 234, 242, 0.6);
@@ -36,6 +36,43 @@
             background: var(--background);
             color: var(--foreground);
             line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Background Effects */
+        .gradient-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(58, 134, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(90, 227, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 60% 20%, rgba(155, 91, 182, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -2;
+        }
+        
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(58, 134, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(58, 134, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+            animation: grid-move 20s linear infinite;
+        }
+        
+        @keyframes grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
         }
         
         .container {
@@ -73,6 +110,8 @@
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             padding: 60px 0;
+            max-width: 1000px;
+            margin: 0 auto;
         }
         
         .contact-form {
@@ -205,6 +244,10 @@
     </style>
 </head>
 <body>
+    <!-- Background Effects -->
+    <div class="gradient-mesh"></div>
+    <div class="grid-overlay"></div>
+    
     <!-- Perfect Navbar will be injected here by JavaScript -->
     
     <main>
@@ -304,12 +347,42 @@
         </section>
     </main>
     
-    <footer class="footer">
+    <footer class="footer" style="border-top: 1px solid var(--border); background: rgba(13, 19, 33, 0.8); backdrop-filter: blur(20px); padding: 3rem 0 2rem; margin-top: 4rem;">
         <div class="container">
-            <p style="color: var(--muted);">
-                © 2025 Helping Hands Systems. All rights reserved. | 
-                <a href="tel:+18337851847" style="color: var(--primary); text-decoration: none;">+1 833-785-1847</a>
-            </p>
+            <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 3rem; align-items: start; margin-bottom: 2rem;">
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <img src="/hhs-logo.png" alt="HHS Logo" style="width: 40px; height: 40px;">
+                    <span style="font-size: 1.25rem; font-weight: bold; color: var(--primary);">Helping Hands Systems</span>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; justify-content: center;">
+                    <div>
+                        <h4 style="color: var(--foreground); margin-bottom: 1rem; font-weight: 600;">Navigation</h4>
+                        <ul style="list-style: none;">
+                            <li style="margin-bottom: 0.5rem;"><a href="/" style="color: var(--muted); text-decoration: none;">Home</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="/services/" style="color: var(--muted); text-decoration: none;">Services</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="/why-us/" style="color: var(--muted); text-decoration: none;">Why Us</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="/packages/" style="color: var(--muted); text-decoration: none;">Packages</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="/contact/" style="color: var(--muted); text-decoration: none;">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
+                        <li><a href="/privacy-policy/" style="color: var(--muted); text-decoration: none;">Privacy Policy</a></li>
+                        <li><a href="/terms-conditions/" style="color: var(--muted); text-decoration: none;">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="border-top: 1px solid var(--border); padding-top: 2rem; text-align: center;">
+                <p style="color: var(--muted); margin-bottom: 1rem;">© 2025 Helping Hands Systems. All rights reserved.</p>
+                <div>
+                    <a href="tel:+18337851847" style="color: var(--primary); text-decoration: none; margin: 0 1rem;">+1 833-785-1847</a>
+                    <a href="mailto:info@helpinghandsystems.com" style="color: var(--primary); text-decoration: none; margin: 0 1rem;">info@helpinghandsystems.com</a>
+                </div>
+            </div>
         </div>
     </footer>
     

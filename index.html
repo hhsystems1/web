@@ -18,7 +18,7 @@
     <style>
         :root {
             --primary: #5AE3FF;
-            --accent: #9B59B6;
+            --accent: #3A86FF;
             --background: #0D1321;
             --foreground: #E6EAF2;
             --muted: rgba(230, 234, 242, 0.6);
@@ -36,30 +36,46 @@
             background: var(--background);
             color: var(--foreground);
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
+        /* Background Effects */
         .gradient-mesh {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 25% 25%, rgba(90, 227, 255, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 75% 75%, rgba(155, 89, 182, 0.1) 0%, transparent 50%);
+            right: 0;
+            bottom: 0;
             z-index: -2;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(90, 227, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(58, 134, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(90, 227, 255, 0.1) 0%, transparent 70%);
+            animation: gradientShift 20s ease-in-out infinite;
         }
         
         .grid-overlay {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(90, 227, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(90, 227, 255, 0.02) 1px, transparent 1px);
-            background-size: 50px 50px;
+            right: 0;
+            bottom: 0;
             z-index: -1;
+            background-image: 
+                linear-gradient(rgba(90, 227, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(90, 227, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 30s linear infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
         }
         
         .container {
@@ -68,124 +84,344 @@
             padding: 0 2rem;
         }
         
-        .hero {
+        /* Hero Section */
+        .hero-section {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
             position: relative;
+            padding: 120px 0 60px;
         }
         
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(90, 227, 255, 0.1) 0%, rgba(155, 89, 182, 0.1) 100%);
-            z-index: -1;
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 6rem);
-            font-weight: 800;
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: bold;
+            margin-bottom: 1.5rem;
             background: linear-gradient(135deg, var(--primary), var(--accent));
-            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 2rem;
+            background-clip: text;
             line-height: 1.1;
         }
         
-        .hero p {
-            font-size: clamp(1.125rem, 3vw, 1.5rem);
+        .hero-subtitle {
+            font-size: 1.25rem;
             color: var(--muted);
-            max-width: 600px;
-            margin: 0 auto 3rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
         }
         
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
             background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
+            color: var(--background);
             text-decoration: none;
             border-radius: 12px;
             font-weight: 600;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(90, 227, 255, 0.2);
         }
         
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(90, 227, 255, 0.3);
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(90, 227, 255, 0.4);
         }
         
+        /* Section Styles */
         .section {
-            padding: 6rem 0;
+            padding: 80px 0;
         }
         
-        .section h2 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 700;
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1rem;
             background: linear-gradient(135deg, var(--primary), var(--accent));
-            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--muted);
             text-align: center;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Why Choose Us - 3 Main Cards */
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
             margin-bottom: 3rem;
         }
         
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+        .feature-card {
+            background: rgba(13, 19, 33, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+            text-align: center;
         }
         
-        .card {
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(90, 227, 255, 0.15);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--background);
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--foreground);
+        }
+        
+        .feature-description {
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        
+        /* Packages Grid */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .package-card {
             background: rgba(13, 19, 33, 0.8);
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 2rem;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
             transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
         }
         
-        .card:hover {
+        .package-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(90, 227, 255, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(90, 227, 255, 0.1);
         }
         
-        .card h3 {
-            color: var(--primary);
+        .package-card.popular {
+            border-color: var(--primary);
+            background: rgba(13, 19, 33, 0.9);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--background);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .package-name {
             font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--foreground);
+        }
+        
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .package-billing {
+            color: var(--muted);
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+        }
+        
+        .package-description {
+            color: var(--muted);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        .package-button {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--background);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+        
+        .package-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(90, 227, 255, 0.3);
+        }
+        
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border);
+            background: rgba(13, 19, 33, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 3rem;
+            align-items: start;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .footer-logo img {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .footer-brand {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .footer-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        .footer-nav-section h4 {
+            color: var(--foreground);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .footer-nav-section ul {
+            list-style: none;
+        }
+        
+        .footer-nav-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-nav-section ul li a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-nav-section ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-legal ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .footer-legal ul li a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-legal ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+            text-align: center;
+        }
+        
+        .footer-bottom p {
+            color: var(--muted);
             margin-bottom: 1rem;
         }
         
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 3rem 0;
-            text-align: center;
-            color: var(--muted);
+        .footer-contact a {
+            color: var(--primary);
+            text-decoration: none;
+            margin: 0 1rem;
         }
         
         @media (max-width: 768px) {
-            .container {
-                padding: 0 1rem;
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
             
-            .section {
-                padding: 3rem 0;
+            .footer-nav {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .why-us-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .packages-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Background Effects -->
     <div class="gradient-mesh"></div>
     <div class="grid-overlay"></div>
     
@@ -193,96 +429,212 @@
     
     <main>
         <!-- Hero Section -->
-        <section class="hero">
+        <section style="min-height: 100vh; display: flex; align-items: center; position: relative; padding: 120px 0 60px;">
             <div class="container">
-                <h1>Web experiences that look like the future, function like a dream.</h1>
-                <p>Design, development, and automations that ship fast, scale cleanly, and feel effortless.</p>
-                <a href="/contact/" class="btn">Start Your Project</a>
+                <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                    <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: bold; margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1;">
+                        Web experiences that look like the future, function like a dream.
+                    </h1>
+                    <p style="font-size: 1.25rem; color: var(--muted); margin-bottom: 2rem; line-height: 1.6;">
+                        Design, development, and automations that ship fast, scale cleanly, and feel effortless.
+                    </p>
+                    <a href="/packages/" style="display: inline-flex; align-items: center; justify-content: center; padding: 16px 32px; background: linear-gradient(135deg, var(--primary), var(--accent)); color: var(--background); text-decoration: none; border-radius: 12px; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(90, 227, 255, 0.2);">
+                        Start Your Project
+                    </a>
+                </div>
             </div>
         </section>
         
-        <!-- Services Section -->
-        <section class="section">
+        <!-- Why Choose Us Section -->
+        <section style="padding: 80px 0;">
             <div class="container">
-                <h2>Our Services</h2>
-                <p style="text-align: center; color: var(--muted); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Comprehensive web solutions designed to elevate your business</p>
+                <h2 style="font-size: 2.5rem; font-weight: bold; text-align: center; margin-bottom: 1rem; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    Why Choose Us
+                </h2>
+                <p style="font-size: 1.25rem; color: var(--muted); text-align: center; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    The advantages that set us apart from the competition
+                </p>
                 
-                <div class="grid">
-                    <div class="card">
-                        <h3>🎨 Modern Website Design</h3>
-                        <p>Cutting-edge designs that captivate and convert your visitors into customers.</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+                    <div style="background: rgba(13, 19, 33, 0.8); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; backdrop-filter: blur(20px); transition: all 0.3s ease; text-align: center;">
+                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem; color: var(--background);">🚀</div>
+                        <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem; color: var(--foreground);">Lightning Fast Performance</h3>
+                        <p style="color: var(--muted); line-height: 1.6;">Every line of code is optimized for speed, ensuring your website loads instantly and keeps visitors engaged.</p>
                     </div>
                     
-                    <div class="card">
-                        <h3>📊 Web Apps & Dashboards</h3>
-                        <p>Custom applications and data visualization tools built for performance.</p>
+                    <div style="background: rgba(13, 19, 33, 0.8); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; backdrop-filter: blur(20px); transition: all 0.3s ease; text-align: center;">
+                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem; color: var(--background);">🎨</div>
+                        <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem; color: var(--foreground);">Futuristic Design</h3>
+                        <p style="color: var(--muted); line-height: 1.6;">Cutting-edge designs that captivate users while maintaining perfect functionality and conversion rates.</p>
                     </div>
                     
-                    <div class="card">
-                        <h3>🛒 E-commerce</h3>
-                        <p>High-converting online stores with seamless payment and inventory management.</p>
-                    </div>
-                    
-                    <div class="card">
-                        <h3>🤖 AI Chatbots</h3>
-                        <p>Intelligent conversational interfaces that enhance customer experience.</p>
-                    </div>
-                    
-                    <div class="card">
-                        <h3>📈 Marketing Sites & SEO</h3>
-                        <p>Optimized websites that rank high and drive organic traffic growth.</p>
-                    </div>
-                    
-                    <div class="card">
-                        <h3>⚡ Automations & Integrations</h3>
-                        <p>Streamline your workflow with custom automation solutions.</p>
+                    <div style="background: rgba(13, 19, 33, 0.8); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; backdrop-filter: blur(20px); transition: all 0.3s ease; text-align: center;">
+                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem; color: var(--background);">🤖</div>
+                        <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem; color: var(--foreground);">AI & Automation Ready</h3>
+                        <p style="color: var(--muted); line-height: 1.6;">Built-in automation capabilities and AI integration to streamline your business operations from day one.</p>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Why Us Section -->
-        <section class="section" style="background: rgba(255, 255, 255, 0.02);">
+        <!-- Packages Section -->
+        <section style="padding: 80px 0;">
             <div class="container">
-                <h2>Why Choose Us</h2>
-                <p style="text-align: center; color: var(--muted); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">The advantages that set us apart from the competition</p>
+                <h2 style="font-size: 2.5rem; font-weight: bold; text-align: center; margin-bottom: 1rem; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    Choose Your Package
+                </h2>
+                <p style="font-size: 1.25rem; color: var(--muted); text-align: center; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Select the perfect plan to accelerate your business growth
+                </p>
                 
-                <div class="grid">
-                    <div class="card">
-                        <h3>✨ Futuristic Design, Practical Builds</h3>
-                        <p>We create visually stunning experiences without sacrificing functionality or performance.</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                    <div style="background: rgba(13, 19, 33, 0.8); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; backdrop-filter: blur(20px); transition: all 0.3s ease; display: flex; flex-direction: column;">
+                        <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem; color: var(--foreground);">Starter</h3>
+                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary); margin-bottom: 0.5rem;">$97</div>
+                        <div style="color: var(--muted); margin-bottom: 1rem; font-size: 0.875rem;">per month</div>
+                        <p style="color: var(--muted); margin-bottom: 2rem; line-height: 1.6; flex-grow: 1;">3 page site with a contact form to establish your online presence quickly.</p>
+                        <a href="/packages/starter/" style="display: block; width: 100%; padding: 16px; background: linear-gradient(135deg, var(--primary), var(--accent)); color: var(--background); text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; transition: all 0.3s ease;">Learn More</a>
                     </div>
                     
-                    <div class="card">
-                        <h3>⚡ Performance First</h3>
-                        <p>Every line of code is optimized for speed, ensuring lightning-fast user experiences.</p>
+                    <div style="background: rgba(13, 19, 33, 0.9); border: 1px solid var(--primary); border-radius: 16px; padding: 2rem; backdrop-filter: blur(20px); transition: all 0.3s ease; display: flex; flex-direction: column; position: relative;">
+                        <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--primary), var(--accent)); color: var(--background); padding: 6px 16px; border-radius: 20px; font-size: 0.875rem; font-weight: 600;">Most Popular</div>
+                        <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem; color: var(--foreground);">Professional</h3>
+                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary); margin-bottom: 0.5rem;">$297</div>
+                        <div style="color: var(--muted); margin-bottom: 1rem; font-size: 0.875rem;">per month</div>
+                        <p style="color: var(--muted); margin-bottom: 2rem; line-height: 1.6; flex-grow: 1;">5 page site with calendar, a chatbot, and automations to take operations to the next level.</p>
+                        <a href="/packages/professional/" style="display: block; width: 100%; padding: 16px; background: linear-gradient(135deg, var(--primary), var(--accent)); color: var(--background); text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; transition: all 0.3s ease;">Learn More</a>
                     </div>
                     
-                    <div class="card">
-                        <h3>🔧 Automation Ready</h3>
-                        <p>Built-in automation capabilities to streamline your business operations from day one.</p>
+                    <div style="background: rgba(13, 19, 33, 0.8); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; backdrop-filter: blur(20px); transition: all 0.3s ease; display: flex; flex-direction: column;">
+                        <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem; color: var(--foreground);">Custom</h3>
+                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary); margin-bottom: 0.5rem;">Custom</div>
+                        <div style="color: var(--muted); margin-bottom: 1rem; font-size: 0.875rem;">pricing</div>
+                        <p style="color: var(--muted); margin-bottom: 2rem; line-height: 1.6; flex-grow: 1;">Fully customized builds with AI and automations. Tell us what you are aiming for.</p>
+                        <a href="/packages/custom/" style="display: block; width: 100%; padding: 16px; background: linear-gradient(135deg, var(--primary), var(--accent)); color: var(--background); text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; transition: all 0.3s ease;">Get Quote</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Web experiences that look like the future, function like a dream.</h1>
+                    <p class="hero-subtitle">Design, development, and automations that ship fast, scale cleanly, and feel effortless.</p>
+                    <a href="/packages/" class="hero-cta">Start Your Project</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Why Choose Us Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Why Choose Us</h2>
+                <p class="section-subtitle">The advantages that set us apart from the competition</p>
+                
+                <div class="why-us-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🚀</div>
+                        <h3 class="feature-title">Lightning Fast Performance</h3>
+                        <p class="feature-description">Every line of code is optimized for speed, ensuring your website loads instantly and keeps visitors engaged with smooth, responsive interactions.</p>
                     </div>
                     
-                    <div class="card">
-                        <h3>📱 Accessible & Responsive</h3>
-                        <p>WCAG compliant designs that work perfectly across all devices and screen sizes.</p>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3 class="feature-title">Futuristic Design</h3>
+                        <p class="feature-description">Cutting-edge designs that captivate users while maintaining perfect functionality. Beautiful interfaces that convert visitors into customers.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3 class="feature-title">AI & Automation Ready</h3>
+                        <p class="feature-description">Built-in automation capabilities and AI integration to streamline your business operations from day one, saving time and increasing efficiency.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Packages Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Choose Your Package</h2>
+                <p class="section-subtitle">Select the perfect plan to accelerate your business growth</p>
+                
+                <div class="packages-grid">
+                    <div class="package-card">
+                        <h3 class="package-name">Starter</h3>
+                        <div class="package-price">$97</div>
+                        <div class="package-billing">per month</div>
+                        <p class="package-description">3 page site with a contact form to establish your online presence quickly.</p>
+                        <a href="/packages/starter/" class="package-button">Learn More</a>
+                    </div>
+                    
+                    <div class="package-card">
+                        <h3 class="package-name">Standard</h3>
+                        <div class="package-price">$197</div>
+                        <div class="package-billing">per month</div>
+                        <p class="package-description">5 page site with a calendar and appointment booking to keep your pipeline organized.</p>
+                        <a href="/packages/standard/" class="package-button">Learn More</a>
+                    </div>
+                    
+                    <div class="package-card popular">
+                        <div class="popular-badge">Most Popular</div>
+                        <h3 class="package-name">Professional</h3>
+                        <div class="package-price">$297</div>
+                        <div class="package-billing">per month</div>
+                        <p class="package-description">5 page site with calendar, a chatbot, and automations to take operations to the next level.</p>
+                        <a href="/packages/professional/" class="package-button">Learn More</a>
+                    </div>
+                    
+                    <div class="package-card">
+                        <h3 class="package-name">Custom</h3>
+                        <div class="package-price">Custom</div>
+                        <div class="package-billing">pricing</div>
+                        <p class="package-description">Fully customized builds with AI and automations. Tell us what you are aiming for, we will design the right system.</p>
+                        <a href="/packages/custom/" class="package-button">Get Quote</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
     
-    <footer>
+    <!-- Footer -->
+    <footer style="border-top: 1px solid var(--border); background: rgba(13, 19, 33, 0.8); backdrop-filter: blur(20px); padding: 3rem 0 2rem; margin-top: 4rem;">
         <div class="container">
-            <p>&copy; 2025 Helping Hands Systems. All rights reserved.</p>
-            <p style="margin-top: 1rem;">
-                <a href="mailto:info@helpinghandsystems.com" style="color: var(--primary); text-decoration: none;">info@helpinghandsystems.com</a> | 
-                <a href="tel:+18337851847" style="color: var(--primary); text-decoration: none;">+1 833-785-1847</a>
-            </p>
+            <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 3rem; align-items: start; margin-bottom: 2rem;">
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <img src="/hhs-logo.png" alt="HHS Logo" style="width: 40px; height: 40px;">
+                    <span style="font-size: 1.25rem; font-weight: bold; color: var(--primary);">Helping Hands Systems</span>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; justify-content: center;">
+                    <div>
+                        <h4 style="color: var(--foreground); margin-bottom: 1rem; font-weight: 600;">Navigation</h4>
+                        <ul style="list-style: none;">
+                            <li style="margin-bottom: 0.5rem;"><a href="/services/" style="color: var(--muted); text-decoration: none;">Services</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="/why-us/" style="color: var(--muted); text-decoration: none;">Why Us</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="/packages/" style="color: var(--muted); text-decoration: none;">Packages</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="/contact/" style="color: var(--muted); text-decoration: none;">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
+                        <li><a href="/privacy-policy/" style="color: var(--muted); text-decoration: none;">Privacy Policy</a></li>
+                        <li><a href="/terms-conditions/" style="color: var(--muted); text-decoration: none;">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="border-top: 1px solid var(--border); padding-top: 2rem; text-align: center;">
+                <p style="color: var(--muted); margin-bottom: 1rem;">© 2025 Helping Hands Systems. All rights reserved.</p>
+                <div>
+                    <a href="tel:+18337851847" style="color: var(--primary); text-decoration: none; margin: 0 1rem;">+1 833-785-1847</a>
+                    <a href="mailto:info@helpinghandsystems.com" style="color: var(--primary); text-decoration: none; margin: 0 1rem;">info@helpinghandsystems.com</a>
+                </div>
+            </div>
         </div>
-    </footer>
-    
-    <!-- Perfect Navbar System -->
+    </footer>    <!-- Perfect Navbar System -->
     <script src="/perfect-navbar.js"></script>
 </body>
 </html>

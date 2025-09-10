@@ -95,18 +95,24 @@ function initializeNavbarFunctionality() {
     
     function handleScroll() {
         const scrollY = window.scrollY;
-        const shouldFloat = scrollY > 100;
+        const shouldFloat = scrollY > 50; // Changed from 100 to 50 for earlier trigger
         
         if (shouldFloat && !isFloating) {
             // Switch to floating navbar
             navbar.classList.remove('transparent');
             navbar.classList.add('floating');
+            // Hide brand text in floating mode
+            const brandText = navbar.querySelector('.brand-text');
+            if (brandText) brandText.style.display = 'none';
             isFloating = true;
             console.log('📱 Switched to floating navbar');
         } else if (!shouldFloat && isFloating) {
             // Switch to transparent navbar
             navbar.classList.remove('floating');
             navbar.classList.add('transparent');
+            // Show brand text in transparent mode
+            const brandText = navbar.querySelector('.brand-text');
+            if (brandText) brandText.style.display = 'inline';
             isFloating = false;
             console.log('🏠 Switched to transparent navbar');
         }
