@@ -4,7 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Contact Us - Helping Hands Systems</title>
-    <meta name="description" content="Get in touch with Helping Hands Systems for your web development needs">
+    <meta name="description" content="Get i            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }uch with Helping Hands Systems for your web development needs">
     
     <!-- Favicon -->
     <link rel="shortcut icon" href="/favicon.ico">
@@ -105,11 +108,14 @@
             margin-right: auto;
         }
         
-        .contact-grid {
+        .contact-section {
+            padding: 4rem 0;
+        }
+        
+        .contact-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            padding: 60px 0;
             max-width: 1000px;
             margin: 0 auto;
         }
@@ -258,9 +264,9 @@
             </div>
         </section>
         
-        <section class="contact-grid">
+        <section class="contact-section">
             <div class="container">
-                <div class="contact-grid">
+                <div class="contact-wrapper">
                     <div class="contact-form">
                         <h2 style="margin-bottom: 2rem; color: var(--foreground);">Send us a message</h2>
                         <form action="#" method="POST">

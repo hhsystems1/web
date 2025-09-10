@@ -45,7 +45,7 @@ header[class*="fixed"],
     top: 1rem;
     left: 50%;
     right: auto;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-10px);
     width: auto;
     max-width: calc(100vw - 2rem);
     min-width: 320px;
@@ -57,6 +57,20 @@ header[class*="fixed"],
     box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.4),
         0 0 0 1px rgba(90, 227, 255, 0.1);
+    animation: floatIn 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
+
+@keyframes floatIn {
+    0% {
+        transform: translateX(-50%) translateY(-40px);
+        opacity: 0;
+        scale: 0.9;
+    }
+    100% {
+        transform: translateX(-50%) translateY(-10px);
+        opacity: 1;
+        scale: 1;
+    }
 }
 
 /* Navbar Container */
