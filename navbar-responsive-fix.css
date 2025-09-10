@@ -254,13 +254,41 @@ header .flex.items-center.space-x-2 {
     }
 }
 
-/* Enhanced mobile menu button visibility for both navbars */
+/* Enhanced mobile menu button visibility - ONLY on mobile and tablet */
 button[aria-label="Toggle menu"] {
     min-width: 44px !important;
     min-height: 44px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+}
+
+/* Show hamburger buttons ONLY on mobile and tablet screens */
+@media (max-width: 1023px) {
+    button[aria-label="Toggle menu"],
+    .mobile-menu-toggle {
+        display: flex !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+}
+
+/* COMPLETELY HIDE hamburger buttons on desktop */
+@media (min-width: 1024px) {
+    button[aria-label="Toggle menu"],
+    .mobile-menu-toggle,
+    .hamburger-menu {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        opacity: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        position: absolute !important;
+        left: -9999px !important;
+    }
 }
 
 /* Ensure both navbar mobile buttons work */
@@ -328,10 +356,28 @@ footer .space-y-4 a[href="/"]::after {
     }
 }
 
-/* Hide mobile menu by default on larger screens */
-@media (min-width: 768px) {
+/* Hide mobile menu AND hamburger buttons on desktop screens */
+@media (min-width: 1024px) {
     .mobile-menu {
         display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+    
+    /* Hide hamburger menu buttons on desktop */
+    button[aria-label="Toggle menu"],
+    .mobile-menu-toggle,
+    .hamburger-menu {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+    
+    /* Ensure desktop navigation is properly spaced without hamburger buttons */
+    .absolute.top-0 .flex.h-16.items-center.justify-between,
+    .floating-island .px-8.py-4 > .flex.items-center.justify-between {
+        gap: 2rem !important;
     }
 }
 
