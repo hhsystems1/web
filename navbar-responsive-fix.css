@@ -9,6 +9,50 @@
 }
 
 /* Desktop and Tablet spacing improvements */
+/* CRITICAL: Immediate text hiding to prevent FOUC */
+/* Hide all navbar text immediately on page load */
+.container .flex.items-center.space-x-2 > span,
+.floating-island .flex.items-center.space-x-2 > span,
+nav .flex.items-center.space-x-2 > span,
+header .flex.items-center.space-x-2 > span,
+a .text-xl.font-bold.text-white.drop-shadow-lg,
+a .text-lg.font-bold.text-primary,
+.text-xl.font-bold.text-white.drop-shadow-lg,
+.text-lg.font-bold.text-primary {
+    display: none !important;
+    visibility: hidden !important;
+    font-size: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    opacity: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+}
+
+/* Ensure logos remain visible and properly spaced - remove space-x gap */
+.container .flex.items-center.space-x-2,
+.floating-island .flex.items-center.space-x-2,
+nav .flex.items-center.space-x-2,
+header .flex.items-center.space-x-2 {
+    gap: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Desktop brand styling - only show our custom brand */
+.desktop-brand {
+    display: inline !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: static !important;
+    left: auto !important;
+    font-size: 1.125rem !important;
+    font-weight: 700 !important;
+    margin-left: 0.5rem !important;
+    white-space: nowrap !important;
+}
+
 /* Desktop navbar spacing improvements and logo-only navigation */
 @media (min-width: 768px) {
     /* Desktop navbar improvements with better spacing */
@@ -37,44 +81,6 @@
     .floating-island .hidden.md\\:block,
     nav + .hidden.md\\:block {
         margin-left: 2rem !important;
-    }
-}
-
-/* Hide "Helping Hands Web" text from both navbars - logo only */
-/* Target both top navbar and floating navbar text */
-.container .flex.items-center.space-x-2 > span,
-.floating-island .flex.items-center.space-x-2 > span,
-nav .flex.items-center.space-x-2 > span,
-header .flex.items-center.space-x-2 > span,
-a .text-xl.font-bold.text-white.drop-shadow-lg,
-a .text-lg.font-bold.text-primary {
-    display: none !important;
-    visibility: hidden !important;
-    font-size: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* Ensure logos remain visible and properly spaced - remove space-x gap */
-.container .flex.items-center.space-x-2,
-.floating-island .flex.items-center.space-x-2,
-nav .flex.items-center.space-x-2,
-header .flex.items-center.space-x-2 {
-    gap: 0 !important;
-    margin-right: 0 !important;
-}
-
-/* Add "Helping Hands Systems" as desktop brand on desktop/tablet for floating nav */
-@media (min-width: 768px) {
-    .floating-island .flex.items-center.space-x-2::after {
-        content: "Helping Hands Systems" !important;
-        font-size: 1.125rem !important;
-        font-weight: 700 !important;
-        color: var(--primary) !important;
-        margin-left: 0.5rem !important;
-        white-space: nowrap !important;
     }
 }
 

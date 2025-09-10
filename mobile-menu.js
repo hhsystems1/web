@@ -1,21 +1,81 @@
-// Mobile Menu Functionality - iOS Safari Compatible
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize mobile menu for both navbars
-    initializeMobileMenu();
-    
-    // Initialize scroll effects
-    initializeScrollEffects();
-    
-    // Initialize animations
-    initializeAnimations();
-    
-    // Update branding
-    updateBranding();
-});
+// ENHANCED MOBILE MENU WITH IMPROVED BRANDING AND NO FLASH
+// This file provides mobile menu functionality with iOS Safari compatibility
+// and proper navbar branding management without FOUC (Flash of Unstyled Content)
 
+// iOS Safari Detection and Viewport Management
+function isIOSSafari() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) && 
+           !window.MSStream && 
+           /Safari/.test(navigator.userAgent);
+}
+
+// Aggressive viewport handling for iOS Safari
+function handleIOSViewport() {
+    if (isIOSSafari()) {
+        // Force viewport meta updates
+        let viewport = document.querySelector('meta[name=viewport]');
+        if (!viewport) {
+            viewport = document.createElement('meta');
+            viewport.name = 'viewport';
+            document.head.appendChild(viewport);
+        }
+        viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover';
+    }
+}
+
+// Immediately hide navbar text on script load to prevent FOUC
+(function() {
+    'use strict';
+    
+    // Critical: Hide text immediately when script loads
+    function hideNavbarTextImmediate() {
+        const style = document.createElement('style');
+        style.textContent = `
+            .container .flex.items-center.space-x-2 > span,
+            .floating-island .flex.items-center.space-x-2 > span,
+            nav .flex.items-center.space-x-2 > span,
+            header .flex.items-center.space-x-2 > span,
+            a .text-xl.font-bold.text-white.drop-shadow-lg,
+            a .text-lg.font-bold.text-primary,
+            .text-xl.font-bold.text-white.drop-shadow-lg,
+            .text-lg.font-bold.text-primary {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                position: absolute !important;
+                left: -9999px !important;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // Run immediately if document is already loaded, otherwise wait for DOMContentLoaded
+    if (document.readyState !== 'loading') {
+        hideNavbarTextImmediate();
+    } else {
+        document.addEventListener('DOMContentLoaded', hideNavbarTextImmediate);
+    }
+})();
+
+// Main branding update function - runs after DOM is ready
 function updateBranding() {
-    // Update footer branding from "Helping Hands Web" to "Helping Hands Systems"
-    function updateFooterBranding() {
+    try {
+        // Update footer branding
+        updateFooterBranding();
+        
+        // Handle navbar branding based on screen size
+        if (window.innerWidth >= 768) {
+            addDesktopBranding();
+        } else {
+            removeDesktopBranding();
+        }
+    } catch (error) {
+        console.log('Branding update error:', error);
+    }
+}
+
+function updateFooterBranding() {
+    try {
         // Find footer links with "Helping Hands Web"
         const footerLinks = document.querySelectorAll('footer a');
         footerLinks.forEach(link => {
@@ -31,105 +91,60 @@ function updateBranding() {
                 p.textContent = p.textContent.replace('Helping Hands Web', 'Helping Hands Systems');
             }
         });
-    }
-    
-    // Hide navbar text elements more aggressively
-    function hideNavbarText() {
-        // Target all navbar text spans that contain "Helping Hands Web"
-        const navbarSpans = document.querySelectorAll('nav span, header span, .container span, .floating-island span');
-        navbarSpans.forEach(span => {
-            if (span.textContent.includes('Helping Hands Web') || 
-                span.textContent.includes('Helping Hands') ||
-                span.classList.contains('text-xl') ||
-                span.classList.contains('text-lg')) {
-                span.style.display = 'none';
-                span.style.visibility = 'hidden';
-                span.style.fontSize = '0';
-                span.style.width = '0';
-                span.style.height = '0';
-                span.style.margin = '0';
-                span.style.padding = '0';
-                span.textContent = '';
-            }
-        });
-        
-        // Also target any text nodes directly
-        const allElements = document.querySelectorAll('nav *, header *, .floating-island *');
-        allElements.forEach(el => {
-            if (el.textContent === 'Helping Hands Web') {
-                el.style.display = 'none';
-                el.style.visibility = 'hidden';
-            }
-        });
-    }
-    
-    // Add "Helping Hands Systems" to floating navbar on desktop/tablet
-    function addDesktopBranding() {
-        if (window.innerWidth >= 768) {
-            const floatingLogo = document.querySelector('.floating-island .flex.items-center.space-x-2');
-            if (floatingLogo && !floatingLogo.querySelector('.desktop-brand')) {
-                const brandSpan = document.createElement('span');
-                brandSpan.className = 'desktop-brand';
-                brandSpan.textContent = 'Helping Hands Systems';
-                brandSpan.style.cssText = `
-                    font-size: 1.125rem !important;
-                    font-weight: 700 !important;
-                    color: var(--primary) !important;
-                    margin-left: 0.5rem !important;
-                    white-space: nowrap !important;
-                `;
-                floatingLogo.appendChild(brandSpan);
-            }
-        }
-    }
-    
-    // Run all branding updates
-    updateFooterBranding();
-    hideNavbarText();
-    addDesktopBranding();
-    
-    // Run again after short delays
-    setTimeout(() => {
-        updateFooterBranding();
-        hideNavbarText();
-        addDesktopBranding();
-    }, 1000);
-    
-    setTimeout(() => {
-        updateFooterBranding();
-        hideNavbarText();
-        addDesktopBranding();
-    }, 2000);
-    
-    // Also observe for dynamic content changes
-    const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            if (mutation.type === 'childList') {
-                updateFooterBranding();
-                hideNavbarText();
-                addDesktopBranding();
-            }
-        });
-    });
-    
-    // Start observing changes
-    const footer = document.querySelector('footer');
-    const navbar = document.querySelector('nav');
-    const header = document.querySelector('header');
-    
-    if (footer) {
-        observer.observe(footer, { childList: true, subtree: true });
-    }
-    if (navbar) {
-        observer.observe(navbar, { childList: true, subtree: true });
-    }
-    if (header) {
-        observer.observe(header, { childList: true, subtree: true });
+    } catch (error) {
+        console.log('Footer branding error:', error);
     }
 }
 
+function addDesktopBranding() {
+    try {
+        // Only proceed if we're on desktop/tablet
+        if (window.innerWidth < 768) return;
+        
+        // Remove any existing desktop brands first
+        removeDesktopBranding();
+        
+        // Target floating island navbar for desktop branding
+        const floatingNavContainer = document.querySelector('.floating-island .flex.items-center.space-x-2');
+        
+        if (floatingNavContainer) {
+            const brandSpan = document.createElement('span');
+            brandSpan.className = 'desktop-brand';
+            brandSpan.textContent = 'Helping Hands Systems';
+            brandSpan.style.cssText = `
+                font-size: 1.125rem !important;
+                font-weight: 700 !important;
+                color: var(--primary) !important;
+                margin-left: 0.5rem !important;
+                white-space: nowrap !important;
+                display: inline !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                position: static !important;
+                left: auto !important;
+            `;
+            floatingNavContainer.appendChild(brandSpan);
+        }
+    } catch (error) {
+        console.log('Add desktop branding error:', error);
+    }
+}
+
+function removeDesktopBranding() {
+    try {
+        const existingBrands = document.querySelectorAll('.desktop-brand');
+        existingBrands.forEach(brand => {
+            if (brand && brand.parentNode) {
+                brand.parentNode.removeChild(brand);
+            }
+        });
+    } catch (error) {
+        console.log('Remove desktop branding error:', error);
+    }
+}
+
+// Mobile menu functions
 function initializeMobileMenu() {
-    // Get all mobile menu buttons
     const mobileMenuBtns = document.querySelectorAll('[aria-label="Toggle menu"]');
     
     mobileMenuBtns.forEach(btn => {
@@ -147,7 +162,6 @@ function initializeMobileMenu() {
 }
 
 function toggleMobileMenu(button) {
-    // Create or toggle mobile menu for the navbar
     const navbar = button.closest('nav') || button.closest('header');
     let mobileMenu = document.body.querySelector('.mobile-menu');
     
@@ -165,32 +179,40 @@ function toggleMobileMenu(button) {
 }
 
 function createMobileMenu(navbar) {
-    // Get navigation links
     const navLinks = navbar.querySelectorAll('nav a, header a');
     const getStartedBtn = navbar.querySelector('[href*="contact"], [href*="packages"]');
     
-    // Create mobile menu with aggressive iOS-compatible full-screen overlay
     const mobileMenu = document.createElement('div');
     mobileMenu.className = 'mobile-menu';
     
-    // Force immediate styles - iOS Safari workaround
-    const setImmediateStyles = () => {
+    // Aggressive iOS Safari viewport handling
+    const setFullscreenStyles = () => {
+        // Force iOS viewport update
+        handleIOSViewport();
+        
+        // Get true viewport dimensions
         const vh = window.innerHeight;
         const vw = window.innerWidth;
+        const screenH = screen.height;
+        const screenW = screen.width;
         
-        // Direct DOM style manipulation - bypasses all CSS
+        // Use the larger dimension to ensure full coverage
+        const fullHeight = Math.max(vh, screenH, window.screen.availHeight);
+        const fullWidth = Math.max(vw, screenW, window.screen.availWidth);
+        
+        // Force immediate styles - iOS Safari workaround
         mobileMenu.style.cssText = `
             position: fixed !important;
             top: 0px !important;
             left: 0px !important;
             right: 0px !important;
             bottom: 0px !important;
-            width: ${vw}px !important;
-            height: ${vh}px !important;
+            width: ${fullWidth}px !important;
+            height: ${fullHeight}px !important;
             max-width: none !important;
             max-height: none !important;
-            min-width: ${vw}px !important;
-            min-height: ${vh}px !important;
+            min-width: ${fullWidth}px !important;
+            min-height: ${fullHeight}px !important;
             background: rgba(13, 19, 33, 0.98) !important;
             backdrop-filter: blur(12px) !important;
             -webkit-backdrop-filter: blur(12px) !important;
@@ -211,10 +233,45 @@ function createMobileMenu(navbar) {
             -webkit-overflow-scrolling: touch !important;
             transform: translateZ(0) !important;
             -webkit-transform: translateZ(0) !important;
+            -webkit-backface-visibility: hidden !important;
+            backface-visibility: hidden !important;
+            will-change: transform !important;
         `;
     };
     
-    setImmediateStyles();
+    setFullscreenStyles();
+    
+    // Enhanced iOS Safari viewport handling with multiple event listeners
+    const handleResize = () => {
+        // Force viewport update first
+        handleIOSViewport();
+        
+        // Multiple timeout approaches for iOS Safari reliability
+        setTimeout(() => {
+            setFullscreenStyles();
+        }, 50);
+        
+        setTimeout(() => {
+            setFullscreenStyles();
+        }, 200);
+        
+        setTimeout(() => {
+            setFullscreenStyles();
+        }, 500);
+    };
+    
+    // Multiple event listeners for comprehensive iOS Safari coverage
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+    window.addEventListener('scroll', handleResize);
+    window.addEventListener('touchstart', handleResize);
+    document.addEventListener('touchstart', handleResize);
+    
+    // Force initial viewport handling
+    setTimeout(() => {
+        handleIOSViewport();
+        setFullscreenStyles();
+    }, 100);
     
     // Create menu content
     const menuContent = document.createElement('div');
@@ -222,46 +279,41 @@ function createMobileMenu(navbar) {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        justify-content: center !important;
+        gap: 2rem !important;
         width: 100% !important;
-        max-width: 400px !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        text-align: center !important;
-        gap: 1.5rem !important;
+        max-width: 300px !important;
     `;
     
     // Add navigation links
-    navLinks.forEach(link => {
-        if (link.textContent.trim() && !link.querySelector('img') && link.textContent !== 'Get Started') {
+    navLinks.forEach((link, index) => {
+        if (!link.closest('.mobile-menu') && 
+            !link.querySelector('img') && 
+            !link.classList.contains('hidden') &&
+            link.textContent.trim()) {
+            
             const menuLink = document.createElement('a');
             menuLink.href = link.href;
             menuLink.textContent = link.textContent;
-            
             menuLink.style.cssText = `
-                display: block !important;
-                padding: 1rem 2rem !important;
-                font-size: 1.5rem !important;
-                font-weight: 500 !important;
-                color: rgba(230, 234, 242, 0.9) !important;
+                color: white !important;
+                font-size: 1.25rem !important;
+                font-weight: 600 !important;
                 text-decoration: none !important;
-                border-radius: 12px !important;
+                padding: 0.75rem 1.5rem !important;
+                border-radius: 0.5rem !important;
                 transition: all 0.3s ease !important;
-                border: none !important;
-                background: transparent !important;
-                width: 100% !important;
                 text-align: center !important;
-                box-sizing: border-box !important;
+                width: 100% !important;
+                opacity: 0 !important;
+                transform: translateY(20px) !important;
             `;
             
             menuLink.addEventListener('mouseenter', () => {
-                menuLink.style.backgroundColor = 'rgba(90, 227, 255, 0.1)';
-                menuLink.style.color = '#5AE3FF';
+                menuLink.style.background = 'rgba(255, 255, 255, 0.1)';
             });
             
             menuLink.addEventListener('mouseleave', () => {
-                menuLink.style.backgroundColor = 'transparent';
-                menuLink.style.color = 'rgba(230, 234, 242, 0.9)';
+                menuLink.style.background = 'transparent';
             });
             
             menuContent.appendChild(menuLink);
@@ -272,307 +324,165 @@ function createMobileMenu(navbar) {
     if (getStartedBtn) {
         const menuBtn = document.createElement('a');
         menuBtn.href = getStartedBtn.href;
-        menuBtn.textContent = 'Get Started';
-        
+        menuBtn.textContent = getStartedBtn.textContent;
         menuBtn.style.cssText = `
-            display: block !important;
-            padding: 1rem 2rem !important;
-            font-size: 1.25rem !important;
-            font-weight: 600 !important;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
             color: white !important;
+            font-size: 1.1rem !important;
+            font-weight: 600 !important;
             text-decoration: none !important;
-            border-radius: 12px !important;
-            background: linear-gradient(135deg, #5AE3FF, #7C3AED) !important;
-            border: none !important;
-            margin-top: 1rem !important;
-            width: 100% !important;
-            text-align: center !important;
-            box-sizing: border-box !important;
+            padding: 1rem 2rem !important;
+            border-radius: 2rem !important;
             transition: all 0.3s ease !important;
+            text-align: center !important;
+            margin-top: 1rem !important;
+            opacity: 0 !important;
+            transform: translateY(20px) !important;
         `;
-        
-        menuBtn.addEventListener('mouseenter', () => {
-            menuBtn.style.transform = 'scale(1.05)';
-        });
-        
-        menuBtn.addEventListener('mouseleave', () => {
-            menuBtn.style.transform = 'scale(1)';
-        });
         
         menuContent.appendChild(menuBtn);
     }
     
+    // Close button
+    const closeBtn = document.createElement('button');
+    closeBtn.innerHTML = '✕';
+    closeBtn.style.cssText = `
+        position: absolute !important;
+        top: 1.5rem !important;
+        right: 1.5rem !important;
+        background: none !important;
+        border: none !important;
+        color: white !important;
+        font-size: 2rem !important;
+        cursor: pointer !important;
+        z-index: 100000 !important;
+        width: 3rem !important;
+        height: 3rem !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 50% !important;
+        transition: background 0.3s ease !important;
+    `;
+    
+    closeBtn.addEventListener('click', () => {
+        const button = document.querySelector('[aria-label="Toggle menu"]');
+        closeMobileMenu(mobileMenu, button);
+    });
+    
+    mobileMenu.appendChild(closeBtn);
     mobileMenu.appendChild(menuContent);
-    
-    // Click outside to close
-    mobileMenu.addEventListener('click', (e) => {
-        if (e.target === mobileMenu) {
-            const button = document.querySelector('[aria-label="Toggle menu"]');
-            if (button) {
-                closeMobileMenu(mobileMenu, button);
-            }
-        }
-    });
-    
-    // iOS viewport fix on orientation change and resize
-    const handleViewportChange = () => {
-        if (mobileMenu.classList.contains('show')) {
-            setImmediateStyles();
-        }
-    };
-    
-    window.addEventListener('resize', handleViewportChange);
-    window.addEventListener('orientationchange', () => {
-        setTimeout(handleViewportChange, 100);
-    });
-    
-    // Append to body
     document.body.appendChild(mobileMenu);
     
     return mobileMenu;
 }
 
 function openMobileMenu(mobileMenu, button) {
-    // Close other menus first
-    closeMobileMenus();
-    
-    // Animate hamburger to X
-    animateHamburgerToX(button);
-    
-    // iOS Safari aggressive viewport and positioning fix
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    
-    if (isIOS) {
-        // Temporarily adjust viewport for iOS Safari
-        let viewport = document.querySelector('meta[name="viewport"]');
-        if (viewport) {
-            viewport.content = 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover';
-        }
-        
-        // Force Safari to recalculate viewport
-        window.scrollTo(0, 0);
-    }
-    
-    // Force iOS-compatible full screen positioning with immediate viewport calculation
-    const vh = window.innerHeight;
-    const vw = window.innerWidth;
-    
-    // Ultra-aggressive positioning - override everything
-    mobileMenu.style.cssText = `
-        position: fixed !important;
-        top: 0px !important;
-        left: 0px !important;
-        right: 0px !important;
-        bottom: 0px !important;
-        width: ${vw}px !important;
-        height: ${vh}px !important;
-        max-width: none !important;
-        max-height: none !important;
-        min-width: ${vw}px !important;
-        min-height: ${vh}px !important;
-        background: rgba(13, 19, 33, 0.98) !important;
-        backdrop-filter: blur(12px) !important;
-        -webkit-backdrop-filter: blur(12px) !important;
-        z-index: 99999 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-        align-items: center !important;
-        padding: 2rem !important;
-        margin: 0 !important;
-        border: none !important;
-        outline: none !important;
-        box-sizing: border-box !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        transition: opacity 0.4s ease, visibility 0.4s ease !important;
-        overflow: hidden !important;
-        -webkit-overflow-scrolling: touch !important;
-        transform: translateZ(0) !important;
-        -webkit-transform: translateZ(0) !important;
-    `;
-    
+    mobileMenu.style.opacity = '1';
+    mobileMenu.style.visibility = 'visible';
     mobileMenu.classList.add('show');
     
-    // Prevent body scroll with iOS-specific fixes
-    const scrollY = window.scrollY;
-    document.body.style.cssText = `
-        overflow: hidden !important;
-        position: fixed !important;
-        top: -${scrollY}px !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100vh !important;
-        -webkit-overflow-scrolling: touch !important;
-    `;
-    
-    // Store scroll position for restoration
-    mobileMenu.dataset.scrollY = scrollY;
-    
-    // Force reflow on iOS with multiple aggressive attempts
-    if (isIOS) {
-        // Force hardware acceleration and absolute positioning
-        mobileMenu.style.webkitTransform = 'translate3d(0,0,0)';
-        mobileMenu.style.transform = 'translate3d(0,0,0)';
-        mobileMenu.style.webkitBackfaceVisibility = 'hidden';
-        mobileMenu.style.backfaceVisibility = 'hidden';
-        
-        // Force immediate recalculation
-        mobileMenu.offsetHeight; // Force reflow
-        document.documentElement.offsetHeight; // Force document reflow
-        
-        // Multiple aggressive positioning attempts
-        const setIOSPosition = () => {
-            const currentVH = window.innerHeight;
-            const currentVW = window.innerWidth;
-            
-            mobileMenu.style.height = currentVH + 'px';
-            mobileMenu.style.width = currentVW + 'px';
-            mobileMenu.style.minHeight = currentVH + 'px';
-            mobileMenu.style.minWidth = currentVW + 'px';
-            mobileMenu.style.maxHeight = currentVH + 'px';
-            mobileMenu.style.maxWidth = currentVW + 'px';
-        };
-        
-        setIOSPosition();
-        
-        // Multiple attempts with different timings
-        setTimeout(setIOSPosition, 10);
-        setTimeout(setIOSPosition, 50);
-        setTimeout(setIOSPosition, 100);
-        setTimeout(setIOSPosition, 200);
-        
-        // Force Safari address bar to minimize
+    // Animate menu items
+    const menuItems = mobileMenu.querySelectorAll('a');
+    menuItems.forEach((item, index) => {
         setTimeout(() => {
-            window.scrollTo(0, 1);
-            setTimeout(() => {
-                window.scrollTo(0, 0);
-                setIOSPosition();
-            }, 10);
-        }, 300);
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+        }, index * 100 + 200);
+    });
+    
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+    
+    // Update button state
+    if (button) {
+        button.setAttribute('aria-expanded', 'true');
     }
 }
 
 function closeMobileMenu(mobileMenu, button) {
-    // Animate X to hamburger
-    animateXToHamburger(button);
-    
-    // Hide menu
-    mobileMenu.classList.remove('show');
     mobileMenu.style.opacity = '0';
     mobileMenu.style.visibility = 'hidden';
+    mobileMenu.classList.remove('show');
     
-    // Restore body scroll and position
-    const scrollY = mobileMenu.dataset.scrollY || 0;
-    document.body.style.cssText = '';
-    window.scrollTo(0, parseInt(scrollY));
+    // Restore body scroll
+    document.body.style.overflow = '';
     
-    // Restore original viewport for iOS
-    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-        let viewport = document.querySelector('meta[name="viewport"]');
-        if (viewport) {
-            viewport.content = 'width=device-width, initial-scale=1';
-        }
+    // Update button state
+    if (button) {
+        button.setAttribute('aria-expanded', 'false');
     }
 }
 
 function closeMobileMenus() {
-    const openMenus = document.querySelectorAll('.mobile-menu.show');
-    const menuButtons = document.querySelectorAll('[aria-label="Toggle menu"]');
-    
-    openMenus.forEach((menu, index) => {
-        closeMobileMenu(menu, menuButtons[index]);
+    const mobileMenus = document.querySelectorAll('.mobile-menu');
+    mobileMenus.forEach(menu => {
+        const button = document.querySelector('[aria-label="Toggle menu"]');
+        closeMobileMenu(menu, button);
     });
 }
 
-function animateHamburgerToX(button) {
-    const svg = button.querySelector('svg');
-    const paths = button.querySelectorAll('path');
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Critical: Handle iOS viewport immediately
+    handleIOSViewport();
     
-    if (svg && paths.length >= 3) {
-        // Animate the hamburger lines to form an X
-        paths[0].style.transform = 'rotate(45deg) translate(2px, 2px)';
-        paths[0].style.transformOrigin = 'center';
-        paths[1].style.opacity = '0';
-        paths[2].style.transform = 'rotate(-45deg) translate(2px, -2px)';
-        paths[2].style.transformOrigin = 'center';
-        
-        svg.style.transition = 'all 0.3s ease';
-        paths.forEach(path => {
-            path.style.transition = 'all 0.3s ease';
-        });
-    }
-}
-
-function animateXToHamburger(button) {
-    const svg = button.querySelector('svg');
-    const paths = button.querySelectorAll('path');
+    // Initialize mobile menu
+    initializeMobileMenu();
     
-    if (svg && paths.length >= 3) {
-        // Animate the X back to hamburger lines
-        paths[0].style.transform = 'rotate(0deg) translate(0px, 0px)';
-        paths[1].style.opacity = '1';
-        paths[2].style.transform = 'rotate(0deg) translate(0px, 0px)';
-    }
-}
-
-function initializeScrollEffects() {
-    let lastScrollTop = 0;
-    const floatingHeader = document.querySelector('header.fixed');
-    const topNavbar = document.querySelector('nav.absolute, nav.fixed');
+    // Initial branding update
+    updateBranding();
     
-    if (floatingHeader) {
-        window.addEventListener('scroll', function() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            // Show/hide floating header based on scroll
-            if (scrollTop > 100) {
-                floatingHeader.classList.add('visible');
-            } else {
-                floatingHeader.classList.remove('visible');
-            }
-            
-            lastScrollTop = scrollTop;
-        });
-        
-        // Trigger scroll event immediately to set initial state
-        window.dispatchEvent(new Event('scroll'));
-    }
-}
-
-function initializeAnimations() {
-    // Animate elements on scroll
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    // Observe animated elements
-    document.querySelectorAll('[style*="opacity:0"]').forEach(el => {
-        observer.observe(el);
+    // Handle window resize for responsive branding
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        // Update viewport for iOS Safari on resize
+        handleIOSViewport();
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(updateBranding, 150);
     });
-}
-
-// Responsive breakpoint handling
-function handleResize() {
-    if (window.innerWidth >= 768) {
-        closeMobileMenus();
-        document.body.style.cssText = '';
-    }
     
-    // Re-run branding updates on resize
+    // Handle viewport changes on mobile with iOS Safari fixes
+    window.addEventListener('orientationchange', function() {
+        handleIOSViewport();
+        setTimeout(() => {
+            handleIOSViewport();
+            updateBranding();
+        }, 300);
+    });
+    
+    // Additional iOS Safari safety nets
+    window.addEventListener('scroll', function() {
+        if (isIOSSafari()) {
+            handleIOSViewport();
+        }
+    });
+    
+    window.addEventListener('touchstart', function() {
+        if (isIOSSafari()) {
+            handleIOSViewport();
+        }
+    });
+    
+    // Additional safety net - update branding after a brief delay
     setTimeout(() => {
+        handleIOSViewport();
         updateBranding();
     }, 100);
-}
+    
+    // Final iOS Safari viewport enforcement
+    setTimeout(() => {
+        if (isIOSSafari()) {
+            handleIOSViewport();
+        }
+    }, 500);
+});
 
-window.addEventListener('resize', handleResize);
+// Export functions for use in other scripts if needed
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        updateBranding,
+        initializeMobileMenu,
+        toggleMobileMenu
+    };
+}
