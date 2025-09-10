@@ -20,7 +20,6 @@ export default function NavIsland() {
   }, []);
 
   const navItems = [
-    { href: '/', label: 'Home' },
     { href: '/#services', label: 'Services' },
     { href: '/#packages', label: 'Packages' },
     { href: '/contact', label: 'Contact' },
@@ -40,40 +39,40 @@ export default function NavIsland() {
         <motion.div
           animate={{
             borderRadius: isScrolled ? '9999px' : '0px',
-            backdropFilter: isScrolled ? 'blur(24px)' : 'blur(0px)',
-            backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.05)' : 'transparent',
-            border: isScrolled ? '1px solid rgba(255, 255, 255, 0.15)' : '1px solid transparent',
+            backdropFilter: isScrolled ? 'blur(24px)' : 'blur(8px)',
+            backgroundColor: isScrolled ? 'rgba(15, 23, 42, 0.8)' : 'rgba(15, 23, 42, 0.6)',
+            border: isScrolled ? '1px solid rgba(52, 211, 153, 0.3)' : '1px solid rgba(52, 211, 153, 0.1)',
             boxShadow: isScrolled 
-              ? '0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2)' 
-              : 'none',
+              ? '0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(52, 211, 153, 0.1)' 
+              : '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
           }}
-          className={`mx-auto max-w-7xl px-6 py-4 transition-all duration-500 ${
-            isScrolled ? 'max-w-fit' : ''
+          className={`mx-auto transition-all duration-500 ${
+            isScrolled ? 'max-w-fit px-8 py-3' : 'max-w-7xl px-8 py-6'
           }`}
         >
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between w-full min-w-[600px]">
             {/* Logo */}
             <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
               <Image
                 src="/mettalic letters logo.png"
                 alt="HHS Logo"
-                width={60}
-                height={40}
-                className="h-8 w-auto"
+                width={80}
+                height={50}
+                className="h-10 w-auto"
                 priority
               />
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-10">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-gray-300 hover:text-white transition-colors duration-200 relative group"
+                  className="text-white/90 hover:text-primary-emerald transition-colors duration-200 relative group font-medium text-lg"
                 >
                   {item.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-emerald transition-all duration-200 group-hover:w-full" />
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-emerald to-primary-blue transition-all duration-300 group-hover:w-full" />
                 </Link>
               ))}
             </div>

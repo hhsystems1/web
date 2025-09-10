@@ -14,9 +14,9 @@ interface HeroVideoProps {
 
 export default function HeroVideo({ videoId, title, subtitle, ctaText, ctaAction }: HeroVideoProps) {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-grid px-6">
+    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-grid px-6 pt-32">
       {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80" />
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-800/40 to-slate-900/80" />
       <div className="absolute inset-0 bg-gradient-to-r from-primary-emerald/10 via-transparent to-primary-blue/10" />
 
       {/* Content - Now at the top */}
@@ -34,7 +34,7 @@ export default function HeroVideo({ videoId, title, subtitle, ctaText, ctaAction
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed"
+          className="text-xl md:text-2xl text-slate-300 mb-10 leading-relaxed"
         >
           {subtitle}
         </motion.p>
