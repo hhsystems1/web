@@ -100,12 +100,21 @@ body::before {
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #10b981 0%, #2563eb 100%);
+  background: linear-gradient(135deg, #10b981 0%, #2563eb 100%) !important;
   box-shadow: 
     0 10px 40px rgba(52, 211, 153, 0.5),
     0 0 50px rgba(52, 211, 153, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  transform: translateY(-4px) scale(1.05);
+    inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+  transform: translateY(-4px) scale(1.05) !important;
+}
+
+/* Enhanced CTA button override for glass containers */
+.glass .btn-primary,
+.glass a.btn-primary {
+  background: linear-gradient(135deg, #34d399 0%, #3b82f6 100%) !important;
+  border: 1px solid rgba(52, 211, 153, 0.6) !important;
+  color: white !important;
+  text-decoration: none !important;
 }
 
 /* Enhanced glass morphism utility */
