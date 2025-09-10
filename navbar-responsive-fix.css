@@ -11,42 +11,71 @@
 /* Desktop and Tablet spacing improvements */
 /* Desktop navbar spacing improvements and logo-only navigation */
 @media (min-width: 768px) {
-    /* Desktop navbar improvements */
-    .container.mx-auto nav.hidden.md\:flex.items-center {
-        gap: 2rem;
+    /* Desktop navbar improvements with better spacing */
+    .container.mx-auto nav.hidden.md\\:flex.items-center.space-x-8 {
+        gap: 2.5rem !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
     
     .container.mx-auto .flex.h-16.items-center.justify-between {
-        padding: 0 2rem;
+        padding: 0 2rem !important;
+        max-width: 1200px !important;
+        margin: 0 auto !important;
     }
     
     .floating-island .px-8 {
-        padding-left: 2rem;
-        padding-right: 2rem;
+        padding-left: 2.5rem !important;
+        padding-right: 2.5rem !important;
     }
     
-    .floating-island nav.hidden.lg\:flex.items-center {
-        gap: 2rem;
+    .floating-island nav.hidden.lg\\:flex.items-center.space-x-8 {
+        gap: 2.5rem !important;
+    }
+    
+    /* Better button spacing */
+    .floating-island .hidden.md\\:block,
+    nav + .hidden.md\\:block {
+        margin-left: 2rem !important;
     }
 }
 
 /* Hide "Helping Hands Web" text from both navbars - logo only */
-/* Top navbar logo text */
-nav .flex.items-center.space-x-2 span,
-header .flex.items-center.space-x-2 span {
+/* Target both top navbar and floating navbar text */
+.container .flex.items-center.space-x-2 > span,
+.floating-island .flex.items-center.space-x-2 > span,
+nav .flex.items-center.space-x-2 > span,
+header .flex.items-center.space-x-2 > span,
+a .text-xl.font-bold.text-white.drop-shadow-lg,
+a .text-lg.font-bold.text-primary {
     display: none !important;
+    visibility: hidden !important;
+    font-size: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-/* Floating navbar logo text */
-.floating-island .flex.items-center.space-x-2 span {
-    display: none !important;
-}
-
-/* Ensure logos remain visible and properly spaced */
+/* Ensure logos remain visible and properly spaced - remove space-x gap */
+.container .flex.items-center.space-x-2,
+.floating-island .flex.items-center.space-x-2,
 nav .flex.items-center.space-x-2,
-header .flex.items-center.space-x-2,
-.floating-island .flex.items-center.space-x-2 {
+header .flex.items-center.space-x-2 {
     gap: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Add "Helping Hands Systems" as desktop brand on desktop/tablet for floating nav */
+@media (min-width: 768px) {
+    .floating-island .flex.items-center.space-x-2::after {
+        content: "Helping Hands Systems" !important;
+        font-size: 1.125rem !important;
+        font-weight: 700 !important;
+        color: var(--primary) !important;
+        margin-left: 0.5rem !important;
+        white-space: nowrap !important;
+    }
 }
 
 /* iOS Safari Mobile Menu Fixes */

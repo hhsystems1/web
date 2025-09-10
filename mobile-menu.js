@@ -33,29 +33,98 @@ function updateBranding() {
         });
     }
     
-    // Run immediately
-    updateFooterBranding();
+    // Hide navbar text elements more aggressively
+    function hideNavbarText() {
+        // Target all navbar text spans that contain "Helping Hands Web"
+        const navbarSpans = document.querySelectorAll('nav span, header span, .container span, .floating-island span');
+        navbarSpans.forEach(span => {
+            if (span.textContent.includes('Helping Hands Web') || 
+                span.textContent.includes('Helping Hands') ||
+                span.classList.contains('text-xl') ||
+                span.classList.contains('text-lg')) {
+                span.style.display = 'none';
+                span.style.visibility = 'hidden';
+                span.style.fontSize = '0';
+                span.style.width = '0';
+                span.style.height = '0';
+                span.style.margin = '0';
+                span.style.padding = '0';
+                span.textContent = '';
+            }
+        });
+        
+        // Also target any text nodes directly
+        const allElements = document.querySelectorAll('nav *, header *, .floating-island *');
+        allElements.forEach(el => {
+            if (el.textContent === 'Helping Hands Web') {
+                el.style.display = 'none';
+                el.style.visibility = 'hidden';
+            }
+        });
+    }
     
-    // Run again after a short delay in case content loads dynamically
-    setTimeout(updateFooterBranding, 1000);
-    setTimeout(updateFooterBranding, 2000);
+    // Add "Helping Hands Systems" to floating navbar on desktop/tablet
+    function addDesktopBranding() {
+        if (window.innerWidth >= 768) {
+            const floatingLogo = document.querySelector('.floating-island .flex.items-center.space-x-2');
+            if (floatingLogo && !floatingLogo.querySelector('.desktop-brand')) {
+                const brandSpan = document.createElement('span');
+                brandSpan.className = 'desktop-brand';
+                brandSpan.textContent = 'Helping Hands Systems';
+                brandSpan.style.cssText = `
+                    font-size: 1.125rem !important;
+                    font-weight: 700 !important;
+                    color: var(--primary) !important;
+                    margin-left: 0.5rem !important;
+                    white-space: nowrap !important;
+                `;
+                floatingLogo.appendChild(brandSpan);
+            }
+        }
+    }
+    
+    // Run all branding updates
+    updateFooterBranding();
+    hideNavbarText();
+    addDesktopBranding();
+    
+    // Run again after short delays
+    setTimeout(() => {
+        updateFooterBranding();
+        hideNavbarText();
+        addDesktopBranding();
+    }, 1000);
+    
+    setTimeout(() => {
+        updateFooterBranding();
+        hideNavbarText();
+        addDesktopBranding();
+    }, 2000);
     
     // Also observe for dynamic content changes
     const observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
             if (mutation.type === 'childList') {
                 updateFooterBranding();
+                hideNavbarText();
+                addDesktopBranding();
             }
         });
     });
     
-    // Start observing footer changes
+    // Start observing changes
     const footer = document.querySelector('footer');
+    const navbar = document.querySelector('nav');
+    const header = document.querySelector('header');
+    
     if (footer) {
-        observer.observe(footer, {
-            childList: true,
-            subtree: true
-        });
+        observer.observe(footer, { childList: true, subtree: true });
+    }
+    if (navbar) {
+        observer.observe(navbar, { childList: true, subtree: true });
+    }
+    if (header) {
+        observer.observe(header, { childList: true, subtree: true });
     }
 }
 
@@ -499,6 +568,11 @@ function handleResize() {
         closeMobileMenus();
         document.body.style.cssText = '';
     }
+    
+    // Re-run branding updates on resize
+    setTimeout(() => {
+        updateBranding();
+    }, 100);
 }
 
 window.addEventListener('resize', handleResize);
