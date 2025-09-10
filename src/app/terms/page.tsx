@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import NavIsland from '@/components/NavIsland';
 import Section from '@/components/Section';
@@ -179,7 +180,15 @@ export default function TermsPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
-              <h3 className="text-xl font-bold text-white mb-4">Helping Hands Systems</h3>
+              <div className="mb-4">
+                <Image
+                  src="/mettalic letters logo.png"
+                  alt="Helping Hands Systems Logo"
+                  width={150}
+                  height={80}
+                  className="h-16 w-auto"
+                />
+              </div>
               <p className="text-gray-400 mb-4">
                 Modern web development with built-in automation and AI.
               </p>

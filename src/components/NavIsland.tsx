@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 
 export default function NavIsland() {
@@ -52,8 +53,15 @@ export default function NavIsland() {
         >
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="text-xl font-bold text-white hover:text-primary-emerald transition-colors">
-              Helping Hands Systems
+            <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
+              <Image
+                src="/mettalic letters logo.png"
+                alt="HHS Logo"
+                width={60}
+                height={40}
+                className="h-8 w-auto"
+                priority
+              />
             </Link>
 
             {/* Desktop Navigation */}

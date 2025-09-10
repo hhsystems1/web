@@ -14,26 +14,13 @@ interface HeroVideoProps {
 
 export default function HeroVideo({ videoId, title, subtitle, ctaText, ctaAction }: HeroVideoProps) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-grid">
-      {/* Background Video */}
-      <div className="absolute inset-0 z-0">
-        <div className="relative w-full h-full">
-          <LiteYouTubeEmbed
-            id={videoId}
-            title="Helping Hands Systems Hero Video"
-            poster="maxresdefault"
-            noCookie={true}
-          />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
-      </div>
-
-      {/* Gradient Overlays */}
+    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-grid px-6">
+      {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80" />
       <div className="absolute inset-0 bg-gradient-to-r from-primary-emerald/10 via-transparent to-primary-blue/10" />
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+      {/* Content - Now at the top */}
+      <div className="relative z-10 text-center max-w-4xl mx-auto mb-16">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -57,11 +44,28 @@ export default function HeroVideo({ videoId, title, subtitle, ctaText, ctaAction
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           onClick={ctaAction}
-          className="inline-flex items-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-primary-emerald to-primary-blue rounded-full hover:shadow-lg hover:shadow-primary-emerald/25 transition-all duration-300 transform hover:scale-105"
+          className="btn btn-primary mb-8"
         >
           {ctaText}
         </motion.button>
       </div>
+
+      {/* Video Container - Now below content */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+        className="relative z-10 w-full max-w-4xl mx-auto"
+      >
+        <div className="video-container aspect-video rounded-2xl overflow-hidden">
+          <LiteYouTubeEmbed
+            id={videoId}
+            title="Helping Hands Systems Hero Video"
+            poster="maxresdefault"
+            noCookie={true}
+          />
+        </div>
+      </motion.div>
 
       {/* Floating Elements */}
       <motion.div
