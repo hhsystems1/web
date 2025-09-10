@@ -9,6 +9,143 @@
 }
 
 /* Desktop and Tablet spacing improvements */
+/* UNIVERSAL MOBILE MENU RESPONSIVE FIX - ALL DEVICES & SCREEN SIZES */
+/* This ensures mobile menu works on EVERY device regardless of size */
+
+.mobile-menu {
+    /* Primary positioning */
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    
+    /* Viewport units with fallbacks */
+    width: 100vw !important;
+    height: 100vh !important;
+    width: 100dvw !important; /* Dynamic viewport width */
+    height: 100dvh !important; /* Dynamic viewport height */
+    width: 100lvw !important; /* Large viewport width */
+    height: 100lvh !important; /* Large viewport height */
+    
+    /* Ensure full coverage */
+    min-width: 100vw !important;
+    min-height: 100vh !important;
+    max-width: none !important;
+    max-height: none !important;
+    
+    /* Visual styling */
+    background: rgba(13, 19, 33, 0.98) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    
+    /* Layout */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    
+    /* Spacing and positioning */
+    padding: 2rem !important;
+    margin: 0 !important;
+    border: none !important;
+    box-sizing: border-box !important;
+    
+    /* Initial state */
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity 0.3s ease !important;
+    
+    /* Performance */
+    z-index: 999999 !important;
+    overflow: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    will-change: transform !important;
+}
+
+/* Show state */
+.mobile-menu.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Mobile menu content responsive */
+.mobile-menu > div {
+    width: 100% !important;
+    max-width: min(90vw, 400px) !important;
+    padding: 1rem !important;
+}
+
+/* Mobile menu links responsive */
+.mobile-menu a {
+    width: 100% !important;
+    padding: 1rem 1.5rem !important;
+    text-align: center !important;
+    font-size: clamp(1rem, 4vw, 1.25rem) !important;
+    margin: 0.5rem 0 !important;
+}
+
+/* Responsive adjustments for different screen sizes */
+@media screen and (max-width: 320px) {
+    /* Very small screens (iPhone SE, etc.) */
+    .mobile-menu {
+        padding: 1rem !important;
+    }
+    .mobile-menu a {
+        font-size: 1rem !important;
+        padding: 0.75rem 1rem !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* Small mobile screens */
+    .mobile-menu {
+        padding: 1.5rem !important;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    /* Large mobile / small tablet */
+    .mobile-menu {
+        padding: 2rem !important;
+    }
+    .mobile-menu a {
+        font-size: 1.125rem !important;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    /* Tablet landscape */
+    .mobile-menu {
+        padding: 3rem !important;
+    }
+    .mobile-menu a {
+        font-size: 1.25rem !important;
+    }
+}
+
+/* Orientation-specific fixes */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    /* Landscape mobile phones */
+    .mobile-menu {
+        padding: 1rem 2rem !important;
+        justify-content: flex-start !important;
+        padding-top: 2rem !important;
+    }
+    .mobile-menu > div {
+        margin-top: 1rem !important;
+    }
+}
+
+/* Ultra-wide screens */
+@media screen and (min-width: 1920px) {
+    .mobile-menu {
+        padding: 4rem !important;
+    }
+}
+
 /* CRITICAL: Immediate text hiding to prevent FOUC */
 /* Hide all navbar text immediately on page load */
 .container .flex.items-center.space-x-2 > span,
