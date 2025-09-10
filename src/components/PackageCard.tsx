@@ -20,14 +20,14 @@ export default function PackageCard({ name, price, features, href, popular = fal
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       whileHover={{ y: -8 }}
-      className={`relative p-8 rounded-2xl glass hover:shadow-xl transition-all duration-300 ${
+      className={`relative p-8 rounded-2xl glass hover:shadow-xl transition-all duration-300 flex flex-col h-full ${
         popular ? 'ring-2 ring-primary-emerald glow' : 'hover:shadow-primary-blue/10'
       }`}
     >
       {popular && (
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-          <span className="bg-gradient-to-r from-primary-emerald to-primary-blue text-white px-4 py-1 rounded-full text-sm font-semibold">
-            Most Popular
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+          <span className="bg-gradient-to-r from-emerald-500 to-blue-500 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg ring-2 ring-white/20 backdrop-blur-sm">
+            ✨ Most Popular
           </span>
         </div>
       )}
@@ -40,7 +40,7 @@ export default function PackageCard({ name, price, features, href, popular = fal
         </div>
       </div>
 
-      <ul className="space-y-4 mb-8">
+      <ul className="space-y-4 mb-8 flex-1">
         {features.map((feature, idx) => (
           <li key={idx} className="flex items-start space-x-3">
             <Check size={20} className="text-primary-emerald mt-0.5 flex-shrink-0" />
@@ -49,7 +49,7 @@ export default function PackageCard({ name, price, features, href, popular = fal
         ))}
       </ul>
 
-      <div className="text-center">
+      <div className="text-center mt-auto">
         <Link
           href={href}
           className="btn btn-primary w-full justify-center"
@@ -57,10 +57,6 @@ export default function PackageCard({ name, price, features, href, popular = fal
           View Package
         </Link>
       </div>
-
-      <p className="text-xs text-gray-500 mt-4 text-center">
-        Videos & forms are embedded on each plan&apos;s page.
-      </p>
     </motion.div>
   );
 }
