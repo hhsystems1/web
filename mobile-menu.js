@@ -103,12 +103,8 @@ function openMobileMenu(mobileMenu, button) {
     // Animate hamburger to X
     animateHamburgerToX(button);
     
-    // Show menu
+    // Show menu - let CSS handle all positioning
     mobileMenu.classList.add('show');
-    setTimeout(() => {
-        mobileMenu.style.transform = 'translateY(0)';
-        mobileMenu.style.opacity = '1';
-    }, 10);
     
     // Prevent body scroll
     document.body.style.overflow = 'hidden';
@@ -118,13 +114,8 @@ function closeMobileMenu(mobileMenu, button) {
     // Animate X to hamburger
     animateXToHamburger(button);
     
-    // Hide menu
-    mobileMenu.style.transform = 'translateY(-100%)';
-    mobileMenu.style.opacity = '0';
-    
-    setTimeout(() => {
-        mobileMenu.classList.remove('show');
-    }, 300);
+    // Hide menu - let CSS handle all positioning
+    mobileMenu.classList.remove('show');
     
     // Restore body scroll
     document.body.style.overflow = '';
@@ -140,20 +131,33 @@ function closeMobileMenus() {
 }
 
 function animateHamburgerToX(button) {
-    const spans = button.querySelectorAll('span');
-    if (spans.length >= 3) {
-        spans[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
-        spans[1].style.opacity = '0';
-        spans[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+    const svg = button.querySelector('svg');
+    const paths = button.querySelectorAll('path');
+    
+    if (svg && paths.length >= 3) {
+        // Animate the hamburger lines to form an X
+        paths[0].style.transform = 'rotate(45deg) translate(2px, 2px)';
+        paths[0].style.transformOrigin = 'center';
+        paths[1].style.opacity = '0';
+        paths[2].style.transform = 'rotate(-45deg) translate(2px, -2px)';
+        paths[2].style.transformOrigin = 'center';
+        
+        svg.style.transition = 'all 0.3s ease';
+        paths.forEach(path => {
+            path.style.transition = 'all 0.3s ease';
+        });
     }
 }
 
 function animateXToHamburger(button) {
-    const spans = button.querySelectorAll('span');
-    if (spans.length >= 3) {
-        spans[0].style.transform = 'rotate(0) translate(0, 0)';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'rotate(0) translate(0, 0)';
+    const svg = button.querySelector('svg');
+    const paths = button.querySelectorAll('path');
+    
+    if (svg && paths.length >= 3) {
+        // Animate the X back to hamburger lines
+        paths[0].style.transform = 'rotate(0deg) translate(0px, 0px)';
+        paths[1].style.opacity = '1';
+        paths[2].style.transform = 'rotate(0deg) translate(0px, 0px)';
     }
 }
 
@@ -168,15 +172,16 @@ function initializeScrollEffects() {
             
             // Show/hide floating header based on scroll
             if (scrollTop > 100) {
-                floatingHeader.style.opacity = '1';
-                floatingHeader.style.transform = 'translateX(-50%) translateY(0) scale(1)';
+                floatingHeader.classList.add('visible');
             } else {
-                floatingHeader.style.opacity = '0';
-                floatingHeader.style.transform = 'translateX(-50%) translateY(-30px) scale(0.8)';
+                floatingHeader.classList.remove('visible');
             }
             
             lastScrollTop = scrollTop;
         });
+        
+        // Trigger scroll event immediately to set initial state
+        window.dispatchEvent(new Event('scroll'));
     }
 }
 
