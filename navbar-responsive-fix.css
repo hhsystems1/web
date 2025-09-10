@@ -8,7 +8,7 @@
 .mobile-menu {
   /* Override JavaScript positioning to fix the cut-off issue */
   position: fixed !important;
-  top: 64px !important; /* Height of top navbar */
+  top: -100% !important; /* Start completely off-screen */
   left: 0 !important;
   right: 0 !important;
   width: 100vw !important;
@@ -18,6 +18,7 @@
   backdrop-filter: blur(16px) !important;
   border-bottom: 1px solid rgba(90, 227, 255, 0.1) !important;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.3s ease-in-out !important;
 }
 
 /* Mobile menu content container - ensure proper padding and centering */
@@ -26,6 +27,8 @@
   padding: 1.5rem !important;
   margin: 0 auto !important;
   width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
 }
 
 /* Mobile menu links styling */
@@ -152,19 +155,25 @@
 
 /* Medium screens - tablet portrait and small desktop */
 @media (min-width: 641px) and (max-width: 1024px) {
-  /* Top navbar menu spacing */
+  /* Top navbar menu spacing - increase for better breathing room */
   .hidden.md\\:flex.items-center.space-x-8 {
-    gap: 1.25rem !important;
+    gap: 2rem !important;
   }
   
-  /* Floating navbar menu spacing */
+  /* Floating navbar menu spacing - increase for tablets */
   .hidden.lg\\:flex.items-center.space-x-8 {
-    gap: 1.5rem !important;
+    gap: 2rem !important;
   }
   
-  /* Floating island gap adjustments */
+  /* Floating island gap adjustments - more space on tablets */
   .flex.items-center.justify-between.gap-12 {
-    gap: 1.5rem !important;
+    gap: 2rem !important;
+  }
+  
+  /* Container padding for tablets */
+  .container.mx-auto.px-4 {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
   }
   
   /* Better logo sizing for tablets */
@@ -173,32 +182,59 @@
     height: 36px !important;
   }
   
-  /* Floating island tablet optimization */
+  /* Floating island tablet optimization - more generous sizing */
   .floating-island {
     left: 2rem !important;
     right: 2rem !important;
     width: calc(100vw - 4rem) !important;
-    padding: 0.875rem 1.5rem !important;
+    padding: 1rem 2rem !important;
   }
   
   .floating-island .px-8.py-4 {
-    padding: 0.875rem 1.5rem !important;
+    padding: 1rem 2rem !important;
   }
 }
 
 /* Tablet landscape and small desktop */
 @media (min-width: 769px) and (max-width: 1023px) {
-  /* Ensure better spacing between menu items */
+  /* Ensure better spacing between menu items on larger tablets */
   .hidden.md\\:flex.items-center.space-x-8 {
-    gap: 1.5rem !important;
+    gap: 2.5rem !important;
+  }
+  
+  .hidden.lg\\:flex.items-center.space-x-8 {
+    gap: 2.5rem !important;
+  }
+  
+  /* Larger gap for floating island on desktop-like tablets */
+  .flex.items-center.justify-between.gap-12 {
+    gap: 3rem !important;
+  }
+}
+
+/* Tablet portrait cramped range - where navbar gets too tight */
+@media (min-width: 641px) and (max-width: 768px) {
+  /* Force larger spacing to prevent cramped appearance */
+  .hidden.md\\:flex.items-center.space-x-8 {
+    gap: 1.75rem !important;
   }
   
   .hidden.lg\\:flex.items-center.space-x-8 {
     gap: 1.75rem !important;
   }
   
-  .flex.items-center.justify-between.gap-12 {
-    gap: 2rem !important;
+  /* Show mobile menu instead if too cramped */
+  .hidden.md\\:flex {
+    display: none !important;
+  }
+  
+  .md\\:hidden {
+    display: block !important;
+  }
+  
+  /* Hide floating island navigation on cramped tablets */
+  .hidden.lg\\:flex {
+    display: none !important;
   }
 }
 
@@ -289,12 +325,14 @@
 
 /* Ensure smooth transitions for mobile menu */
 .mobile-menu.show {
-  transform: translateY(0) !important;
+  top: 64px !important; /* Slide down to proper position below navbar */
+  transform: none !important;
   opacity: 1 !important;
 }
 
 .mobile-menu:not(.show) {
-  transform: translateY(-100%) !important;
+  top: -100% !important; /* Keep off-screen when hidden */
+  transform: none !important;
   opacity: 0 !important;
 }
 

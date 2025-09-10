@@ -60,12 +60,9 @@ function createMobileMenu(navbar) {
     
     // Create mobile menu with proper positioning
     const mobileMenu = document.createElement('div');
-    mobileMenu.className = 'mobile-menu fixed left-0 right-0 transform -translate-y-full opacity-0 transition-all duration-300 ease-in-out';
+    mobileMenu.className = 'mobile-menu fixed left-0 right-0 opacity-0 transition-all duration-300 ease-in-out';
     
-    // Set proper top position based on which navbar
-    const isFloatingHeader = navbar.classList.contains('fixed') || navbar.tagName === 'HEADER';
-    const topPosition = isFloatingHeader ? '64px' : '64px'; // Both use same height
-    mobileMenu.style.top = topPosition;
+    // Set proper z-index and let CSS handle positioning
     mobileMenu.style.zIndex = '50';
     
     const menuContent = document.createElement('div');
