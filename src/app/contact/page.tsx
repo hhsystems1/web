@@ -129,7 +129,7 @@ export default function ContactPage() {
       {/* Footer */}
       <footer className="bg-black border-t border-gray-800 py-12 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div>
               <div className="mb-4">
                 <Image
@@ -147,16 +147,6 @@ export default function ContactPage() {
                 <p>📞 +1 833-785-1847</p>
                 <p>✉️ info@helpinghandsystems.com</p>
               </div>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold text-white mb-4">Services</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/#services" className="hover:text-white transition-colors">Web Design</Link></li>
-                <li><Link href="/#services" className="hover:text-white transition-colors">Booking Systems</Link></li>
-                <li><Link href="/#services" className="hover:text-white transition-colors">Chatbots</Link></li>
-                <li><Link href="/#services" className="hover:text-white transition-colors">Automation</Link></li>
-              </ul>
             </div>
             
             <div>

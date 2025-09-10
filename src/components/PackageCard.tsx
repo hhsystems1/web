@@ -52,7 +52,7 @@ export default function PackageCard({ name, price, features, href, popular = fal
       <div className="text-center">
         <Link
           href={href}
-          className="inline-flex items-center justify-center w-full px-6 py-3 text-lg font-semibold text-white bg-gradient-to-r from-primary-emerald to-primary-blue rounded-full hover:shadow-lg hover:shadow-primary-emerald/25 transition-all duration-300 transform hover:scale-105"
+          className="btn btn-primary w-full justify-center"
         >
           View Package
         </Link>

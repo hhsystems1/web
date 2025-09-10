@@ -14,18 +14,18 @@ interface HeroVideoProps {
 
 export default function HeroVideo({ videoId, title, subtitle, ctaText, ctaAction }: HeroVideoProps) {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-grid px-6 pt-32">
+    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-grid px-6 pt-24">
       {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-800/40 to-slate-900/80" />
       <div className="absolute inset-0 bg-gradient-to-r from-primary-emerald/10 via-transparent to-primary-blue/10" />
 
-      {/* Content - Now at the top */}
-      <div className="relative z-10 text-center max-w-4xl mx-auto mb-16">
+      {/* Content - Headline and paragraph */}
+      <div className="relative z-10 text-center max-w-4xl mx-auto mb-8">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
+          className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight"
         >
           {title}
         </motion.h1>
@@ -34,28 +34,18 @@ export default function HeroVideo({ videoId, title, subtitle, ctaText, ctaAction
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-xl md:text-2xl text-slate-300 mb-10 leading-relaxed"
+          className="text-lg md:text-xl text-slate-300 mb-0 leading-relaxed"
         >
           {subtitle}
         </motion.p>
-        
-        <motion.button
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          onClick={ctaAction}
-          className="btn btn-primary mb-8"
-        >
-          {ctaText}
-        </motion.button>
       </div>
 
-      {/* Video Container - Now below content */}
+      {/* Video Container - Smaller size */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6 }}
-        className="relative z-10 w-full max-w-4xl mx-auto"
+        transition={{ duration: 0.8, delay: 0.4 }}
+        className="relative z-10 w-full max-w-3xl mx-auto mb-8"
       >
         <div className="video-container aspect-video rounded-2xl overflow-hidden">
           <LiteYouTubeEmbed
@@ -65,6 +55,21 @@ export default function HeroVideo({ videoId, title, subtitle, ctaText, ctaAction
             noCookie={true}
           />
         </div>
+      </motion.div>
+
+      {/* CTA Button - Now below video */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+        className="relative z-10 text-center"
+      >
+        <button
+          onClick={ctaAction}
+          className="btn btn-primary"
+        >
+          {ctaText}
+        </button>
       </motion.div>
 
       {/* Floating Elements */}
