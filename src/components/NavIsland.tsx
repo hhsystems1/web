@@ -20,6 +20,7 @@ export default function NavIsland() {
   }, []);
 
   const navItems = [
+    { href: '/#services', label: 'Services' },
     { href: '/#packages', label: 'Packages' },
     { href: '/contact', label: 'Contact' },
   ];
