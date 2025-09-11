@@ -73,14 +73,16 @@ export default function ContactForm() {
             />
           </div>
           <div className="space-y-2">
-            <label htmlFor="phone" className="text-sm font-medium text-gray-200">Phone</label>
+            <label htmlFor="phone" className="text-sm font-medium text-gray-200">Phone *</label>
             <input
               id="phone"
               name="phone"
-              placeholder="Optional"
+              required
+              placeholder="Your phone number"
               className="w-full rounded-lg bg-black/40 border border-gray-700 focus:border-primary-emerald focus:ring-2 focus:ring-primary-emerald/40 px-4 py-3 text-white placeholder-gray-500 transition"
               type="tel"
               autoComplete="tel"
+              inputMode="tel"
             />
           </div>
           <div className="space-y-2">
