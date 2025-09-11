@@ -7,7 +7,8 @@ import Image from 'next/image';
 
 import NavIsland from '@/components/NavIsland';
 import Section from '@/components/Section';
-import FormPlaceholder from '@/components/FormPlaceholder';
+// Removed FormPlaceholder in favor of external embedded form
+import Script from 'next/script';
 import Glow from '@/components/Glow';
 
 export default function ContactPage() {
@@ -92,11 +93,48 @@ export default function ContactPage() {
 
       {/* Contact Form Section */}
       <Section className="bg-gradient-to-b from-gray-900 to-black">
-        <FormPlaceholder
-          title="Start Your Project"
-          description="Tell us about your vision and we'll show you how we can bring it to life with modern design and intelligent automation."
-          buttonText="Send Message"
-        />
+        <div className="relative max-w-4xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl md:text-4xl font-bold text-white mb-6 text-center"
+          >
+            Start Your Project
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto text-center"
+          >
+            Tell us about your vision and we'll show you how we can bring it to life with modern design and intelligent automation.
+          </motion.p>
+          <div className="glass rounded-2xl p-4 md:p-6 shadow-xl shadow-primary-emerald/10">
+            <div className="relative w-full" style={{ minHeight: '720px' }}>
+              <iframe
+                src="https://api.leadconnectorhq.com/widget/form/3Cd2DxdXUg1T2K0M3Bjj"
+                style={{ width: '100%', height: '100%', border: 'none', borderRadius: '12px' }}
+                id="inline-3Cd2DxdXUg1T2K0M3Bjj"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Contact Us Form"
+                data-height="671"
+                data-layout-iframe-id="inline-3Cd2DxdXUg1T2K0M3Bjj"
+                data-form-id="3Cd2DxdXUg1T2K0M3Bjj"
+                title="Contact Us Form"
+              />
+              <Script src="https://link.msgsndr.com/js/form_embed.js" strategy="afterInteractive" />
+            </div>
+          </div>
+        </div>
       </Section>
 
       {/* Secondary CTA Section */}
@@ -118,9 +156,18 @@ export default function ContactPage() {
             </p>
             <Link
               href="/packages/standard"
-              className="inline-flex items-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-primary-emerald to-primary-blue rounded-full hover:shadow-lg hover:shadow-primary-emerald/25 transition-all duration-300 transform hover:scale-105"
+              className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-primary-emerald via-primary-emerald to-primary-blue rounded-full hover:shadow-2xl hover:shadow-primary-emerald/30 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 relative overflow-hidden border border-primary-emerald/30 hover:border-primary-emerald/60"
             >
-              View Standard Package
+              <span className="absolute inset-0 bg-gradient-to-r from-primary-emerald/10 to-primary-blue/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span className="relative z-10 flex items-center gap-2">
+                View Standard Package
+                <motion.div
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.5 }}
+                >
+                  →
+                </motion.div>
+              </span>
             </Link>
           </div>
         </motion.div>
