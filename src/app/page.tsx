@@ -257,8 +257,8 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="text-center p-6 glass rounded-2xl hover:shadow-xl hover:shadow-primary-emerald/10 transition-all duration-300"
+              whileHover={{ y: -8, scale: 1.04, transition: { duration: 0.08 } }}
+              className="text-center p-6 glass rounded-2xl hover:shadow-xl hover:shadow-primary-emerald/10 transition-[box-shadow] duration-200 will-change-transform"
             >
               <div className="w-16 h-16 rounded-full bg-gradient-to-r from-primary-emerald to-primary-blue flex items-center justify-center mx-auto mb-4">
                 <item.icon size={32} className="text-white" />

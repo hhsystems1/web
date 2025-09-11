@@ -78,7 +78,8 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="text-center p-6 glass rounded-2xl hover:shadow-xl hover:shadow-primary-emerald/10 transition-all duration-300"
+              whileHover={{ y: -6, scale: 1.035, transition: { duration: 0.08 } }}
+              className="text-center p-6 glass rounded-2xl hover:shadow-xl hover:shadow-primary-emerald/10 transition-[box-shadow] duration-200 will-change-transform"
             >
               <div className="w-12 h-12 rounded-full bg-gradient-to-r from-primary-emerald to-primary-blue flex items-center justify-center mx-auto mb-4">
                 <info.icon size={24} className="text-white" />
