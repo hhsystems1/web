@@ -11,7 +11,6 @@ import NavIsland from '@/components/NavIsland';
 import Section from '@/components/Section';
 import FAQ from '@/components/FAQ';
 import FormPlaceholder from '@/components/FormPlaceholder';
-import Script from 'next/script';
 import Glow from '@/components/Glow';
 
 interface PackageData {
@@ -127,47 +126,49 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
       {/* Starter Plan Form (moved before FAQ) */}
       {name.startsWith('Starter') && (
         <Section className="bg-gradient-to-b from-black to-gray-900">
-          <div className="relative max-w-5xl mx-auto">
+          <div className="relative max-w-3xl mx-auto text-center">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-3xl md:text-4xl font-bold text-white mb-6 text-center"
+              className="text-3xl md:text-4xl font-bold text-white mb-6"
             >
-              Get Started – Starter Plan
+              Ready to get started?
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto text-center"
+              className="text-lg text-gray-300 mb-10"
             >
-              Fill out the form below and we'll get in touch within 24 hours to discuss your project and answer any questions.
+              Subscribe now and we’ll reach out to help you launch your Starter plan.
             </motion.p>
-            <div className="glass rounded-2xl p-4 md:p-6 shadow-xl shadow-primary-emerald/10">
-              <div className="relative w-full" style={{ minHeight: '2000px' }}>
-                <iframe
-                  src="https://api.leadconnectorhq.com/widget/form/gFcy5EMvzPhWpCRF8sPs"
-                  style={{ width: '100%', height: '100%', border: 'none', borderRadius: '12px' }}
-                  id="inline-gFcy5EMvzPhWpCRF8sPs"
-                  data-layout="{'id':'INLINE'}"
-                  data-trigger-type="alwaysShow"
-                  data-trigger-value=""
-                  data-activation-type="alwaysActivated"
-                  data-activation-value=""
-                  data-deactivation-type="neverDeactivate"
-                  data-deactivation-value=""
-                  data-form-name="Starter Plan"
-                  data-height="3148"
-                  data-layout-iframe-id="inline-gFcy5EMvzPhWpCRF8sPs"
-                  data-form-id="gFcy5EMvzPhWpCRF8sPs"
-                  title="Starter Plan"
-                />
-                <Script src="https://link.msgsndr.com/js/form_embed.js" strategy="afterInteractive" />
-              </div>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <a
+                href="https://api.leadconnectorhq.com/widget/form/gFcy5EMvzPhWpCRF8sPs"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center px-10 py-4 text-lg font-semibold text-white bg-gradient-to-r from-primary-emerald via-primary-emerald to-primary-blue rounded-full hover:shadow-2xl hover:shadow-primary-emerald/30 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 relative overflow-hidden border border-primary-emerald/30 hover:border-primary-emerald/60"
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-primary-emerald/10 to-primary-blue/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="relative z-10 flex items-center gap-2">
+                  Subscribe Now
+                  <motion.div
+                    animate={{ x: [0, 4, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.5 }}
+                  >
+                    →
+                  </motion.div>
+                </span>
+              </a>
+            </motion.div>
           </div>
         </Section>
       )}
