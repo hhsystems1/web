@@ -201,8 +201,36 @@ export default function Home() {
         </div>
       </Section>
 
+      {/* Packages Section */}
+      <Section id="packages" className="bg-gradient-to-b from-gray-900 to-black">
+        <div className="text-center mb-16">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-5xl font-bold text-white mb-6"
+          >
+            Choose Your Perfect Plan
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xl text-gray-400 max-w-3xl mx-auto"
+          >
+            From simple websites to complex automation systems, we have a solution that fits your needs and budget.
+          </motion.p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {packages.map((pkg, index) => (
+            <PackageCard key={pkg.name} {...pkg} index={index} />
+          ))}
+        </div>
+      </Section>
+
       {/* Why Choose Us Section */}
-      <Section className="bg-gradient-to-b from-gray-900 to-black">
+      <Section className="bg-gradient-to-b from-black to-gray-900">
         <div className="text-center mb-16">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -243,34 +271,6 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Packages Section */}
-      <Section id="packages" className="bg-gradient-to-b from-black to-gray-900">
-        <div className="text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold text-white mb-6"
-          >
-            Choose Your Perfect Plan
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-gray-400 max-w-3xl mx-auto"
-          >
-            From simple websites to complex automation systems, we have a solution that fits your needs and budget.
-          </motion.p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {packages.map((pkg, index) => (
-            <PackageCard key={pkg.name} {...pkg} index={index} />
-          ))}
-        </div>
-      </Section>
-
       {/* CTA Section */}
       <Section className="bg-gradient-to-b from-gray-900 to-black">
         <motion.div
@@ -291,9 +291,18 @@ export default function Home() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-primary-emerald to-primary-blue rounded-full hover:shadow-lg hover:shadow-primary-emerald/25 transition-all duration-300 transform hover:scale-105"
+              className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-primary-emerald via-primary-emerald to-primary-blue rounded-full hover:shadow-2xl hover:shadow-primary-emerald/30 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 relative overflow-hidden border border-primary-emerald/30 hover:border-primary-emerald/60"
             >
-              Start Your Project Today
+              <span className="absolute inset-0 bg-gradient-to-r from-primary-emerald/10 to-primary-blue/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span className="relative z-10 flex items-center gap-2">
+                Start Your Project Today
+                <motion.div
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.5 }}
+                >
+                  →
+                </motion.div>
+              </span>
             </Link>
           </div>
         </motion.div>
@@ -302,7 +311,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-black border-t border-gray-800 py-12 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div>
               <h3 className="text-xl font-bold text-white mb-4">Helping Hands Systems</h3>
               <p className="text-gray-400 mb-4">
@@ -312,16 +321,6 @@ export default function Home() {
                 <p>📞 +1 833-785-1847</p>
                 <p>✉️ info@helpinghandsystems.com</p>
               </div>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold text-white mb-4">Services</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/#services" className="hover:text-white transition-colors">Web Design</Link></li>
-                <li><Link href="/#services" className="hover:text-white transition-colors">Booking Systems</Link></li>
-                <li><Link href="/#services" className="hover:text-white transition-colors">Chatbots</Link></li>
-                <li><Link href="/#services" className="hover:text-white transition-colors">Automation</Link></li>
-              </ul>
             </div>
             
             <div>
