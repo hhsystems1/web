@@ -123,8 +123,8 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
         </div>
       </Section>
 
-      {/* Starter & Standard Plan CTA (before FAQ) */}
-      {(name.startsWith('Starter') || name.startsWith('Standard')) && (
+  {/* Starter, Standard & Professional Plan CTA (before FAQ) */}
+  {(name.startsWith('Starter') || name.startsWith('Standard') || name.startsWith('Professional')) && (
         <Section className="bg-gradient-to-b from-black to-gray-900">
           <div className="relative max-w-3xl mx-auto text-center">
             <motion.h2
@@ -143,7 +143,7 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-lg text-gray-300 mb-10"
             >
-              Subscribe now and we’ll reach out to help you launch your {name.startsWith('Starter') ? 'Starter' : 'Standard'} plan.
+              Subscribe now and we’ll reach out to help you launch your {name.startsWith('Starter') ? 'Starter' : name.startsWith('Standard') ? 'Standard' : 'Professional'} plan.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -152,7 +152,13 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <a
-                href={name.startsWith('Starter') ? 'https://api.leadconnectorhq.com/widget/form/gFcy5EMvzPhWpCRF8sPs' : 'https://api.leadconnectorhq.com/widget/form/yQpBSS0mCcTbwSZGvfvm'}
+                href={
+                  name.startsWith('Starter')
+                    ? 'https://api.leadconnectorhq.com/widget/form/gFcy5EMvzPhWpCRF8sPs'
+                    : name.startsWith('Standard')
+                      ? 'https://api.leadconnectorhq.com/widget/form/yQpBSS0mCcTbwSZGvfvm'
+                      : 'https://api.leadconnectorhq.com/widget/form/NzcNkp9t4hwymDypmfed'
+                }
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center justify-center px-10 py-4 text-lg font-semibold text-white bg-gradient-to-r from-primary-emerald via-primary-emerald to-primary-blue rounded-full hover:shadow-2xl hover:shadow-primary-emerald/30 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 relative overflow-hidden border border-primary-emerald/30 hover:border-primary-emerald/60"
@@ -179,7 +185,7 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
       </Section>
 
   {/* CTA Form Section for other plans */}
-  {!(name.startsWith('Starter') || name.startsWith('Standard')) && (
+  {!(name.startsWith('Starter') || name.startsWith('Standard') || name.startsWith('Professional')) && (
         <Section className="bg-gradient-to-b from-black to-gray-900">
           <FormPlaceholder
             title={`Get Started with ${name}`}
