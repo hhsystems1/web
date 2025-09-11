@@ -123,8 +123,8 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
         </div>
       </Section>
 
-  {/* Starter, Standard & Professional Plan CTA (before FAQ) */}
-  {(name.startsWith('Starter') || name.startsWith('Standard') || name.startsWith('Professional')) && (
+  {/* Starter, Standard, Professional & Custom Plan CTA (before FAQ) */}
+  {(name.startsWith('Starter') || name.startsWith('Standard') || name.startsWith('Professional') || name.startsWith('Custom')) && (
         <Section className="bg-gradient-to-b from-black to-gray-900">
           <div className="relative max-w-3xl mx-auto text-center">
             <motion.h2
@@ -143,7 +143,9 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-lg text-gray-300 mb-10"
             >
-              Subscribe now and we’ll reach out to help you launch your {name.startsWith('Starter') ? 'Starter' : name.startsWith('Standard') ? 'Standard' : 'Professional'} plan.
+              {name.startsWith('Custom')
+                ? 'Book your free discovery call and we’ll map out your custom build.'
+                : 'Subscribe now and we’ll reach out to help you launch your ' + (name.startsWith('Starter') ? 'Starter' : name.startsWith('Standard') ? 'Standard' : name.startsWith('Professional') ? 'Professional' : 'Custom') + ' plan.'}
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -157,7 +159,9 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
                     ? 'https://api.leadconnectorhq.com/widget/form/gFcy5EMvzPhWpCRF8sPs'
                     : name.startsWith('Standard')
                       ? 'https://api.leadconnectorhq.com/widget/form/yQpBSS0mCcTbwSZGvfvm'
-                      : 'https://api.leadconnectorhq.com/widget/form/NzcNkp9t4hwymDypmfed'
+                      : name.startsWith('Professional')
+                        ? 'https://api.leadconnectorhq.com/widget/form/NzcNkp9t4hwymDypmfed'
+                        : 'https://api.leadconnectorhq.com/widget/bookings/hhs'
                 }
                 target="_blank"
                 rel="noopener noreferrer"
@@ -165,7 +169,7 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-primary-emerald/10 to-primary-blue/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <span className="relative z-10 flex items-center gap-2">
-                  Subscribe Now
+                  {name.startsWith('Custom') ? 'Book Your Free Call' : 'Subscribe Now'}
                   <motion.div
                     animate={{ x: [0, 4, 0] }}
                     transition={{ repeat: Infinity, duration: 1.5 }}
@@ -184,8 +188,8 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
         <FAQ items={faqs} />
       </Section>
 
-  {/* CTA Form Section for other plans */}
-  {!(name.startsWith('Starter') || name.startsWith('Standard') || name.startsWith('Professional')) && (
+  {/* CTA Form Section for other plans (none currently) */}
+  {!(name.startsWith('Starter') || name.startsWith('Standard') || name.startsWith('Professional') || name.startsWith('Custom')) && (
         <Section className="bg-gradient-to-b from-black to-gray-900">
           <FormPlaceholder
             title={`Get Started with ${name}`}
