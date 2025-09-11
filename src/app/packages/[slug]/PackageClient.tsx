@@ -11,6 +11,7 @@ import NavIsland from '@/components/NavIsland';
 import Section from '@/components/Section';
 import FAQ from '@/components/FAQ';
 import FormPlaceholder from '@/components/FormPlaceholder';
+import Script from 'next/script';
 import Glow from '@/components/Glow';
 
 interface PackageData {
@@ -123,19 +124,69 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
         </div>
       </Section>
 
-      {/* FAQ Section */}
+      {/* Starter Plan Form (moved before FAQ) */}
+      {name.startsWith('Starter') && (
+        <Section className="bg-gradient-to-b from-black to-gray-900">
+          <div className="relative max-w-5xl mx-auto">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-3xl md:text-4xl font-bold text-white mb-6 text-center"
+            >
+              Get Started – Starter Plan
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto text-center"
+            >
+              Fill out the form below and we'll get in touch within 24 hours to discuss your project and answer any questions.
+            </motion.p>
+            <div className="glass rounded-2xl p-4 md:p-6 shadow-xl shadow-primary-emerald/10">
+              <div className="relative w-full" style={{ minHeight: '2000px' }}>
+                <iframe
+                  src="https://api.leadconnectorhq.com/widget/form/gFcy5EMvzPhWpCRF8sPs"
+                  style={{ width: '100%', height: '100%', border: 'none', borderRadius: '12px' }}
+                  id="inline-gFcy5EMvzPhWpCRF8sPs"
+                  data-layout="{'id':'INLINE'}"
+                  data-trigger-type="alwaysShow"
+                  data-trigger-value=""
+                  data-activation-type="alwaysActivated"
+                  data-activation-value=""
+                  data-deactivation-type="neverDeactivate"
+                  data-deactivation-value=""
+                  data-form-name="Starter Plan"
+                  data-height="3148"
+                  data-layout-iframe-id="inline-gFcy5EMvzPhWpCRF8sPs"
+                  data-form-id="gFcy5EMvzPhWpCRF8sPs"
+                  title="Starter Plan"
+                />
+                <Script src="https://link.msgsndr.com/js/form_embed.js" strategy="afterInteractive" />
+              </div>
+            </div>
+          </div>
+        </Section>
+      )}
+
+      {/* FAQ Section moved after form */}
       <Section className="bg-gradient-to-b from-gray-900 to-black">
         <FAQ items={faqs} />
       </Section>
 
-      {/* CTA Form Section */}
-      <Section className="bg-gradient-to-b from-black to-gray-900">
-        <FormPlaceholder
-          title={`Get Started with ${name}`}
-          description="Fill out the form below and we'll get in touch within 24 hours to discuss your project and answer any questions."
-          buttonText={buttonText}
-        />
-      </Section>
+      {/* CTA Form Section for other plans */}
+      {!name.startsWith('Starter') && (
+        <Section className="bg-gradient-to-b from-black to-gray-900">
+          <FormPlaceholder
+            title={`Get Started with ${name}`}
+            description="Fill out the form below and we'll get in touch within 24 hours to discuss your project and answer any questions."
+            buttonText={buttonText}
+          />
+        </Section>
+      )}
 
       {/* Footer */}
       <footer className="bg-black border-t border-gray-800 py-12 px-6">
