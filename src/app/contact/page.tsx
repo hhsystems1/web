@@ -8,8 +8,8 @@ import Image from 'next/image';
 import NavIsland from '@/components/NavIsland';
 import Section from '@/components/Section';
 // Removed FormPlaceholder in favor of external embedded form
-import Script from 'next/script';
 import Glow from '@/components/Glow';
+import ContactForm from '@/components/ContactForm';
 
 export default function ContactPage() {
   const contactInfo = [
@@ -113,27 +113,8 @@ export default function ContactPage() {
           >
             Tell us about your vision and we'll show you how we can bring it to life with modern design and intelligent automation.
           </motion.p>
-          <div className="glass rounded-2xl p-4 md:p-6 shadow-xl shadow-primary-emerald/10">
-            <div className="relative w-full" style={{ minHeight: '720px' }}>
-              <iframe
-                src="https://api.leadconnectorhq.com/widget/form/3Cd2DxdXUg1T2K0M3Bjj"
-                style={{ width: '100%', height: '100%', border: 'none', borderRadius: '12px' }}
-                id="inline-3Cd2DxdXUg1T2K0M3Bjj"
-                data-layout="{'id':'INLINE'}"
-                data-trigger-type="alwaysShow"
-                data-trigger-value=""
-                data-activation-type="alwaysActivated"
-                data-activation-value=""
-                data-deactivation-type="neverDeactivate"
-                data-deactivation-value=""
-                data-form-name="Contact Us Form"
-                data-height="671"
-                data-layout-iframe-id="inline-3Cd2DxdXUg1T2K0M3Bjj"
-                data-form-id="3Cd2DxdXUg1T2K0M3Bjj"
-                title="Contact Us Form"
-              />
-              <Script src="https://link.msgsndr.com/js/form_embed.js" strategy="afterInteractive" />
-            </div>
+          <div className="glass rounded-2xl p-6 md:p-10 shadow-xl shadow-primary-emerald/10">
+            <ContactForm />
           </div>
         </div>
       </Section>
