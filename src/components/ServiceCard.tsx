@@ -16,8 +16,8 @@ export default function ServiceCard({ icon: Icon, title, description, index }: S
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      whileHover={{ y: -5, scale: 1.02 }}
-      className="group relative p-6 rounded-2xl glass hover:shadow-xl hover:shadow-primary-emerald/10 transition-all duration-300"
+      whileHover={{ y: -6, scale: 1.035, transition: { duration: 0.08 } }}
+      className="group relative p-6 rounded-2xl glass hover:shadow-xl hover:shadow-primary-emerald/10 transition-[box-shadow] duration-200 will-change-transform"
     >
       {/* Background Glow */}
       <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 glow" />

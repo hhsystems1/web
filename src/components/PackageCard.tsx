@@ -19,8 +19,8 @@ export default function PackageCard({ name, price, features, href, popular = fal
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      whileHover={{ y: -8 }}
-      className={`relative p-8 rounded-2xl glass hover:shadow-xl transition-all duration-300 flex flex-col h-full ${
+      whileHover={{ y: -10, scale: 1.04, transition: { duration: 0.08 } }}
+      className={`relative p-8 rounded-2xl glass hover:shadow-xl transition-[box-shadow] duration-200 will-change-transform flex flex-col h-full ${
         popular ? 'ring-2 ring-primary-emerald glow' : 'hover:shadow-primary-blue/10'
       }`}
     >
