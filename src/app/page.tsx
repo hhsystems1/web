@@ -12,12 +12,13 @@ import {
   Gauge,
   Shield,
   DollarSign,
-  Headphones
+  Headphones,
+  CheckCircle2
 } from 'lucide-react';
 import Link from 'next/link';
 
 import NavIsland from '@/components/NavIsland';
-import HeroVideo from '@/components/HeroVideo';
+import HeroShowcase from '@/components/HeroShowcase';
 import Section from '@/components/Section';
 import ServiceCard from '@/components/ServiceCard';
 import PackageCard from '@/components/PackageCard';
@@ -155,6 +156,24 @@ export default function Home() {
     }
   ];
 
+  const launchHighlights = [
+    {
+      title: "Lead capture that answers fast",
+      description: "Forms, chat prompts, and follow-up paths built around the questions your customers already ask.",
+      points: ["Website inquiry forms", "AI intake prompts", "Automated email handoffs"]
+    },
+    {
+      title: "Booking flows that remove friction",
+      description: "Calendar and appointment paths that make it easier for visitors to pick a time and move forward.",
+      points: ["Calendar embeds", "Service routing", "Reminder-ready structure"]
+    },
+    {
+      title: "Launch polish that builds trust",
+      description: "Clear calls to action, responsive page layouts, and SEO foundations prepared before your site goes live.",
+      points: ["Mobile-first sections", "Local SEO basics", "Performance-minded setup"]
+    }
+  ];
+
   return (
     <main className="relative min-h-screen bg-black">
       <NavIsland />
@@ -165,10 +184,9 @@ export default function Home() {
       <Glow color="lime" size="md" className="bottom-20 left-1/4" />
 
       {/* Hero Section */}
-      <HeroVideo
-        videoId="grsp2Hv7QtI"
-        title="Websites that feel like the future."
-        subtitle="Modern design, built-in bookings, chatbots, and automations—so your site actually works for you."
+      <HeroShowcase
+        title="Websites built to turn attention into action."
+        subtitle="Modern design, built-in bookings, AI chat, payment paths, and automations that help your site bring in leads and keep work moving."
         ctaText="Get Your Website Plan"
         ctaAction={scrollToPackages}
       />
@@ -198,6 +216,61 @@ export default function Home() {
           {services.map((service, index) => (
             <ServiceCard key={service.title} {...service} index={index} />
           ))}
+        </div>
+      </Section>
+
+      {/* Launch Highlights Section */}
+      <Section className="bg-gradient-to-b from-gray-900 via-black to-gray-900">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+          <div>
+            <motion.p
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary-lime"
+            >
+              Built into the page
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-4xl md:text-5xl font-bold text-white mb-6"
+            >
+              More than a good-looking homepage
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-xl text-gray-400 leading-relaxed"
+            >
+              Your site can collect leads, book time, answer common questions, and make the next step obvious from the first visit.
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-5">
+            {launchHighlights.map((highlight, index) => (
+              <motion.div
+                key={highlight.title}
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.12 }}
+                className="rounded-lg border border-white/10 bg-white/10 p-6 shadow-xl shadow-black/20 backdrop-blur-xl"
+              >
+                <h3 className="text-2xl font-bold text-white">{highlight.title}</h3>
+                <p className="mt-3 text-gray-400 leading-relaxed">{highlight.description}</p>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  {highlight.points.map((point) => (
+                    <span key={point} className="inline-flex items-center gap-2 rounded-lg border border-primary-emerald/25 bg-primary-emerald/10 px-3 py-2 text-sm font-medium text-slate-200">
+                      <CheckCircle2 size={16} className="text-primary-emerald" />
+                      {point}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </Section>
 

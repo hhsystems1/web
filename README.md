@@ -7,7 +7,7 @@ A modern, futuristic web development website built with Next.js 14, TypeScript, 
 - **Modern Design**: Glassmorphism UI with gradient accents and soft glows
 - **Responsive**: Optimized for all screen sizes (320px to 4K+)
 - **Animated Navigation**: Morphing navbar that transforms into a floating island on scroll
-- **Video Integration**: Lazy-loaded YouTube embeds with react-lite-youtube-embed
+- **Visual Homepage Hero**: Animated showcase for bookings, AI chat, automation, and launch assets
 - **SEO Optimized**: Built-in SEO with next-seo and automatic sitemap generation
 - **Accessibility**: WCAG compliant with semantic HTML and focus management
 - **Performance**: 90+ Lighthouse scores across all metrics
@@ -87,7 +87,7 @@ src/
 │   └── sitemap.ts        # SEO sitemap
 └── components/            # Reusable components
     ├── NavIsland.tsx     # Morphing navigation
-    ├── HeroVideo.tsx     # Hero video section
+    ├── HeroShowcase.tsx  # Homepage hero showcase
     ├── Section.tsx       # Layout wrapper
     ├── ServiceCard.tsx   # Service cards
     ├── PackageCard.tsx   # Pricing cards
@@ -116,7 +116,7 @@ src/
 
 ## 📄 Pages & Routes
 
-- **Home** (`/`) - Hero, services, packages, CTA
+- **Home** (`/`) - Hero, services, launch highlights, packages, CTA
 - **Packages** (`/packages/[slug]`) - Individual package details
   - `/packages/starter` - $97/mo starter package
   - `/packages/standard` - $197/mo standard package  
@@ -134,9 +134,10 @@ Transparent navbar that morphs into a floating pill-shaped island on scroll:
 - Responsive mobile menu
 - Active state indicators
 
-### HeroVideo  
-YouTube video background with overlay content:
-- Lazy loading with react-lite-youtube-embed
+### HeroShowcase
+Animated homepage hero with service proof points:
+- Booking, AI, automation, and SEO callouts
+- Logo-led launch dashboard visual
 - Animated text reveals
 - Smooth scroll to sections
 
