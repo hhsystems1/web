@@ -16,13 +16,13 @@ export default function ContactPage() {
     {
       icon: Phone,
       title: "Phone",
-      value: "+1 833-785-1847",
+      value: "6066606147",
       description: "Call us during business hours"
     },
     {
       icon: Mail,
       title: "Email", 
-      value: "info@helpinghandsystems.com",
+      value: "helpinghandsystems1@gmail.com",
       description: "We respond within 24 hours"
     },
     {
@@ -111,7 +111,7 @@ export default function ContactPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto text-center"
           >
-            Tell us about your vision and we'll show you how we can bring it to life with modern design and intelligent automation.
+            Tell us about your vision and we&apos;ll show you how we can bring it to life with modern design and intelligent automation.
           </motion.p>
           <div className="glass rounded-2xl p-6 md:p-10 shadow-xl shadow-primary-emerald/10">
             <ContactForm />
@@ -173,8 +173,8 @@ export default function ContactPage() {
                 Modern web development with built-in automation and AI.
               </p>
               <div className="space-y-2 text-gray-400">
-                <p>📞 +1 833-785-1847</p>
-                <p>✉️ info@helpinghandsystems.com</p>
+                <p>📞 6066606147</p>
+                <p>✉️ helpinghandsystems1@gmail.com</p>
               </div>
             </div>
             

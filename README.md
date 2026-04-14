@@ -208,8 +208,8 @@ Strict TypeScript and React rules for code quality
 
 ## 📞 Contact Information
 
-- **Phone**: +1 833-785-1847
-- **Email**: info@helpinghandsystems.com
+- **Phone**: 6066606147
+- **Email**: helpinghandsystems1@gmail.com
 - **Website**: https://helpinghandsystems.com
 
 ## 📄 License

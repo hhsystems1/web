@@ -43,7 +43,7 @@ export default function PrivacyPage() {
               <section>
                 <h2 className="text-3xl font-semibold text-white mb-4">1) Contact</h2>
                 <div className="bg-gray-800/50 rounded-lg p-6 border border-gray-700">
-                  <p><strong>Email:</strong> info@helpinghandsystems.com</p>
+                  <p><strong>Email:</strong> helpinghandsystems1@gmail.com</p>
                   <p><strong>Mailing address:</strong> 5830 E 2nd St Ste 7000 #18127 Casper, WY 82609</p>
                 </div>
               </section>
@@ -136,7 +136,7 @@ export default function PrivacyPage() {
 
               <section>
                 <h2 className="text-3xl font-semibold text-white mb-4">10) Your rights and choices</h2>
-                <p>Depending on your location, you may request access, correction, deletion, portability, restriction, or objection to certain processing, and you may opt out of marketing. Contact info@helpinghandsystems.com. We may request verification information.</p>
+                <p>Depending on your location, you may request access, correction, deletion, portability, restriction, or objection to certain processing, and you may opt out of marketing. Contact helpinghandsystems1@gmail.com. We may request verification information.</p>
               </section>
 
               <section>
@@ -152,7 +152,7 @@ export default function PrivacyPage() {
               <section>
                 <h2 className="text-3xl font-semibold text-white mb-4">13) Contact</h2>
                 <div className="bg-gray-800/50 rounded-lg p-6 border border-gray-700">
-                  <p><strong>Email:</strong> info@helpinghandsystems.com</p>
+                  <p><strong>Email:</strong> helpinghandsystems1@gmail.com</p>
                 </div>
               </section>
             </div>
@@ -169,8 +169,8 @@ export default function PrivacyPage() {
                 Modern web development with built-in automation and AI.
               </p>
               <div className="space-y-2 text-gray-400">
-                <p>📞 +1 833-785-1847</p>
-                <p>✉️ info@helpinghandsystems.com</p>
+                <p>📞 6066606147</p>
+                <p>✉️ helpinghandsystems1@gmail.com</p>
               </div>
             </div>
             

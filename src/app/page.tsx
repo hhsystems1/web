@@ -182,7 +182,8 @@ export default function Home() {
     {
       title: "AI Chat Demo",
       description: "Show common customer questions, lead qualification, and a clean handoff to the business.",
-      href: "https://hhsdemo2.netlify.app/"
+      href: "https://hhsdemo2.netlify.app/",
+      livePreview: true
     },
     {
       title: "Automation Demo",
@@ -292,8 +293,8 @@ export default function Home() {
 
       {/* Demos Section */}
       <Section id="demos" className="bg-gradient-to-b from-gray-900 via-black to-gray-900">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-          <div>
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-12 max-w-3xl">
             <motion.p
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -320,29 +321,43 @@ export default function Home() {
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-1">
+          <div className="space-y-6">
             {demoPlan.map((demo, index) => (
               <motion.div
                 key={demo.title}
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.12 }}
-                className="rounded-lg border border-white/10 bg-white/10 p-6 shadow-xl shadow-black/20 backdrop-blur-xl"
+                className="rounded-lg border border-white/10 bg-white/10 p-6 shadow-xl shadow-black/20 backdrop-blur-xl md:p-8"
               >
-                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary-emerald/15 text-sm font-bold text-primary-lime ring-1 ring-primary-emerald/30">
-                  0{index + 1}
+                <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
+                  <div className="max-w-2xl">
+                    <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary-emerald/15 text-sm font-bold text-primary-lime ring-1 ring-primary-emerald/30">
+                      0{index + 1}
+                    </div>
+                    <h3 className="text-2xl font-bold text-white">{demo.title}</h3>
+                    <p className="mt-3 text-gray-400 leading-relaxed">{demo.description}</p>
+                  </div>
+                  {demo.href && (
+                    <Link
+                      href={demo.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex shrink-0 items-center justify-center rounded-lg border border-primary-emerald/35 bg-primary-emerald/15 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:border-primary-emerald/70 hover:bg-primary-emerald/25"
+                    >
+                      Open Demo
+                    </Link>
+                  )}
                 </div>
-                <h3 className="text-2xl font-bold text-white">{demo.title}</h3>
-                <p className="mt-3 text-gray-400 leading-relaxed">{demo.description}</p>
-                {demo.href && (
-                  <Link
-                    href={demo.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-5 inline-flex items-center justify-center rounded-lg border border-primary-emerald/35 bg-primary-emerald/15 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:border-primary-emerald/70 hover:bg-primary-emerald/25"
-                  >
-                    Open Demo
-                  </Link>
+                {demo.livePreview && demo.href && (
+                  <div className="mt-5 overflow-hidden rounded-lg border border-primary-emerald/25 bg-black/60">
+                    <iframe
+                      src={demo.href}
+                      title={demo.title}
+                      className="h-[520px] w-full"
+                      loading="lazy"
+                    />
+                  </div>
                 )}
               </motion.div>
             ))}
@@ -467,8 +482,8 @@ export default function Home() {
                 Modern web development with built-in automation and AI.
               </p>
               <div className="space-y-2 text-gray-400">
-                <p>📞 +1 833-785-1847</p>
-                <p>✉️ info@helpinghandsystems.com</p>
+                <p>📞 6066606147</p>
+                <p>✉️ helpinghandsystems1@gmail.com</p>
               </div>
             </div>
             

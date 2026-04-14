@@ -217,8 +217,8 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
                 Modern web development with built-in automation and AI.
               </p>
               <div className="space-y-2 text-gray-400">
-                <p>📞 +1 833-785-1847</p>
-                <p>✉️ info@helpinghandsystems.com</p>
+                <p>📞 6066606147</p>
+                <p>✉️ helpinghandsystems1@gmail.com</p>
               </div>
             </div>
             

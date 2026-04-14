@@ -95,7 +95,7 @@ export default function TermsPage() {
                 <h2 className="text-3xl font-semibold text-white mb-4">8) Intellectual property</h2>
                 <p><strong>Your content:</strong> You retain ownership of all content you provide. You grant HHS a non‑exclusive license to host, modify, and display your content as needed to deliver the Services.</p>
                 <p><strong>Work product:</strong> Upon full payment, and unless otherwise stated in your Order, HHS assigns to you all right, title, and interest in the final website code and designs we create specifically for you, excluding (i) HHS pre‑existing materials, templates, internal tools, and know‑how, and (ii) third‑party/open‑source components, which are licensed to you.</p>
-                <p><strong>Portfolio use:</strong> You grant HHS permission to display non‑confidential work product and your logo as part of our portfolio and marketing materials. You may opt out by emailing info@helpinghandsystems.com.</p>
+                <p><strong>Portfolio use:</strong> You grant HHS permission to display non‑confidential work product and your logo as part of our portfolio and marketing materials. You may opt out by emailing helpinghandsystems1@gmail.com.</p>
               </section>
 
               <section>
@@ -150,7 +150,7 @@ export default function TermsPage() {
               <section>
                 <h2 className="text-3xl font-semibold text-white mb-4">18) Contact</h2>
                 <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700 mt-4">
-                  <p><strong>Email:</strong> info@helpinghandsystems.com</p>
+                  <p><strong>Email:</strong> helpinghandsystems1@gmail.com</p>
                 </div>
               </section>
             </div>
@@ -176,8 +176,8 @@ export default function TermsPage() {
                 Modern web development with built-in automation and AI.
               </p>
               <div className="space-y-2 text-gray-400">
-                <p>📞 +1 833-785-1847</p>
-                <p>✉️ info@helpinghandsystems.com</p>
+                <p>📞 6066606147</p>
+                <p>✉️ helpinghandsystems1@gmail.com</p>
               </div>
             </div>
             
