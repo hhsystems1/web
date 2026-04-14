@@ -21,6 +21,7 @@ export default function NavIsland() {
 
   const navItems = [
     { href: '/#services', label: 'Services' },
+    { href: '/#demos', label: 'Demos' },
     { href: '/#packages', label: 'Packages' },
     { href: '/contact', label: 'Contact' },
   ];
@@ -54,13 +55,13 @@ export default function NavIsland() {
         >
           <div className="flex items-center justify-between w-full">
             {/* Logo */}
-            <Link href="/" className="flex items-center hover:opacity-80 hover:scale-105 transition-all duration-300 flex-shrink-0 group">
+            <Link href="/" className="flex items-center hover:opacity-80 hover:scale-105 transition-all duration-300 flex-shrink-0 group" aria-label="Helping Hands Systems home">
               <Image
-                src="/mettalic letters logo.png"
+                src="/hhs-globe-logo.png"
                 alt="HHS Logo"
-                width={80}
-                height={50}
-                className="h-8 sm:h-10 w-auto filter group-hover:brightness-110 transition-all duration-300"
+                width={1000}
+                height={1000}
+                className="h-16 w-16 rounded-lg object-contain sm:h-20 sm:w-20 group-hover:brightness-110 transition-all duration-300"
                 priority
               />
             </Link>

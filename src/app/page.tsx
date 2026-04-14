@@ -174,6 +174,22 @@ export default function Home() {
     }
   ];
 
+  const demoPlan = [
+    {
+      title: "Booking Demo",
+      description: "Show a visitor choosing a service, picking a time, and sending the booking request."
+    },
+    {
+      title: "AI Chat Demo",
+      description: "Show common customer questions, lead qualification, and a clean handoff to the business.",
+      href: "https://hhsdemo2.netlify.app/"
+    },
+    {
+      title: "Automation Demo",
+      description: "Show a form submission turning into follow-up tasks, email updates, and next-step reminders."
+    }
+  ];
+
   return (
     <main className="relative min-h-screen bg-black">
       <NavIsland />
@@ -268,6 +284,66 @@ export default function Home() {
                     </span>
                   ))}
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* Demos Section */}
+      <Section id="demos" className="bg-gradient-to-b from-gray-900 via-black to-gray-900">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <div>
+            <motion.p
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary-lime"
+            >
+              Demo roadmap
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-4xl md:text-5xl font-bold text-white mb-6"
+            >
+              Demos coming next
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-xl text-gray-400 leading-relaxed"
+            >
+              Short walkthroughs will make it easier to see how each website feature works before starting a project.
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-1">
+            {demoPlan.map((demo, index) => (
+              <motion.div
+                key={demo.title}
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.12 }}
+                className="rounded-lg border border-white/10 bg-white/10 p-6 shadow-xl shadow-black/20 backdrop-blur-xl"
+              >
+                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary-emerald/15 text-sm font-bold text-primary-lime ring-1 ring-primary-emerald/30">
+                  0{index + 1}
+                </div>
+                <h3 className="text-2xl font-bold text-white">{demo.title}</h3>
+                <p className="mt-3 text-gray-400 leading-relaxed">{demo.description}</p>
+                {demo.href && (
+                  <Link
+                    href={demo.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 inline-flex items-center justify-center rounded-lg border border-primary-emerald/35 bg-primary-emerald/15 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:border-primary-emerald/70 hover:bg-primary-emerald/25"
+                  >
+                    Open Demo
+                  </Link>
+                )}
               </motion.div>
             ))}
           </div>
