@@ -21,7 +21,7 @@ export default function NavIsland() {
 
   const navItems = [
     { href: '/#services', label: 'Services' },
-    { href: '/#demos', label: 'Demos' },
+    { href: '/assistants', label: 'AI Assistants' },
     { href: '/#packages', label: 'Packages' },
     { href: '/contact', label: 'Contact' },
   ];

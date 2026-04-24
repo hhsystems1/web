@@ -191,6 +191,27 @@ export default function Home() {
     }
   ];
 
+  const assistantPackages = [
+    {
+      name: "Hermes Agent",
+      price: "$1,500 setup + $297/mo",
+      description: "Operations copilot for outreach follow-up, SOP execution, and reporting.",
+      href: "/assistants/hermes"
+    },
+    {
+      name: "OpenClaw Agent",
+      price: "$1,800 setup + $347/mo",
+      description: "Automation-first assistant for integrations, lead routing, and repeatable workflows.",
+      href: "/assistants/openclaw"
+    },
+    {
+      name: "Agent Zero",
+      price: "$1,200 setup + $247/mo",
+      description: "Personal assistant for fast daily support, drafting, and execution handoffs.",
+      href: "/assistants/agent-zero"
+    }
+  ];
+
   return (
     <main className="relative min-h-screen bg-black">
       <NavIsland />
@@ -233,6 +254,67 @@ export default function Home() {
           {services.map((service, index) => (
             <ServiceCard key={service.title} {...service} index={index} />
           ))}
+        </div>
+      </Section>
+
+      {/* AI Assistants Section */}
+      <Section className="bg-gradient-to-b from-gray-900 via-black to-gray-900">
+        <div className="text-center mb-12">
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary-lime"
+          >
+            New project launch
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl md:text-5xl font-bold text-white mb-6"
+          >
+            VPS AI Assistant Setup Packages
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xl text-gray-400 max-w-4xl mx-auto"
+          >
+            One-time setup, monthly upkeep, and pre-installed skills for Hermes, OpenClaw, and Agent Zero.
+          </motion.p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+          {assistantPackages.map((assistant, index) => (
+            <motion.div
+              key={assistant.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="rounded-lg border border-white/10 bg-white/10 p-6 shadow-xl shadow-black/20 backdrop-blur-xl"
+            >
+              <h3 className="text-2xl font-bold text-white">{assistant.name}</h3>
+              <p className="mt-2 text-primary-lime font-semibold">{assistant.price}</p>
+              <p className="mt-4 text-gray-300 leading-relaxed">{assistant.description}</p>
+              <Link
+                href={assistant.href}
+                className="mt-5 inline-flex items-center justify-center rounded-lg border border-primary-emerald/35 bg-primary-emerald/15 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:border-primary-emerald/70 hover:bg-primary-emerald/25"
+              >
+                View Details
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="mt-8 text-center">
+          <Link
+            href="/assistants"
+            className="inline-flex items-center justify-center rounded-full border border-primary-emerald/40 bg-gradient-to-r from-primary-emerald to-primary-blue px-6 py-3 text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary-emerald/30"
+          >
+            Compare Assistant Options
+          </Link>
         </div>
       </Section>
 
@@ -500,6 +582,7 @@ export default function Home() {
             <div>
               <h4 className="font-semibold text-white mb-4">Company</h4>
               <ul className="space-y-2 text-gray-400">
+                <li><Link href="/assistants" className="hover:text-white transition-colors">AI Assistants</Link></li>
                 <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
                 <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
                 <li><Link href="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link></li>
