@@ -11,8 +11,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Helping Hands Systems - Web Development",
-  description: "Modern websites with built-in bookings, chatbots, and automations. Professional web development services that make your site actually work for you.",
-  keywords: "web development, website design, booking systems, chatbots, automation, AI integration",
+  description: "Modern websites with built-in bookings, secure VPS AI agents, and installable skills. Professional web development services that make your site actually work for you.",
+  keywords: "web development, website design, booking systems, VPS AI agents, AI skills, secure agent deployment",
   icons: {
     icon: '/mettalic letters logo.png',
     apple: '/mettalic letters logo.png',

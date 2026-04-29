@@ -42,7 +42,7 @@ export default function TermsPage() {
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>Starter</strong> – monthly fee (currently advertised at $97), up to 3 pages, contact form</li>
                   <li><strong>Standard</strong> – monthly fee (currently $197), up to 5 pages, calendar/appointment booking</li>
-                  <li><strong>Professional</strong> – monthly fee (currently $297), up to 5 pages, calendar + chatbot + light automations</li>
+                  <li><strong>Professional</strong> – monthly fee (currently $297), up to 5 pages, calendar + chatbot + starter agent workflow setup</li>
                   <li><strong>Custom</strong> – tailored scope and pricing</li>
                 </ul>
                 <p>Exact inclusions, add‑ons, and fees are as listed on the Site or in your Order. Setup fees are non‑refundable once work begins. We may update prices for future terms; we’ll provide notice as required.</p>
@@ -173,7 +173,7 @@ export default function TermsPage() {
                 />
               </div>
               <p className="text-gray-400 mb-4">
-                Modern web development with built-in automation and AI.
+                Modern web development with secure VPS AI agents and skills.
               </p>
               <div className="space-y-2 text-gray-400">
                 <p>📞 6066606147</p>

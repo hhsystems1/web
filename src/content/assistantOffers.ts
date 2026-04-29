@@ -53,28 +53,28 @@ export const assistants: AssistantOffer[] = [
   {
     slug: 'openclaw',
     name: 'OpenClaw Agent',
-    tagline: 'Automation and integration specialist for repeatable workflows',
+    tagline: 'Secure VPS agent for repeatable business workflows',
     summary:
-      'OpenClaw is best when your business needs repeatable automations, integrations, and process execution between tools.',
+      'OpenClaw is best when your business needs a secure VPS-hosted agent that can run repeatable workflows, coordinate tools, and keep process execution auditable.',
     bestFor: [
       'Service businesses with repetitive lead intake/admin steps',
-      'Companies that need integrated workflow automation',
-      'Teams that want controlled, auditable automations',
+      'Companies that need secure, agent-run workflow coordination',
+      'Teams that want controlled, auditable AI agent execution',
     ],
     setupFee: '$1,800 one-time setup',
     monthlyUpkeep: '$347/month upkeep',
     setupIncludes: [
       'VPS deployment and OpenClaw runtime setup',
       'Tool connection mapping and credentials hardening',
-      'Pre-installed automation skill pack',
-      '2-3 core workflow automations configured end-to-end',
+      'Pre-installed operations and integration skill pack',
+      '2-3 core agent workflows configured end-to-end',
       'Fail-safe controls and approval gates',
     ],
     monthlyIncludes: [
-      'Workflow monitoring and break/fix support',
-      'Automation tuning for higher conversion and less manual work',
+      'Agent workflow monitoring and break/fix support',
+      'Skill tuning for better follow-through and less manual work',
       'Integration updates as APIs/tools change',
-      'Monthly automation ROI review',
+      'Monthly agent value review',
     ],
     useCases: [
       'Automatically capture leads into your tracking system with owner alerts',
@@ -82,7 +82,7 @@ export const assistants: AssistantOffer[] = [
       'Keep scheduling, communication, and task tools synchronized',
     ],
     deliverables: [
-      'Live automation assistant on VPS',
+      'Live AI agent instance on VPS',
       'Workflow map with owners and triggers',
       'Change log and maintenance cadence',
     ],
@@ -96,7 +96,7 @@ export const assistants: AssistantOffer[] = [
     bestFor: [
       'Founders who need rapid response support during the day',
       'Teams needing quick drafting and message support',
-      'Businesses wanting a practical assistant before deep automation',
+      'Businesses wanting a practical assistant before deeper agent workflows',
     ],
     setupFee: '$1,200 one-time setup',
     monthlyUpkeep: '$247/month upkeep',
@@ -139,7 +139,7 @@ export const smbUseCaseResearch = {
     {
       category: 'Food',
       useCases: [
-        'Automated response for menu/hour/location questions',
+        'Agent-assisted response for menu/hour/location questions',
         'Simple online ordering or inquiry routing',
         'Review-request follow-ups after customer visits',
       ],
@@ -156,7 +156,7 @@ export const smbUseCaseResearch = {
       category: 'Landscape/Outdoor Services',
       useCases: [
         'Quote request intake with service-area qualification',
-        'Automated estimate scheduling and reminders',
+        'Agent-assisted estimate scheduling and reminders',
         'Seasonal campaign follow-up sequences',
       ],
     },
@@ -164,7 +164,7 @@ export const smbUseCaseResearch = {
       category: 'Roofing',
       useCases: [
         'Storm-season lead intake and urgency triage',
-        'Inspection booking and follow-up automation',
+        'Inspection booking and follow-up workflow support',
         'Insurance-document checklist guidance',
       ],
     },

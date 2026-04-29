@@ -3,7 +3,7 @@ import { DefaultSeoProps } from 'next-seo';
 const config: DefaultSeoProps = {
   defaultTitle: 'Helping Hands Systems - Web Development',
   titleTemplate: '%s | Helping Hands Systems',
-  description: 'Modern websites with built-in bookings, chatbots, and automations. Professional web development services that make your site actually work for you.',
+  description: 'Modern websites with built-in bookings, secure VPS AI agents, and installable skills. Professional web development services that make your site actually work for you.',
   canonical: 'https://helpinghandssystems.com',
   openGraph: {
     type: 'website',
@@ -11,7 +11,7 @@ const config: DefaultSeoProps = {
     url: 'https://helpinghandssystems.com',
     siteName: 'Helping Hands Systems',
     title: 'Helping Hands Systems - Web Development',
-    description: 'Modern websites with built-in bookings, chatbots, and automations. Professional web development services that make your site actually work for you.',
+    description: 'Modern websites with built-in bookings, secure VPS AI agents, and installable skills. Professional web development services that make your site actually work for you.',
     images: [
       {
         url: '/og-image.jpg',

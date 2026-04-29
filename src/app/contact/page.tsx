@@ -111,7 +111,7 @@ export default function ContactPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto text-center"
           >
-            Tell us about your vision and we&apos;ll show you how we can bring it to life with modern design and intelligent automation.
+            Tell us about your vision and we&apos;ll show you how we can bring it to life with modern design and secure AI agent support.
           </motion.p>
           <div className="glass rounded-2xl p-6 md:p-10 shadow-xl shadow-primary-emerald/10">
             <ContactForm />
@@ -170,7 +170,7 @@ export default function ContactPage() {
                 />
               </div>
               <p className="text-gray-400 mb-4">
-                Modern web development with built-in automation and AI.
+                Modern web development with secure VPS AI agents and skills.
               </p>
               <div className="space-y-2 text-gray-400">
                 <p>📞 6066606147</p>

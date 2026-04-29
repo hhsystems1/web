@@ -61,7 +61,7 @@ const packages: Record<string, PackageData> = {
       "Advanced SEO optimization",
       "3 months free support",
       "Payment integration",
-      "Email automation",
+      "Email follow-up setup",
       "Analytics & reporting"
     ],
     videoId: "WFvbbVMc_DA",
@@ -89,15 +89,15 @@ const packages: Record<string, PackageData> = {
   professional: {
     name: "Professional Package",
     price: "$297/mo", 
-    description: "Perfect for growing businesses that want AI-powered automation to enhance customer experience and streamline operations.",
+    description: "Perfect for growing businesses that want an AI assistant and agent-ready follow-up support on the site.",
     features: [
       "5-page professional website",
       "Advanced calendar & booking system",
       "AI chatbot integration",
-      "Basic automation workflows",
+      "Starter agent workflow setup",
       "6 months free support",
-      "CRM integration",
-      "Advanced email marketing",
+      "Lead tracking handoff setup",
+      "Follow-up message templates",
       "Lead scoring & qualification",
       "Custom integrations"
     ],
@@ -109,12 +109,12 @@ const packages: Record<string, PackageData> = {
         answer: "Our AI chatbot can answer FAQs, qualify leads, book appointments, and escalate complex queries to you."
       },
       {
-        question: "What automations are included?",
-        answer: "Lead follow-ups, appointment reminders, customer onboarding sequences, and basic workflow automation."
+        question: "What agent workflows are included?",
+        answer: "Lead follow-ups, appointment reminders, intake summaries, and owner-ready next-step tasks."
       },
       {
-        question: "Can I customize the automations?",
-        answer: "Yes, we'll set up custom workflows based on your specific business processes and requirements."
+        question: "Can I customize the agent workflows?",
+        answer: "Yes, we can scope custom agent workflows around your documented business process and approval needs."
       },
       {
         question: "Is there a learning curve?",
@@ -125,11 +125,11 @@ const packages: Record<string, PackageData> = {
   custom: {
     name: "Custom Package",
     price: "Contact for pricing",
-    description: "Fully tailored solution for enterprises and businesses with complex requirements, unlimited AI integrations, and advanced automation systems.",
+    description: "Fully tailored solution for businesses with complex requirements, VPS AI agent deployments, and custom skill packs.",
     features: [
       "Unlimited pages & custom design",
-      "Advanced AI integrations",
-      "Complex automation systems",
+      "VPS AI agent deployments",
+      "Custom agent skills and workflows",
       "Multi-platform integrations",
       "12 months premium support",
       "Dedicated project manager",
@@ -142,7 +142,7 @@ const packages: Record<string, PackageData> = {
     faqs: [
       {
         question: "What makes this different from other packages?",
-        answer: "Complete customization, advanced AI features, unlimited integrations, and dedicated support for complex business requirements."
+        answer: "Complete customization, advanced AI agent features, scoped integrations, and dedicated support for complex business requirements."
       },
       {
         question: "How long does a custom project take?",

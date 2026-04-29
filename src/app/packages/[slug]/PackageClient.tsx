@@ -214,7 +214,7 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
                 />
               </div>
               <p className="text-gray-400 mb-4">
-                Modern web development with built-in automation and AI.
+                Modern web development with secure VPS AI agents and skills.
               </p>
               <div className="space-y-2 text-gray-400">
                 <p>📞 6066606147</p>

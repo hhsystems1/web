@@ -166,7 +166,7 @@ export default function PrivacyPage() {
             <div>
               <h3 className="text-xl font-bold text-white mb-4">Helping Hands Systems</h3>
               <p className="text-gray-400 mb-4">
-                Modern web development with built-in automation and AI.
+                Modern web development with secure VPS AI agents and skills.
               </p>
               <div className="space-y-2 text-gray-400">
                 <p>📞 6066606147</p>
