@@ -23,7 +23,7 @@ export default function PrivacyPage() {
             
             <div className="text-gray-400 mb-12 space-y-2">
               <p className="text-lg"><strong>Effective date:</strong> September 9, 2025</p>
-              <p className="text-lg"><strong>Applies to:</strong> https://web.helpinghandsystems.com and related intake forms, landing pages, and communications (the "Site").</p>
+              <p className="text-lg"><strong>Applies to:</strong> https://web.helpinghandssystems.com and related intake forms, landing pages, and communications (the "Site").</p>
               <p className="text-lg"><strong>Who we are:</strong> Helping Hands Systems LLC ("Helping Hands Systems", "HHS", "we", "our", "us"), a Wyoming company.</p>
             </div>
 

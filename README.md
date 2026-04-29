@@ -210,7 +210,7 @@ Strict TypeScript and React rules for code quality
 
 - **Phone**: 6066606147
 - **Email**: helpinghandsystems1@gmail.com
-- **Website**: https://helpinghandsystems.com
+- **Website**: https://helpinghandssystems.com
 
 ## 📄 License
 

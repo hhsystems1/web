@@ -24,7 +24,7 @@ export default function TermsPage() {
 
             <div className="text-gray-400 mb-12 space-y-2">
               <p className="text-lg"><strong>Effective date:</strong> September 9, 2025</p>
-              <p className="text-lg"><strong>Applies to:</strong> https://web.helpinghandsystems.com and related proposals, order forms, and Statements of Work (each, an “Order” or SOW).</p>
+              <p className="text-lg"><strong>Applies to:</strong> https://web.helpinghandssystems.com and related proposals, order forms, and Statements of Work (each, an “Order” or SOW).</p>
               <p className="text-lg">By using the Site or purchasing Services, you agree to these Terms of Service (“Terms”). If you are entering into these Terms for an organization, you represent you have authority to bind it.</p>
             </div>
 

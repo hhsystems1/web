@@ -4,11 +4,11 @@ const config: DefaultSeoProps = {
   defaultTitle: 'Helping Hands Systems - Web Development',
   titleTemplate: '%s | Helping Hands Systems',
   description: 'Modern websites with built-in bookings, chatbots, and automations. Professional web development services that make your site actually work for you.',
-  canonical: 'https://helpinghandsystems.com',
+  canonical: 'https://helpinghandssystems.com',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://helpinghandsystems.com',
+    url: 'https://helpinghandssystems.com',
     siteName: 'Helping Hands Systems',
     title: 'Helping Hands Systems - Web Development',
     description: 'Modern websites with built-in bookings, chatbots, and automations. Professional web development services that make your site actually work for you.',
