@@ -7,7 +7,7 @@ A modern, futuristic web development website built with Next.js 14, TypeScript, 
 - **Modern Design**: Glassmorphism UI with gradient accents and soft glows
 - **Responsive**: Optimized for all screen sizes (320px to 4K+)
 - **Animated Navigation**: Morphing navbar that transforms into a floating island on scroll
-- **Visual Homepage Hero**: Animated showcase for bookings, AI chat, automation, and launch assets
+- **Visual Homepage Hero**: Animated showcase for bookings, AI assistants, VPS agents, and launch assets
 - **SEO Optimized**: Built-in SEO with next-seo and automatic sitemap generation
 - **Accessibility**: WCAG compliant with semantic HTML and focus management
 - **Performance**: 90+ Lighthouse scores across all metrics
@@ -136,7 +136,7 @@ Transparent navbar that morphs into a floating pill-shaped island on scroll:
 
 ### HeroShowcase
 Animated homepage hero with service proof points:
-- Booking, AI, automation, and SEO callouts
+- Booking, AI assistant, VPS agent, and SEO callouts
 - Logo-led launch dashboard visual
 - Animated text reveals
 - Smooth scroll to sections

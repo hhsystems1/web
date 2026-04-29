@@ -38,22 +38,22 @@ export default function Home() {
     {
       icon: Calendar,
       title: "Booking & Calendars", 
-      description: "Integrated appointment scheduling systems that automate your booking process and reduce no-shows."
+      description: "Integrated appointment paths that reduce friction, organize requests, and keep follow-up visible."
     },
     {
       icon: MessageSquare,
       title: "Chatbots",
-      description: "AI-powered chat assistants that engage visitors 24/7 and qualify leads automatically."
+      description: "AI-powered chat assistants that answer common questions, qualify leads, and hand off clean notes."
     },
     {
       icon: Zap,
-      title: "Automations",
-      description: "Smart workflows that handle repetitive tasks, follow up with leads, and streamline your business."
+      title: "Agent Workflows",
+      description: "Secure VPS agents that handle repeatable tasks with logs, boundaries, and approval points."
     },
     {
       icon: Brain,
-      title: "AI Integrations",
-      description: "Custom AI solutions that enhance user experience and provide intelligent insights for your business."
+      title: "Agent Skills",
+      description: "Installable skill packs for lead intake, follow-up, reporting, content, and operations support."
     },
     {
       icon: CreditCard,
@@ -83,9 +83,9 @@ export default function Home() {
     },
     {
       icon: Zap,
-      title: "Automation-First",
-      stat: "Save 20+ hrs/week",
-      description: "Every site includes automation features to reduce manual work and boost efficiency."
+      title: "Agent-Ready",
+      stat: "Secure VPS",
+      description: "Builds can connect to VPS-hosted assistants instead of brittle third-party automation chains."
     },
     {
       icon: DollarSign,
@@ -134,8 +134,8 @@ export default function Home() {
       features: [
         "5-page professional website",
         "Calendar & booking system",
-        "AI chatbot integration",
-        "Basic automation workflows", 
+        "AI assistant integration",
+        "Starter agent workflow setup", 
         "6 months free support"
       ],
       href: "/packages/professional",
@@ -146,8 +146,8 @@ export default function Home() {
       price: "Contact for price",
       features: [
         "Fully custom website design",
-        "Advanced AI integrations",
-        "Complex automation systems",
+        "VPS AI agent integration",
+        "Custom agent skills and workflows",
         "Unlimited pages & features",
         "12 months premium support"
       ],
@@ -160,7 +160,7 @@ export default function Home() {
     {
       title: "Lead capture that answers fast",
       description: "Forms, chat prompts, and follow-up paths built around the questions your customers already ask.",
-      points: ["Website inquiry forms", "AI intake prompts", "Automated email handoffs"]
+      points: ["Website inquiry forms", "Agent intake prompts", "Owner-ready lead handoffs"]
     },
     {
       title: "Booking flows that remove friction",
@@ -186,8 +186,8 @@ export default function Home() {
       livePreview: true
     },
     {
-      title: "Automation Demo",
-      description: "Show a form submission turning into follow-up tasks, email updates, and next-step reminders."
+      title: "Agent Workflow Demo",
+      description: "Show a form submission becoming a structured agent task, owner summary, and next-step reminder."
     }
   ];
 
@@ -201,7 +201,7 @@ export default function Home() {
     {
       name: "OpenClaw Agent",
       price: "$1,800 setup + $347/mo",
-      description: "Automation-first assistant for integrations, lead routing, and repeatable workflows.",
+      description: "Secure VPS assistant for lead routing, tool coordination, and repeatable agent workflows.",
       href: "/assistants/openclaw"
     },
     {
@@ -224,7 +224,7 @@ export default function Home() {
       {/* Hero Section */}
       <HeroShowcase
         title="Websites built to turn attention into action."
-        subtitle="Modern design, built-in bookings, AI chat, payment paths, and automations that help your site bring in leads and keep work moving."
+        subtitle="Modern design, built-in bookings, AI chat, payment paths, and VPS agent options that help your site bring in leads and keep work moving."
         ctaText="Get Your Website Plan"
         ctaAction={scrollToPackages}
       />
@@ -246,7 +246,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl text-gray-400 max-w-3xl mx-auto"
           >
-            From beautiful design to intelligent automation, we build websites that work as hard as you do.
+            From beautiful design to secure AI agent support, we build websites that work as hard as you do.
           </motion.p>
         </div>
 
@@ -282,7 +282,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl text-gray-400 max-w-4xl mx-auto"
           >
-            One-time setup, monthly upkeep, and pre-installed skills for Hermes, OpenClaw, and Agent Zero.
+            Secure VPS deployment, monthly upkeep, and pre-installed skills for Hermes, OpenClaw, and Agent Zero.
           </motion.p>
         </div>
 
@@ -399,7 +399,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-xl text-gray-400 leading-relaxed"
             >
-              Short walkthroughs will make it easier to see how each website feature works before starting a project.
+              Short walkthroughs will make it easier to see how each website and agent feature works before starting a project.
             </motion.p>
           </div>
 
@@ -464,7 +464,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl text-gray-400 max-w-3xl mx-auto"
           >
-            From simple websites to complex automation systems, we have a solution that fits your needs and budget.
+            From simple websites to secure VPS AI agent builds, we have a solution that fits your needs and budget.
           </motion.p>
         </div>
 
@@ -492,7 +492,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl text-gray-400 max-w-3xl mx-auto"
           >
-            We don&apos;t just build websites—we build digital solutions that grow your business.
+            We build websites and VPS-hosted agent systems that make follow-through easier to manage.
           </motion.p>
         </div>
 
@@ -561,7 +561,7 @@ export default function Home() {
             <div>
               <h3 className="text-xl font-bold text-white mb-4">Helping Hands Systems</h3>
               <p className="text-gray-400 mb-4">
-                Modern web development with built-in automation and AI.
+                Modern web development with secure VPS AI agents and skills.
               </p>
               <div className="space-y-2 text-gray-400">
                 <p>📞 6066606147</p>
@@ -583,6 +583,7 @@ export default function Home() {
               <h4 className="font-semibold text-white mb-4">Company</h4>
               <ul className="space-y-2 text-gray-400">
                 <li><Link href="/assistants" className="hover:text-white transition-colors">AI Assistants</Link></li>
+                <li><Link href="/skills" className="hover:text-white transition-colors">Agent Skills</Link></li>
                 <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
                 <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
                 <li><Link href="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link></li>

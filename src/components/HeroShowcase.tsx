@@ -10,7 +10,7 @@ import {
   Search,
   Sparkles,
   Smartphone,
-  Workflow,
+  Server,
 } from 'lucide-react';
 
 interface HeroShowcaseProps {
@@ -23,13 +23,13 @@ interface HeroShowcaseProps {
 const metrics = [
   { value: "90+", label: "Lighthouse targets" },
   { value: "24/7", label: "Lead capture" },
-  { value: "20+ hrs", label: "Weekly tasks saved" },
+  { value: "VPS", label: "Agent runtime" },
 ];
 
 const showcaseItems = [
   { icon: CalendarCheck, label: "Booking flow", value: "Live calendars" },
   { icon: Bot, label: "AI assistant", value: "Lead questions handled" },
-  { icon: Workflow, label: "Automations", value: "Follow-ups sent" },
+  { icon: Server, label: "VPS agent", value: "Private runtime" },
   { icon: Search, label: "SEO setup", value: "Local search ready" },
 ];
 
@@ -54,7 +54,7 @@ export default function HeroShowcase({ title, subtitle, ctaText, ctaAction }: He
             className="mb-6 inline-flex items-center gap-3 rounded-lg border border-primary-emerald/35 bg-white/10 px-4 py-2 text-sm font-semibold text-primary-lime backdrop-blur-md"
           >
             <Sparkles size={16} />
-            Custom sites, bookings, AI, and automations
+            Custom sites, bookings, VPS agents, and skills
           </motion.div>
 
           <motion.h1
