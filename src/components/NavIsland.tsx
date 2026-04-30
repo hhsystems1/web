@@ -1,23 +1,13 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 
 export default function NavIsland() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const navItems = [
     { href: '/#services', label: 'Services' },
@@ -31,28 +21,18 @@ export default function NavIsland() {
     <>
       <motion.nav
         initial={false}
-        animate={{
-          y: isScrolled ? 8 : 0,
-        }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled ? 'p-2 sm:p-4' : 'p-0'
-        }`}
+        animate={{ y: 8 }}
+        className="fixed top-0 left-0 right-0 z-50 p-2 sm:p-4 transition-all duration-500"
       >
         <motion.div
           animate={{
-            borderRadius: isScrolled ? '9999px' : '0px',
-            backdropFilter: isScrolled ? 'blur(24px)' : 'blur(8px)',
-            backgroundColor: isScrolled ? 'rgba(15, 23, 42, 0.8)' : 'rgba(15, 23, 42, 0.6)',
-            border: isScrolled ? '1px solid rgba(52, 211, 153, 0.3)' : '1px solid rgba(52, 211, 153, 0.1)',
-            boxShadow: isScrolled 
-              ? '0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(52, 211, 153, 0.1)' 
-              : '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+            borderRadius: '9999px',
+            backdropFilter: 'blur(24px)',
+            backgroundColor: 'rgba(15, 23, 42, 0.8)',
+            border: '1px solid rgba(52, 211, 153, 0.3)',
+            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(52, 211, 153, 0.1)',
           }}
-          className={`mx-auto transition-all duration-500 ${
-            isScrolled 
-              ? 'max-w-fit px-4 sm:px-6 md:px-8 py-3' 
-              : 'max-w-7xl px-4 sm:px-6 md:px-8 py-4 sm:py-6'
-          }`}
+          className="mx-auto max-w-fit px-4 py-3 transition-all duration-500 sm:px-6 md:px-8"
         >
           <div className="flex items-center justify-between w-full">
             {/* Logo */}
