@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 import NavIsland from '@/components/NavIsland';
 import Section from '@/components/Section';
-// Removed FormPlaceholder in favor of external embedded form
+// First-party HHS contact form
 import Glow from '@/components/Glow';
 import ContactForm from '@/components/ContactForm';
 

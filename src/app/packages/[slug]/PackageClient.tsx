@@ -29,6 +29,7 @@ interface PackageData {
 
 export default function PackageClient({ packageData }: { packageData: PackageData }) {
   const { name, price, description, features, videoId, popular, buttonText, faqs } = packageData;
+  const packageSlug = name.toLowerCase().split(' ')[0];
 
   return (
     <main className="relative min-h-screen bg-black">
@@ -154,17 +155,7 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <a
-                href={
-                  name.startsWith('Starter')
-                    ? 'https://api.leadconnectorhq.com/widget/form/gFcy5EMvzPhWpCRF8sPs'
-                    : name.startsWith('Standard')
-                      ? 'https://api.leadconnectorhq.com/widget/form/yQpBSS0mCcTbwSZGvfvm'
-                      : name.startsWith('Professional')
-                        ? 'https://api.leadconnectorhq.com/widget/form/NzcNkp9t4hwymDypmfed'
-                        : 'https://api.leadconnectorhq.com/widget/bookings/hhs'
-                }
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`/contact?package=${packageSlug}`}
                 className="group inline-flex items-center justify-center px-10 py-4 text-lg font-semibold text-white bg-gradient-to-r from-primary-emerald via-primary-emerald to-primary-blue rounded-full hover:shadow-2xl hover:shadow-primary-emerald/30 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 relative overflow-hidden border border-primary-emerald/30 hover:border-primary-emerald/60"
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-primary-emerald/10 to-primary-blue/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
