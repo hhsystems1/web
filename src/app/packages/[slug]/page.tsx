@@ -166,8 +166,9 @@ export function generateStaticParams() {
   }));
 }
 
-export default function PackagePage({ params }: { params: { slug: string } }) {
-  const packageData = packages[params.slug];
+export default async function PackagePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const packageData = packages[slug];
   
   if (!packageData) {
     notFound();

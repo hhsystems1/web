@@ -39,15 +39,16 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
       <Glow color="emerald" size="xl" className="top-20 right-10" />
       <Glow color="blue" size="lg" className="bottom-20 left-10" />
 
-      {/* Back Button */}
-      <div className="fixed top-24 left-6 z-40">
-        <Link
-          href="/"
-          className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors"
+      {/* Return to Packages Button */}
+      <div className="fixed top-28 left-6 z-40">
+        <button
+          type="button"
+          onClick={() => { window.location.href = '/#packages'; }}
+          className="flex items-center space-x-2 rounded-full border border-primary-emerald/30 bg-black/60 px-4 py-2 text-gray-300 shadow-lg shadow-black/20 backdrop-blur-md transition-all duration-300 hover:border-primary-emerald/60 hover:bg-primary-emerald/10 hover:text-white"
         >
           <ArrowLeft size={20} />
-          <span>Back to Home</span>
-        </Link>
+          <span>Return to Packages</span>
+        </button>
       </div>
 
       {/* Hero Section */}
