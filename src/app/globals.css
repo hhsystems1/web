@@ -8,7 +8,7 @@
 html {
   scroll-behavior: smooth;
   background: #000;
-  overscroll-behavior-y: none;
+  overscroll-behavior-y: contain;
 }
 
 html, body {
@@ -18,7 +18,7 @@ html, body {
 
 body {
   background-color: #000;
-  overscroll-behavior-y: none;
+  overscroll-behavior-y: contain;
   background: 
     radial-gradient(circle at 20% 80%, rgba(52, 211, 153, 0.08) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
