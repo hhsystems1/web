@@ -436,8 +436,9 @@ export default function Home() {
                     <iframe
                       src={demo.href}
                       title={demo.title}
-                      className="h-[520px] w-full"
+                      className="h-[520px] w-full pointer-events-none"
                       loading="lazy"
+                      tabIndex={-1}
                     />
                   </div>
                 )}
