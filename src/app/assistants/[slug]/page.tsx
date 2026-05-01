@@ -10,8 +10,9 @@ export function generateStaticParams() {
   return assistants.map((assistant) => ({ slug: assistant.slug }));
 }
 
-export default function AssistantDetailPage({ params }: { params: { slug: string } }) {
-  const assistant = getAssistantBySlug(params.slug);
+export default async function AssistantDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const assistant = getAssistantBySlug(slug);
 
   if (!assistant) {
     notFound();
@@ -27,7 +28,7 @@ export default function AssistantDetailPage({ params }: { params: { slug: string
       <Section className="pt-32 bg-gradient-to-b from-black to-gray-900">
         <div className="mx-auto max-w-5xl">
           <Link href="/assistants" className="text-sm text-primary-lime hover:text-white transition-colors">
-            ← Back to Assistant Packages
+            ← Back to Assistants
           </Link>
           <h1 className="mt-4 text-4xl md:text-6xl font-bold text-white">{assistant.name}</h1>
           <p className="mt-4 text-xl text-primary-lime">{assistant.tagline}</p>

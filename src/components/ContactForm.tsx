@@ -44,7 +44,7 @@ export default function ContactForm() {
         {/* Required hidden inputs for Netlify */}
         <input type="hidden" name="form-name" value="contact" />
         <p className="hidden">
-          <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+          <label>{"Don't fill this out if you're human:"} <input name="bot-field" /></label>
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
