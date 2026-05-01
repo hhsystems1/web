@@ -2,9 +2,18 @@
 
 import { useEffect, useRef } from 'react';
 
+type BackgroundNode = {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  radius: number;
+  alpha: number;
+};
+
 export default function InteractiveBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const nodesRef = useRef<any[]>([]);
+  const nodesRef = useRef<BackgroundNode[]>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
   const animationRef = useRef<number | null>(null);
 
@@ -25,7 +34,7 @@ export default function InteractiveBackground() {
 
     // Create nodes
     const createNodes = () => {
-      const nodes = [];
+      const nodes: BackgroundNode[] = [];
       const nodeCount = Math.floor((canvas.width * canvas.height) / 15000);
       
       for (let i = 0; i < nodeCount; i++) {

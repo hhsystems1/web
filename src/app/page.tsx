@@ -193,21 +193,21 @@ export default function Home() {
 
   const assistantPackages = [
     {
-      name: "Hermes Agent",
+      name: "Daily Operations Assistant",
       price: "$1,500 setup + $297/mo",
-      description: "Operations copilot for outreach follow-up, SOP execution, and reporting.",
+      description: "Keeps employee tasks, reminders, daily updates, and owner handoffs organized from a VPS assistant.",
       href: "/assistants/hermes"
     },
     {
-      name: "OpenClaw Agent",
+      name: "Voice Ordering Assistant",
       price: "$1,800 setup + $347/mo",
-      description: "Secure VPS assistant for lead routing, tool coordination, and repeatable agent workflows.",
+      description: "Helps capture calls, order details, appointment requests, and owner alerts for busy local businesses.",
       href: "/assistants/openclaw"
     },
     {
-      name: "Agent Zero",
+      name: "Social Media Assistant",
       price: "$1,200 setup + $247/mo",
-      description: "Personal assistant for fast daily support, drafting, and execution handoffs.",
+      description: "Drafts posts, captions, promos, and reminders from approved business context so marketing stays consistent.",
       href: "/assistants/agent-zero"
     }
   ];
@@ -223,9 +223,9 @@ export default function Home() {
 
       {/* Hero Section */}
       <HeroShowcase
-        title="Websites built to turn attention into action."
-        subtitle="Modern design, built-in bookings, AI chat, payment paths, and VPS agent options that help your site bring in leads and keep work moving."
-        ctaText="Get Your Website Plan"
+        title="Make your website feel like someone is helping right away."
+        subtitle="We build local business sites that grab attention, guide visitors to the right next step, and connect into secure VPS assistants for calls, orders, posts, task tracking, and follow-up."
+        ctaText="See the build path"
         ctaAction={scrollToPackages}
       />
 

@@ -6,9 +6,9 @@ import Glow from '@/components/Glow';
 import { assistants, smbUseCaseResearch } from '@/content/assistantOffers';
 
 export const metadata = {
-  title: 'AI Assistant Setup on VPS | Hermes, OpenClaw, Agent Zero',
+  title: 'Business AI Assistants on VPS | Helping Hands Systems',
   description:
-    'One-time setup + monthly upkeep for AI personal assistants deployed on VPS with pre-installed skills.',
+    'Local business AI assistants for voice orders, social media posts, employee task tracking, and daily operations support on secure VPS runtimes.',
 };
 
 export default function AssistantsPage() {
@@ -22,14 +22,13 @@ export default function AssistantsPage() {
       <Section className="pt-32 bg-gradient-to-b from-black to-gray-900">
         <div className="mx-auto max-w-5xl text-center">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary-lime">
-            VPS Assistant Offer
+            Local business assistant offer
           </p>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            AI Personal Assistants for Local Service Businesses
+            VPS AI assistants that help answer, post, and keep the day moving
           </h1>
           <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
-            We deploy your assistant once, preload your core skills, and keep it maintained monthly.
-            Choose Hermes, OpenClaw, or Agent Zero based on how your team works.
+            We market the result first: an assistant for orders, content, employee tasks, and daily follow-through. HHS handles the secure VPS setup, skills, and upkeep in the background.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm text-gray-300">
             <span className="rounded-full border border-primary-emerald/30 bg-primary-emerald/10 px-4 py-2">
@@ -71,7 +70,7 @@ export default function AssistantsPage() {
                 href={`/assistants/${assistant.slug}`}
                 className="mt-6 inline-flex items-center justify-center rounded-lg border border-primary-emerald/40 bg-primary-emerald/15 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-primary-emerald/25 hover:border-primary-emerald/70"
               >
-                View {assistant.name} Page
+                View {assistant.name}
               </Link>
             </article>
           ))}

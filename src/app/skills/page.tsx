@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Bot, CheckCircle2, Layers, Lock, Package, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Bot, CheckCircle2, Layers, Lock, Package, ShieldCheck } from 'lucide-react';
 
 import NavIsland from '@/components/NavIsland';
 import Section from '@/components/Section';
@@ -98,6 +98,13 @@ export default function SkillsPage() {
                   </span>
                 ))}
               </div>
+              <a
+                href={`/checkout/?item=${pack.slug}`}
+                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full border border-primary-emerald/50 bg-gradient-to-r from-primary-emerald to-primary-blue px-5 py-3 text-sm font-bold text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary-emerald/25"
+              >
+                {pack.checkoutLabel}
+                <ArrowRight size={16} />
+              </a>
             </article>
           ))}
         </div>
@@ -125,6 +132,17 @@ export default function SkillsPage() {
                   ))}
                 </ul>
               </div>
+              <div className="mt-5 rounded-xl border border-primary-blue/25 bg-primary-blue/10 p-4">
+                <p className="text-xs uppercase tracking-[0.16em] text-primary-lime">Skill price</p>
+                <p className="mt-1 text-xl font-bold text-white">{skill.price}</p>
+              </div>
+              <a
+                href={`/checkout/?item=${skill.slug}`}
+                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full border border-primary-emerald/45 bg-primary-emerald/15 px-5 py-3 text-sm font-bold text-white transition-all duration-300 hover:border-primary-emerald/70 hover:bg-primary-emerald/25"
+              >
+                {skill.checkoutLabel}
+                <ArrowRight size={16} />
+              </a>
             </article>
           ))}
         </div>
