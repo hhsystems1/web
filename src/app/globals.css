@@ -8,17 +8,16 @@
 html {
   scroll-behavior: smooth;
   background: #000;
-  overscroll-behavior-y: contain;
 }
 
 html, body {
   max-width: 100%;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body {
   background-color: #000;
-  overscroll-behavior-y: contain;
   background: 
     radial-gradient(circle at 20% 80%, rgba(52, 211, 153, 0.08) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
