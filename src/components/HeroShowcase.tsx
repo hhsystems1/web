@@ -38,9 +38,9 @@ const guideSteps = [
 ];
 
 const proofPoints = [
-  'Local business websites',
-  'Secure VPS assistants',
-  'Buyable skill packages',
+  'Local service websites',
+  'Lead capture + booking',
+  'AI-assisted follow-up',
 ];
 
 function TurtleGuideVisual() {
@@ -165,7 +165,7 @@ export default function HeroShowcase({ title, subtitle, ctaText, ctaAction }: He
             className="mb-6 inline-flex items-center gap-3 rounded-full border border-primary-emerald/35 bg-white/10 px-4 py-2 text-sm font-semibold text-primary-lime backdrop-blur-md"
           >
             <Sparkles size={16} />
-            Websites that introduce your AI assistant
+            Websites built to generate more customers
           </motion.div>
 
           <motion.h1
@@ -196,8 +196,8 @@ export default function HeroShowcase({ title, subtitle, ctaText, ctaAction }: He
               {ctaText}
               <ArrowRight size={18} />
             </button>
-            <Link href="/skills" className="btn gap-2">
-              See AI skill packages
+            <Link href="/contact" className="btn gap-2">
+              Get a Free Demo
             </Link>
           </motion.div>
 

@@ -25,40 +25,73 @@ import PackageCard from '@/components/PackageCard';
 import Glow from '@/components/Glow';
 
 export default function Home() {
-  const scrollToPackages = () => {
-    document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToWebsiteDemo = () => {
+    document.getElementById('website-demo')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const services = [
     {
       icon: Monitor,
-      title: "Web Design",
-      description: "Modern, responsive websites that look stunning on every device and convert visitors into customers."
+      title: "Trust-Building Website Design",
+      description: "Makes your business look professional, easy to understand, and ready to contact before a visitor ever calls."
     },
     {
       icon: Calendar,
-      title: "Booking & Calendars", 
-      description: "Integrated appointment paths that reduce friction, organize requests, and keep follow-up visible."
+      title: "Booking Paths That Remove Friction", 
+      description: "Gives visitors a clear next step so they can request a quote, book a call, or schedule service without waiting."
     },
     {
       icon: MessageSquare,
-      title: "Chatbots",
-      description: "AI-powered chat assistants that answer common questions, qualify leads, and hand off clean notes."
+      title: "Instant Visitor Response",
+      description: "Answers common questions, qualifies interested visitors, and helps turn conversations into real follow-up opportunities."
     },
     {
       icon: Zap,
-      title: "Agent Workflows",
-      description: "Secure VPS agents that handle repeatable tasks with logs, boundaries, and approval points."
+      title: "Lead Follow-Up Support",
+      description: "Keeps new inquiries organized so fewer interested customers get lost after the first message."
     },
     {
       icon: Brain,
-      title: "Agent Skills",
-      description: "Installable skill packs for lead intake, follow-up, reporting, content, and operations support."
+      title: "Business Assistant Skills",
+      description: "Adds practical support for intake, follow-up, reporting, content, and day-to-day operations as your system grows."
     },
     {
       icon: CreditCard,
-      title: "Payment Systems",
-      description: "Secure, seamless payment processing that makes it easy for customers to pay you online."
+      title: "Simple Payment Paths",
+      description: "Makes it easier for customers to approve work, pay online, and keep the buying process moving."
+    }
+  ];
+
+  const problemPoints = [
+    "No clear reason to call or book",
+    "No fast response when visitors are ready",
+    "No follow-up system after a form is submitted",
+    "No simple path from interest to appointment"
+  ];
+
+  const solutionPoints = [
+    "A clear local-service offer that builds trust fast",
+    "Lead capture and booking flows built into the page",
+    "AI-assisted intake and follow-up options when needed",
+    "A simple system that helps turn visitors into customers"
+  ];
+
+  const funnelSteps = [
+    {
+      title: "Someone visits your site",
+      description: "They land on a page that quickly explains who you help, what you do, and why they should trust you."
+    },
+    {
+      title: "The website guides them",
+      description: "Clear sections, FAQs, calls to action, and optional AI chat help answer questions before they leave."
+    },
+    {
+      title: "They call, book, or request a quote",
+      description: "The next step is obvious, low-friction, and built around real local-service customer behavior."
+    },
+    {
+      title: "Follow-up starts faster",
+      description: "Lead details stay organized so you can respond while the customer is still interested."
     }
   ];
 
@@ -103,9 +136,10 @@ export default function Home() {
 
   const packages = [
     {
-      name: "Starter",
+      name: "Starter Website",
       price: "$97",
       features: [
+        "For businesses getting online professionally",
         "3-page professional website",
         "Contact form integration", 
         "Mobile responsive design",
@@ -116,9 +150,10 @@ export default function Home() {
       popular: false
     },
     {
-      name: "Standard", 
+      name: "Booking Growth Site", 
       price: "$197",
       features: [
+        "For businesses ready to scale calls and bookings",
         "5-page professional website",
         "Calendar & appointment booking",
         "Contact forms & lead capture",
@@ -129,9 +164,10 @@ export default function Home() {
       popular: true
     },
     {
-      name: "Professional",
+      name: "Customer System Site",
       price: "$297", 
       features: [
+        "For businesses that want website plus follow-up support",
         "5-page professional website",
         "Calendar & booking system",
         "AI assistant integration",
@@ -142,9 +178,10 @@ export default function Home() {
       popular: false
     },
     {
-      name: "Custom",
+      name: "Custom Growth System",
       price: "Contact for price",
       features: [
+        "For full website, agent, and operations support",
         "Fully custom website design",
         "VPS AI agent integration",
         "Custom agent skills and workflows",
@@ -223,11 +260,58 @@ export default function Home() {
 
       {/* Hero Section */}
       <HeroShowcase
-        title="Make your website feel like someone is helping right away."
-        subtitle="We build local business sites that grab attention, guide visitors to the right next step, and connect into secure VPS assistants for calls, orders, posts, task tracking, and follow-up."
-        ctaText="See the build path"
-        ctaAction={scrollToPackages}
+        title="Turn Your Website Into a 24/7 Customer-Generating System"
+        subtitle="Helping Hands Systems builds conversion-focused websites for local service businesses — with lead capture, booking flows, AI-assisted follow-up, and simple systems that help turn visitors into customers."
+        ctaText="See What Your Website Could Look Like"
+        ctaAction={scrollToWebsiteDemo}
       />
+
+      {/* Problem / Solution Section */}
+      <Section className="bg-gradient-to-b from-black via-gray-950 to-gray-900">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-stretch">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="rounded-2xl border border-red-400/15 bg-red-500/5 p-8 shadow-xl shadow-black/20 backdrop-blur-xl"
+          >
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-red-300">The problem</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-5">Most business websites just sit there.</h2>
+            <p className="text-lg text-gray-300 leading-relaxed mb-6">
+              A lot of local business websites look fine, but they do not help the owner win the customer when someone is ready to take action.
+            </p>
+            <div className="space-y-3">
+              {problemPoints.map((point) => (
+                <div key={point} className="flex items-start gap-3 rounded-lg border border-white/10 bg-black/30 p-3 text-gray-300">
+                  <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-red-300" />
+                  <span>{point}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="rounded-2xl border border-primary-emerald/25 bg-primary-emerald/10 p-8 shadow-xl shadow-black/20 backdrop-blur-xl"
+          >
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary-lime">The solution</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-5">What if your website actually worked for you?</h2>
+            <p className="text-lg text-gray-300 leading-relaxed mb-6">
+              We build websites that act like a simple front-end sales system: clear offer, trust-building layout, lead capture, booking paths, and follow-up support.
+            </p>
+            <div className="space-y-3">
+              {solutionPoints.map((point) => (
+                <div key={point} className="flex items-start gap-3 rounded-lg border border-primary-emerald/20 bg-black/30 p-3 text-gray-200">
+                  <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-primary-emerald" />
+                  <span>{point}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </Section>
 
       {/* Services Section */}
       <Section id="services" className="bg-gradient-to-b from-black to-gray-900">
@@ -238,7 +322,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-4xl md:text-5xl font-bold text-white mb-6"
           >
-            Everything Your Business Needs
+            Built Specifically for Local Service Businesses
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -246,7 +330,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl text-gray-400 max-w-3xl mx-auto"
           >
-            From beautiful design to secure AI agent support, we build websites that work as hard as you do.
+            Contractors, shops, service providers, appointment-based businesses, and local teams need more than a brochure. They need a website that helps create calls, bookings, and follow-up.
           </motion.p>
         </div>
 
@@ -254,6 +338,100 @@ export default function Home() {
           {services.map((service, index) => (
             <ServiceCard key={service.title} {...service} index={index} />
           ))}
+        </div>
+      </Section>
+
+      {/* Funnel Flow Section */}
+      <Section className="bg-gradient-to-b from-gray-900 via-black to-gray-900">
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary-lime"
+          >
+            Simple customer flow
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl md:text-5xl font-bold text-white mb-6"
+          >
+            From website visit to booked opportunity
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xl text-gray-400 leading-relaxed"
+          >
+            The goal is not just a nicer website. The goal is a clearer path from interest to action.
+          </motion.p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {funnelSteps.map((step, index) => (
+            <motion.div
+              key={step.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="relative rounded-2xl border border-white/10 bg-white/10 p-6 shadow-xl shadow-black/20 backdrop-blur-xl"
+            >
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-primary-emerald to-primary-blue text-lg font-bold text-white">
+                {index + 1}
+              </div>
+              <h3 className="text-xl font-bold text-white">{step.title}</h3>
+              <p className="mt-3 text-gray-400 leading-relaxed">{step.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+
+      {/* VSL Placeholder Section */}
+      <Section id="website-demo" className="bg-gradient-to-b from-gray-900 via-black to-gray-900">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="overflow-hidden rounded-2xl border border-primary-emerald/25 bg-black/70 shadow-2xl shadow-primary-emerald/10"
+          >
+            <div className="flex items-center gap-2 border-b border-white/10 bg-white/5 px-5 py-4">
+              <span className="h-3 w-3 rounded-full bg-red-400" />
+              <span className="h-3 w-3 rounded-full bg-yellow-300" />
+              <span className="h-3 w-3 rounded-full bg-green-400" />
+              <span className="ml-3 text-sm text-gray-400">Website demo walkthrough</span>
+            </div>
+            <div className="flex aspect-video flex-col items-center justify-center p-8 text-center">
+              <div className="mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-r from-primary-emerald to-primary-blue text-3xl text-white shadow-lg shadow-primary-emerald/30">
+                ▶
+              </div>
+              <h3 className="text-2xl font-bold text-white">Watch how your website could start working for you</h3>
+              <p className="mt-3 max-w-xl text-gray-400">
+                In a short walkthrough, we map how a local business website can capture leads, guide bookings, and support follow-up before customers go cold.
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+          >
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary-lime">Quick walkthrough</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">A website should do more than look good.</h2>
+            <p className="text-xl text-gray-400 leading-relaxed">
+              We map the system in plain English: visitor lands, questions get answered, the next step is clear, and the business owner gets a better lead to follow up with.
+            </p>
+            <Link
+              href="/contact"
+              className="mt-8 inline-flex items-center justify-center rounded-full border border-primary-emerald/40 bg-gradient-to-r from-primary-emerald to-primary-blue px-6 py-3 text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary-emerald/30"
+            >
+              Get a Free Demo of Your Future Website
+            </Link>
+          </motion.div>
         </div>
       </Section>
 
@@ -457,7 +635,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-4xl md:text-5xl font-bold text-white mb-6"
           >
-            Choose Your Perfect Plan
+            Choose the system your business needs next
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -465,7 +643,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl text-gray-400 max-w-3xl mx-auto"
           >
-            From simple websites to secure VPS AI agent builds, we have a solution that fits your needs and budget.
+            Start with a professional site, add booking and lead capture, or build toward a full customer-generation system with AI-assisted support.
           </motion.p>
         </div>
 
@@ -531,10 +709,10 @@ export default function Home() {
           
           <div className="relative z-10">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Ready to build something amazing?
+              Ready to see what this could look like for your business?
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Let&apos;s create a website that not only looks incredible but actually works for your business.
+              Get a practical demo direction for a website built to capture leads, guide bookings, and support faster follow-up.
             </p>
             <Link
               href="/contact"
@@ -542,7 +720,7 @@ export default function Home() {
             >
               <span className="absolute inset-0 bg-gradient-to-r from-primary-emerald/10 to-primary-blue/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               <span className="relative z-10 flex items-center gap-2">
-                Start Your Project Today
+                See How This Would Work For Your Business
                 <motion.div
                   animate={{ x: [0, 4, 0] }}
                   transition={{ repeat: Infinity, duration: 1.5 }}
