@@ -1,12 +1,12 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { 
-  Monitor, 
-  Calendar, 
-  MessageSquare, 
-  Zap, 
-  Brain, 
+import {
+  Monitor,
+  Calendar,
+  MessageSquare,
+  Zap,
+  Brain,
   CreditCard,
   Rocket,
   Gauge,
@@ -37,7 +37,7 @@ export default function Home() {
     },
     {
       icon: Calendar,
-      title: "Booking Paths That Remove Friction", 
+      title: "Booking Paths That Remove Friction",
       description: "Gives visitors a clear next step so they can request a quote, book a call, or schedule service without waiting."
     },
     {
@@ -136,56 +136,56 @@ export default function Home() {
 
   const packages = [
     {
-      name: "Starter Website",
+      name: "Starter Web Bundle",
       price: "$97",
       features: [
-        "For businesses getting online professionally",
-        "3-page professional website",
-        "Contact form integration", 
-        "Mobile responsive design",
-        "Basic SEO optimization",
-        "1 month free support"
+        "Clean 3-page site for getting found and trusted",
+        "Home, services, and contact pages",
+        "Quote/contact form with clear next step",
+        "Mobile-first layout and fast loading",
+        "Local SEO basics and launch checklist",
+        "1 month support after launch"
       ],
       href: "/packages/starter",
       popular: false
     },
     {
-      name: "Booking Growth Site", 
+      name: "Booking Growth Web Bundle",
       price: "$197",
       features: [
-        "For businesses ready to scale calls and bookings",
-        "5-page professional website",
-        "Calendar & appointment booking",
-        "Contact forms & lead capture",
-        "Advanced SEO optimization",
-        "3 months free support"
+        "Website plus booking path for appointment-ready leads",
+        "5-page service business website",
+        "Booking or quote-request flow",
+        "Lead capture routed to the owner",
+        "Stronger local SEO page structure",
+        "3 months support after launch"
       ],
       href: "/packages/standard",
       popular: true
     },
     {
-      name: "Customer System Site",
-      price: "$297", 
+      name: "Customer System Web Bundle",
+      price: "$297",
       features: [
-        "For businesses that want website plus follow-up support",
-        "5-page professional website",
-        "Calendar & booking system",
-        "AI assistant integration",
-        "Starter agent workflow setup", 
-        "6 months free support"
+        "Website, AI intake, and follow-up handoff support",
+        "5-page service business website",
+        "Booking flow plus lead tracking",
+        "AI-assisted FAQ/intake experience",
+        "Owner-ready lead summary workflow",
+        "6 months support after launch"
       ],
       href: "/packages/professional",
       popular: false
     },
     {
-      name: "Custom Growth System",
+      name: "Custom Growth Web Bundle",
       price: "Contact for price",
       features: [
-        "For full website, agent, and operations support",
-        "Fully custom website design",
-        "VPS AI agent integration",
-        "Custom agent skills and workflows",
-        "Unlimited pages & features",
+        "Custom website, assistant, and operations buildout",
+        "Custom site structure and page design",
+        "Secure VPS AI assistant connection",
+        "Custom skills, handoffs, and workflows",
+        "Scoped pages, features, and integrations",
         "12 months premium support"
       ],
       href: "/packages/custom",
@@ -252,7 +252,7 @@ export default function Home() {
   return (
     <main className="relative min-h-screen bg-black">
       <NavIsland />
-      
+
       {/* Background Elements */}
       <Glow color="emerald" size="xl" className="top-20 left-10" />
       <Glow color="blue" size="lg" className="top-96 right-20" />
@@ -265,6 +265,20 @@ export default function Home() {
         ctaText="See What Your Website Could Look Like"
         ctaAction={scrollToWebsiteDemo}
       />
+
+      {/* Powered-by Ribbon */}
+      <section className="relative z-10 bg-black px-6 py-5">
+        <div className="powered-lazy-susan" aria-label="Powered by Helping Hands Systems">
+              <div className="powered-lazy-susan-track">
+                {Array.from({ length: 8 }).map((_, index) => (
+                  <span className="powered-lazy-susan-item" key={`powered-${index}`}>
+                    <span className="powered-lazy-susan-mark">✦</span>
+                    Powered by Helping Hands Systems
+                  </span>
+                ))}
+              </div>
+            </div>
+      </section>
 
       {/* Problem / Solution Section */}
       <Section className="bg-gradient-to-b from-black via-gray-950 to-gray-900">
@@ -452,7 +466,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl md:text-5xl font-bold text-white mb-6"
           >
-            VPS AI Assistant Setup Packages
+            VPS AI Assistant Setup Bundles
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -635,7 +649,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-4xl md:text-5xl font-bold text-white mb-6"
           >
-            Choose the system your business needs next
+            Choose your Web Bundle
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -643,7 +657,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl text-gray-400 max-w-3xl mx-auto"
           >
-            Start with a professional site, add booking and lead capture, or build toward a full customer-generation system with AI-assisted support.
+            Start with a clean website, add booking and lead capture, or build toward a full customer system with AI-assisted follow-up.
           </motion.p>
         </div>
 
@@ -706,7 +720,7 @@ export default function Home() {
         >
           <Glow color="emerald" size="lg" className="top-0 left-0" />
           <Glow color="blue" size="md" className="bottom-0 right-0" />
-          
+
           <div className="relative z-10">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Ready to see what this could look like for your business?
@@ -743,21 +757,21 @@ export default function Home() {
                 Modern web development with secure VPS AI agents and skills.
               </p>
               <div className="space-y-2 text-gray-400">
-                <p>📞 6066606147</p>
+                <p>📞 (606) 660-6147</p>
                 <p>✉️ helpinghandsystems1@gmail.com</p>
               </div>
             </div>
-            
+
             <div>
-              <h4 className="font-semibold text-white mb-4">Packages</h4>
+              <h4 className="font-semibold text-white mb-4">Web Bundles</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><Link href="/packages/starter" className="hover:text-white transition-colors">Starter</Link></li>
-                <li><Link href="/packages/standard" className="hover:text-white transition-colors">Standard</Link></li>
-                <li><Link href="/packages/professional" className="hover:text-white transition-colors">Professional</Link></li>
-                <li><Link href="/packages/custom" className="hover:text-white transition-colors">Custom</Link></li>
+                <li><Link href="/packages/starter" className="hover:text-white transition-colors">Starter Bundle</Link></li>
+                <li><Link href="/packages/standard" className="hover:text-white transition-colors">Booking Growth</Link></li>
+                <li><Link href="/packages/professional" className="hover:text-white transition-colors">Customer System</Link></li>
+                <li><Link href="/packages/custom" className="hover:text-white transition-colors">Custom Growth</Link></li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="font-semibold text-white mb-4">Company</h4>
               <ul className="space-y-2 text-gray-400">
@@ -769,19 +783,9 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          
-          <div className="border-t border-gray-800 pt-8 text-center text-gray-400 space-y-5">
-            <div className="powered-lazy-susan" aria-label="Powered by Helping Hands Systems">
-              <div className="powered-lazy-susan-track">
-                {Array.from({ length: 8 }).map((_, index) => (
-                  <span className="powered-lazy-susan-item" key={`powered-${index}`}>
-                    <span className="powered-lazy-susan-mark">✦</span>
-                    Powered by Helping Hands Systems
-                  </span>
-                ))}
-              </div>
-            </div>
-            <p>&copy; 2025 Helping Hands Systems. All rights reserved.</p>
+
+          <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
+            <p>&copy; 2026 Helping Hands Systems. All rights reserved.</p>
           </div>
         </div>
       </footer>

@@ -13,7 +13,7 @@ export default function NavIsland() {
     { href: '/#services', label: 'Services' },
     { href: '/assistants', label: 'AI Assistants' },
     { href: '/skills', label: 'Skills' },
-    { href: '/#packages', label: 'Packages' },
+    { href: '/#packages', label: 'Web Bundles' },
     { href: '/contact', label: 'Contact' },
   ];
 

@@ -29,7 +29,15 @@ interface PackageData {
 
 export default function PackageClient({ packageData }: { packageData: PackageData }) {
   const { name, price, description, features, videoId, popular, buttonText, faqs } = packageData;
-  const packageSlug = name.toLowerCase().split(' ')[0];
+  const packageSlug = name.startsWith('Starter')
+    ? 'starter'
+    : name.startsWith('Booking')
+      ? 'standard'
+      : name.startsWith('Customer')
+        ? 'professional'
+        : 'custom';
+  const isWebBundle = ['starter', 'standard', 'professional', 'custom'].includes(packageSlug);
+  const bundleLabel = name.replace(' Web Bundle', '');
 
   return (
     <main className="relative min-h-screen bg-black">
@@ -39,7 +47,7 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
       <Glow color="emerald" size="xl" className="top-20 right-10" />
       <Glow color="blue" size="lg" className="bottom-20 left-10" />
 
-      {/* Return to Packages Button */}
+      {/* Return to Web Bundles Button */}
       <div className="fixed top-28 left-6 z-40">
         <button
           type="button"
@@ -47,7 +55,7 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
           className="flex items-center space-x-2 rounded-full border border-primary-emerald/30 bg-black/60 px-4 py-2 text-gray-300 shadow-lg shadow-black/20 backdrop-blur-md transition-all duration-300 hover:border-primary-emerald/60 hover:bg-primary-emerald/10 hover:text-white"
         >
           <ArrowLeft size={20} />
-          <span>Return to Packages</span>
+          <span>Return to Web Bundles</span>
         </button>
       </div>
 
@@ -125,8 +133,8 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
         </div>
       </Section>
 
-  {/* Starter, Standard, Professional & Custom Plan CTA (before FAQ) */}
-  {(name.startsWith('Starter') || name.startsWith('Standard') || name.startsWith('Professional') || name.startsWith('Custom')) && (
+  {/* Web Bundle CTA (before FAQ) */}
+  {isWebBundle && (
         <Section className="bg-gradient-to-b from-black to-gray-900">
           <div className="relative max-w-3xl mx-auto text-center">
             <motion.h2
@@ -147,7 +155,7 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
             >
               {name.startsWith('Custom')
                 ? 'Book your free discovery call and we’ll map out your custom build.'
-                : 'Subscribe now and we’ll reach out to help you launch your ' + (name.startsWith('Starter') ? 'Starter' : name.startsWith('Standard') ? 'Standard' : name.startsWith('Professional') ? 'Professional' : 'Custom') + ' plan.'}
+                : `Subscribe now and we’ll reach out to help you launch your ${bundleLabel} bundle.`}
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -156,7 +164,7 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <a
-                href={`/contact?package=${packageSlug}`}
+                href={`/contact?bundle=${packageSlug}`}
                 className="group inline-flex items-center justify-center px-10 py-4 text-lg font-semibold text-white bg-gradient-to-r from-primary-emerald via-primary-emerald to-primary-blue rounded-full hover:shadow-2xl hover:shadow-primary-emerald/30 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 relative overflow-hidden border border-primary-emerald/30 hover:border-primary-emerald/60"
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-primary-emerald/10 to-primary-blue/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -181,7 +189,7 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
       </Section>
 
   {/* CTA Form Section for other plans (none currently) */}
-  {!(name.startsWith('Starter') || name.startsWith('Standard') || name.startsWith('Professional') || name.startsWith('Custom')) && (
+  {!isWebBundle && (
         <Section className="bg-gradient-to-b from-black to-gray-900">
           <FormPlaceholder
             title={`Get Started with ${name}`}
@@ -209,18 +217,18 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
                 Modern web development with secure VPS AI agents and skills.
               </p>
               <div className="space-y-2 text-gray-400">
-                <p>📞 6066606147</p>
+                <p>📞 (606) 660-6147</p>
                 <p>✉️ helpinghandsystems1@gmail.com</p>
               </div>
             </div>
             
             <div>
-              <h4 className="font-semibold text-white mb-4">Packages</h4>
+              <h4 className="font-semibold text-white mb-4">Web Bundles</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><Link href="/packages/starter" className="hover:text-white transition-colors">Starter</Link></li>
-                <li><Link href="/packages/standard" className="hover:text-white transition-colors">Standard</Link></li>
-                <li><Link href="/packages/professional" className="hover:text-white transition-colors">Professional</Link></li>
-                <li><Link href="/packages/custom" className="hover:text-white transition-colors">Custom</Link></li>
+                <li><Link href="/packages/starter" className="hover:text-white transition-colors">Starter Bundle</Link></li>
+                <li><Link href="/packages/standard" className="hover:text-white transition-colors">Booking Growth</Link></li>
+                <li><Link href="/packages/professional" className="hover:text-white transition-colors">Customer System</Link></li>
+                <li><Link href="/packages/custom" className="hover:text-white transition-colors">Custom Growth</Link></li>
               </ul>
             </div>
             
@@ -235,7 +243,7 @@ export default function PackageClient({ packageData }: { packageData: PackageDat
           </div>
           
           <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 Helping Hands Systems. All rights reserved.</p>
+            <p>&copy; 2026 Helping Hands Systems. All rights reserved.</p>
           </div>
         </div>
       </footer>

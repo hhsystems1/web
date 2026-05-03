@@ -23,7 +23,7 @@ export default function PrivacyPage() {
             <h1 className="text-5xl font-bold text-white mb-8">Helping Hands Systems — Web Development Privacy Policy</h1>
             
             <div className="text-gray-400 mb-12 space-y-2">
-              <p className="text-lg"><strong>Effective date:</strong> September 9, 2025</p>
+              <p className="text-lg"><strong>Effective date:</strong> May 3, 2026</p>
               <p className="text-lg"><strong>Applies to:</strong> https://web.helpinghandssystems.com and related intake forms, landing pages, and communications (the "Site").</p>
               <p className="text-lg"><strong>Who we are:</strong> Helping Hands Systems LLC ("Helping Hands Systems", "HHS", "we", "our", "us"), a Wyoming company.</p>
             </div>
@@ -170,18 +170,18 @@ export default function PrivacyPage() {
                 Modern web development with secure VPS AI agents and skills.
               </p>
               <div className="space-y-2 text-gray-400">
-                <p>📞 6066606147</p>
+                <p>📞 (606) 660-6147</p>
                 <p>✉️ helpinghandsystems1@gmail.com</p>
               </div>
             </div>
             
             <div>
-              <h4 className="font-semibold text-white mb-4">Packages</h4>
+              <h4 className="font-semibold text-white mb-4">Web Bundles</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><Link href="/packages/starter" className="hover:text-white transition-colors">Starter</Link></li>
-                <li><Link href="/packages/standard" className="hover:text-white transition-colors">Standard</Link></li>
-                <li><Link href="/packages/professional" className="hover:text-white transition-colors">Professional</Link></li>
-                <li><Link href="/packages/custom" className="hover:text-white transition-colors">Custom</Link></li>
+                <li><Link href="/packages/starter" className="hover:text-white transition-colors">Starter Bundle</Link></li>
+                <li><Link href="/packages/standard" className="hover:text-white transition-colors">Booking Growth</Link></li>
+                <li><Link href="/packages/professional" className="hover:text-white transition-colors">Customer System</Link></li>
+                <li><Link href="/packages/custom" className="hover:text-white transition-colors">Custom Growth</Link></li>
               </ul>
             </div>
             
@@ -196,7 +196,7 @@ export default function PrivacyPage() {
           </div>
           
           <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 Helping Hands Systems. All rights reserved.</p>
+            <p>&copy; 2026 Helping Hands Systems. All rights reserved.</p>
           </div>
         </div>
       </footer>

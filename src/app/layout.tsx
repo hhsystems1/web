@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import FloatingParticles from "@/components/FloatingParticles";
 import InteractiveBackground from "@/components/InteractiveBackground";
+import TurtleChatWidget from "@/components/TurtleChatWidget";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -30,6 +31,7 @@ export default function RootLayout({
         <InteractiveBackground />
         <FloatingParticles />
         {children}
+        <TurtleChatWidget />
       </body>
     </html>
   );
