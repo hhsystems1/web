@@ -17,15 +17,15 @@ interface PackageData {
 
 const packages: Record<string, PackageData> = {
   starter: {
-    name: "Starter Package",
+    name: "Starter Web Bundle",
     price: "$97/mo + one-time setup fee",
-    description: "Perfect for small businesses and entrepreneurs who need a professional online presence with essential functionality.",
+    description: "A focused web bundle for local businesses that need a clean, trustworthy site with a clear contact path.",
     features: [
-      "3-page professional website",
-      "Contact form integration",
-      "Mobile responsive design", 
-      "Basic SEO optimization",
-      "1 month free support",
+      "Home, services, and contact pages",
+      "Quote/contact form with clear next step",
+      "Mobile-first responsive design",
+      "Local SEO basics and launch checklist",
+      "1 month support after launch",
       "SSL certificate included",
       "Basic analytics setup"
     ],
@@ -51,17 +51,17 @@ const packages: Record<string, PackageData> = {
     ]
   },
   standard: {
-    name: "Standard Package", 
+    name: "Booking Growth Web Bundle",
     price: "$197/mo",
-    description: "Ideal for service-based businesses that need appointment booking and lead management capabilities.",
+    description: "A stronger web bundle for service businesses that want booking, quote requests, and better lead capture built into the site.",
     features: [
-      "5-page professional website",
-      "Calendar & appointment booking system",
-      "Contact forms & lead capture",
-      "Advanced SEO optimization",
-      "3 months free support",
-      "Payment integration",
-      "Email follow-up setup",
+      "5-page service business website",
+      "Booking or quote-request flow",
+      "Lead capture routed to the owner",
+      "Stronger local SEO page structure",
+      "3 months support after launch",
+      "Simple online payment path",
+      "Follow-up message structure",
       "Analytics & reporting"
     ],
     videoId: "WFvbbVMc_DA",
@@ -87,16 +87,16 @@ const packages: Record<string, PackageData> = {
     ]
   },
   professional: {
-    name: "Professional Package",
-    price: "$297/mo", 
-    description: "Perfect for growing businesses that want an AI assistant and agent-ready follow-up support on the site.",
+    name: "Customer System Web Bundle",
+    price: "$297/mo",
+    description: "A customer-system bundle for businesses that want the website, AI-assisted intake, and owner-ready follow-up handoffs working together.",
     features: [
-      "5-page professional website",
-      "Advanced calendar & booking system",
-      "AI chatbot integration",
-      "Starter agent workflow setup",
-      "6 months free support",
-      "Lead tracking handoff setup",
+      "5-page service business website",
+      "Booking flow plus lead tracking",
+      "AI-assisted FAQ/intake experience",
+      "Owner-ready lead summary workflow",
+      "6 months support after launch",
+      "Lead tracking and handoff setup",
       "Follow-up message templates",
       "Lead scoring & qualification",
       "Custom integrations"
@@ -123,25 +123,25 @@ const packages: Record<string, PackageData> = {
     ]
   },
   custom: {
-    name: "Custom Package",
+    name: "Custom Growth Web Bundle",
     price: "Contact for pricing",
-    description: "Fully tailored solution for businesses with complex requirements, VPS AI agent deployments, and custom skill packs.",
+    description: "A custom growth bundle for businesses that need a tailored website, secure VPS AI assistant support, and custom operational workflows.",
     features: [
-      "Unlimited pages & custom design",
-      "VPS AI agent deployments",
-      "Custom agent skills and workflows",
-      "Multi-platform integrations",
+      "Custom site structure and page design",
+      "Secure VPS AI assistant deployment",
+      "Custom skills, handoffs, and workflows",
+      "Scoped integrations with existing tools",
       "12 months premium support",
       "Dedicated project manager",
       "Custom API development",
       "Advanced analytics & reporting",
       "Priority support & maintenance"
     ],
-    videoId: "82vbwyqwOgE", 
+    videoId: "82vbwyqwOgE",
     buttonText: "Request Custom Build",
     faqs: [
       {
-        question: "What makes this different from other packages?",
+        question: "What makes this different from other bundles?",
         answer: "Complete customization, advanced AI agent features, scoped integrations, and dedicated support for complex business requirements."
       },
       {
@@ -169,7 +169,7 @@ export function generateStaticParams() {
 export default async function PackagePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const packageData = packages[slug];
-  
+
   if (!packageData) {
     notFound();
   }
