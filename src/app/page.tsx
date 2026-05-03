@@ -770,7 +770,17 @@ export default function Home() {
             </div>
           </div>
           
-          <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
+          <div className="border-t border-gray-800 pt-8 text-center text-gray-400 space-y-5">
+            <div className="powered-lazy-susan" aria-label="Powered by Helping Hands Systems">
+              <div className="powered-lazy-susan-track">
+                {Array.from({ length: 8 }).map((_, index) => (
+                  <span className="powered-lazy-susan-item" key={`powered-${index}`}>
+                    <span className="powered-lazy-susan-mark">✦</span>
+                    Powered by Helping Hands Systems
+                  </span>
+                ))}
+              </div>
+            </div>
             <p>&copy; 2025 Helping Hands Systems. All rights reserved.</p>
           </div>
         </div>
