@@ -54,7 +54,7 @@ export default function PackageCard({ name, price, features, href, popular = fal
           href={href}
           className="btn btn-primary w-full justify-center"
         >
-          View Package
+          View Bundle
         </Link>
       </div>
     </motion.div>

@@ -16,7 +16,7 @@ export default function ContactPage() {
     {
       icon: Phone,
       title: "Phone",
-      value: "6066606147",
+      value: "(606) 660-6147",
       description: "Call us during business hours"
     },
     {
@@ -134,7 +134,7 @@ export default function ContactPage() {
               Want to see what&apos;s possible?
             </h2>
             <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              Check out our Standard package - it&apos;s perfect for most businesses and includes everything you need to get started.
+              Check out our Standard bundle - it&apos;s perfect for most businesses and includes everything you need to get started.
             </p>
             <Link
               href="/packages/standard"
@@ -142,7 +142,7 @@ export default function ContactPage() {
             >
               <span className="absolute inset-0 bg-gradient-to-r from-primary-emerald/10 to-primary-blue/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               <span className="relative z-10 flex items-center gap-2">
-                View Standard Package
+                View Standard Bundle
                 <motion.div
                   animate={{ x: [0, 4, 0] }}
                   transition={{ repeat: Infinity, duration: 1.5 }}
@@ -173,18 +173,18 @@ export default function ContactPage() {
                 Modern web development with secure VPS AI agents and skills.
               </p>
               <div className="space-y-2 text-gray-400">
-                <p>📞 6066606147</p>
+                <p>📞 (606) 660-6147</p>
                 <p>✉️ helpinghandsystems1@gmail.com</p>
               </div>
             </div>
             
             <div>
-              <h4 className="font-semibold text-white mb-4">Packages</h4>
+              <h4 className="font-semibold text-white mb-4">Web Bundles</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><Link href="/packages/starter" className="hover:text-white transition-colors">Starter</Link></li>
-                <li><Link href="/packages/standard" className="hover:text-white transition-colors">Standard</Link></li>
-                <li><Link href="/packages/professional" className="hover:text-white transition-colors">Professional</Link></li>
-                <li><Link href="/packages/custom" className="hover:text-white transition-colors">Custom</Link></li>
+                <li><Link href="/packages/starter" className="hover:text-white transition-colors">Starter Bundle</Link></li>
+                <li><Link href="/packages/standard" className="hover:text-white transition-colors">Booking Growth</Link></li>
+                <li><Link href="/packages/professional" className="hover:text-white transition-colors">Customer System</Link></li>
+                <li><Link href="/packages/custom" className="hover:text-white transition-colors">Custom Growth</Link></li>
               </ul>
             </div>
             
@@ -199,7 +199,7 @@ export default function ContactPage() {
           </div>
           
           <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 Helping Hands Systems. All rights reserved.</p>
+            <p>&copy; 2026 Helping Hands Systems. All rights reserved.</p>
           </div>
         </div>
       </footer>

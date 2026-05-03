@@ -23,7 +23,7 @@ export default function TermsPage() {
             <h1 className="text-5xl font-bold text-white mb-8">Helping Hands Systems — Web Development Terms of Service</h1>
 
             <div className="text-gray-400 mb-12 space-y-2">
-              <p className="text-lg"><strong>Effective date:</strong> September 9, 2025</p>
+              <p className="text-lg"><strong>Effective date:</strong> May 3, 2026</p>
               <p className="text-lg"><strong>Applies to:</strong> https://web.helpinghandssystems.com and related proposals, order forms, and Statements of Work (each, an “Order” or SOW).</p>
               <p className="text-lg">By using the Site or purchasing Services, you agree to these Terms of Service (“Terms”). If you are entering into these Terms for an organization, you represent you have authority to bind it.</p>
             </div>
@@ -38,7 +38,7 @@ export default function TermsPage() {
 
               <section>
                 <h2 className="text-3xl font-semibold text-white mb-4">2) Plans and pricing (overview)</h2>
-                <p>We offer subscription packages that may include setup fees:</p>
+                <p>We offer subscription bundles that may include setup fees:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>Starter</strong> – monthly fee (currently advertised at $97), up to 3 pages, contact form</li>
                   <li><strong>Standard</strong> – monthly fee (currently $197), up to 5 pages, calendar/appointment booking</li>
@@ -176,18 +176,18 @@ export default function TermsPage() {
                 Modern web development with secure VPS AI agents and skills.
               </p>
               <div className="space-y-2 text-gray-400">
-                <p>📞 6066606147</p>
+                <p>📞 (606) 660-6147</p>
                 <p>✉️ helpinghandsystems1@gmail.com</p>
               </div>
             </div>
             
             <div>
-              <h4 className="font-semibold text-white mb-4">Packages</h4>
+              <h4 className="font-semibold text-white mb-4">Web Bundles</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><Link href="/packages/starter" className="hover:text-white transition-colors">Starter</Link></li>
-                <li><Link href="/packages/standard" className="hover:text-white transition-colors">Standard</Link></li>
-                <li><Link href="/packages/professional" className="hover:text-white transition-colors">Professional</Link></li>
-                <li><Link href="/packages/custom" className="hover:text-white transition-colors">Custom</Link></li>
+                <li><Link href="/packages/starter" className="hover:text-white transition-colors">Starter Bundle</Link></li>
+                <li><Link href="/packages/standard" className="hover:text-white transition-colors">Booking Growth</Link></li>
+                <li><Link href="/packages/professional" className="hover:text-white transition-colors">Customer System</Link></li>
+                <li><Link href="/packages/custom" className="hover:text-white transition-colors">Custom Growth</Link></li>
               </ul>
             </div>
             
@@ -202,7 +202,7 @@ export default function TermsPage() {
           </div>
           
           <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 Helping Hands Systems. All rights reserved.</p>
+            <p>&copy; 2026 Helping Hands Systems. All rights reserved.</p>
           </div>
         </div>
       </footer>

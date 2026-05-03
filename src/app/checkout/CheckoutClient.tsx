@@ -45,7 +45,7 @@ export default function CheckoutClient() {
               <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary-lime">Secure skill checkout</p>
               <h1 className="text-4xl md:text-6xl font-bold text-white">Buy the skill your assistant needs next</h1>
               <p className="mt-6 max-w-3xl text-lg leading-relaxed text-gray-300">
-                Pick a package, confirm the fit, then continue to Stripe. HHS uses the checkout step for the setup payment while the follow-up call confirms runtime access, business context, and install timing.
+                Pick a bundle, confirm the fit, then continue to Stripe. HHS uses the checkout step for the setup payment while the follow-up call confirms runtime access, business context, and install timing.
               </p>
 
               <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
