@@ -272,6 +272,97 @@ a.btn.btn-primary {
   z-index: 1;
 }
 
+/* Powered-by lazy Susan footer ribbon */
+.powered-lazy-susan {
+  position: relative;
+  width: min(100%, 920px);
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 9999px;
+  border: 1px solid rgba(52, 211, 153, 0.22);
+  background: radial-gradient(circle at 50% 0%, rgba(52, 211, 153, 0.14), transparent 55%), rgba(255, 255, 255, 0.04);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 34px rgba(52, 211, 153, 0.1);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+.powered-lazy-susan::before,
+.powered-lazy-susan::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 18%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.powered-lazy-susan::before {
+  left: 0;
+  background: linear-gradient(90deg, #000, transparent);
+}
+
+.powered-lazy-susan::after {
+  right: 0;
+  background: linear-gradient(270deg, #000, transparent);
+}
+
+.powered-lazy-susan-track {
+  display: flex;
+  width: max-content;
+  gap: 1.25rem;
+  padding: 0.8rem 1.25rem;
+  animation: lazy-susan-scroll 22s linear infinite;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.powered-lazy-susan-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  white-space: nowrap;
+  border-radius: 9999px;
+  border: 1px solid rgba(52, 211, 153, 0.28);
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.16), rgba(59, 130, 246, 0.12));
+  color: rgba(209, 250, 229, 0.94);
+  padding: 0.48rem 1rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-shadow: 0 0 18px rgba(52, 211, 153, 0.28);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+  animation: lazy-susan-tilt 4.5s ease-in-out infinite;
+}
+
+.powered-lazy-susan-item:nth-child(even) {
+  animation-delay: -2.25s;
+}
+
+.powered-lazy-susan-mark {
+  color: #34d399;
+  filter: drop-shadow(0 0 8px rgba(52, 211, 153, 0.6));
+}
+
+@keyframes lazy-susan-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes lazy-susan-tilt {
+  0%, 100% { transform: perspective(420px) rotateY(-18deg) scale(0.94); opacity: 0.78; }
+  50% { transform: perspective(420px) rotateY(18deg) scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .powered-lazy-susan-track,
+  .powered-lazy-susan-item {
+    animation: none;
+  }
+}
+
 /* Background grid pattern */
 .bg-grid {
   background-image: 
