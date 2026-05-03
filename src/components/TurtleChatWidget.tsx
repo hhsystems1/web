@@ -1,5 +1,6 @@
 "use client";
 
+import Image from 'next/image';
 import { useMemo, useState } from 'react';
 import { MessageCircle, Send, X } from 'lucide-react';
 
@@ -47,22 +48,19 @@ function getAnswer(input: string) {
 }
 
 function TurtleCharacter({ compact = false }: { compact?: boolean }) {
+  const size = compact ? 48 : 64;
+
   return (
     <div className={`relative ${compact ? 'h-12 w-12' : 'h-16 w-16'}`} aria-hidden="true">
       <div className="absolute inset-0 rounded-full bg-primary-emerald/25 blur-xl" />
-      <svg viewBox="0 0 120 120" className="relative h-full w-full drop-shadow-[0_0_18px_rgba(52,211,153,0.42)]">
-        <circle cx="60" cy="64" r="36" fill="#134e4a" stroke="#34d399" strokeWidth="5" />
-        <path d="M36 58c10-18 38-23 58-3-8 19-41 28-58 3Z" fill="#10b981" opacity="0.85" />
-        <circle cx="60" cy="64" r="18" fill="#0f766e" stroke="#a7f3d0" strokeWidth="3" opacity="0.85" />
-        <circle cx="60" cy="24" r="18" fill="#34d399" stroke="#bbf7d0" strokeWidth="4" />
-        <circle cx="53" cy="21" r="3" fill="#052e2b" />
-        <circle cx="67" cy="21" r="3" fill="#052e2b" />
-        <path d="M53 31c5 5 10 5 15 0" stroke="#052e2b" strokeWidth="3" strokeLinecap="round" fill="none" />
-        <circle cx="24" cy="62" r="10" fill="#34d399" stroke="#bbf7d0" strokeWidth="3" />
-        <circle cx="96" cy="62" r="10" fill="#34d399" stroke="#bbf7d0" strokeWidth="3" />
-        <circle cx="38" cy="100" r="10" fill="#34d399" stroke="#bbf7d0" strokeWidth="3" />
-        <circle cx="82" cy="100" r="10" fill="#34d399" stroke="#bbf7d0" strokeWidth="3" />
-      </svg>
+      <Image
+        src="/hhs-turtle-chat.jpg"
+        alt=""
+        width={size}
+        height={size}
+        className="relative h-full w-full rounded-full border-2 border-primary-emerald/60 object-cover object-center drop-shadow-[0_0_18px_rgba(52,211,153,0.42)]"
+        priority={false}
+      />
     </div>
   );
 }
