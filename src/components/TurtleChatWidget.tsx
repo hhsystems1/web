@@ -53,14 +53,16 @@ function TurtleCharacter({ compact = false }: { compact?: boolean }) {
   return (
     <div className={`relative ${compact ? 'h-12 w-12' : 'h-16 w-16'}`} aria-hidden="true">
       <div className="absolute inset-0 rounded-full bg-primary-emerald/25 blur-xl" />
-      <Image
-        src="/hhs-turtle-chat.jpg"
-        alt=""
-        width={size}
-        height={size}
-        className="relative h-full w-full rounded-full border-2 border-primary-emerald/60 object-cover object-center drop-shadow-[0_0_18px_rgba(52,211,153,0.42)]"
-        priority={false}
-      />
+      <div className="relative h-full w-full overflow-hidden rounded-full border-2 border-primary-emerald/60 bg-black/80 drop-shadow-[0_0_18px_rgba(52,211,153,0.42)]">
+        <Image
+          src="/hhs-turtle-chat.jpg"
+          alt=""
+          width={size}
+          height={size}
+          className="h-full w-full scale-[1.45] object-cover object-[50%_38%]"
+          priority={false}
+        />
+      </div>
     </div>
   );
 }
