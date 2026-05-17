@@ -11,12 +11,16 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://web.helpinghandssystems.com"),
   title: "Helping Hands Systems - Web Development",
   description: "Modern websites with built-in bookings, secure VPS AI agents, and installable skills. Professional web development services that make your site actually work for you.",
   keywords: "web development, website design, booking systems, VPS AI agents, AI skills, secure agent deployment",
   icons: {
-    icon: '/hhs-logo-new.jpg',
-    apple: '/hhs-logo-new.jpg',
+    icon: '/hhs-logo-new-transparent.png',
+    apple: '/apple-touch-icon.png',
+  },
+  openGraph: {
+    images: ['/hhs-logo-new-transparent.png'],
   },
 };
 
