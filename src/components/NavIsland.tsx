@@ -42,7 +42,7 @@ export default function NavIsland() {
                 alt="HHS Logo"
                 width={1000}
                 height={1000}
-                className="h-16 w-16 rounded-lg object-contain sm:h-20 sm:w-20 group-hover:brightness-110 transition-all duration-300"
+                className="h-12 w-12 sm:h-14 sm:w-14 rounded-lg object-contain"
                 priority
               />
             </Link>
