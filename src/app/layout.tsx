@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   description: "Modern websites with built-in bookings, secure VPS AI agents, and installable skills. Professional web development services that make your site actually work for you.",
   keywords: "web development, website design, booking systems, VPS AI agents, AI skills, secure agent deployment",
   icons: {
-    icon: '/mettalic letters logo.png',
-    apple: '/mettalic letters logo.png',
+    icon: '/hhs-logo-new.jpg',
+    apple: '/hhs-logo-new.jpg',
   },
 };
 

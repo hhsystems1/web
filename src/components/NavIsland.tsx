@@ -38,7 +38,7 @@ export default function NavIsland() {
             {/* Logo */}
             <Link href="/" className="flex items-center hover:opacity-80 hover:scale-105 transition-all duration-300 flex-shrink-0 group" aria-label="Helping Hands Systems home">
               <Image
-                src="/hhs-globe-logo.png"
+                src="/hhs-logo-new.jpg"
                 alt="HHS Logo"
                 width={1000}
                 height={1000}
