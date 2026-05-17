@@ -14,8 +14,8 @@ export const metadata: Metadata = {
   description: "Modern websites with built-in bookings, chatbots, and automations. Professional web development services that make your site actually work for you.",
   keywords: "web development, website design, booking systems, chatbots, automation, AI integration",
   icons: {
-    icon: '/mettalic letters logo.png',
-    apple: '/mettalic letters logo.png',
+    icon: '/hhs-logo-new.jpg',
+    apple: '/hhs-logo-new.jpg',
   },
 };
 
