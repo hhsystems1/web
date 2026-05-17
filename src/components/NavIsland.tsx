@@ -37,14 +37,16 @@ export default function NavIsland() {
           <div className="flex items-center justify-between w-full">
             {/* Logo */}
             <Link href="/" className="flex items-center hover:opacity-80 hover:scale-105 transition-all duration-300 flex-shrink-0 group" aria-label="Helping Hands Systems home">
-              <Image
-                src="/hhs-logo-new.jpg"
-                alt="HHS Logo"
-                width={1000}
-                height={1000}
-                className="h-12 w-12 sm:h-14 sm:w-14 rounded-lg object-contain"
-                priority
-              />
+              <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/95 p-1.5 shadow-lg shadow-black/20 sm:h-14 sm:w-14">
+                <Image
+                  src="/hhs-logo-new-transparent.png"
+                  alt="Helping Hands Systems logo"
+                  width={921}
+                  height={989}
+                  className="h-full w-full object-contain"
+                  priority
+                />
+              </span>
             </Link>
 
             {/* Desktop Navigation */}
