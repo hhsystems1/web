@@ -3,9 +3,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-// Netlify Forms enabled contact form.
-// Submissions will appear in Netlify dashboard under the form name "contact".
-// Ensure email notifications are enabled for this form in Netlify UI (Settings > Forms > Notifications).
 export default function ContactForm() {
   const [success, setSuccess] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -25,7 +22,7 @@ export default function ContactForm() {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="rounded-xl border border-green-500/30 bg-gradient-to-r from-green-600/20 to-emerald-600/10 p-4 text-green-300 text-sm"
+            className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-700 text-sm"
         >
           <p className="font-semibold mb-1">Message sent successfully!</p>
           <p>Thank you for reaching out. We typically reply within 24 hours.</p>
@@ -41,7 +38,6 @@ export default function ContactForm() {
         className="space-y-6"
         onSubmit={() => setSubmitting(true)}
       >
-        {/* Required hidden inputs for Netlify */}
         <input type="hidden" name="form-name" value="contact" />
         <p className="hidden">
           <label>{"Don't fill this out if you're human:"} <input name="bot-field" /></label>
@@ -49,49 +45,49 @@ export default function ContactForm() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label htmlFor="name" className="text-sm font-medium text-gray-200">Name *</label>
+            <label htmlFor="name" className="text-sm font-medium text-gray-700">Name *</label>
             <input
               id="name"
               name="name"
               required
               placeholder="Your name"
-              className="w-full rounded-lg bg-black/40 border border-gray-700 focus:border-primary-emerald focus:ring-2 focus:ring-primary-emerald/40 px-4 py-3 text-white placeholder-gray-500 transition"
+              className="w-full rounded-lg bg-white border border-gray-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 px-4 py-3 text-gray-900 placeholder-gray-400 transition"
               type="text"
               autoComplete="name"
             />
           </div>
           <div className="space-y-2">
-            <label htmlFor="email" className="text-sm font-medium text-gray-200">Email *</label>
+            <label htmlFor="email" className="text-sm font-medium text-gray-700">Email *</label>
             <input
               id="email"
               name="email"
               required
               placeholder="you@example.com"
-              className="w-full rounded-lg bg-black/40 border border-gray-700 focus:border-primary-emerald focus:ring-2 focus:ring-primary-emerald/40 px-4 py-3 text-white placeholder-gray-500 transition"
+              className="w-full rounded-lg bg-white border border-gray-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 px-4 py-3 text-gray-900 placeholder-gray-400 transition"
               type="email"
               autoComplete="email"
             />
           </div>
           <div className="space-y-2">
-            <label htmlFor="phone" className="text-sm font-medium text-gray-200">Phone *</label>
+            <label htmlFor="phone" className="text-sm font-medium text-gray-700">Phone *</label>
             <input
               id="phone"
               name="phone"
               required
               placeholder="Your phone number"
-              className="w-full rounded-lg bg-black/40 border border-gray-700 focus:border-primary-emerald focus:ring-2 focus:ring-primary-emerald/40 px-4 py-3 text-white placeholder-gray-500 transition"
+              className="w-full rounded-lg bg-white border border-gray-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 px-4 py-3 text-gray-900 placeholder-gray-400 transition"
               type="tel"
               autoComplete="tel"
               inputMode="tel"
             />
           </div>
           <div className="space-y-2">
-            <label htmlFor="company" className="text-sm font-medium text-gray-200">Company</label>
+            <label htmlFor="company" className="text-sm font-medium text-gray-700">Company</label>
             <input
               id="company"
               name="company"
               placeholder="Optional"
-              className="w-full rounded-lg bg-black/40 border border-gray-700 focus:border-primary-emerald focus:ring-2 focus:ring-primary-emerald/40 px-4 py-3 text-white placeholder-gray-500 transition"
+              className="w-full rounded-lg bg-white border border-gray-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 px-4 py-3 text-gray-900 placeholder-gray-400 transition"
               type="text"
               autoComplete="organization"
             />
@@ -99,13 +95,13 @@ export default function ContactForm() {
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="message" className="text-sm font-medium text-gray-200">Project Details *</label>
+          <label htmlFor="message" className="text-sm font-medium text-gray-700">Project Details *</label>
           <textarea
             id="message"
             name="message"
             required
             placeholder="Tell us about your goals, timeline, and anything else important."
-            className="min-h-[180px] w-full rounded-lg bg-black/40 border border-gray-700 focus:border-primary-emerald focus:ring-2 focus:ring-primary-emerald/40 px-4 py-3 text-white placeholder-gray-500 transition resize-y"
+            className="min-h-[180px] w-full rounded-lg bg-white border border-gray-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 px-4 py-3 text-gray-900 placeholder-gray-400 transition resize-y"
           />
         </div>
 
@@ -113,9 +109,9 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={submitting}
-            className="group inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-primary-emerald via-primary-emerald to-primary-blue rounded-full hover:shadow-2xl hover:shadow-primary-emerald/30 transition-all duration-500 relative overflow-hidden border border-primary-emerald/30 hover:border-primary-emerald/60 disabled:opacity-60 disabled:cursor-not-allowed"
+            className="group inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-emerald-500 via-emerald-500 to-blue-400 rounded-full hover:shadow-2xl hover:shadow-emerald-300/30 transition-all duration-500 relative overflow-hidden border border-emerald-400/30 hover:border-emerald-400/60 disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            <span className="absolute inset-0 bg-gradient-to-r from-primary-emerald/10 to-primary-blue/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <span className="absolute inset-0 bg-gradient-to-r from-emerald-400/10 to-blue-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <span className="relative z-10 flex items-center gap-2">
               {submitting ? 'Sending...' : 'Send Message'}
               {!submitting && (

@@ -13,8 +13,8 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://web.helpinghandssystems.com"),
   title: "Helping Hands Systems - Web Development",
-  description: "Modern websites with built-in bookings, secure VPS AI agents, and installable skills. Professional web development services that make your site actually work for you.",
-  keywords: "web development, website design, booking systems, VPS AI agents, AI skills, secure agent deployment",
+  description: "Conversion-focused websites for local service businesses with live demos, lead capture, booking flows, and a built-in analytics dashboard.",
+  keywords: "web development, website design, booking systems, lead capture, local business websites, analytics dashboard",
   icons: {
     icon: '/hhs-logo-new-transparent.png',
     apple: '/apple-touch-icon.png',
@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <body className={`${inter.variable} antialiased`}>
         <InteractiveBackground />
         <FloatingParticles />

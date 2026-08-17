@@ -9,7 +9,7 @@ import Section from '@/components/Section';
 
 export default function PrivacyPage() {
   return (
-    <main className="relative min-h-screen bg-black">
+    <main className="relative min-h-screen bg-[#faf8f5]">
       <NavIsland />
 
       <Section className="pt-32">
@@ -18,17 +18,17 @@ export default function PrivacyPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="prose prose-invert prose-lg max-w-none"
+            className="prose prose-lg max-w-none"
           >
-            <h1 className="text-5xl font-bold text-white mb-8">Helping Hands Systems — Web Development Privacy Policy</h1>
+            <h1 className="text-5xl font-bold text-gray-900 mb-8">Helping Hands Systems — Web Development Privacy Policy</h1>
             
-            <div className="text-gray-400 mb-12 space-y-2">
+            <div className="text-gray-600 mb-12 space-y-2">
               <p className="text-lg"><strong>Effective date:</strong> May 3, 2026</p>
               <p className="text-lg"><strong>Applies to:</strong> https://web.helpinghandssystems.com and related intake forms, landing pages, and communications (the "Site").</p>
               <p className="text-lg"><strong>Who we are:</strong> Helping Hands Systems LLC ("Helping Hands Systems", "HHS", "we", "our", "us"), a Wyoming company.</p>
             </div>
 
-            <div className="space-y-8 text-gray-300">
+            <div className="space-y-8 text-gray-700">
               <section>
                 <p>
                   This Privacy Policy explains how we collect, use, and share information when you visit the Site, contact us, or engage us for web design/development and related services (the "Services"). If you have a separate written agreement with us (e.g., a Statement of Work or Master Services Agreement), that agreement controls to the extent it conflicts with this Policy.
@@ -42,18 +42,18 @@ export default function PrivacyPage() {
               </section>
 
               <section>
-                <h2 className="text-3xl font-semibold text-white mb-4">1) Contact</h2>
-                <div className="bg-gray-800/50 rounded-lg p-6 border border-gray-700">
+                <h2 className="text-3xl font-semibold text-gray-900 mb-4">1) Contact</h2>
+                <div className="bg-gray-100 rounded-lg p-6 border border-gray-200">
                   <p><strong>Email:</strong> helpinghandsystems1@gmail.com</p>
                   <p><strong>Mailing address:</strong> 5830 E 2nd St Ste 7000 #18127 Casper, WY 82609</p>
                 </div>
               </section>
 
               <section>
-                <h2 className="text-3xl font-semibold text-white mb-4">2) Information we collect</h2>
+                <h2 className="text-3xl font-semibold text-gray-900 mb-4">2) Information we collect</h2>
                 <p>We collect information directly from you, automatically via the Site, and from third parties you authorize.</p>
                 
-                <h3 className="text-2xl font-semibold text-white mb-3 mt-6">A. Information you provide</h3>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-3 mt-6">A. Information you provide</h3>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>Contact and business details:</strong> name, email, phone, company, role</li>
                   <li><strong>Project details:</strong> goals, brand assets, copy, images, design preferences, technical requirements, CMS/hosting credentials you choose to share</li>
@@ -62,13 +62,13 @@ export default function PrivacyPage() {
                   <li><strong>Billing:</strong> plan selection, invoices, payment status (payment card details are processed by our payment processor, not stored by us)</li>
                 </ul>
 
-                <h3 className="text-2xl font-semibold text-white mb-3 mt-6">B. Information collected automatically (when you visit the Site)</h3>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-3 mt-6">B. Information collected automatically (when you visit the Site)</h3>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>Usage and device data:</strong> IP address, general location, device identifiers, browser type, pages viewed, time on page, referring/exit URLs, and interactions with forms and emails</li>
                   <li><strong>Cookies and similar tech:</strong> used for authentication, analytics, personalization, and (if enabled) advertising measurement (see Cookies below)</li>
                 </ul>
 
-                <h3 className="text-2xl font-semibold text-white mb-3 mt-6">C. Information from third parties</h3>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-3 mt-6">C. Information from third parties</h3>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>Lead sources and referrals (ads platforms, partners)</li>
                   <li>Service providers (analytics, communications, payment processors, CRM)</li>
@@ -79,7 +79,7 @@ export default function PrivacyPage() {
               </section>
 
               <section>
-                <h2 className="text-3xl font-semibold text-white mb-4">3) How we use information</h2>
+                <h2 className="text-3xl font-semibold text-gray-900 mb-4">3) How we use information</h2>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>Provide and improve the Services:</strong> discovery, proposals, design, development, testing, launch, maintenance, analytics, security</li>
                   <li><strong>Communications:</strong> respond to inquiries, send project updates, appointment reminders, and administrative notices</li>
@@ -92,14 +92,14 @@ export default function PrivacyPage() {
               </section>
 
               <section>
-                <h2 className="text-3xl font-semibold text-white mb-4">4) When we act as processor (client end‑user data)</h2>
+                <h2 className="text-3xl font-semibold text-gray-900 mb-4">4) When we act as processor (client end‑user data)</h2>
                 <p>
                   If, during maintenance or support, we access your website's end‑user data (e.g., contact form submissions, ecommerce orders, analytics logs), we act as your processor and process such data only under your instructions to provide the Services. Upon request, we can provide or sign a Data Processing Addendum (DPA). You are responsible for having a proper legal basis to collect and share such data with us, and for your own public‑facing privacy notices.
                 </p>
               </section>
 
               <section>
-                <h2 className="text-3xl font-semibold text-white mb-4">5) Sharing information</h2>
+                <h2 className="text-3xl font-semibold text-gray-900 mb-4">5) Sharing information</h2>
                 <p>We share personal information with:</p>
                 <ul className="list-disc pl-6 space-y-2 mt-4">
                   <li><strong>Service providers/processors</strong> (hosting, analytics, email/SMS/voice, CRM, project management, payment processing, cloud storage, AI tooling) under contracts limiting their use</li>
@@ -110,7 +110,7 @@ export default function PrivacyPage() {
               </section>
 
               <section>
-                <h2 className="text-3xl font-semibold text-white mb-4">6) Cookies and similar technologies</h2>
+                <h2 className="text-3xl font-semibold text-gray-900 mb-4">6) Cookies and similar technologies</h2>
                 <p>We use cookies/pixels for:</p>
                 <ul className="list-disc pl-6 space-y-2 mt-4">
                   <li><strong>Essential</strong> (security, session, preferences)</li>
@@ -121,38 +121,38 @@ export default function PrivacyPage() {
               </section>
 
               <section>
-                <h2 className="text-3xl font-semibold text-white mb-4">7) International transfers</h2>
+                <h2 className="text-3xl font-semibold text-gray-900 mb-4">7) International transfers</h2>
                 <p>We may process information in the United States and other countries. Where required, we use mechanisms like Standard Contractual Clauses to protect data transferred internationally.</p>
               </section>
 
               <section>
-                <h2 className="text-3xl font-semibold text-white mb-4">8) Security</h2>
+                <h2 className="text-3xl font-semibold text-gray-900 mb-4">8) Security</h2>
                 <p>We use reasonable technical and organizational measures appropriate to the risk. No method is 100% secure.</p>
               </section>
 
               <section>
-                <h2 className="text-3xl font-semibold text-white mb-4">9) Retention</h2>
+                <h2 className="text-3xl font-semibold text-gray-900 mb-4">9) Retention</h2>
                 <p>We keep information as long as necessary for the purposes above (for leads typically up to 36 months after last interaction) unless a longer/shorter period is required by law or agreed in a contract.</p>
               </section>
 
               <section>
-                <h2 className="text-3xl font-semibold text-white mb-4">10) Your rights and choices</h2>
+                <h2 className="text-3xl font-semibold text-gray-900 mb-4">10) Your rights and choices</h2>
                 <p>Depending on your location, you may request access, correction, deletion, portability, restriction, or objection to certain processing, and you may opt out of marketing. Contact helpinghandsystems1@gmail.com. We may request verification information.</p>
               </section>
 
               <section>
-                <h2 className="text-3xl font-semibold text-white mb-4">11) Children</h2>
+                <h2 className="text-3xl font-semibold text-gray-900 mb-4">11) Children</h2>
                 <p>The Site is not directed to children under 13 (or the age set by local law). If you believe a child provided information, contact us for deletion.</p>
               </section>
 
               <section>
-                <h2 className="text-3xl font-semibold text-white mb-4">12) Changes</h2>
+                <h2 className="text-3xl font-semibold text-gray-900 mb-4">12) Changes</h2>
                 <p>We may update this Policy; the updated version will include a new effective date. Material changes will be reasonably highlighted.</p>
               </section>
 
               <section>
-                <h2 className="text-3xl font-semibold text-white mb-4">13) Contact</h2>
-                <div className="bg-gray-800/50 rounded-lg p-6 border border-gray-700">
+                <h2 className="text-3xl font-semibold text-gray-900 mb-4">13) Contact</h2>
+                <div className="bg-gray-100 rounded-lg p-6 border border-gray-200">
                   <p><strong>Email:</strong> helpinghandsystems1@gmail.com</p>
                 </div>
               </section>
@@ -161,41 +161,41 @@ export default function PrivacyPage() {
         </div>
       </Section>
 
-      <footer className="bg-black border-t border-gray-800 py-12 px-6">
+      <footer className="bg-white border-t border-gray-200 py-12 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div>
-              <h3 className="text-xl font-bold text-white mb-4">Helping Hands Systems</h3>
-              <p className="text-gray-400 mb-4">
-                Modern web development with secure VPS AI agents and skills.
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Helping Hands Systems</h3>
+              <p className="text-gray-500 mb-4">
+                Conversion-focused websites for local service businesses with live demos and analytics dashboards.
               </p>
-              <div className="space-y-2 text-gray-400">
+              <div className="space-y-2 text-gray-500">
                 <p>📞 (606) 660-6147</p>
                 <p>✉️ helpinghandsystems1@gmail.com</p>
               </div>
             </div>
             
             <div>
-              <h4 className="font-semibold text-white mb-4">Web Bundles</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/packages/starter" className="hover:text-white transition-colors">Starter Bundle</Link></li>
-                <li><Link href="/packages/standard" className="hover:text-white transition-colors">Booking Growth</Link></li>
-                <li><Link href="/packages/professional" className="hover:text-white transition-colors">Customer System</Link></li>
-                <li><Link href="/packages/custom" className="hover:text-white transition-colors">Custom Growth</Link></li>
+              <h4 className="font-semibold text-gray-900 mb-4">Live Demos</h4>
+              <ul className="space-y-2 text-gray-500">
+                <li><Link href="/demos/restaurant" className="hover:text-gray-900 transition-colors">Restaurant & Cafe</Link></li>
+                <li><Link href="/demos/contractor" className="hover:text-gray-900 transition-colors">Contractor & Home Services</Link></li>
+                <li><Link href="/demos/medical" className="hover:text-gray-900 transition-colors">Medical & Dental Office</Link></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-semibold text-white mb-4">Company</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-                <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-                <li><Link href="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link></li>
+              <h4 className="font-semibold text-gray-900 mb-4">Company</h4>
+              <ul className="space-y-2 text-gray-500">
+                <li><Link href="/contact" className="hover:text-gray-900 transition-colors">Contact</Link></li>
+                <li><Link href="/dashboard" className="hover:text-gray-900 transition-colors">Dashboard</Link></li>
+                <li><Link href="/privacy" className="hover:text-gray-900 transition-colors">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="hover:text-gray-900 transition-colors">Terms & Conditions</Link></li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
+          <div className="border-t border-gray-200 pt-8 text-center text-gray-500">
             <p>&copy; 2026 Helping Hands Systems. All rights reserved.</p>
           </div>
         </div>

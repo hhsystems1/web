@@ -9,16 +9,16 @@ interface GlowProps {
   animate?: boolean;
 }
 
-export default function Glow({ 
-  className = '', 
-  color = 'emerald', 
+export default function Glow({
+  className = '',
+  color = 'emerald',
   size = 'md',
-  animate = true 
+  animate = true
 }: GlowProps) {
   const colorClasses = {
-    emerald: 'bg-primary-emerald/20',
-    blue: 'bg-primary-blue/20',
-    lime: 'bg-primary-lime/20',
+    emerald: 'bg-emerald-300/20',
+    blue: 'bg-blue-300/20',
+    lime: 'bg-lime-300/20',
   };
 
   const sizeClasses = {
@@ -29,16 +29,16 @@ export default function Glow({
   };
 
   const glowColors = {
-    emerald: 'rgba(80, 200, 120, 0.3)',
-    blue: 'rgba(56, 181, 255, 0.3)',
-    lime: 'rgba(236, 248, 127, 0.3)',
+    emerald: 'rgba(80, 200, 120, 0.2)',
+    blue: 'rgba(56, 181, 255, 0.2)',
+    lime: 'rgba(163, 230, 53, 0.2)',
   };
 
   return (
     <motion.div
       animate={animate ? {
         scale: [1, 1.2, 1],
-        opacity: [0.3, 0.6, 0.3],
+        opacity: [0.2, 0.4, 0.2],
       } : {}}
       transition={animate ? {
         duration: 4,

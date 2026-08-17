@@ -10,10 +10,8 @@ export default function NavIsland() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { href: '/#services', label: 'Services' },
-    { href: '/assistants', label: 'AI Assistants' },
-    { href: '/skills', label: 'Skills' },
-    { href: '/#packages', label: 'Web Bundles' },
+    { href: '/#demos', label: 'Demos' },
+    { href: '/dashboard', label: 'Dashboard' },
     { href: '/contact', label: 'Contact' },
   ];
 
@@ -28,14 +26,13 @@ export default function NavIsland() {
           animate={{
             borderRadius: '9999px',
             backdropFilter: 'blur(24px)',
-            backgroundColor: 'rgba(15, 23, 42, 0.8)',
-            border: '1px solid rgba(52, 211, 153, 0.3)',
-            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(52, 211, 153, 0.1)',
+            backgroundColor: 'rgba(255, 255, 255, 0.75)',
+            border: '1px solid rgba(80, 200, 120, 0.25)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), 0 0 20px rgba(80, 200, 120, 0.08), 0 0 40px rgba(80, 200, 120, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
           }}
           className="mx-auto max-w-fit px-4 py-3 transition-all duration-500 sm:px-6 md:px-8"
         >
           <div className="flex items-center justify-between w-full">
-            {/* Logo */}
             <Link href="/" className="flex items-center hover:opacity-80 hover:scale-105 transition-all duration-300 flex-shrink-0 group" aria-label="Helping Hands Systems home">
               <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full sm:h-14 sm:w-14">
                 <Image
@@ -49,25 +46,23 @@ export default function NavIsland() {
               </span>
             </Link>
 
-            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-6 lg:space-x-10">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-white/90 hover:text-white hover:scale-105 transition-all duration-300 relative group font-medium text-base lg:text-lg whitespace-nowrap px-3 py-2 rounded-full hover:bg-primary-emerald/10 hover:shadow-lg hover:shadow-primary-emerald/20"
+                  className="text-gray-700 hover:text-emerald-700 hover:scale-105 transition-all duration-300 relative group font-medium text-base lg:text-lg whitespace-nowrap px-3 py-2 rounded-full hover:bg-emerald-50 hover:shadow-lg hover:shadow-emerald-200/50"
                 >
                   {item.label}
-                  <span className="absolute -bottom-1 left-3 right-3 h-0.5 bg-gradient-to-r from-primary-emerald to-primary-blue scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                  <div className="absolute inset-0 rounded-full border border-transparent group-hover:border-primary-emerald/30 transition-all duration-300"></div>
+                  <span className="absolute -bottom-1 left-3 right-3 h-0.5 bg-gradient-to-r from-emerald-500 to-blue-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <div className="absolute inset-0 rounded-full border border-transparent group-hover:border-emerald-300/40 transition-all duration-300"></div>
                 </Link>
               ))}
             </div>
 
-            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden text-white p-2 hover:bg-primary-emerald/20 hover:text-primary-emerald hover:scale-110 rounded-full transition-all duration-300 flex-shrink-0 hover:shadow-lg hover:shadow-primary-emerald/25"
+              className="md:hidden text-gray-700 p-2 hover:bg-emerald-50 hover:text-emerald-700 hover:scale-110 rounded-full transition-all duration-300 flex-shrink-0 hover:shadow-lg hover:shadow-emerald-200/50"
               aria-label="Toggle mobile menu"
             >
               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -76,14 +71,13 @@ export default function NavIsland() {
         </motion.div>
       </motion.nav>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-black/90 backdrop-blur-xl md:hidden"
+            className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl md:hidden"
           >
             <div className="flex flex-col items-center justify-center min-h-screen space-y-6 px-4">
               {navItems.map((item, index) => (
@@ -97,7 +91,7 @@ export default function NavIsland() {
                   <Link
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-center text-xl sm:text-2xl text-white hover:text-primary-emerald hover:scale-105 transition-all duration-300 py-3 px-6 rounded-full hover:bg-primary-emerald/10 hover:shadow-lg hover:shadow-primary-emerald/20 border border-transparent hover:border-primary-emerald/30"
+                    className="block text-center text-xl sm:text-2xl text-gray-800 hover:text-emerald-700 hover:scale-105 transition-all duration-300 py-3 px-6 rounded-full hover:bg-emerald-50 hover:shadow-lg hover:shadow-emerald-200/50 border border-transparent hover:border-emerald-200/50"
                   >
                     {item.label}
                   </Link>

@@ -19,8 +19,8 @@ export default function FAQ({ items, title = "Frequently Asked Questions" }: FAQ
 
   return (
     <div className="max-w-3xl mx-auto">
-      <h2 className="text-3xl font-bold text-white text-center mb-12">{title}</h2>
-      
+      <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">{title}</h2>
+
       <div className="space-y-4">
         {items.map((item, index) => (
           <motion.div
@@ -32,17 +32,17 @@ export default function FAQ({ items, title = "Frequently Asked Questions" }: FAQ
           >
             <button
               onClick={() => setOpenIndex(openIndex === index ? null : index)}
-              className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-white/5 transition-colors"
+              className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-emerald-50/50 transition-colors"
             >
-              <span className="font-semibold text-white pr-4">{item.question}</span>
+              <span className="font-semibold text-gray-900 pr-4">{item.question}</span>
               <motion.div
                 animate={{ rotate: openIndex === index ? 45 : 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <Plus size={20} className="text-primary-emerald flex-shrink-0" />
+                <Plus size={20} className="text-emerald-500 flex-shrink-0" />
               </motion.div>
             </button>
-            
+
             <AnimatePresence>
               {openIndex === index && (
                 <motion.div
@@ -52,7 +52,7 @@ export default function FAQ({ items, title = "Frequently Asked Questions" }: FAQ
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
                   <div className="px-6 pb-4">
-                    <p className="text-gray-300 leading-relaxed">{item.answer}</p>
+                    <p className="text-gray-600 leading-relaxed">{item.answer}</p>
                   </div>
                 </motion.div>
               )}

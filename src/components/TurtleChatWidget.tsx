@@ -10,32 +10,32 @@ type ChatMessage = {
 };
 
 const suggestedQuestions = [
-  'What web bundle should I start with?',
-  'Can you help with booking and follow-up?',
-  'How does the AI assistant work?',
-  'How do I get a free demo?'
+  'What demos can I try?',
+  'How does the booking flow work?',
+  'What comes with the dashboard?',
+  'How do I get started?'
 ];
 
 const answerLibrary = [
   {
-    keywords: ['bundle', 'package', 'start', 'website', 'web'],
+    keywords: ['demo', 'try', 'example', 'template', 'restaurant', 'contractor', 'medical'],
     answer:
-      'Most local businesses should start with the Booking Growth Web Bundle if they want calls, quote requests, or appointments. Starter is best for a clean first site. Customer System adds AI-assisted intake and follow-up handoffs.'
+      'We have 3 live demos you can interact with right now — a restaurant site, a contractor site, and a medical office site. Each shows exactly what your business website could look like with booking, lead capture, and a dashboard.'
   },
   {
-    keywords: ['booking', 'appointment', 'calendar', 'quote', 'follow-up', 'follow up', 'lead'],
+    keywords: ['booking', 'appointment', 'calendar', 'quote', 'follow-up', 'lead'],
     answer:
-      'Yes. HHS can build a website path that helps visitors request a quote, book time, or send the details you need. The goal is to make the next step obvious and get the owner a cleaner lead to follow up with.'
+      'Every website includes built-in booking and quote request flows. Visitors can pick a time, submit a request, or send details — and you get organized lead info to follow up while they are still interested.'
   },
   {
-    keywords: ['ai', 'assistant', 'agent', 'chat', 'turtle', 'hermes', 'openclaw'],
+    keywords: ['dashboard', 'track', 'analytics', 'data', 'visitor'],
     answer:
-      'The AI assistant can answer common questions, guide visitors toward the right next step, collect basic intake details, and prepare an owner-ready handoff. For live customers, HHS scopes the assistant around approved business info and safe handoff rules.'
+      'Each website comes with its own analytics dashboard. You can track page views, form submissions, bookings, lead sources, and conversion rates — all in one clean view.'
   },
   {
-    keywords: ['demo', 'free', 'call', 'contact', 'price', 'cost'],
+    keywords: ['start', 'price', 'cost', 'payment', 'how', 'begin'],
     answer:
-      'You can request a free demo direction through the contact form. HHS can map what your website, booking path, and assistant flow could look like before you commit to a full build.'
+      'Start by trying a live demo. When you find one you like, head to the payment page to choose your demo, upload your branding, and get started. The whole process is designed to be simple.'
   }
 ];
 
@@ -44,7 +44,7 @@ function getAnswer(input: string) {
   const match = answerLibrary.find((entry) => entry.keywords.some((keyword) => normalized.includes(keyword)));
 
   return match?.answer ??
-    'Great question. HHS helps local businesses turn websites into clearer customer paths with better trust, quote requests, booking flows, and AI-assisted follow-up. If you share what kind of business you run, I can point you toward the best web bundle.';
+    'HHS builds conversion-focused websites for local service businesses with live demos, lead capture, booking flows, and a built-in analytics dashboard. Try one of our demos to see what your site could look like!';
 }
 
 function TurtleCharacter({ compact = false }: { compact?: boolean }) {
@@ -52,14 +52,14 @@ function TurtleCharacter({ compact = false }: { compact?: boolean }) {
 
   return (
     <div className={`relative ${compact ? 'h-12 w-12' : 'h-16 w-16'}`} aria-hidden="true">
-      <div className="absolute inset-0 rounded-full bg-primary-emerald/25 blur-xl" />
-      <div className="relative h-full w-full overflow-hidden rounded-full border-2 border-primary-emerald/60 bg-black/80 drop-shadow-[0_0_18px_rgba(52,211,153,0.42)]">
+      <div className="absolute inset-0 rounded-full bg-emerald-200/40 blur-xl" />
+      <div className="relative h-full w-full overflow-hidden rounded-full border-2 border-emerald-300/60 bg-white/80 shadow-lg shadow-emerald-200/30">
         <Image
-          src="/hhs-turtle-chat.jpg"
+          src="/hhs-turdy-new.png"
           alt=""
           width={size}
           height={size}
-          className="h-full w-full scale-[1.45] object-cover object-[50%_38%]"
+          className="h-full w-full scale-[1.15] object-cover object-[50%_35%]"
           priority={false}
         />
       </div>
@@ -73,7 +73,7 @@ export default function TurtleChatWidget() {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: 'assistant',
-      text: 'Hi, I’m the HHS turtle demo assistant. Ask me about web bundles, booking flows, AI assistant setup, or getting a free demo.'
+      text: 'Hi, I\'m Turdy! Ask me about our live demos, booking flows, dashboard features, or how to get started.'
     }
   ]);
 
@@ -98,17 +98,17 @@ export default function TurtleChatWidget() {
   return (
     <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
       {isOpen && (
-        <div className="w-[min(calc(100vw-2rem),390px)] overflow-hidden rounded-3xl border border-primary-emerald/30 bg-black/90 shadow-2xl shadow-primary-emerald/20 backdrop-blur-2xl">
-          <div className="flex items-center gap-3 border-b border-white/10 bg-white/5 p-4">
+        <div className="w-[min(calc(100vw-2rem),390px)] overflow-hidden rounded-3xl border border-emerald-200/40 bg-white/95 shadow-2xl shadow-emerald-200/30 backdrop-blur-2xl">
+          <div className="flex items-center gap-3 border-b border-gray-200/60 bg-emerald-50/50 p-4">
             <TurtleCharacter compact />
             <div className="min-w-0 flex-1">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary-lime">Demo chat</p>
-              <h2 className="text-lg font-bold text-white">Ask the HHS Turtle</h2>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-600">Demo chat</p>
+              <h2 className="text-lg font-bold text-gray-900">Ask Turdy</h2>
             </div>
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="rounded-full border border-white/10 p-2 text-gray-300 transition hover:border-primary-emerald/50 hover:text-white"
+              className="rounded-full border border-gray-200 p-2 text-gray-400 transition hover:border-emerald-300 hover:text-gray-700"
               aria-label="Close chat demo"
             >
               <X size={18} />
@@ -121,8 +121,8 @@ export default function TurtleChatWidget() {
                 key={`${message.role}-${index}`}
                 className={`rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                   message.role === 'assistant'
-                    ? 'mr-6 border border-primary-emerald/20 bg-primary-emerald/10 text-emerald-50'
-                    : 'ml-8 bg-white/10 text-white'
+                    ? 'mr-6 border border-emerald-200/50 bg-emerald-50 text-gray-800'
+                    : 'ml-8 bg-gray-100 text-gray-800'
                 }`}
               >
                 {message.text}
@@ -130,14 +130,14 @@ export default function TurtleChatWidget() {
             ))}
           </div>
 
-          <div className="border-t border-white/10 p-4">
+          <div className="border-t border-gray-200/60 p-4">
             <div className="mb-3 flex flex-wrap gap-2">
               {suggestedQuestions.map((question) => (
                 <button
                   key={question}
                   type="button"
                   onClick={() => sendMessage(question)}
-                  className="rounded-full border border-primary-emerald/25 bg-primary-emerald/10 px-3 py-1.5 text-left text-xs font-medium text-emerald-50 transition hover:border-primary-emerald/60 hover:bg-primary-emerald/20"
+                  className="rounded-full border border-emerald-200/50 bg-emerald-50 px-3 py-1.5 text-left text-xs font-medium text-emerald-700 transition hover:border-emerald-400 hover:bg-emerald-100"
                 >
                   {question}
                 </button>
@@ -155,11 +155,11 @@ export default function TurtleChatWidget() {
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
                 placeholder="Ask about your website..."
-                className="min-w-0 flex-1 rounded-full border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-gray-500 outline-none transition focus:border-primary-emerald/60"
+                className="min-w-0 flex-1 rounded-full border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-800 placeholder:text-gray-400 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
               />
               <button
                 type="submit"
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-r from-primary-emerald to-primary-blue text-white shadow-lg shadow-primary-emerald/20 transition hover:scale-105"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 to-blue-400 text-white shadow-lg shadow-emerald-200/50 transition hover:scale-105"
                 aria-label="Send chat message"
               >
                 <Send size={18} />
@@ -173,7 +173,7 @@ export default function TurtleChatWidget() {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="hidden max-w-xs rounded-2xl border border-primary-emerald/25 bg-black/80 px-4 py-3 text-left text-sm text-emerald-50 shadow-xl shadow-black/40 backdrop-blur-xl transition hover:border-primary-emerald/60 md:block"
+          className="hidden max-w-xs rounded-2xl border border-emerald-200/50 bg-white/90 px-4 py-3 text-left text-sm text-gray-700 shadow-xl shadow-emerald-200/30 backdrop-blur-xl transition hover:border-emerald-300 md:block"
         >
           {latestAssistantText}
         </button>
@@ -182,13 +182,13 @@ export default function TurtleChatWidget() {
       <button
         type="button"
         onClick={() => setIsOpen((current) => !current)}
-        className="group flex items-center gap-3 rounded-full border border-primary-emerald/35 bg-black/85 p-2 pr-4 text-white shadow-2xl shadow-primary-emerald/20 backdrop-blur-xl transition hover:border-primary-emerald/70 hover:bg-primary-emerald/15"
-        aria-label="Open HHS turtle chat demo"
+        className="group flex items-center gap-3 rounded-full border border-emerald-200/50 bg-white/90 p-2 pr-4 text-gray-700 shadow-2xl shadow-emerald-200/30 backdrop-blur-xl transition hover:border-emerald-300 hover:bg-emerald-50"
+        aria-label="Open Turdy chat demo"
       >
         <TurtleCharacter compact />
         <span className="hidden items-center gap-2 text-sm font-semibold md:inline-flex">
           <MessageCircle size={16} />
-          Ask Turtle
+          Ask Turdy
         </span>
       </button>
     </div>
