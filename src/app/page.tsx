@@ -140,7 +140,7 @@ export default function Home() {
       {/* Problem / Solution */}
       <Section className="bg-gradient-to-b from-[#faf8f5] via-white to-gray-50">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-stretch">
-          <div className="fade-in-up rounded-2xl border border-red-200/50 bg-red-50/50 p-8 shadow-xl shadow-red-100/20 backdrop-blur-xl">
+          <div className="rounded-2xl border border-red-200/50 bg-red-50/50 p-8 shadow-xl shadow-red-100/20 backdrop-blur-xl">
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-red-500">The problem</p>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-5">Most business websites just sit there.</h2>
             <p className="text-lg text-gray-600 leading-relaxed mb-6">A lot of local business websites look fine, but they do not help the owner win the customer when someone is ready to take action.</p>
@@ -154,7 +154,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="fade-in-up" style={{ animationDelay: '0.15s' }}>
+          <div>
             <div className="rounded-2xl border border-emerald-200/50 bg-emerald-50/50 p-8 shadow-xl shadow-emerald-100/20 backdrop-blur-xl">
               <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">The solution</p>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-5">What if your website actually worked for you?</h2>
@@ -175,13 +175,13 @@ export default function Home() {
       {/* Services */}
       <Section id="services" className="bg-gradient-to-b from-white to-gray-50">
         <div className="text-center mb-16">
-          <h2 className="fade-in-up text-4xl md:text-5xl font-bold text-gray-900 mb-6">Built Specifically for Local Service Businesses</h2>
-          <p className="fade-in-up text-xl text-gray-500 max-w-3xl mx-auto" style={{ animationDelay: '0.1s' }}>Contractors, shops, service providers, appointment-based businesses, and local teams need more than a brochure. They need a website that helps create calls, bookings, and follow-up.</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Built Specifically for Local Service Businesses</h2>
+          <p className="text-xl text-gray-500 max-w-3xl mx-auto">Contractors, shops, service providers, appointment-based businesses, and local teams need more than a brochure. They need a website that helps create calls, bookings, and follow-up.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div key={service.title} className="fade-in-up" style={{ animationDelay: `${index * 0.08}s` }}>
+          {services.map((service) => (
+            <div key={service.title}>
               <div className="group relative p-6 rounded-2xl glass hover:shadow-xl hover:shadow-emerald-200/40 transition-shadow duration-200">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-r from-emerald-500 to-blue-400 flex items-center justify-center mb-4 shadow-md shadow-emerald-200/50">
                   <service.icon size={24} className="text-white" />
@@ -197,14 +197,14 @@ export default function Home() {
       {/* Funnel Flow */}
       <Section className="bg-gradient-to-b from-gray-50 via-white to-gray-50">
         <div className="mx-auto mb-12 max-w-3xl text-center">
-          <p className="fade-in-up mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">Simple customer flow</p>
-          <h2 className="fade-in-up text-4xl md:text-5xl font-bold text-gray-900 mb-6" style={{ animationDelay: '0.1s' }}>From demo to your live website</h2>
-          <p className="fade-in-up text-xl text-gray-500 leading-relaxed" style={{ animationDelay: '0.2s' }}>The goal is not just a nicer website. The goal is a clearer path from interest to action.</p>
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">Simple customer flow</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">From demo to your live website</h2>
+          <p className="text-xl text-gray-500 leading-relaxed">The goal is not just a nicer website. The goal is a clearer path from interest to action.</p>
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {funnelSteps.map((step, index) => (
-            <div key={step.title} className="fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
+          {funnelSteps.map((step) => (
+            <div key={step.title}>
               <div className="relative rounded-2xl border border-gray-200/60 bg-white/60 p-6 shadow-xl shadow-gray-100/20 backdrop-blur-xl">
                 <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 to-blue-400 text-lg font-bold text-white">{index + 1}</div>
                 <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
@@ -219,9 +219,9 @@ export default function Home() {
       <Section id="demos" className="bg-gradient-to-b from-white via-gray-50 to-white">
         <div className="mx-auto max-w-6xl">
           <div className="mb-12 max-w-3xl">
-            <p className="fade-in-up mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">Try it yourself</p>
-            <h2 className="fade-in-up text-4xl md:text-5xl font-bold text-gray-900 mb-6" style={{ animationDelay: '0.1s' }}>Pick a live demo to explore</h2>
-            <p className="fade-in-up text-xl text-gray-500 leading-relaxed" style={{ animationDelay: '0.2s' }}>Interact with real website demos built for your industry. Click through, test the booking flows, and see what your business could look like.</p>
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">Try it yourself</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Pick a live demo to explore</h2>
+            <p className="text-xl text-gray-500 leading-relaxed">Interact with real website demos built for your industry. Click through, test the booking flows, and see what your business could look like.</p>
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -236,14 +236,14 @@ export default function Home() {
       <Section className="bg-gradient-to-b from-white via-gray-50 to-white">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <div>
-            <p className="fade-in-up mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">Built into every site</p>
-            <h2 className="fade-in-up text-4xl md:text-5xl font-bold text-gray-900 mb-6" style={{ animationDelay: '0.1s' }}>More than a good-looking homepage</h2>
-            <p className="fade-in-up text-xl text-gray-500 leading-relaxed" style={{ animationDelay: '0.2s' }}>Your site can collect leads, book time, answer common questions, and track every visitor through your analytics dashboard.</p>
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">Built into every site</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">More than a good-looking homepage</h2>
+            <p className="text-xl text-gray-500 leading-relaxed">Your site can collect leads, book time, answer common questions, and track every visitor through your analytics dashboard.</p>
           </div>
 
           <div className="grid grid-cols-1 gap-5">
-            {features.map((highlight, index) => (
-              <div key={highlight.title} className="fade-in-up" style={{ animationDelay: `${index * 0.12}s` }}>
+            {features.map((highlight) => (
+              <div key={highlight.title}>
                 <div className="rounded-lg border border-gray-200/60 bg-white/60 p-6 shadow-xl shadow-gray-100/20 backdrop-blur-xl">
                   <h3 className="text-2xl font-bold text-gray-900">{highlight.title}</h3>
                   <p className="mt-3 text-gray-500 leading-relaxed">{highlight.description}</p>
@@ -265,13 +265,13 @@ export default function Home() {
       {/* Why Choose Us */}
       <Section className="bg-gradient-to-b from-gray-50 to-white">
         <div className="text-center mb-16">
-          <h2 className="fade-in-up text-4xl md:text-5xl font-bold text-gray-900 mb-6">Why Choose Helping Hands Systems?</h2>
-          <p className="fade-in-up text-xl text-gray-500 max-w-3xl mx-auto" style={{ animationDelay: '0.1s' }}>We build websites that make follow-through easier to manage — with a dashboard to prove it.</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Why Choose Helping Hands Systems?</h2>
+          <p className="text-xl text-gray-500 max-w-3xl mx-auto">We build websites that make follow-through easier to manage — with a dashboard to prove it.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {whyChooseUs.map((item, index) => (
-            <div key={item.title} className="fade-in-up" style={{ animationDelay: `${index * 0.08}s` }}>
+          {whyChooseUs.map((item) => (
+            <div key={item.title}>
               <div className="text-center p-6 glass rounded-2xl hover:shadow-xl hover:shadow-emerald-200/40 transition-shadow duration-200">
                 <div className="w-16 h-16 rounded-full bg-gradient-to-r from-emerald-500 to-blue-400 flex items-center justify-center mx-auto mb-4 shadow-md shadow-emerald-200/50">
                   <item.icon size={32} className="text-white" />
@@ -287,7 +287,7 @@ export default function Home() {
 
       {/* CTA */}
       <Section className="bg-gradient-to-b from-white to-gray-50">
-        <div className="fade-in-up text-center p-12 glass rounded-2xl relative overflow-hidden">
+        <div className="text-center p-12 glass rounded-2xl relative overflow-hidden">
           <div className="relative z-10">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Ready to see what this could look like for your business?</h2>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Try a live demo, then customize it with your branding. Your new website is just a few clicks away.</p>

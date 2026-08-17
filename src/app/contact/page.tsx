@@ -22,15 +22,15 @@ export default function ContactPage() {
 
       <Section className="pt-32 bg-gradient-to-b from-[#faf8f5] to-white">
         <div className="text-center mb-16">
-          <h1 className="fade-in-up text-5xl md:text-6xl font-bold text-gray-900 mb-6">Let&apos;s Build Something Amazing Together</h1>
-          <p className="fade-in-up text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" style={{ animationDelay: '0.1s' }}>
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">Let&apos;s Build Something Amazing Together</h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Ready to transform your online presence? We&apos;re here to help you create a website that not only looks incredible but actually grows your business.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {contactInfo.map((info, index) => (
-            <div key={info.title} className="fade-in-up" style={{ animationDelay: `${index * 0.08}s` }}>
+          {contactInfo.map((info) => (
+            <div key={info.title}>
               <div className="text-center p-6 glass rounded-2xl hover:shadow-xl hover:shadow-emerald-200/40 transition-shadow duration-200">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-r from-emerald-500 to-blue-400 flex items-center justify-center mx-auto mb-4 shadow-md shadow-emerald-200/50">
                   <info.icon size={24} className="text-white" />
@@ -46,8 +46,8 @@ export default function ContactPage() {
 
       <Section className="bg-gradient-to-b from-white to-gray-50">
         <div className="relative max-w-4xl mx-auto">
-          <h2 className="fade-in-up text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center">Start Your Project</h2>
-          <p className="fade-in-up text-lg text-gray-600 mb-10 max-w-2xl mx-auto text-center" style={{ animationDelay: '0.1s' }}>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center">Start Your Project</h2>
+          <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto text-center">
             Tell us about your vision and we&apos;ll show you how we can bring it to life with modern design and conversion-focused features.
           </p>
           <div className="glass rounded-2xl p-6 md:p-10 shadow-xl shadow-emerald-100/20">
@@ -57,7 +57,7 @@ export default function ContactPage() {
       </Section>
 
       <Section className="bg-gradient-to-b from-gray-50 to-white">
-        <div className="fade-in-up text-center p-12 glass rounded-2xl relative overflow-hidden">
+        <div className="text-center p-12 glass rounded-2xl relative overflow-hidden">
           <div className="relative z-10">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Want to see what&apos;s possible?</h2>
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">

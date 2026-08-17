@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import NavIsland from "@/components/NavIsland";
 import {
@@ -29,15 +28,6 @@ import {
   CheckCircle2,
   Shield,
 } from "lucide-react";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.1, duration: 0.5, ease: "easeOut" },
-  }),
-};
 
 const services = [
   {
@@ -178,46 +168,27 @@ export default function MedicalDemoPage() {
           <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-teal-100/30 rounded-full blur-3xl" />
         </div>
         <div className="mx-auto max-w-5xl px-4 sm:px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <div>
             <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200/60 px-4 py-2 mb-8">
               <Smile className="h-5 w-5 text-emerald-600" />
               <span className="text-sm font-medium text-emerald-700">
                 Family Dental Care Since 2008
               </span>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900"
-          >
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900">
             Bright Smile{" "}
             <span className="text-emerald-600">Dental</span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-6 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed"
-          >
+          <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Compassionate, modern dental care for the whole family. From routine
             cleanings to complete smile makeovers, we make every visit
             comfortable and stress-free.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="#booking"
               className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-emerald-600/25 hover:bg-emerald-700 hover:shadow-xl hover:shadow-emerald-600/30 transition-all duration-300 hover:scale-105"
@@ -232,14 +203,9 @@ export default function MedicalDemoPage() {
               <Phone className="h-5 w-5" />
               (555) 234-5678
             </a>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.5 }}
-            className="mt-12 flex items-center justify-center gap-8 text-sm text-gray-500"
-          >
+          <div className="mt-12 flex items-center justify-center gap-8 text-sm text-gray-500">
             <span className="flex items-center gap-1.5">
               <ShieldCheck className="h-4 w-4 text-emerald-600" />
               Insurance Accepted
@@ -252,52 +218,30 @@ export default function MedicalDemoPage() {
               <Star className="h-4 w-4 text-emerald-600" />
               5-Star Rated
             </span>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Services */}
       <section className="py-20 sm:py-28">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="text-center mb-16"
-          >
-            <motion.span
-              variants={fadeUp}
-              custom={0}
-              className="text-sm font-semibold text-emerald-600 uppercase tracking-wider"
-            >
+          <div className="text-center mb-16">
+            <span className="text-sm font-semibold text-emerald-600 uppercase tracking-wider">
               What We Offer
-            </motion.span>
-            <motion.h2
-              variants={fadeUp}
-              custom={1}
-              className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900"
-            >
+            </span>
+            <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900">
               Our Services
-            </motion.h2>
-            <motion.p
-              variants={fadeUp}
-              custom={2}
-              className="mt-4 text-gray-600 max-w-xl mx-auto"
-            >
+            </h2>
+            <p className="mt-4 text-gray-600 max-w-xl mx-auto">
               Comprehensive dental solutions tailored to every age and every
               smile.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((service, i) => (
-              <motion.div
+            {services.map((service) => (
+              <div
                 key={service.title}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
-                variants={fadeUp}
-                custom={i}
                 className="group rounded-2xl bg-white/80 border border-gray-200/60 p-8 shadow-sm hover:shadow-lg hover:shadow-emerald-100/50 transition-all duration-300 hover:-translate-y-1"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 border border-emerald-100 group-hover:bg-emerald-100 transition-colors duration-300">
@@ -309,7 +253,7 @@ export default function MedicalDemoPage() {
                 <p className="mt-2.5 text-sm leading-relaxed text-gray-600">
                   {service.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -318,45 +262,23 @@ export default function MedicalDemoPage() {
       {/* Providers */}
       <section className="py-20 sm:py-28 bg-white/50">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="text-center mb-16"
-          >
-            <motion.span
-              variants={fadeUp}
-              custom={0}
-              className="text-sm font-semibold text-emerald-600 uppercase tracking-wider"
-            >
+          <div className="text-center mb-16">
+            <span className="text-sm font-semibold text-emerald-600 uppercase tracking-wider">
               Meet Your Team
-            </motion.span>
-            <motion.h2
-              variants={fadeUp}
-              custom={1}
-              className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900"
-            >
+            </span>
+            <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900">
               Our Providers
-            </motion.h2>
-            <motion.p
-              variants={fadeUp}
-              custom={2}
-              className="mt-4 text-gray-600 max-w-xl mx-auto"
-            >
+            </h2>
+            <p className="mt-4 text-gray-600 max-w-xl mx-auto">
               Experienced, board-certified professionals dedicated to your
               comfort and oral health.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {providers.map((provider, i) => (
-              <motion.div
+            {providers.map((provider) => (
+              <div
                 key={provider.name}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
-                variants={fadeUp}
-                custom={i}
                 className="rounded-2xl bg-white/80 border border-gray-200/60 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
               >
                 <div className="h-56 bg-gradient-to-br from-emerald-100 to-teal-50 flex items-center justify-center">
@@ -378,7 +300,7 @@ export default function MedicalDemoPage() {
                     {provider.bio}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -387,38 +309,18 @@ export default function MedicalDemoPage() {
       {/* Insurance & Patient Forms */}
       <section className="py-20 sm:py-28">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="text-center mb-16"
-          >
-            <motion.span
-              variants={fadeUp}
-              custom={0}
-              className="text-sm font-semibold text-emerald-600 uppercase tracking-wider"
-            >
+          <div className="text-center mb-16">
+            <span className="text-sm font-semibold text-emerald-600 uppercase tracking-wider">
               Insurance & Forms
-            </motion.span>
-            <motion.h2
-              variants={fadeUp}
-              custom={1}
-              className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900"
-            >
+            </span>
+            <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900">
               We Make It Easy
-            </motion.h2>
-          </motion.div>
+            </h2>
+          </div>
 
           <div className="grid gap-8 lg:grid-cols-2">
             {/* Insurance */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              custom={0}
-              className="rounded-2xl bg-white/80 border border-gray-200/60 p-8 shadow-sm"
-            >
+            <div className="rounded-2xl bg-white/80 border border-gray-200/60 p-8 shadow-sm">
               <div className="flex items-center gap-3 mb-6">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-50 border border-emerald-100">
                   <Shield className="h-5 w-5 text-emerald-600" />
@@ -444,17 +346,10 @@ export default function MedicalDemoPage() {
                 Don&apos;t see your plan? Contact us — we work with most insurance
                 providers and will help verify your coverage.
               </p>
-            </motion.div>
+            </div>
 
             {/* New Patient Info */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              custom={1}
-              className="rounded-2xl bg-white/80 border border-gray-200/60 p-8 shadow-sm"
-            >
+            <div className="rounded-2xl bg-white/80 border border-gray-200/60 p-8 shadow-sm">
               <div className="flex items-center gap-3 mb-6">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-50 border border-emerald-100">
                   <FileText className="h-5 w-5 text-emerald-600" />
@@ -501,7 +396,7 @@ export default function MedicalDemoPage() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -509,42 +404,20 @@ export default function MedicalDemoPage() {
       {/* Appointment Booking */}
       <section id="booking" className="py-20 sm:py-28 bg-white/50 scroll-mt-24">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="text-center mb-12"
-          >
-            <motion.span
-              variants={fadeUp}
-              custom={0}
-              className="text-sm font-semibold text-emerald-600 uppercase tracking-wider"
-            >
+          <div className="text-center mb-12">
+            <span className="text-sm font-semibold text-emerald-600 uppercase tracking-wider">
               Schedule Your Visit
-            </motion.span>
-            <motion.h2
-              variants={fadeUp}
-              custom={1}
-              className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900"
-            >
+            </span>
+            <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900">
               Book an Appointment
-            </motion.h2>
-            <motion.p
-              variants={fadeUp}
-              custom={2}
-              className="mt-4 text-gray-600"
-            >
+            </h2>
+            <p className="mt-4 text-gray-600">
               Fill out the form below and our team will confirm your appointment
               within one business day.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <div>
             {formSubmitted ? (
               <div className="rounded-2xl bg-white/80 border border-emerald-200/60 p-12 shadow-sm text-center">
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 border border-emerald-100 mx-auto">
@@ -817,44 +690,26 @@ export default function MedicalDemoPage() {
                 </p>
               </form>
             )}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Patient FAQ */}
       <section className="py-20 sm:py-28">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="text-center mb-16"
-          >
-            <motion.span
-              variants={fadeUp}
-              custom={0}
-              className="text-sm font-semibold text-emerald-600 uppercase tracking-wider"
-            >
+          <div className="text-center mb-16">
+            <span className="text-sm font-semibold text-emerald-600 uppercase tracking-wider">
               Common Questions
-            </motion.span>
-            <motion.h2
-              variants={fadeUp}
-              custom={1}
-              className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900"
-            >
+            </span>
+            <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900">
               Patient FAQ
-            </motion.h2>
-          </motion.div>
+            </h2>
+          </div>
 
           <div className="space-y-3">
             {faqs.map((faq, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                custom={i}
                 className="rounded-2xl bg-white/80 border border-gray-200/60 shadow-sm overflow-hidden"
               >
                 <button
@@ -877,7 +732,7 @@ export default function MedicalDemoPage() {
                     </p>
                   </div>
                 )}
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -886,38 +741,18 @@ export default function MedicalDemoPage() {
       {/* Office Info */}
       <section className="py-20 sm:py-28 bg-white/50">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="text-center mb-16"
-          >
-            <motion.span
-              variants={fadeUp}
-              custom={0}
-              className="text-sm font-semibold text-emerald-600 uppercase tracking-wider"
-            >
+          <div className="text-center mb-16">
+            <span className="text-sm font-semibold text-emerald-600 uppercase tracking-wider">
               Find Us
-            </motion.span>
-            <motion.h2
-              variants={fadeUp}
-              custom={1}
-              className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900"
-            >
+            </span>
+            <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900">
               Office Information
-            </motion.h2>
-          </motion.div>
+            </h2>
+          </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {/* Address */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              custom={0}
-              className="rounded-2xl bg-white/80 border border-gray-200/60 p-6 shadow-sm text-center"
-            >
+            <div className="rounded-2xl bg-white/80 border border-gray-200/60 p-6 shadow-sm text-center">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 border border-emerald-100 mx-auto">
                 <MapPin className="h-6 w-6 text-emerald-600" />
               </div>
@@ -929,17 +764,10 @@ export default function MedicalDemoPage() {
                 <br />
                 Portland, OR 97201
               </p>
-            </motion.div>
+            </div>
 
             {/* Phone & Email */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              custom={1}
-              className="rounded-2xl bg-white/80 border border-gray-200/60 p-6 shadow-sm text-center"
-            >
+            <div className="rounded-2xl bg-white/80 border border-gray-200/60 p-6 shadow-sm text-center">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 border border-emerald-100 mx-auto">
                 <Phone className="h-6 w-6 text-emerald-600" />
               </div>
@@ -948,17 +776,10 @@ export default function MedicalDemoPage() {
                 <p className="text-sm text-gray-600">(555) 234-5678</p>
                 <p className="text-sm text-gray-600">info@brightsmile.com</p>
               </div>
-            </motion.div>
+            </div>
 
             {/* Hours */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              custom={2}
-              className="rounded-2xl bg-white/80 border border-gray-200/60 p-6 shadow-sm text-center"
-            >
+            <div className="rounded-2xl bg-white/80 border border-gray-200/60 p-6 shadow-sm text-center">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 border border-emerald-100 mx-auto">
                 <Clock className="h-6 w-6 text-emerald-600" />
               </div>
@@ -976,17 +797,10 @@ export default function MedicalDemoPage() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
             {/* Parking */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              custom={3}
-              className="rounded-2xl bg-white/80 border border-gray-200/60 p-6 shadow-sm text-center"
-            >
+            <div className="rounded-2xl bg-white/80 border border-gray-200/60 p-6 shadow-sm text-center">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 border border-emerald-100 mx-auto">
                 <Car className="h-6 w-6 text-emerald-600" />
               </div>
@@ -1004,7 +818,7 @@ export default function MedicalDemoPage() {
                   MAX light rail — Washington Park station (5 min walk)
                 </p>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -1037,11 +851,7 @@ export default function MedicalDemoPage() {
 
       {/* Floating Demo Banner */}
       <div className="fixed bottom-0 left-0 right-0 z-50 p-3 sm:p-4">
-        <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 1, duration: 0.5, ease: "easeOut" }}
-        >
+        <div>
           <div className="mx-auto max-w-2xl rounded-2xl bg-gray-900/95 backdrop-blur-lg border border-gray-700/50 shadow-2xl shadow-black/20 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-sm text-gray-200 text-center sm:text-left font-medium">
               This is a live demo —{" "}
@@ -1057,7 +867,7 @@ export default function MedicalDemoPage() {
               Get This Site
             </Link>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Bottom padding to account for floating banner */}

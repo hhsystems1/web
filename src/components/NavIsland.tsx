@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
@@ -16,20 +15,16 @@ export default function NavIsland() {
 
   return (
     <>
-      <motion.nav
-        initial={false}
-        animate={{ y: 8 }}
-        className="fixed top-0 left-0 right-0 z-50 p-2 sm:p-4 transition-all duration-500"
-      >
-        <motion.div
-          animate={{
+      <nav className="fixed top-0 left-0 right-0 z-50 p-2 sm:p-4">
+        <div
+          className="mx-auto max-w-fit px-4 py-3 sm:px-6 md:px-8 transition-all duration-500"
+          style={{
             borderRadius: '9999px',
             backdropFilter: 'blur(24px)',
             backgroundColor: 'rgba(255, 255, 255, 0.75)',
             border: '1px solid rgba(80, 200, 120, 0.25)',
             boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), 0 0 20px rgba(80, 200, 120, 0.08), 0 0 40px rgba(80, 200, 120, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
           }}
-          className="mx-auto max-w-fit px-4 py-3 transition-all duration-500 sm:px-6 md:px-8"
         >
           <div className="flex items-center justify-between w-full">
             <Link href="/" className="flex items-center hover:opacity-80 hover:scale-105 transition-all duration-300 flex-shrink-0 group" aria-label="Helping Hands Systems home">
@@ -67,39 +62,30 @@ export default function NavIsland() {
               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
-        </motion.div>
-      </motion.nav>
+        </div>
+      </nav>
 
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl md:hidden"
-          >
-            <div className="flex flex-col items-center justify-center min-h-screen space-y-6 px-4">
-              {navItems.map((item, index) => (
-                <motion.div
-                  key={item.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="w-full max-w-xs"
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl md:hidden animate-in fade-in duration-200">
+          <div className="flex flex-col items-center justify-center min-h-screen space-y-6 px-4">
+            {navItems.map((item, index) => (
+              <div
+                key={item.href}
+                className="w-full max-w-xs"
+                style={{ animationDelay: `${index * 0.05}s` }}
+              >
+                <Link
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block text-center text-xl sm:text-2xl text-gray-800 hover:text-emerald-700 hover:scale-105 transition-all duration-300 py-3 px-6 rounded-full hover:bg-emerald-50 hover:shadow-lg hover:shadow-emerald-200/50 border border-transparent hover:border-emerald-200/50"
                 >
-                  <Link
-                    href={item.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-center text-xl sm:text-2xl text-gray-800 hover:text-emerald-700 hover:scale-105 transition-all duration-300 py-3 px-6 rounded-full hover:bg-emerald-50 hover:shadow-lg hover:shadow-emerald-200/50 border border-transparent hover:border-emerald-200/50"
-                  >
-                    {item.label}
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                  {item.label}
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </>
   );
 }

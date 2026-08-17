@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import NavIsland from "@/components/NavIsland";
 import {
   UtensilsCrossed,
@@ -21,15 +20,6 @@ import {
   Facebook,
   Twitter,
 } from "lucide-react";
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.1, duration: 0.5, ease: "easeOut" },
-  }),
-};
 
 const menuCategories = [
   {
@@ -136,21 +126,11 @@ export default function RestaurantDemoPage() {
           <div className="absolute top-20 left-20 w-72 h-72 bg-emerald-400 rounded-full blur-3xl" />
           <div className="absolute bottom-20 right-20 w-96 h-96 bg-amber-300 rounded-full blur-3xl" />
         </div>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative z-10 text-center px-6 max-w-4xl mx-auto"
-        >
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8"
-          >
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8">
             <Leaf className="w-4 h-4 text-emerald-300" />
             <span className="text-emerald-200 text-sm font-medium tracking-wide uppercase">Farm to Table</span>
-          </motion.div>
+          </div>
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif text-white mb-6 leading-tight tracking-tight">
             The Golden Fork
           </h1>
@@ -177,28 +157,19 @@ export default function RestaurantDemoPage() {
               Reserve a Table
             </a>
           </div>
-        </motion.div>
+        </div>
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-            className="w-6 h-10 border-2 border-white/40 rounded-full flex items-start justify-center p-1.5"
-          >
+          <div className="w-6 h-10 border-2 border-white/40 rounded-full flex items-start justify-center p-1.5">
             <div className="w-1.5 h-3 bg-white/60 rounded-full" />
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* About */}
       <section className="py-20 md:py-28 px-6">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid md:grid-cols-2 gap-12 md:gap-16 items-center"
-          >
-            <motion.div variants={fadeInUp} custom={0}>
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+            <div>
               <div className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200/60 rounded-full px-4 py-1.5 mb-6">
                 <Award className="w-4 h-4 text-emerald-600" />
                 <span className="text-emerald-700 text-sm font-medium">Est. 2018</span>
@@ -228,9 +199,9 @@ export default function RestaurantDemoPage() {
                   remind you why sharing a meal matters.
                 </p>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp} custom={1} className="relative">
+            <div className="relative">
               <div className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl p-8 shadow-lg shadow-gray-200/50">
                 <div className="flex items-center gap-3 mb-6">
                   <Clock className="w-5 h-5 text-emerald-600" />
@@ -255,21 +226,16 @@ export default function RestaurantDemoPage() {
                 </div>
               </div>
               <div className="absolute -z-10 -bottom-4 -right-4 w-full h-full bg-emerald-100/50 rounded-2xl" />
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Menu */}
       <section id="menu" className="py-20 md:py-28 px-6 bg-white/50">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="text-center mb-14"
-          >
-            <motion.div variants={fadeInUp} custom={0}>
+          <div className="text-center mb-14">
+            <div>
               <span className="text-emerald-600 font-medium text-sm tracking-widest uppercase">Our Menu</span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-gray-900 mt-3 mb-4">
                 Crafted with Passion
@@ -278,18 +244,13 @@ export default function RestaurantDemoPage() {
                 Seasonal selections from our kitchen. Menu items and availability may
                 change based on the freshest local ingredients.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {menuCategories.map((category, catIdx) => (
-              <motion.div
+            {menuCategories.map((category) => (
+              <div
                 key={category.name}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
-                variants={fadeInUp}
-                custom={catIdx}
                 className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="flex items-center gap-3 mb-6">
@@ -312,7 +273,7 @@ export default function RestaurantDemoPage() {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -321,13 +282,8 @@ export default function RestaurantDemoPage() {
       {/* Reservations */}
       <section id="reservations" className="py-20 md:py-28 px-6">
         <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="text-center mb-12"
-          >
-            <motion.div variants={fadeInUp} custom={0}>
+          <div className="text-center mb-12">
+            <div>
               <span className="text-emerald-600 font-medium text-sm tracking-widest uppercase">Reservations</span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-gray-900 mt-3 mb-4">
                 Reserve Your Table
@@ -336,16 +292,10 @@ export default function RestaurantDemoPage() {
                 Secure your spot for an unforgettable evening. For parties larger
                 than 8, please call us directly.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={fadeInUp}
-            custom={1}
-          >
+          <div>
             <form
               onSubmit={handleSubmit}
               className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl p-6 md:p-10 shadow-lg shadow-gray-200/50"
@@ -445,9 +395,7 @@ export default function RestaurantDemoPage() {
                 />
               </div>
               <div className="mt-8 flex justify-center">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                <button
                   type="submit"
                   className={`inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white transition-all duration-300 shadow-lg ${
                     formSubmitted
@@ -468,23 +416,18 @@ export default function RestaurantDemoPage() {
                       Request Reservation
                     </>
                   )}
-                </motion.button>
+                </button>
               </div>
             </form>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Reviews */}
       <section className="py-20 md:py-28 px-6 bg-white/50">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="text-center mb-14"
-          >
-            <motion.div variants={fadeInUp} custom={0}>
+          <div className="text-center mb-14">
+            <div>
               <span className="text-emerald-600 font-medium text-sm tracking-widest uppercase">Guest Reviews</span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-gray-900 mt-3 mb-4">
                 What Our Guests Say
@@ -493,18 +436,13 @@ export default function RestaurantDemoPage() {
                 We are grateful for every guest who walks through our doors and
                 shares their experience.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {reviews.map((review, idx) => (
-              <motion.div
+            {reviews.map((review) => (
+              <div
                 key={review.name}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
-                variants={fadeInUp}
-                custom={idx}
                 className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="flex items-center gap-1 mb-4">
@@ -538,7 +476,7 @@ export default function RestaurantDemoPage() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -547,13 +485,8 @@ export default function RestaurantDemoPage() {
       {/* Contact */}
       <section id="contact" className="py-20 md:py-28 px-6">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="text-center mb-14"
-          >
-            <motion.div variants={fadeInUp} custom={0}>
+          <div className="text-center mb-14">
+            <div>
               <span className="text-emerald-600 font-medium text-sm tracking-widest uppercase">Find Us</span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-gray-900 mt-3 mb-4">
                 Visit The Golden Fork
@@ -561,16 +494,11 @@ export default function RestaurantDemoPage() {
               <p className="text-gray-500 max-w-lg mx-auto text-base md:text-lg">
                 Located in the heart of downtown, steps from the waterfront park.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            className="grid md:grid-cols-2 gap-8"
-          >
-            <motion.div variants={fadeInUp} custom={0} className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="space-y-6">
               <div className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl p-6 shadow-sm">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -621,9 +549,9 @@ export default function RestaurantDemoPage() {
                   <Twitter className="w-5 h-5 text-gray-500 group-hover:text-emerald-600 transition-colors" />
                 </a>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp} custom={1}>
+            <div>
               <div className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl overflow-hidden shadow-sm h-full min-h-[400px] flex items-center justify-center">
                 <div className="text-center p-8">
                   <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -644,8 +572,8 @@ export default function RestaurantDemoPage() {
                   </a>
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -708,12 +636,7 @@ export default function RestaurantDemoPage() {
 
       {/* Floating Demo Banner */}
       <div className="fixed bottom-0 left-0 right-0 z-50 p-4 pointer-events-none">
-        <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.5, ease: "easeOut" }}
-          className="pointer-events-auto"
-        >
+        <div className="pointer-events-auto">
           <a
             href="/payment?demo=restaurant"
             className="flex items-center justify-center gap-3 bg-gray-900 hover:bg-gray-800 text-white px-6 py-3.5 rounded-2xl shadow-2xl shadow-gray-900/30 transition-all duration-300 hover:scale-[1.02] max-w-2xl mx-auto border border-gray-700/50"
@@ -724,7 +647,7 @@ export default function RestaurantDemoPage() {
               Get This For Your Business
             </span>
           </a>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

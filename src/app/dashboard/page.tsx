@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import NavIsland from "@/components/NavIsland";
 import {
   LayoutDashboard,
@@ -142,12 +141,9 @@ export default function DashboardPage() {
   const renderOverview = () => (
     <div className="space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {stats.map((stat, i) => (
-          <motion.div
+        {stats.map((stat) => (
+          <div
             key={stat.label}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
             className="bg-white rounded-xl border border-gray-200 p-6"
           >
             <div className="flex items-center justify-between mb-4">
@@ -169,41 +165,29 @@ export default function DashboardPage() {
             </div>
             <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
             <div className="text-sm text-gray-500 mt-1">{stat.label}</div>
-          </motion.div>
+          </div>
         ))}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-6"
-        >
+        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-6">
             Daily Visitors
           </h3>
           <div className="flex items-end justify-between h-48 gap-2">
-            {dailyVisitors.map((day, i) => (
+            {dailyVisitors.map((day) => (
               <div key={day.day} className="flex-1 flex flex-col items-center">
-                <motion.div
-                  initial={{ height: 0 }}
-                  animate={{ height: `${(day.value / maxVisitors) * 100}%` }}
-                  transition={{ delay: 0.5 + i * 0.05, duration: 0.5 }}
+                <div
+                  style={{ height: `${(day.value / maxVisitors) * 100}%` }}
                   className="w-full bg-emerald-500 rounded-t-md min-h-[4px]"
                 />
                 <span className="text-xs text-gray-500 mt-2">{day.day}</span>
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="bg-white rounded-xl border border-gray-200 p-6"
-        >
+        <div className="bg-white rounded-xl border border-gray-200 p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-6">
             Lead Sources
           </h3>
@@ -215,17 +199,15 @@ export default function DashboardPage() {
                   <span className="text-gray-500">{source.percentage}%</span>
                 </div>
                 <div className="w-full bg-gray-100 rounded-full h-2">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: `${source.percentage}%` }}
-                    transition={{ delay: 0.6, duration: 0.8 }}
+                  <div
+                    style={{ width: `${source.percentage}%` }}
                     className={`${source.color} h-2 rounded-full`}
                   />
                 </div>
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );
@@ -233,35 +215,24 @@ export default function DashboardPage() {
   const renderTraffic = () => (
     <div className="space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-xl border border-gray-200 p-6"
-        >
+        <div className="bg-white rounded-xl border border-gray-200 p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-6">
             Visitors by Day
           </h3>
           <div className="flex items-end justify-between h-48 gap-2">
-            {dailyVisitors.map((day, i) => (
+            {dailyVisitors.map((day) => (
               <div key={day.day} className="flex-1 flex flex-col items-center">
-                <motion.div
-                  initial={{ height: 0 }}
-                  animate={{ height: `${(day.value / maxVisitors) * 100}%` }}
-                  transition={{ delay: 0.2 + i * 0.05, duration: 0.5 }}
+                <div
+                  style={{ height: `${(day.value / maxVisitors) * 100}%` }}
                   className="w-full bg-blue-500 rounded-t-md min-h-[4px]"
                 />
                 <span className="text-xs text-gray-500 mt-2">{day.day}</span>
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="bg-white rounded-xl border border-gray-200 p-6"
-        >
+        <div className="bg-white rounded-xl border border-gray-200 p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-6">
             Device Breakdown
           </h3>
@@ -277,10 +248,8 @@ export default function DashboardPage() {
                     <span className="text-gray-500">{device.percentage}%</span>
                   </div>
                   <div className="w-full bg-gray-100 rounded-full h-2">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${device.percentage}%` }}
-                      transition={{ delay: 0.3, duration: 0.8 }}
+                    <div
+                      style={{ width: `${device.percentage}%` }}
                       className="bg-emerald-500 h-2 rounded-full"
                     />
                   </div>
@@ -288,18 +257,13 @@ export default function DashboardPage() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="bg-white rounded-xl border border-gray-200 p-6"
-      >
+      <div className="bg-white rounded-xl border border-gray-200 p-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-6">Top Pages</h3>
         <div className="space-y-3">
-        {topPages.map((page) => (
+        {topPages.map((page, i) => (
             <div
               key={page.page}
               className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0"
@@ -331,16 +295,12 @@ export default function DashboardPage() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 
   const renderLeads = () => (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="bg-white rounded-xl border border-gray-200 overflow-hidden"
-    >
+    <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
       <div className="p-6 border-b border-gray-200">
         <h3 className="text-lg font-semibold text-gray-900">Recent Leads</h3>
         <p className="text-sm text-gray-500 mt-1">
@@ -369,12 +329,9 @@ export default function DashboardPage() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {recentLeads.map((lead, i) => (
-              <motion.tr
+            {recentLeads.map((lead) => (
+              <tr
                 key={lead.email}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.05 }}
                 className="hover:bg-gray-50 transition-colors"
               >
                 <td className="px-6 py-4 whitespace-nowrap">
@@ -400,12 +357,12 @@ export default function DashboardPage() {
                     {lead.status}
                   </span>
                 </td>
-              </motion.tr>
+              </tr>
             ))}
           </tbody>
         </table>
       </div>
-    </motion.div>
+    </div>
   );
 
   const renderConversions = () => {
@@ -413,11 +370,7 @@ export default function DashboardPage() {
 
     return (
       <div className="space-y-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-xl border border-gray-200 p-6"
-        >
+        <div className="bg-white rounded-xl border border-gray-200 p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-6">
             Conversion Funnel
           </h3>
@@ -430,11 +383,8 @@ export default function DashboardPage() {
                   : null;
 
               return (
-                <motion.div
+                <div
                   key={step.label}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.2 + i * 0.1 }}
                   className="w-full max-w-md"
                 >
                   <div className="flex items-center justify-between mb-2">
@@ -446,16 +396,14 @@ export default function DashboardPage() {
                     </span>
                   </div>
                   <div className="w-full bg-gray-100 rounded-full h-8 overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${widthPercentage}%` }}
-                      transition={{ delay: 0.3 + i * 0.1, duration: 0.8 }}
+                    <div
+                      style={{ width: `${widthPercentage}%` }}
                       className={`${step.color} h-8 rounded-full flex items-center justify-end pr-3`}
                     >
                       <span className="text-xs font-medium text-white">
                         {((step.value / maxValue) * 100).toFixed(1)}%
                       </span>
-                    </motion.div>
+                    </div>
                   </div>
                   {conversionRate && (
                     <div className="flex items-center justify-center mt-2 text-xs text-gray-500">
@@ -463,57 +411,38 @@ export default function DashboardPage() {
                       {conversionRate}% conversion from previous
                     </div>
                   )}
-                </motion.div>
+                </div>
               );
             })}
           </div>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="bg-white rounded-xl border border-gray-200 p-6 text-center"
-          >
+          <div className="bg-white rounded-xl border border-gray-200 p-6 text-center">
             <div className="text-3xl font-bold text-emerald-500 mb-2">
               {((342 / 12847) * 100).toFixed(1)}%
             </div>
             <div className="text-sm text-gray-600">Visitor to Lead</div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="bg-white rounded-xl border border-gray-200 p-6 text-center"
-          >
+          </div>
+          <div className="bg-white rounded-xl border border-gray-200 p-6 text-center">
             <div className="text-3xl font-bold text-blue-500 mb-2">
               {((89 / 342) * 100).toFixed(1)}%
             </div>
             <div className="text-sm text-gray-600">Lead to Booking</div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
-            className="bg-white rounded-xl border border-gray-200 p-6 text-center"
-          >
+          </div>
+          <div className="bg-white rounded-xl border border-gray-200 p-6 text-center">
             <div className="text-3xl font-bold text-purple-500 mb-2">
               {((34 / 89) * 100).toFixed(1)}%
             </div>
             <div className="text-sm text-gray-600">Booking to Customer</div>
-          </motion.div>
+          </div>
         </div>
       </div>
     );
   };
 
   const renderPages = () => (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="bg-white rounded-xl border border-gray-200 p-6"
-    >
+    <div className="bg-white rounded-xl border border-gray-200 p-6">
       <h3 className="text-lg font-semibold text-gray-900 mb-6">
         Page Performance
       </h3>
@@ -545,15 +474,11 @@ export default function DashboardPage() {
           </div>
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 
   const renderSettings = () => (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="bg-white rounded-xl border border-gray-200 p-6"
-    >
+    <div className="bg-white rounded-xl border border-gray-200 p-6">
       <h3 className="text-lg font-semibold text-gray-900 mb-6">Settings</h3>
       <div className="space-y-6 max-w-2xl">
         <div>
@@ -600,7 +525,7 @@ export default function DashboardPage() {
           Save Changes
         </button>
       </div>
-    </motion.div>
+    </div>
   );
 
   const renderContent = () => {
@@ -632,25 +557,18 @@ export default function DashboardPage() {
       <NavIsland />
 
       {/* Mobile sidebar overlay */}
-      <AnimatePresence>
-        {sidebarOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/20 z-40 lg:hidden"
-            onClick={() => setSidebarOpen(false)}
-          />
-        )}
-      </AnimatePresence>
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/20 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
 
       {/* Sidebar */}
-      <motion.aside
-        initial={false}
-        animate={{
-          x: sidebarOpen ? 0 : -280,
-        }}
-        className="fixed top-0 left-0 bottom-0 w-64 bg-white border-r border-gray-200 z-50 lg:translate-x-0 lg:z-30"
+      <aside
+        className={`fixed top-0 left-0 bottom-0 w-64 bg-white border-r border-gray-200 z-50 transition-transform duration-200 ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0 lg:z-30"
+        }`}
       >
         <div className="p-6 border-b border-gray-100">
           <div className="flex items-center justify-between">
@@ -689,15 +607,12 @@ export default function DashboardPage() {
               <item.icon className="w-5 h-5" />
               {item.label}
               {activeTab === item.id && (
-                <motion.div
-                  layoutId="activeIndicator"
-                  className="ml-auto w-1.5 h-1.5 bg-emerald-500 rounded-full"
-                />
+                <div className="ml-auto w-1.5 h-1.5 bg-emerald-500 rounded-full" />
               )}
             </button>
           ))}
         </nav>
-      </motion.aside>
+      </aside>
 
       {/* Main content */}
       <div className="lg:ml-64 min-h-screen pt-20">
@@ -731,33 +646,26 @@ export default function DashboardPage() {
                   {dateRange}
                   <ChevronDown className="w-4 h-4 text-gray-400" />
                 </button>
-                <AnimatePresence>
-                  {dateDropdownOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden z-30"
-                    >
-                      {dateRanges.map((range) => (
-                        <button
-                          key={range}
-                          onClick={() => {
-                            setDateRange(range);
-                            setDateDropdownOpen(false);
-                          }}
-                          className={`w-full px-4 py-2 text-left text-sm hover:bg-gray-50 transition-colors ${
-                            dateRange === range
-                              ? "bg-emerald-50 text-emerald-600 font-medium"
-                              : "text-gray-700"
-                          }`}
-                        >
-                          {range}
-                        </button>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {dateDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden z-30">
+                    {dateRanges.map((range) => (
+                      <button
+                        key={range}
+                        onClick={() => {
+                          setDateRange(range);
+                          setDateDropdownOpen(false);
+                        }}
+                        className={`w-full px-4 py-2 text-left text-sm hover:bg-gray-50 transition-colors ${
+                          dateRange === range
+                            ? "bg-emerald-50 text-emerald-600 font-medium"
+                            : "text-gray-700"
+                        }`}
+                      >
+                        {range}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div className="w-9 h-9 bg-emerald-100 rounded-full flex items-center justify-center">
@@ -771,17 +679,9 @@ export default function DashboardPage() {
 
         {/* Dashboard content */}
         <div className="p-4 sm:p-6">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2 }}
-            >
-              {renderContent()}
-            </motion.div>
-          </AnimatePresence>
+          <div key={activeTab}>
+            {renderContent()}
+          </div>
         </div>
       </div>
 

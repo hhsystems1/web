@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -14,12 +13,7 @@ export default function TermsPage() {
 
       <Section className="pt-32">
         <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="prose prose-lg max-w-none"
-          >
+          <div className="prose prose-lg max-w-none">
             <h1 className="text-5xl font-bold text-gray-900 mb-8">Helping Hands Systems — Web Development Terms of Service</h1>
 
             <div className="text-gray-600 mb-12 space-y-2">
@@ -154,7 +148,7 @@ export default function TermsPage() {
                 </div>
               </section>
             </div>
-          </motion.div>
+          </div>
         </div>
       </Section>
 

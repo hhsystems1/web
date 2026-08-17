@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import NavIsland from "@/components/NavIsland";
 import Link from "next/link";
 import {
@@ -134,15 +133,6 @@ const timelines = [
   "Just exploring options",
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.1, duration: 0.5, ease: "easeOut" },
-  }),
-};
-
 export default function ContractorDemoPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -176,21 +166,11 @@ export default function ContractorDemoPage() {
       {/* Hero */}
       <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/80 via-[#faf8f5] to-blue-50/50 pointer-events-none" />
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="relative max-w-4xl mx-auto text-center"
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 text-sm font-semibold px-4 py-2 rounded-full mb-6"
-          >
+        <div className="relative max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 text-sm font-semibold px-4 py-2 rounded-full mb-6">
             <Hammer size={16} />
             Licensed & Insured · Serving the Triangle Since 2009
-          </motion.div>
+          </div>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 mb-6 leading-tight">
             Summit{" "}
             <span className="text-emerald-600">Builders</span>
@@ -201,38 +181,27 @@ export default function ContractorDemoPage() {
             and care.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <motion.a
+            <a
               href="#quote"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
               className="inline-flex items-center justify-center gap-2 bg-emerald-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-600/25"
             >
               Get a Free Quote
               <ArrowRight size={20} />
-            </motion.a>
-            <motion.a
+            </a>
+            <a
               href="#services"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
               className="inline-flex items-center justify-center gap-2 bg-white/80 text-gray-700 border border-gray-200/60 px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:border-gray-300 transition-colors"
             >
               View Our Services
-            </motion.a>
+            </a>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* Services */}
       <section id="services" className="py-20 sm:py-28 px-4">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeUp}
-            custom={0}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               Our Services
             </h2>
@@ -240,19 +209,13 @@ export default function ContractorDemoPage() {
               Comprehensive remodeling and construction services tailored to
               your home or business.
             </p>
-          </motion.div>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, i) => {
+            {services.map((service) => {
               const Icon = service.icon;
               return (
-                <motion.div
+                <div
                   key={service.title}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-40px" }}
-                  variants={fadeUp}
-                  custom={i}
-                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
                   className="bg-white/80 border border-gray-200/60 rounded-2xl p-8 hover:shadow-lg hover:shadow-emerald-100/50 hover:border-emerald-200/60 transition-all duration-300"
                 >
                   <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mb-5">
@@ -264,7 +227,7 @@ export default function ContractorDemoPage() {
                   <p className="text-gray-500 leading-relaxed">
                     {service.description}
                   </p>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -274,30 +237,18 @@ export default function ContractorDemoPage() {
       {/* Before & After */}
       <section className="py-20 sm:py-28 px-4 bg-gradient-to-b from-[#faf8f5] to-emerald-50/30">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeUp}
-            custom={0}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               Before &amp; After
             </h2>
             <p className="text-lg text-gray-500 max-w-xl mx-auto">
               See the transformations we deliver for our clients every day.
             </p>
-          </motion.div>
+          </div>
           <div className="space-y-10">
-            {projects.map((project, i) => (
-              <motion.div
+            {projects.map((project) => (
+              <div
                 key={project.title}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-40px" }}
-                variants={fadeUp}
-                custom={i}
                 className="bg-white/80 border border-gray-200/60 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="grid grid-cols-1 md:grid-cols-2">
@@ -322,7 +273,7 @@ export default function ContractorDemoPage() {
                   </h3>
                   <p className="text-gray-500">{project.description}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -331,14 +282,7 @@ export default function ContractorDemoPage() {
       {/* Quote Request Form */}
       <section id="quote" className="py-20 sm:py-28 px-4">
         <div className="max-w-3xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeUp}
-            custom={0}
-            className="text-center mb-12"
-          >
+          <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               Request a Free Quote
             </h2>
@@ -346,13 +290,8 @@ export default function ContractorDemoPage() {
               Tell us about your project and we will get back to you within 24
               hours with a detailed estimate.
             </p>
-          </motion.div>
-          <motion.form
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-40px" }}
-            variants={fadeUp}
-            custom={1}
+          </div>
+          <form
             onSubmit={handleSubmit}
             className="bg-white/80 border border-gray-200/60 rounded-2xl p-8 sm:p-10 space-y-6"
           >
@@ -499,10 +438,8 @@ export default function ContractorDemoPage() {
                 className="w-full px-4 py-3 rounded-xl border border-gray-200/80 bg-[#faf8f5] text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-400 transition-all resize-none"
               />
             </div>
-            <motion.button
+            <button
               type="submit"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
               className="w-full bg-emerald-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-600/25 flex items-center justify-center gap-2"
             >
               {submitted ? (
@@ -516,41 +453,29 @@ export default function ContractorDemoPage() {
                   <ArrowRight size={20} />
                 </>
               )}
-            </motion.button>
+            </button>
             <p className="text-center text-sm text-gray-400">
               We will respond within 24 hours. No spam, no obligation.
             </p>
-          </motion.form>
+          </form>
         </div>
       </section>
 
       {/* Testimonials */}
       <section className="py-20 sm:py-28 px-4 bg-gradient-to-b from-[#faf8f5] to-emerald-50/30">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeUp}
-            custom={0}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               What Our Clients Say
             </h2>
             <p className="text-lg text-gray-500 max-w-xl mx-auto">
               Hundreds of satisfied homeowners and businesses across the Triangle.
             </p>
-          </motion.div>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {testimonials.map((testimonial, i) => (
-              <motion.div
+            {testimonials.map((testimonial) => (
+              <div
                 key={testimonial.name}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-40px" }}
-                variants={fadeUp}
-                custom={i}
                 className="bg-white/80 border border-gray-200/60 rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="flex items-center gap-1 mb-4">
@@ -575,7 +500,7 @@ export default function ContractorDemoPage() {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -584,14 +509,7 @@ export default function ContractorDemoPage() {
       {/* Service Area */}
       <section className="py-20 sm:py-28 px-4">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeUp}
-            custom={0}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               Our Service Area
             </h2>
@@ -599,15 +517,8 @@ export default function ContractorDemoPage() {
               Proudly serving homeowners and businesses throughout the greater
               Triangle area.
             </p>
-          </motion.div>
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-40px" }}
-            variants={fadeUp}
-            custom={1}
-            className="bg-white/80 border border-gray-200/60 rounded-2xl overflow-hidden"
-          >
+          </div>
+          <div className="bg-white/80 border border-gray-200/60 rounded-2xl overflow-hidden">
             <div className="bg-gray-200/80 aspect-[2/1] sm:aspect-[2.5/1] flex items-center justify-center">
               <div className="text-center">
                 <MapPin
@@ -664,7 +575,7 @@ export default function ContractorDemoPage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -733,12 +644,7 @@ export default function ContractorDemoPage() {
       </footer>
 
       {/* Floating Demo Banner */}
-      <motion.div
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.6, ease: "easeOut" }}
-        className="fixed bottom-0 left-0 right-0 z-50 p-3 sm:p-4"
-      >
+      <div className="fixed bottom-0 left-0 right-0 z-50 p-3 sm:p-4">
         <div className="max-w-3xl mx-auto bg-gray-900/95 backdrop-blur-md rounded-2xl px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-2xl shadow-black/20 border border-gray-700/50">
           <p className="text-white text-sm sm:text-base font-medium text-center sm:text-left">
             This is a live demo —{" "}
@@ -746,17 +652,15 @@ export default function ContractorDemoPage() {
               Get This For Your Business
             </span>
           </p>
-          <motion.a
+          <a
             href="/payment?demo=contractor"
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
             className="inline-flex items-center gap-2 bg-emerald-600 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-emerald-500 transition-colors whitespace-nowrap shadow-lg shadow-emerald-600/30"
           >
             Claim Your Demo
             <ArrowRight size={16} />
-          </motion.a>
+          </a>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
