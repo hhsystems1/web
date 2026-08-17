@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import FloatingParticles from "@/components/FloatingParticles";
-import InteractiveBackground from "@/components/InteractiveBackground";
 import TurtleChatWidget from "@/components/TurtleChatWidget";
 
 const inter = Inter({
@@ -32,8 +30,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
-        <InteractiveBackground />
-        <FloatingParticles />
         {children}
         <TurtleChatWidget />
       </body>

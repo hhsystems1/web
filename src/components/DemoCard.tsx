@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 
@@ -15,24 +14,21 @@ interface DemoCardProps {
   index: number;
 }
 
-const neonStyles: Record<Industry, { border: string; glow: string; shadow: string; badge: string; badgeText: string }> = {
+const neonStyles: Record<Industry, { border: string; shadow: string; badge: string; badgeText: string }> = {
   restaurant: {
     border: 'border-emerald-400/40',
-    glow: 'shadow-emerald-400/25',
     shadow: '0 0 20px rgba(52, 211, 153, 0.3), 0 0 40px rgba(52, 211, 153, 0.1)',
     badge: 'bg-emerald-500/10 border-emerald-400/30',
     badgeText: 'text-emerald-700',
   },
   contractor: {
     border: 'border-blue-400/40',
-    glow: 'shadow-blue-400/25',
     shadow: '0 0 20px rgba(59, 130, 246, 0.3), 0 0 40px rgba(59, 130, 246, 0.1)',
     badge: 'bg-blue-500/10 border-blue-400/30',
     badgeText: 'text-blue-700',
   },
   medical: {
     border: 'border-purple-400/40',
-    glow: 'shadow-purple-400/25',
     shadow: '0 0 20px rgba(168, 85, 247, 0.3), 0 0 40px rgba(168, 85, 247, 0.1)',
     badge: 'bg-purple-500/10 border-purple-400/30',
     badgeText: 'text-purple-700',
@@ -46,18 +42,9 @@ const industryLabels: Record<Industry, string> = {
 };
 
 const industryPlaceholders: Record<Industry, { gradient: string; icon: string }> = {
-  restaurant: {
-    gradient: 'from-emerald-500/20 to-amber-500/10',
-    icon: '🍽️',
-  },
-  contractor: {
-    gradient: 'from-blue-500/20 to-cyan-500/10',
-    icon: '🔨',
-  },
-  medical: {
-    gradient: 'from-purple-500/20 to-pink-500/10',
-    icon: '🏥',
-  },
+  restaurant: { gradient: 'from-emerald-500/20 to-amber-500/10', icon: '🍽️' },
+  contractor: { gradient: 'from-blue-500/20 to-cyan-500/10', icon: '🔨' },
+  medical: { gradient: 'from-purple-500/20 to-pink-500/10', icon: '🏥' },
 };
 
 export default function DemoCard({ industry, title, description, features, href, index }: DemoCardProps) {
@@ -65,22 +52,14 @@ export default function DemoCard({ industry, title, description, features, href,
   const placeholder = industryPlaceholders[industry];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.12 }}
-      whileHover={{ y: -8, transition: { duration: 0.2 } }}
-      className="group relative"
+    <div
+      className="fade-in-up group relative"
+      style={{ animationDelay: `${index * 0.12}s` }}
     >
       <div
-        className={`relative h-full overflow-hidden rounded-2xl border ${style.border} bg-white/80 backdrop-blur-sm transition-all duration-300 group-hover:shadow-xl ${style.glow}`}
-        style={{ boxShadow: undefined }}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLElement).style.boxShadow = style.shadow;
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLElement).style.boxShadow = undefined;
-        }}
+        className={`relative h-full overflow-hidden rounded-2xl border ${style.border} bg-white/80 backdrop-blur-sm transition-all duration-300 group-hover:shadow-xl`}
+        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = style.shadow; }}
+        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = undefined; }}
       >
         <div className={`h-48 bg-gradient-to-br ${placeholder.gradient} flex items-center justify-center border-b border-gray-200/50`}>
           <span className="text-6xl opacity-60 group-hover:scale-110 transition-transform duration-300">{placeholder.icon}</span>
@@ -105,15 +84,12 @@ export default function DemoCard({ industry, title, description, features, href,
             ))}
           </div>
 
-          <Link
-            href={href}
-            className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-gray-800 hover:shadow-lg group-hover:scale-[1.02]"
-          >
+          <Link href={href} className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-gray-800 hover:shadow-lg group-hover:scale-[1.02]">
             Try Live Demo
             <ExternalLink size={14} />
           </Link>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Plus } from 'lucide-react';
 
 interface FAQItem {
@@ -23,41 +22,21 @@ export default function FAQ({ items, title = "Frequently Asked Questions" }: FAQ
 
       <div className="space-y-4">
         {items.map((item, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="glass rounded-xl overflow-hidden"
-          >
+          <div key={index} className="glass rounded-xl overflow-hidden">
             <button
               onClick={() => setOpenIndex(openIndex === index ? null : index)}
               className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-emerald-50/50 transition-colors"
             >
               <span className="font-semibold text-gray-900 pr-4">{item.question}</span>
-              <motion.div
-                animate={{ rotate: openIndex === index ? 45 : 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Plus size={20} className="text-emerald-500 flex-shrink-0" />
-              </motion.div>
+              <Plus size={20} className={`text-emerald-500 flex-shrink-0 transition-transform duration-200 ${openIndex === index ? 'rotate-45' : ''}`} />
             </button>
 
-            <AnimatePresence>
-              {openIndex === index && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                >
-                  <div className="px-6 pb-4">
-                    <p className="text-gray-600 leading-relaxed">{item.answer}</p>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
+            {openIndex === index && (
+              <div className="px-6 pb-4">
+                <p className="text-gray-600 leading-relaxed">{item.answer}</p>
+              </div>
+            )}
+          </div>
         ))}
       </div>
     </div>

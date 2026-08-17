@@ -1,14 +1,10 @@
 "use client";
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import {
   ArrowRight,
   CheckCircle2,
-  ClipboardList,
-  MessageSquareText,
   MousePointerClick,
-  PhoneCall,
   Sparkles,
 } from 'lucide-react';
 
@@ -19,136 +15,17 @@ interface HeroShowcaseProps {
   ctaAction: () => void;
 }
 
-const guideSteps = [
-  {
-    icon: PhoneCall,
-    title: 'Customer reaches out',
-    text: 'Calls, forms, messages, and quote requests land in one clear intake path.',
-  },
-  {
-    icon: MessageSquareText,
-    title: 'Your site responds',
-    text: 'The website answers questions, collects details, and guides visitors toward the next step.',
-  },
-  {
-    icon: ClipboardList,
-    title: 'You get the lead',
-    text: 'Lead details, bookings, and follow-up reminders stay organized until finished.',
-  },
-];
-
 const proofPoints = [
   'Local service websites',
   'Lead capture + booking',
   'Analytics dashboard included',
 ];
 
-function DemoPreviewVisual() {
-  return (
-    <div className="relative mx-auto w-full max-w-xl">
-      <div className="absolute -left-8 top-10 h-32 w-32 rounded-full bg-emerald-200/40 blur-3xl" />
-      <div className="absolute -right-10 bottom-12 h-40 w-40 rounded-full bg-blue-200/40 blur-3xl" />
-
-      <motion.div
-        initial={{ opacity: 0, y: 22, rotate: -2 }}
-        animate={{ opacity: 1, y: 0, rotate: 0 }}
-        transition={{ duration: 0.85, delay: 0.25 }}
-        className="relative overflow-hidden rounded-[2.2rem] border border-emerald-200/50 bg-white/70 p-5 shadow-2xl shadow-emerald-200/30 backdrop-blur-xl"
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(80,200,120,0.12),transparent_50%),linear-gradient(135deg,rgba(255,255,255,0.6),rgba(250,248,245,0.9))]" />
-        <div className="relative">
-          <div className="mb-4 flex items-center justify-between gap-3">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200/60 bg-emerald-50 px-3 py-2 text-xs font-bold uppercase tracking-[0.18em] text-emerald-700">
-              <Sparkles size={15} />
-              Live demo preview
-            </div>
-            <div className="rounded-full border border-gray-200 bg-gray-50 px-3 py-2 text-xs font-semibold text-gray-600">
-              Site → Demo → Dashboard
-            </div>
-          </div>
-
-          <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-            <div className="relative min-h-[260px] rounded-[1.8rem] border border-gray-200/60 bg-gray-50/80 p-4">
-              <motion.div
-                animate={{ y: [0, -10, 0], rotate: [-1, 1, -1] }}
-                transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute left-1/2 top-1/2 w-[230px] -translate-x-1/2 -translate-y-1/2"
-                aria-label="Friendly turtle guide illustration"
-              >
-                <svg viewBox="0 0 260 240" role="img" className="drop-shadow-[0_20px_40px_rgba(80,200,120,0.2)]">
-                  <defs>
-                    <linearGradient id="shell" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0%" stopColor="#ecf87f" />
-                      <stop offset="50%" stopColor="#50C878" />
-                      <stop offset="100%" stopColor="#38b5ff" />
-                    </linearGradient>
-                    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0%" stopColor="#b7f7c5" />
-                      <stop offset="100%" stopColor="#34d399" />
-                    </linearGradient>
-                    <filter id="glow">
-                      <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-                      <feMerge>
-                        <feMergeNode in="coloredBlur" />
-                        <feMergeNode in="SourceGraphic" />
-                      </feMerge>
-                    </filter>
-                  </defs>
-                  <path d="M51 184c36 28 122 35 164 0" fill="none" stroke="#38b5ff" strokeOpacity="0.3" strokeWidth="13" strokeLinecap="round" />
-                  <ellipse cx="132" cy="126" rx="76" ry="56" fill="url(#shell)" filter="url(#glow)" />
-                  <path d="M72 127c20-40 102-45 120 4-17 37-102 44-120-4Z" fill="#052e16" opacity="0.15" />
-                  <path d="M132 72v108M83 104c33 16 66 16 99 0M85 151c31-19 64-19 96 0" stroke="#052e16" strokeOpacity="0.25" strokeWidth="5" strokeLinecap="round" />
-                  <circle cx="207" cy="110" r="27" fill="url(#skin)" />
-                  <circle cx="217" cy="103" r="4" fill="#052e16" />
-                  <path d="M217 116c7 4 14 3 20-2" stroke="#052e16" strokeWidth="4" strokeLinecap="round" fill="none" />
-                  <circle cx="74" cy="180" r="20" fill="url(#skin)" />
-                  <circle cx="172" cy="181" r="20" fill="url(#skin)" />
-                  <circle cx="62" cy="91" r="18" fill="url(#skin)" />
-                  <circle cx="121" cy="67" r="18" fill="url(#skin)" />
-                  <path d="M196 73l20-35 12 37 35 4-29 21 8 35-29-19-30 18 9-35-28-22 32-4Z" fill="#ecf87f" opacity="0.92" />
-                  <path d="M31 54c18 8 32 21 42 39" stroke="#50C878" strokeWidth="6" strokeLinecap="round" fill="none" />
-                  <path d="M28 55l24-8-10 24" stroke="#50C878" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                </svg>
-              </motion.div>
-
-              <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-gray-200/60 bg-white/80 p-3 backdrop-blur-md shadow-sm">
-                <div className="flex items-center gap-2 text-sm font-semibold text-gray-800">
-                  <MousePointerClick size={16} className="text-emerald-600" />
-                  Follow the guide down the page
-                </div>
-                <p className="mt-1 text-xs leading-relaxed text-gray-500">
-                  From live demo to your custom website with dashboard.
-                </p>
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              {guideSteps.map((step, index) => (
-                <motion.div
-                  key={step.title}
-                  initial={{ opacity: 0, x: 18 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.5 + index * 0.12 }}
-                  className="rounded-2xl border border-gray-200/60 bg-white/60 p-4"
-                >
-                  <div className="flex gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-200/50">
-                      <step.icon size={20} />
-                    </div>
-                    <div>
-                      <h2 className="text-base font-bold text-gray-800">{step.title}</h2>
-                      <p className="mt-1 text-sm leading-relaxed text-gray-500">{step.text}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </motion.div>
-    </div>
-  );
-}
+const guideSteps = [
+  { icon: '📞', title: 'Customer reaches out', text: 'Calls, forms, messages, and quote requests land in one clear intake path.' },
+  { icon: '💬', title: 'Your site responds', text: 'The website answers questions, collects details, and guides visitors toward the next step.' },
+  { icon: '📋', title: 'You get the lead', text: 'Lead details, bookings, and follow-up reminders stay organized until finished.' },
+];
 
 export default function HeroShowcase({ title, subtitle, ctaText, ctaAction }: HeroShowcaseProps) {
   return (
@@ -158,40 +35,20 @@ export default function HeroShowcase({ title, subtitle, ctaText, ctaAction }: He
 
       <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-6 inline-flex items-center gap-3 rounded-full border border-emerald-200/60 bg-emerald-50/80 px-4 py-2 text-sm font-semibold text-emerald-700 backdrop-blur-md"
-          >
+          <div className="fade-in-up mb-6 inline-flex items-center gap-3 rounded-full border border-emerald-200/60 bg-emerald-50/80 px-4 py-2 text-sm font-semibold text-emerald-700 backdrop-blur-md">
             <Sparkles size={16} />
             Websites built to generate more customers
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.05 }}
-            className="max-w-4xl text-4xl font-black leading-[0.98] tracking-tight text-gray-900 sm:text-5xl md:text-7xl"
-          >
+          <h1 className="fade-in-up max-w-4xl text-4xl font-black leading-[0.98] tracking-tight text-gray-900 sm:text-5xl md:text-7xl" style={{ animationDelay: '0.05s' }}>
             {title}
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.18 }}
-            className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-600 md:text-xl"
-          >
+          <p className="fade-in-up mt-6 max-w-2xl text-lg leading-relaxed text-gray-600 md:text-xl" style={{ animationDelay: '0.18s' }}>
             {subtitle}
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-8 flex flex-col gap-4 sm:flex-row"
-          >
+          <div className="fade-in-up mt-8 flex flex-col gap-4 sm:flex-row" style={{ animationDelay: '0.3s' }}>
             <button onClick={ctaAction} className="btn btn-primary gap-2">
               {ctaText}
               <ArrowRight size={18} />
@@ -199,24 +56,63 @@ export default function HeroShowcase({ title, subtitle, ctaText, ctaAction }: He
             <Link href="/contact" className="btn gap-2">
               Get a Free Demo
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.42 }}
-            className="mt-9 flex flex-wrap gap-3"
-          >
+          <div className="fade-in-up mt-9 flex flex-wrap gap-3" style={{ animationDelay: '0.42s' }}>
             {proofPoints.map((point) => (
               <span key={point} className="inline-flex items-center gap-2 rounded-full border border-gray-200/60 bg-white/60 px-4 py-2 text-sm font-semibold text-gray-700 backdrop-blur-md">
                 <CheckCircle2 size={16} className="text-emerald-500" />
                 {point}
               </span>
             ))}
-          </motion.div>
+          </div>
         </div>
 
-        <DemoPreviewVisual />
+        <div className="fade-in-up" style={{ animationDelay: '0.25s' }}>
+          <div className="relative mx-auto w-full max-w-xl">
+            <div className="absolute -left-8 top-10 h-32 w-32 rounded-full bg-emerald-200/40 blur-3xl" />
+            <div className="absolute -right-10 bottom-12 h-40 w-40 rounded-full bg-blue-200/40 blur-3xl" />
+
+            <div className="relative overflow-hidden rounded-[2.2rem] border border-emerald-200/50 bg-white/70 p-5 shadow-2xl shadow-emerald-200/30 backdrop-blur-xl">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(80,200,120,0.12),transparent_50%),linear-gradient(135deg,rgba(255,255,255,0.6),rgba(250,248,245,0.9))]" />
+              <div className="relative">
+                <div className="mb-4 flex items-center justify-between gap-3">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200/60 bg-emerald-50 px-3 py-2 text-xs font-bold uppercase tracking-[0.18em] text-emerald-700">
+                    <Sparkles size={15} />
+                    Live demo preview
+                  </div>
+                  <div className="rounded-full border border-gray-200 bg-gray-50 px-3 py-2 text-xs font-semibold text-gray-600">
+                    Site → Demo → Dashboard
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  {guideSteps.map((step, index) => (
+                    <div key={step.title} className="fade-in-up rounded-2xl border border-gray-200/60 bg-white/60 p-4" style={{ animationDelay: `${0.5 + index * 0.12}s` }}>
+                      <div className="flex gap-3">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-lg ring-1 ring-emerald-200/50">
+                          {step.icon}
+                        </div>
+                        <div>
+                          <h2 className="text-base font-bold text-gray-800">{step.title}</h2>
+                          <p className="mt-1 text-sm leading-relaxed text-gray-500">{step.text}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-4 rounded-2xl border border-gray-200/60 bg-white/80 p-3 backdrop-blur-md shadow-sm">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-gray-800">
+                    <MousePointerClick size={16} className="text-emerald-600" />
+                    Follow the guide down the page
+                  </div>
+                  <p className="mt-1 text-xs leading-relaxed text-gray-500">From live demo to your custom website with dashboard.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
