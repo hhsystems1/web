@@ -12,7 +12,7 @@ type ChatMessage = {
 const suggestedQuestions = [
   'What demos can I try?',
   'How does the booking flow work?',
-  'What comes with the dashboard?',
+  'How much does it cost?',
   'How do I get started?'
 ];
 

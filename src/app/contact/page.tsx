@@ -95,7 +95,6 @@ export default function ContactPage() {
               <h4 className="font-semibold text-gray-900 mb-4">Company</h4>
               <ul className="space-y-2 text-gray-500">
                 <li><Link href="/contact" className="hover:text-gray-900 transition-colors">Contact</Link></li>
-                <li><Link href="/dashboard" className="hover:text-gray-900 transition-colors">Dashboard</Link></li>
                 <li><Link href="/privacy" className="hover:text-gray-900 transition-colors">Privacy Policy</Link></li>
                 <li><Link href="/terms" className="hover:text-gray-900 transition-colors">Terms & Conditions</Link></li>
               </ul>
