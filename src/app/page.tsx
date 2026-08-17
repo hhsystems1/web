@@ -203,7 +203,7 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {funnelSteps.map((step) => (
+          {funnelSteps.map((step, index) => (
             <div key={step.title}>
               <div className="relative rounded-2xl border border-gray-200/60 bg-white/60 p-6 shadow-xl shadow-gray-100/20 backdrop-blur-xl">
                 <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 to-blue-400 text-lg font-bold text-white">{index + 1}</div>
