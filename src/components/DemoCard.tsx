@@ -16,10 +16,10 @@ interface DemoCardProps {
 
 const neonStyles: Record<Industry, { border: string; shadow: string; badge: string; badgeText: string }> = {
   restaurant: {
-    border: 'border-emerald-400/40',
-    shadow: '0 0 20px rgba(52, 211, 153, 0.3), 0 0 40px rgba(52, 211, 153, 0.1)',
-    badge: 'bg-emerald-500/10 border-emerald-400/30',
-    badgeText: 'text-emerald-700',
+    border: 'border-blue-400/40',
+    shadow: '0 0 20px rgba(56, 181, 255, 0.3), 0 0 40px rgba(56, 181, 255, 0.1)',
+    badge: 'bg-blue-500/10 border-blue-400/30',
+    badgeText: 'text-blue-700',
   },
   contractor: {
     border: 'border-blue-400/40',
@@ -42,7 +42,7 @@ const industryLabels: Record<Industry, string> = {
 };
 
 const industryPlaceholders: Record<Industry, { gradient: string; icon: string }> = {
-  restaurant: { gradient: 'from-emerald-500/20 to-amber-500/10', icon: '🍽️' },
+  restaurant: { gradient: 'from-blue-500/20 to-amber-500/10', icon: '🍽️' },
   contractor: { gradient: 'from-blue-500/20 to-cyan-500/10', icon: '🔨' },
   medical: { gradient: 'from-purple-500/20 to-pink-500/10', icon: '🏥' },
 };

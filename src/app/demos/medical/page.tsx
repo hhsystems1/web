@@ -164,14 +164,14 @@ export default function MedicalDemoPage() {
       {/* Hero */}
       <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-20 left-1/4 w-96 h-96 bg-emerald-100/40 rounded-full blur-3xl" />
+          <div className="absolute top-20 left-1/4 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl" />
           <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-teal-100/30 rounded-full blur-3xl" />
         </div>
         <div className="mx-auto max-w-5xl px-4 sm:px-6 text-center">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200/60 px-4 py-2 mb-8">
-              <Smile className="h-5 w-5 text-emerald-600" />
-              <span className="text-sm font-medium text-emerald-700">
+            <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 border border-blue-200/60 px-4 py-2 mb-8">
+              <Smile className="h-5 w-5 text-blue-600" />
+              <span className="text-sm font-medium text-blue-700">
                 Family Dental Care Since 2008
               </span>
             </div>
@@ -179,7 +179,7 @@ export default function MedicalDemoPage() {
 
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900">
             Bright Smile{" "}
-            <span className="text-emerald-600">Dental</span>
+            <span className="text-blue-600">Dental</span>
           </h1>
 
           <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
@@ -191,7 +191,7 @@ export default function MedicalDemoPage() {
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="#booking"
-              className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-emerald-600/25 hover:bg-emerald-700 hover:shadow-xl hover:shadow-emerald-600/30 transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-blue-600/25 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-600/30 transition-all duration-300 hover:scale-105"
             >
               <CalendarCheck className="h-5 w-5" />
               Book Appointment
@@ -207,15 +207,15 @@ export default function MedicalDemoPage() {
 
           <div className="mt-12 flex items-center justify-center gap-8 text-sm text-gray-500">
             <span className="flex items-center gap-1.5">
-              <ShieldCheck className="h-4 w-4 text-emerald-600" />
+              <ShieldCheck className="h-4 w-4 text-blue-600" />
               Insurance Accepted
             </span>
             <span className="flex items-center gap-1.5">
-              <Heart className="h-4 w-4 text-emerald-600" />
+              <Heart className="h-4 w-4 text-blue-600" />
               Gentle Care
             </span>
             <span className="flex items-center gap-1.5">
-              <Star className="h-4 w-4 text-emerald-600" />
+              <Star className="h-4 w-4 text-blue-600" />
               5-Star Rated
             </span>
           </div>
@@ -226,7 +226,7 @@ export default function MedicalDemoPage() {
       <section className="py-20 sm:py-28">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="text-center mb-16">
-            <span className="text-sm font-semibold text-emerald-600 uppercase tracking-wider">
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-wider">
               What We Offer
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900">
@@ -242,10 +242,10 @@ export default function MedicalDemoPage() {
             {services.map((service) => (
               <div
                 key={service.title}
-                className="group rounded-2xl bg-white/80 border border-gray-200/60 p-8 shadow-sm hover:shadow-lg hover:shadow-emerald-100/50 transition-all duration-300 hover:-translate-y-1"
+                className="group rounded-2xl bg-white/80 border border-gray-200/60 p-8 shadow-sm hover:shadow-lg hover:shadow-blue-100/50 transition-all duration-300 hover:-translate-y-1"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 border border-emerald-100 group-hover:bg-emerald-100 transition-colors duration-300">
-                  <service.icon className="h-6 w-6 text-emerald-600" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 border border-blue-100 group-hover:bg-blue-100 transition-colors duration-300">
+                  <service.icon className="h-6 w-6 text-blue-600" />
                 </div>
                 <h3 className="mt-5 text-lg font-semibold text-gray-900">
                   {service.title}
@@ -263,7 +263,7 @@ export default function MedicalDemoPage() {
       <section className="py-20 sm:py-28 bg-white/50">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="text-center mb-16">
-            <span className="text-sm font-semibold text-emerald-600 uppercase tracking-wider">
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-wider">
               Meet Your Team
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900">
@@ -281,16 +281,16 @@ export default function MedicalDemoPage() {
                 key={provider.name}
                 className="rounded-2xl bg-white/80 border border-gray-200/60 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
               >
-                <div className="h-56 bg-gradient-to-br from-emerald-100 to-teal-50 flex items-center justify-center">
-                  <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white/80 border border-emerald-200/60 shadow-sm">
-                    <User className="h-12 w-12 text-emerald-300" />
+                <div className="h-56 bg-gradient-to-br from-blue-100 to-teal-50 flex items-center justify-center">
+                  <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white/80 border border-blue-200/60 shadow-sm">
+                    <User className="h-12 w-12 text-blue-300" />
                   </div>
                 </div>
                 <div className="p-6">
                   <h3 className="text-lg font-bold text-gray-900">
                     {provider.name}
                   </h3>
-                  <p className="mt-1 text-sm font-medium text-emerald-600">
+                  <p className="mt-1 text-sm font-medium text-blue-600">
                     {provider.specialty}
                   </p>
                   <p className="mt-1 text-xs text-gray-400">
@@ -310,7 +310,7 @@ export default function MedicalDemoPage() {
       <section className="py-20 sm:py-28">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="text-center mb-16">
-            <span className="text-sm font-semibold text-emerald-600 uppercase tracking-wider">
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-wider">
               Insurance & Forms
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900">
@@ -322,8 +322,8 @@ export default function MedicalDemoPage() {
             {/* Insurance */}
             <div className="rounded-2xl bg-white/80 border border-gray-200/60 p-8 shadow-sm">
               <div className="flex items-center gap-3 mb-6">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-50 border border-emerald-100">
-                  <Shield className="h-5 w-5 text-emerald-600" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 border border-blue-100">
+                  <Shield className="h-5 w-5 text-blue-600" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900">
                   Accepted Insurance
@@ -335,7 +335,7 @@ export default function MedicalDemoPage() {
                     key={ins}
                     className="flex items-center gap-2 rounded-lg bg-[#faf8f5] border border-gray-100 px-4 py-3"
                   >
-                    <CheckCircle2 className="h-4 w-4 text-emerald-500 flex-shrink-0" />
+                    <CheckCircle2 className="h-4 w-4 text-blue-500 flex-shrink-0" />
                     <span className="text-sm text-gray-700 font-medium">
                       {ins}
                     </span>
@@ -351,8 +351,8 @@ export default function MedicalDemoPage() {
             {/* New Patient Info */}
             <div className="rounded-2xl bg-white/80 border border-gray-200/60 p-8 shadow-sm">
               <div className="flex items-center gap-3 mb-6">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-50 border border-emerald-100">
-                  <FileText className="h-5 w-5 text-emerald-600" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 border border-blue-100">
+                  <FileText className="h-5 w-5 text-blue-600" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900">
                   New Patient Information
@@ -388,7 +388,7 @@ export default function MedicalDemoPage() {
                           key={item}
                           className="flex items-start gap-2 text-sm text-gray-600"
                         >
-                          <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5 flex-shrink-0" />
+                          <CheckCircle2 className="h-4 w-4 text-blue-400 mt-0.5 flex-shrink-0" />
                           {item}
                         </li>
                       ))}
@@ -405,7 +405,7 @@ export default function MedicalDemoPage() {
       <section id="booking" className="py-20 sm:py-28 bg-white/50 scroll-mt-24">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <div className="text-center mb-12">
-            <span className="text-sm font-semibold text-emerald-600 uppercase tracking-wider">
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-wider">
               Schedule Your Visit
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900">
@@ -419,9 +419,9 @@ export default function MedicalDemoPage() {
 
           <div>
             {formSubmitted ? (
-              <div className="rounded-2xl bg-white/80 border border-emerald-200/60 p-12 shadow-sm text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 border border-emerald-100 mx-auto">
-                  <CheckCircle2 className="h-8 w-8 text-emerald-600" />
+              <div className="rounded-2xl bg-white/80 border border-blue-200/60 p-12 shadow-sm text-center">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-50 border border-blue-100 mx-auto">
+                  <CheckCircle2 className="h-8 w-8 text-blue-600" />
                 </div>
                 <h3 className="mt-6 text-2xl font-bold text-gray-900">
                   Request Received!
@@ -445,7 +445,7 @@ export default function MedicalDemoPage() {
                       notes: "",
                     });
                   }}
-                  className="mt-6 text-sm font-medium text-emerald-600 hover:text-emerald-700 underline underline-offset-4"
+                  className="mt-6 text-sm font-medium text-blue-600 hover:text-blue-700 underline underline-offset-4"
                 >
                   Book another appointment
                 </button>
@@ -474,7 +474,7 @@ export default function MedicalDemoPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, name: e.target.value })
                         }
-                        className="w-full rounded-xl border border-gray-200 bg-[#faf8f5] py-3 pl-10 pr-4 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 transition-all duration-200"
+                        className="w-full rounded-xl border border-gray-200 bg-[#faf8f5] py-3 pl-10 pr-4 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all duration-200"
                         placeholder="Jane Doe"
                       />
                     </div>
@@ -498,7 +498,7 @@ export default function MedicalDemoPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, email: e.target.value })
                         }
-                        className="w-full rounded-xl border border-gray-200 bg-[#faf8f5] py-3 pl-10 pr-4 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 transition-all duration-200"
+                        className="w-full rounded-xl border border-gray-200 bg-[#faf8f5] py-3 pl-10 pr-4 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all duration-200"
                         placeholder="jane@example.com"
                       />
                     </div>
@@ -522,7 +522,7 @@ export default function MedicalDemoPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, phone: e.target.value })
                         }
-                        className="w-full rounded-xl border border-gray-200 bg-[#faf8f5] py-3 pl-10 pr-4 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 transition-all duration-200"
+                        className="w-full rounded-xl border border-gray-200 bg-[#faf8f5] py-3 pl-10 pr-4 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all duration-200"
                         placeholder="(555) 000-0000"
                       />
                     </div>
@@ -546,7 +546,7 @@ export default function MedicalDemoPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, date: e.target.value })
                         }
-                        className="w-full rounded-xl border border-gray-200 bg-[#faf8f5] py-3 pl-10 pr-4 text-sm text-gray-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 transition-all duration-200"
+                        className="w-full rounded-xl border border-gray-200 bg-[#faf8f5] py-3 pl-10 pr-4 text-sm text-gray-900 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all duration-200"
                       />
                     </div>
                   </div>
@@ -568,7 +568,7 @@ export default function MedicalDemoPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, time: e.target.value })
                         }
-                        className="w-full appearance-none rounded-xl border border-gray-200 bg-[#faf8f5] py-3 pl-10 pr-10 text-sm text-gray-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 transition-all duration-200"
+                        className="w-full appearance-none rounded-xl border border-gray-200 bg-[#faf8f5] py-3 pl-10 pr-10 text-sm text-gray-900 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all duration-200"
                       >
                         <option value="">Select a time</option>
                         <option value="morning">Morning (8am - 11am)</option>
@@ -597,7 +597,7 @@ export default function MedicalDemoPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, service: e.target.value })
                         }
-                        className="w-full appearance-none rounded-xl border border-gray-200 bg-[#faf8f5] py-3 pl-10 pr-10 text-sm text-gray-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 transition-all duration-200"
+                        className="w-full appearance-none rounded-xl border border-gray-200 bg-[#faf8f5] py-3 pl-10 pr-10 text-sm text-gray-900 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all duration-200"
                       >
                         <option value="">Select a service</option>
                         <option value="cleaning">General Cleaning & Exam</option>
@@ -628,7 +628,7 @@ export default function MedicalDemoPage() {
                       }
                       className={`flex-1 py-3 text-sm font-medium transition-all duration-200 ${
                         formData.isNewPatient
-                          ? "bg-emerald-600 text-white shadow-sm"
+                          ? "bg-blue-600 text-white shadow-sm"
                           : "text-gray-600 hover:text-gray-900 hover:bg-gray-100/50"
                       }`}
                     >
@@ -641,7 +641,7 @@ export default function MedicalDemoPage() {
                       }
                       className={`flex-1 py-3 text-sm font-medium transition-all duration-200 ${
                         !formData.isNewPatient
-                          ? "bg-emerald-600 text-white shadow-sm"
+                          ? "bg-blue-600 text-white shadow-sm"
                           : "text-gray-600 hover:text-gray-900 hover:bg-gray-100/50"
                       }`}
                     >
@@ -665,14 +665,14 @@ export default function MedicalDemoPage() {
                     onChange={(e) =>
                       setFormData({ ...formData, notes: e.target.value })
                     }
-                    className="w-full rounded-xl border border-gray-200 bg-[#faf8f5] py-3 px-4 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 transition-all duration-200 resize-none"
+                    className="w-full rounded-xl border border-gray-200 bg-[#faf8f5] py-3 px-4 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all duration-200 resize-none"
                     placeholder="Any specific concerns, dental anxiety notes, or scheduling preferences..."
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 rounded-xl bg-emerald-600 py-3.5 text-base font-semibold text-white shadow-lg shadow-emerald-600/25 hover:bg-emerald-700 hover:shadow-xl hover:shadow-emerald-600/30 transition-all duration-300 hover:scale-[1.01]"
+                  className="w-full flex items-center justify-center gap-2 rounded-xl bg-blue-600 py-3.5 text-base font-semibold text-white shadow-lg shadow-blue-600/25 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-600/30 transition-all duration-300 hover:scale-[1.01]"
                 >
                   <Send className="h-4 w-4" />
                   Request Appointment
@@ -682,7 +682,7 @@ export default function MedicalDemoPage() {
                   This is a demo form — no data is submitted. Built by{" "}
                   <Link
                     href="/"
-                    className="text-emerald-600 hover:underline underline-offset-2"
+                    className="text-blue-600 hover:underline underline-offset-2"
                   >
                     Helping Hands Systems
                   </Link>
@@ -698,7 +698,7 @@ export default function MedicalDemoPage() {
       <section className="py-20 sm:py-28">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <div className="text-center mb-16">
-            <span className="text-sm font-semibold text-emerald-600 uppercase tracking-wider">
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-wider">
               Common Questions
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900">
@@ -742,7 +742,7 @@ export default function MedicalDemoPage() {
       <section className="py-20 sm:py-28 bg-white/50">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="text-center mb-16">
-            <span className="text-sm font-semibold text-emerald-600 uppercase tracking-wider">
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-wider">
               Find Us
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900">
@@ -753,8 +753,8 @@ export default function MedicalDemoPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {/* Address */}
             <div className="rounded-2xl bg-white/80 border border-gray-200/60 p-6 shadow-sm text-center">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 border border-emerald-100 mx-auto">
-                <MapPin className="h-6 w-6 text-emerald-600" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 border border-blue-100 mx-auto">
+                <MapPin className="h-6 w-6 text-blue-600" />
               </div>
               <h3 className="mt-4 text-sm font-bold text-gray-900">Address</h3>
               <p className="mt-2 text-sm text-gray-600 leading-relaxed">
@@ -768,8 +768,8 @@ export default function MedicalDemoPage() {
 
             {/* Phone & Email */}
             <div className="rounded-2xl bg-white/80 border border-gray-200/60 p-6 shadow-sm text-center">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 border border-emerald-100 mx-auto">
-                <Phone className="h-6 w-6 text-emerald-600" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 border border-blue-100 mx-auto">
+                <Phone className="h-6 w-6 text-blue-600" />
               </div>
               <h3 className="mt-4 text-sm font-bold text-gray-900">Contact</h3>
               <div className="mt-2 space-y-1.5">
@@ -780,8 +780,8 @@ export default function MedicalDemoPage() {
 
             {/* Hours */}
             <div className="rounded-2xl bg-white/80 border border-gray-200/60 p-6 shadow-sm text-center">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 border border-emerald-100 mx-auto">
-                <Clock className="h-6 w-6 text-emerald-600" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 border border-blue-100 mx-auto">
+                <Clock className="h-6 w-6 text-blue-600" />
               </div>
               <h3 className="mt-4 text-sm font-bold text-gray-900">
                 Office Hours
@@ -801,8 +801,8 @@ export default function MedicalDemoPage() {
 
             {/* Parking */}
             <div className="rounded-2xl bg-white/80 border border-gray-200/60 p-6 shadow-sm text-center">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 border border-emerald-100 mx-auto">
-                <Car className="h-6 w-6 text-emerald-600" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 border border-blue-100 mx-auto">
+                <Car className="h-6 w-6 text-blue-600" />
               </div>
               <h3 className="mt-4 text-sm font-bold text-gray-900">
                 Parking & Access
@@ -840,7 +840,7 @@ export default function MedicalDemoPage() {
               <span>Demo built by</span>
               <Link
                 href="/"
-                className="font-medium text-emerald-600 hover:text-emerald-700 hover:underline underline-offset-2 transition-colors"
+                className="font-medium text-blue-600 hover:text-blue-700 hover:underline underline-offset-2 transition-colors"
               >
                 Helping Hands Systems
               </Link>
@@ -855,13 +855,13 @@ export default function MedicalDemoPage() {
           <div className="mx-auto max-w-2xl rounded-2xl bg-gray-900/95 backdrop-blur-lg border border-gray-700/50 shadow-2xl shadow-black/20 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-sm text-gray-200 text-center sm:text-left font-medium">
               This is a live demo —{" "}
-              <span className="text-emerald-400">
+              <span className="text-blue-400">
                 Get This For Your Business
               </span>
             </p>
             <Link
               href="/payment?demo=medical"
-              className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500 px-5 py-2 text-xs font-semibold text-white hover:bg-emerald-400 transition-all duration-200 hover:scale-105 whitespace-nowrap shadow-lg shadow-emerald-500/25"
+              className="inline-flex items-center gap-1.5 rounded-full bg-blue-500 px-5 py-2 text-xs font-semibold text-white hover:bg-blue-400 transition-all duration-200 hover:scale-105 whitespace-nowrap shadow-lg shadow-blue-500/25"
             >
               <CreditCard className="h-3.5 w-3.5" />
               Get This Site

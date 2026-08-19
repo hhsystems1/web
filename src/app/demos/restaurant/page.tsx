@@ -121,29 +121,29 @@ export default function RestaurantDemoPage() {
 
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/90 via-emerald-800/85 to-gray-900/90" />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-blue-800/85 to-gray-900/90" />
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-20 w-72 h-72 bg-emerald-400 rounded-full blur-3xl" />
+          <div className="absolute top-20 left-20 w-72 h-72 bg-blue-400 rounded-full blur-3xl" />
           <div className="absolute bottom-20 right-20 w-96 h-96 bg-amber-300 rounded-full blur-3xl" />
         </div>
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8">
-            <Leaf className="w-4 h-4 text-emerald-300" />
-            <span className="text-emerald-200 text-sm font-medium tracking-wide uppercase">Farm to Table</span>
+            <Leaf className="w-4 h-4 text-blue-300" />
+            <span className="text-blue-200 text-sm font-medium tracking-wide uppercase">Farm to Table</span>
           </div>
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif text-white mb-6 leading-tight tracking-tight">
             The Golden Fork
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-emerald-100/90 mb-4 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl md:text-2xl text-blue-100/90 mb-4 max-w-2xl mx-auto leading-relaxed">
             Where locally sourced ingredients meet culinary artistry
           </p>
-          <p className="text-base text-emerald-200/70 mb-10 max-w-xl mx-auto">
+          <p className="text-base text-blue-200/70 mb-10 max-w-xl mx-auto">
             Every dish tells the story of our farmers, our craft, and our commitment to extraordinary dining.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="#menu"
-              className="group inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg shadow-emerald-900/30 hover:shadow-emerald-400/30 hover:scale-105"
+              className="group inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-400 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg shadow-blue-900/30 hover:shadow-blue-400/30 hover:scale-105"
             >
               <UtensilsCrossed className="w-5 h-5" />
               View Our Menu
@@ -170,13 +170,13 @@ export default function RestaurantDemoPage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200/60 rounded-full px-4 py-1.5 mb-6">
-                <Award className="w-4 h-4 text-emerald-600" />
-                <span className="text-emerald-700 text-sm font-medium">Est. 2018</span>
+              <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200/60 rounded-full px-4 py-1.5 mb-6">
+                <Award className="w-4 h-4 text-blue-600" />
+                <span className="text-blue-700 text-sm font-medium">Est. 2018</span>
               </div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-gray-900 mb-6 leading-tight">
                 A Story Written in{" "}
-                <span className="text-emerald-700">Every Plate</span>
+                <span className="text-blue-700">Every Plate</span>
               </h2>
               <div className="space-y-4 text-gray-600 leading-relaxed text-base md:text-lg">
                 <p>
@@ -204,7 +204,7 @@ export default function RestaurantDemoPage() {
             <div className="relative">
               <div className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl p-8 shadow-lg shadow-gray-200/50">
                 <div className="flex items-center gap-3 mb-6">
-                  <Clock className="w-5 h-5 text-emerald-600" />
+                  <Clock className="w-5 h-5 text-blue-600" />
                   <h3 className="text-xl font-semibold text-gray-900">Hours of Operation</h3>
                 </div>
                 <div className="space-y-4">
@@ -217,7 +217,7 @@ export default function RestaurantDemoPage() {
                 </div>
                 <div className="mt-6 pt-6 border-t border-gray-100">
                   <div className="flex items-start gap-3">
-                    <Heart className="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                    <Heart className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
                     <p className="text-sm text-gray-500">
                       Private dining and event catering available. Contact us for
                       special occasions, corporate events, and wine dinners.
@@ -225,7 +225,7 @@ export default function RestaurantDemoPage() {
                   </div>
                 </div>
               </div>
-              <div className="absolute -z-10 -bottom-4 -right-4 w-full h-full bg-emerald-100/50 rounded-2xl" />
+              <div className="absolute -z-10 -bottom-4 -right-4 w-full h-full bg-blue-100/50 rounded-2xl" />
             </div>
           </div>
         </div>
@@ -236,7 +236,7 @@ export default function RestaurantDemoPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
             <div>
-              <span className="text-emerald-600 font-medium text-sm tracking-widest uppercase">Our Menu</span>
+              <span className="text-blue-600 font-medium text-sm tracking-widest uppercase">Our Menu</span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-gray-900 mt-3 mb-4">
                 Crafted with Passion
               </h2>
@@ -261,11 +261,11 @@ export default function RestaurantDemoPage() {
                   {category.items.map((item) => (
                     <div key={item.name} className="group">
                       <div className="flex items-baseline justify-between gap-4">
-                        <h4 className="font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors">
+                        <h4 className="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">
                           {item.name}
                         </h4>
                         <div className="flex-shrink-0 border-b border-dotted border-gray-300 flex-1 min-w-4 mx-1 translate-y-[-3px]" />
-                        <span className="font-semibold text-emerald-700 flex-shrink-0">
+                        <span className="font-semibold text-blue-700 flex-shrink-0">
                           ${item.price}
                         </span>
                       </div>
@@ -284,7 +284,7 @@ export default function RestaurantDemoPage() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <div>
-              <span className="text-emerald-600 font-medium text-sm tracking-widest uppercase">Reservations</span>
+              <span className="text-blue-600 font-medium text-sm tracking-widest uppercase">Reservations</span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-gray-900 mt-3 mb-4">
                 Reserve Your Table
               </h2>
@@ -308,7 +308,7 @@ export default function RestaurantDemoPage() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="John Smith"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200/80 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200/80 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all"
                     required
                   />
                 </div>
@@ -319,7 +319,7 @@ export default function RestaurantDemoPage() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="john@example.com"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200/80 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200/80 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all"
                     required
                   />
                 </div>
@@ -330,7 +330,7 @@ export default function RestaurantDemoPage() {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="(555) 123-4567"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200/80 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200/80 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all"
                     required
                   />
                 </div>
@@ -339,7 +339,7 @@ export default function RestaurantDemoPage() {
                   <select
                     value={formData.partySize}
                     onChange={(e) => setFormData({ ...formData, partySize: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200/80 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 transition-all appearance-none"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200/80 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all appearance-none"
                     required
                   >
                     <option value="" className="text-gray-400">Select guests</option>
@@ -359,7 +359,7 @@ export default function RestaurantDemoPage() {
                     type="date"
                     value={formData.date}
                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200/80 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200/80 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all"
                     required
                   />
                 </div>
@@ -368,7 +368,7 @@ export default function RestaurantDemoPage() {
                   <select
                     value={formData.time}
                     onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200/80 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 transition-all appearance-none"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200/80 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all appearance-none"
                     required
                   >
                     <option value="" className="text-gray-400">Select time</option>
@@ -391,7 +391,7 @@ export default function RestaurantDemoPage() {
                   onChange={(e) => setFormData({ ...formData, specialRequests: e.target.value })}
                   rows={3}
                   placeholder="Dietary restrictions, seating preferences, special occasions..."
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200/80 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 transition-all resize-none"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200/80 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all resize-none"
                 />
               </div>
               <div className="mt-8 flex justify-center">
@@ -399,8 +399,8 @@ export default function RestaurantDemoPage() {
                   type="submit"
                   className={`inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white transition-all duration-300 shadow-lg ${
                     formSubmitted
-                      ? "bg-emerald-500 shadow-emerald-300/30"
-                      : "bg-emerald-600 hover:bg-emerald-500 shadow-emerald-600/20 hover:shadow-emerald-400/30"
+                      ? "bg-blue-500 shadow-blue-300/30"
+                      : "bg-blue-600 hover:bg-blue-500 shadow-blue-600/20 hover:shadow-blue-400/30"
                   }`}
                 >
                   {formSubmitted ? (
@@ -428,7 +428,7 @@ export default function RestaurantDemoPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
             <div>
-              <span className="text-emerald-600 font-medium text-sm tracking-widest uppercase">Guest Reviews</span>
+              <span className="text-blue-600 font-medium text-sm tracking-widest uppercase">Guest Reviews</span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-gray-900 mt-3 mb-4">
                 What Our Guests Say
               </h2>
@@ -462,8 +462,8 @@ export default function RestaurantDemoPage() {
                 </p>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                      <span className="text-emerald-700 font-semibold text-sm">
+                    <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                      <span className="text-blue-700 font-semibold text-sm">
                         {review.name
                           .split(" ")
                           .map((n) => n[0])
@@ -487,7 +487,7 @@ export default function RestaurantDemoPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
             <div>
-              <span className="text-emerald-600 font-medium text-sm tracking-widest uppercase">Find Us</span>
+              <span className="text-blue-600 font-medium text-sm tracking-widest uppercase">Find Us</span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-gray-900 mt-3 mb-4">
                 Visit The Golden Fork
               </h2>
@@ -501,8 +501,8 @@ export default function RestaurantDemoPage() {
             <div className="space-y-6">
               <div className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl p-6 shadow-sm">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-5 h-5 text-emerald-600" />
+                  <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-5 h-5 text-blue-600" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Address</h4>
@@ -516,8 +516,8 @@ export default function RestaurantDemoPage() {
               </div>
               <div className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl p-6 shadow-sm">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-5 h-5 text-emerald-600" />
+                  <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-5 h-5 text-blue-600" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Phone</h4>
@@ -528,8 +528,8 @@ export default function RestaurantDemoPage() {
               </div>
               <div className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl p-6 shadow-sm">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-5 h-5 text-emerald-600" />
+                  <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-5 h-5 text-blue-600" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Email</h4>
@@ -539,14 +539,14 @@ export default function RestaurantDemoPage() {
                 </div>
               </div>
               <div className="flex items-center gap-4 px-2">
-                <a href="#" className="w-10 h-10 bg-gray-100 hover:bg-emerald-50 rounded-full flex items-center justify-center transition-colors group">
-                  <Instagram className="w-5 h-5 text-gray-500 group-hover:text-emerald-600 transition-colors" />
+                <a href="#" className="w-10 h-10 bg-gray-100 hover:bg-blue-50 rounded-full flex items-center justify-center transition-colors group">
+                  <Instagram className="w-5 h-5 text-gray-500 group-hover:text-blue-600 transition-colors" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-gray-100 hover:bg-emerald-50 rounded-full flex items-center justify-center transition-colors group">
-                  <Facebook className="w-5 h-5 text-gray-500 group-hover:text-emerald-600 transition-colors" />
+                <a href="#" className="w-10 h-10 bg-gray-100 hover:bg-blue-50 rounded-full flex items-center justify-center transition-colors group">
+                  <Facebook className="w-5 h-5 text-gray-500 group-hover:text-blue-600 transition-colors" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-gray-100 hover:bg-emerald-50 rounded-full flex items-center justify-center transition-colors group">
-                  <Twitter className="w-5 h-5 text-gray-500 group-hover:text-emerald-600 transition-colors" />
+                <a href="#" className="w-10 h-10 bg-gray-100 hover:bg-blue-50 rounded-full flex items-center justify-center transition-colors group">
+                  <Twitter className="w-5 h-5 text-gray-500 group-hover:text-blue-600 transition-colors" />
                 </a>
               </div>
             </div>
@@ -554,8 +554,8 @@ export default function RestaurantDemoPage() {
             <div>
               <div className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl overflow-hidden shadow-sm h-full min-h-[400px] flex items-center justify-center">
                 <div className="text-center p-8">
-                  <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <MapPin className="w-8 h-8 text-emerald-500" />
+                  <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <MapPin className="w-8 h-8 text-blue-500" />
                   </div>
                   <h4 className="font-semibold text-gray-900 mb-2">Interactive Map</h4>
                   <p className="text-sm text-gray-500 max-w-xs">
@@ -565,7 +565,7 @@ export default function RestaurantDemoPage() {
                     href="https://maps.google.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 mt-4 text-emerald-600 hover:text-emerald-700 text-sm font-medium transition-colors"
+                    className="inline-flex items-center gap-1.5 mt-4 text-blue-600 hover:text-blue-700 text-sm font-medium transition-colors"
                   >
                     Open in Google Maps
                     <ChevronRight className="w-4 h-4" />
@@ -590,10 +590,10 @@ export default function RestaurantDemoPage() {
             <div>
               <h4 className="text-white font-medium mb-3 text-sm uppercase tracking-wider">Quick Links</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#menu" className="hover:text-emerald-400 transition-colors">Menu</a></li>
-                <li><a href="#reservations" className="hover:text-emerald-400 transition-colors">Reservations</a></li>
-                <li><a href="#contact" className="hover:text-emerald-400 transition-colors">Contact</a></li>
-                <li><a href="#" className="hover:text-emerald-400 transition-colors">Private Events</a></li>
+                <li><a href="#menu" className="hover:text-blue-400 transition-colors">Menu</a></li>
+                <li><a href="#reservations" className="hover:text-blue-400 transition-colors">Reservations</a></li>
+                <li><a href="#contact" className="hover:text-blue-400 transition-colors">Contact</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Private Events</a></li>
               </ul>
             </div>
             <div>
@@ -610,9 +610,9 @@ export default function RestaurantDemoPage() {
                 <li>(503) 555-0187</li>
                 <li>hello@thegoldenfork.com</li>
                 <li className="flex items-center gap-3 pt-1">
-                  <a href="#" className="hover:text-emerald-400 transition-colors"><Instagram className="w-4 h-4" /></a>
-                  <a href="#" className="hover:text-emerald-400 transition-colors"><Facebook className="w-4 h-4" /></a>
-                  <a href="#" className="hover:text-emerald-400 transition-colors"><Twitter className="w-4 h-4" /></a>
+                  <a href="#" className="hover:text-blue-400 transition-colors"><Instagram className="w-4 h-4" /></a>
+                  <a href="#" className="hover:text-blue-400 transition-colors"><Facebook className="w-4 h-4" /></a>
+                  <a href="#" className="hover:text-blue-400 transition-colors"><Twitter className="w-4 h-4" /></a>
                 </li>
               </ul>
             </div>
@@ -625,7 +625,7 @@ export default function RestaurantDemoPage() {
               Website by{" "}
               <Link
                 href="/"
-                className="text-emerald-500 hover:text-emerald-400 transition-colors font-medium"
+                className="text-blue-500 hover:text-blue-400 transition-colors font-medium"
               >
                 Helping Hands Systems
               </Link>
@@ -641,9 +641,9 @@ export default function RestaurantDemoPage() {
             href="/payment?demo=restaurant"
             className="flex items-center justify-center gap-3 bg-gray-900 hover:bg-gray-800 text-white px-6 py-3.5 rounded-2xl shadow-2xl shadow-gray-900/30 transition-all duration-300 hover:scale-[1.02] max-w-2xl mx-auto border border-gray-700/50"
           >
-            <span className="text-emerald-400 font-medium">This is a live demo</span>
+            <span className="text-blue-400 font-medium">This is a live demo</span>
             <span className="hidden sm:inline text-gray-500">—</span>
-            <span className="font-semibold underline underline-offset-2 decoration-emerald-400/50 hover:decoration-emerald-400">
+            <span className="font-semibold underline underline-offset-2 decoration-blue-400/50 hover:decoration-blue-400">
               Get This For Your Business
             </span>
           </a>

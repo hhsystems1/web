@@ -23,8 +23,8 @@ export default function NavIsland() {
             borderRadius: '9999px',
             backdropFilter: 'blur(24px)',
             backgroundColor: 'rgba(255, 255, 255, 0.75)',
-            border: '1px solid rgba(80, 200, 120, 0.25)',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), 0 0 20px rgba(80, 200, 120, 0.08), 0 0 40px rgba(80, 200, 120, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+            border: '1px solid rgba(56, 181, 255, 0.25)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), 0 0 20px rgba(56, 181, 255, 0.08), 0 0 40px rgba(56, 181, 255, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
           }}
         >
           <div className="flex items-center justify-between w-full">
@@ -46,18 +46,18 @@ export default function NavIsland() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-gray-700 hover:text-emerald-700 hover:scale-105 transition-all duration-300 relative group font-medium text-base lg:text-lg whitespace-nowrap px-3 py-2 rounded-full hover:bg-emerald-50 hover:shadow-lg hover:shadow-emerald-200/50"
+                  className="text-gray-700 hover:text-blue-700 hover:scale-105 transition-all duration-300 relative group font-medium text-base lg:text-lg whitespace-nowrap px-3 py-2 rounded-full hover:bg-blue-50 hover:shadow-lg hover:shadow-blue-200/50"
                 >
                   {item.label}
-                  <span className="absolute -bottom-1 left-3 right-3 h-0.5 bg-gradient-to-r from-emerald-500 to-blue-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                  <div className="absolute inset-0 rounded-full border border-transparent group-hover:border-emerald-300/40 transition-all duration-300"></div>
+                  <span className="absolute -bottom-1 left-3 right-3 h-0.5 bg-gradient-to-r from-blue-500 to-blue-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <div className="absolute inset-0 rounded-full border border-transparent group-hover:border-blue-300/40 transition-all duration-300"></div>
                 </Link>
               ))}
             </div>
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden text-gray-700 p-2 hover:bg-emerald-50 hover:text-emerald-700 hover:scale-110 rounded-full transition-all duration-300 flex-shrink-0 hover:shadow-lg hover:shadow-emerald-200/50"
+              className="md:hidden text-gray-700 p-2 hover:bg-blue-50 hover:text-blue-700 hover:scale-110 rounded-full transition-all duration-300 flex-shrink-0 hover:shadow-lg hover:shadow-blue-200/50"
               aria-label="Toggle mobile menu"
             >
               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -78,7 +78,7 @@ export default function NavIsland() {
                 <Link
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-center text-xl sm:text-2xl text-gray-800 hover:text-emerald-700 hover:scale-105 transition-all duration-300 py-3 px-6 rounded-full hover:bg-emerald-50 hover:shadow-lg hover:shadow-emerald-200/50 border border-transparent hover:border-emerald-200/50"
+                  className="block text-center text-xl sm:text-2xl text-gray-800 hover:text-blue-700 hover:scale-105 transition-all duration-300 py-3 px-6 rounded-full hover:bg-blue-50 hover:shadow-lg hover:shadow-blue-200/50 border border-transparent hover:border-blue-200/50"
                 >
                   {item.label}
                 </Link>

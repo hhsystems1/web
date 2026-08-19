@@ -33,7 +33,7 @@ export default function HeroShowcase({ title, subtitle, ctaText, ctaAction }: He
 
       <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
-          <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-emerald-200/60 bg-emerald-50/80 px-4 py-2 text-sm font-semibold text-emerald-700 backdrop-blur-md">
+          <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-blue-200/60 bg-blue-50/80 px-4 py-2 text-sm font-semibold text-blue-700 backdrop-blur-md">
             <Sparkles size={16} />
             Websites built to generate more customers
           </div>
@@ -59,7 +59,7 @@ export default function HeroShowcase({ title, subtitle, ctaText, ctaAction }: He
           <div className="mt-9 flex flex-wrap gap-3">
             {proofPoints.map((point) => (
               <span key={point} className="inline-flex items-center gap-2 rounded-full border border-gray-200/60 bg-white/60 px-4 py-2 text-sm font-semibold text-gray-700 backdrop-blur-md">
-                <CheckCircle2 size={16} className="text-emerald-500" />
+                <CheckCircle2 size={16} className="text-blue-500" />
                 {point}
               </span>
             ))}
@@ -67,14 +67,14 @@ export default function HeroShowcase({ title, subtitle, ctaText, ctaAction }: He
         </div>
 
         <div className="relative mx-auto w-full max-w-xl">
-          <div className="absolute -left-8 top-10 h-32 w-32 rounded-full bg-emerald-200/40 blur-3xl" />
+          <div className="absolute -left-8 top-10 h-32 w-32 rounded-full bg-blue-200/40 blur-3xl" />
           <div className="absolute -right-10 bottom-12 h-40 w-40 rounded-full bg-blue-200/40 blur-3xl" />
 
-          <div className="relative overflow-hidden rounded-[2.2rem] border border-emerald-200/50 bg-white/70 shadow-2xl shadow-emerald-200/30 backdrop-blur-xl">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(80,200,120,0.12),transparent_50%),linear-gradient(135deg,rgba(255,255,255,0.6),rgba(250,248,245,0.9))]" />
+          <div className="relative overflow-hidden rounded-[2.2rem] border border-blue-200/50 bg-white/70 shadow-2xl shadow-blue-200/30 backdrop-blur-xl">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(56, 181, 255,0.12),transparent_50%),linear-gradient(135deg,rgba(255,255,255,0.6),rgba(250,248,245,0.9))]" />
 
             <div className="relative">
-              <div className="relative h-72 sm:h-80 overflow-hidden bg-gradient-to-br from-emerald-50 to-blue-50 flex items-center justify-center">
+              <div className="relative h-72 sm:h-80 overflow-hidden bg-gradient-to-br from-blue-50 to-blue-50 flex items-center justify-center">
                 <Image
                   src="/turdy19.png"
                   alt="Turdy — your website guide"
@@ -89,7 +89,7 @@ export default function HeroShowcase({ title, subtitle, ctaText, ctaAction }: He
               <div className="p-5 space-y-3">
                 {guideSteps.map((step) => (
                   <div key={step.title} className="flex gap-3 items-start">
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-base ring-1 ring-emerald-200/50">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-base ring-1 ring-blue-200/50">
                       {step.icon}
                     </div>
                     <div>
@@ -99,8 +99,8 @@ export default function HeroShowcase({ title, subtitle, ctaText, ctaAction }: He
                   </div>
                 ))}
 
-                <div className="mt-3 rounded-xl border border-emerald-200/50 bg-emerald-50/50 px-4 py-3 text-center">
-                  <p className="text-sm font-semibold text-emerald-700">Meet Turdy — he&apos;ll help you every step of the way</p>
+                <div className="mt-3 rounded-xl border border-blue-200/50 bg-blue-50/50 px-4 py-3 text-center">
+                  <p className="text-sm font-semibold text-blue-700">Meet Turdy — he&apos;ll help you every step of the way</p>
                 </div>
               </div>
             </div>

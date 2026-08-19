@@ -31,12 +31,12 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {contactInfo.map((info) => (
             <div key={info.title}>
-              <div className="text-center p-6 glass rounded-2xl hover:shadow-xl hover:shadow-emerald-200/40 transition-shadow duration-200">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-emerald-500 to-blue-400 flex items-center justify-center mx-auto mb-4 shadow-md shadow-emerald-200/50">
+              <div className="text-center p-6 glass rounded-2xl hover:shadow-xl hover:shadow-blue-200/40 transition-shadow duration-200">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-blue-400 flex items-center justify-center mx-auto mb-4 shadow-md shadow-blue-200/50">
                   <info.icon size={24} className="text-white" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{info.title}</h3>
-                <p className="text-emerald-600 font-semibold mb-1">{info.value}</p>
+                <p className="text-blue-600 font-semibold mb-1">{info.value}</p>
                 <p className="text-gray-500 text-sm">{info.description}</p>
               </div>
             </div>
@@ -50,7 +50,7 @@ export default function ContactPage() {
           <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto text-center">
             Tell us about your vision and we&apos;ll show you how we can bring it to life with modern design and conversion-focused features.
           </p>
-          <div className="glass rounded-2xl p-6 md:p-10 shadow-xl shadow-emerald-100/20">
+          <div className="glass rounded-2xl p-6 md:p-10 shadow-xl shadow-blue-100/20">
             <ContactForm />
           </div>
         </div>
@@ -63,7 +63,7 @@ export default function ContactPage() {
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
               Try one of our live demos to see exactly what your website could look like — then customize it with your branding.
             </p>
-            <Link href="/#demos" className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-emerald-500 via-emerald-500 to-blue-400 rounded-full hover:shadow-2xl hover:shadow-emerald-300/30 transition-all duration-300 hover:scale-105 border border-emerald-400/30 hover:border-emerald-400/60">
+            <Link href="/#demos" className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-500 via-blue-500 to-blue-400 rounded-full hover:shadow-2xl hover:shadow-blue-300/30 transition-all duration-300 hover:scale-105 border border-blue-400/30 hover:border-blue-400/60">
               View Live Demos →
             </Link>
           </div>

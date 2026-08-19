@@ -42,7 +42,7 @@ const PALETTES = [
   {
     id: "classic-green",
     label: "Classic Green",
-    colors: ["#059669", "#10b981", "#34d399", "#d1fae5"],
+    colors: ["#2563eb", "#38b5ff", "#60a5fa", "#dbeafe"],
   },
   {
     id: "ocean-blue",
@@ -120,9 +120,9 @@ function PaymentPageInner() {
                     onClick={() => s.num < step && setStep(s.num)}
                     className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-300 ${
                       step === s.num
-                        ? "bg-emerald-600 text-white shadow-lg shadow-emerald-200"
+                        ? "bg-blue-600 text-white shadow-lg shadow-blue-200"
                         : step > s.num
-                        ? "bg-emerald-100 text-emerald-700"
+                        ? "bg-blue-100 text-blue-700"
                         : "bg-gray-100 text-gray-400"
                     }`}
                   >
@@ -142,7 +142,7 @@ function PaymentPageInner() {
                   <div className="w-12 sm:w-20 h-0.5 mx-2 mb-5">
                     <div
                       className={`h-full rounded-full transition-all duration-500 ${
-                        step > s.num ? "bg-emerald-400" : "bg-gray-200"
+                        step > s.num ? "bg-blue-400" : "bg-gray-200"
                       }`}
                     />
                   </div>
@@ -167,19 +167,19 @@ function PaymentPageInner() {
                     onClick={() => setSelectedDemo(demo.id)}
                     className={`relative p-6 rounded-xl border-2 text-left transition-all duration-200 ${
                       selectedDemo === demo.id
-                        ? "border-emerald-500 bg-emerald-50/50 shadow-md shadow-emerald-100"
+                        ? "border-blue-500 bg-blue-50/50 shadow-md shadow-blue-100"
                         : "border-gray-200/60 bg-white/80 hover:border-gray-300 hover:shadow-sm"
                     }`}
                   >
                     {selectedDemo === demo.id && (
-                      <div className="absolute top-3 right-3 w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center">
+                      <div className="absolute top-3 right-3 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
                         <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                         </svg>
                       </div>
                     )}
                     <div className={`mb-3 ${
-                      selectedDemo === demo.id ? "text-emerald-600" : "text-gray-400"
+                      selectedDemo === demo.id ? "text-blue-600" : "text-gray-400"
                     }`}>
                       {demo.icon}
                     </div>
@@ -211,7 +211,7 @@ function PaymentPageInner() {
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
                     placeholder="Acme Inc."
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200/60 bg-white/80 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-400 transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200/60 bg-white/80 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 transition-all"
                   />
                 </div>
 
@@ -227,7 +227,7 @@ function PaymentPageInner() {
                         onClick={() => setSelectedPalette(palette.id)}
                         className={`p-4 rounded-xl border-2 text-left transition-all ${
                           selectedPalette === palette.id
-                            ? "border-emerald-500 bg-emerald-50/50 shadow-md shadow-emerald-100"
+                            ? "border-blue-500 bg-blue-50/50 shadow-md shadow-blue-100"
                             : "border-gray-200/60 bg-white/80 hover:border-gray-300"
                         }`}
                       >
@@ -256,7 +256,7 @@ function PaymentPageInner() {
                     Company Logo
                   </label>
                   <div className="relative">
-                    <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-emerald-400 transition-colors bg-white/60">
+                    <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-blue-400 transition-colors bg-white/60">
                       <svg className="w-10 h-10 mx-auto text-gray-300 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
                       </svg>
@@ -281,7 +281,7 @@ function PaymentPageInner() {
                     Company Pictures
                   </label>
                   <div className="relative">
-                    <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-emerald-400 transition-colors bg-white/60">
+                    <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-blue-400 transition-colors bg-white/60">
                       <svg className="w-10 h-10 mx-auto text-gray-300 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0 0 22.5 18.75V5.25A2.25 2.25 0 0 0 20.25 3H3.75A2.25 2.25 0 0 0 1.5 5.25v13.5A2.25 2.25 0 0 0 3.75 21Z" />
                       </svg>
@@ -312,7 +312,7 @@ function PaymentPageInner() {
                     value={oldSiteUrl}
                     onChange={(e) => setOldSiteUrl(e.target.value)}
                     placeholder="https://your-current-site.com"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200/60 bg-white/80 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-400 transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200/60 bg-white/80 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 transition-all"
                   />
                   <p className="text-xs text-gray-400 mt-1.5">
                     We can reference your existing site for content and structure
@@ -341,7 +341,7 @@ function PaymentPageInner() {
                     value={domain}
                     onChange={(e) => setDomain(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""))}
                     placeholder="yourbusiness"
-                    className="flex-1 px-4 py-3 rounded-l-xl border border-r-0 border-gray-200/60 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-400 transition-all"
+                    className="flex-1 px-4 py-3 rounded-l-xl border border-r-0 border-gray-200/60 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 transition-all"
                   />
                   <div className="px-4 py-3 bg-gray-50 border border-gray-200/60 rounded-r-xl text-gray-600 font-medium text-sm">
                     .com
@@ -352,16 +352,16 @@ function PaymentPageInner() {
                 </p>
               </div>
 
-              <div className="mt-6 bg-emerald-50/50 border border-emerald-200/60 rounded-xl p-5">
+              <div className="mt-6 bg-blue-50/50 border border-blue-200/60 rounded-xl p-5">
                 <div className="flex gap-3">
-                  <svg className="w-5 h-5 text-emerald-600 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <svg className="w-5 h-5 text-blue-600 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
                   </svg>
                   <div>
-                    <h4 className="text-sm font-medium text-emerald-800 mb-1">
+                    <h4 className="text-sm font-medium text-blue-800 mb-1">
                       Domain Setup Included
                     </h4>
-                    <p className="text-xs text-emerald-700/80 leading-relaxed">
+                    <p className="text-xs text-blue-700/80 leading-relaxed">
                       We&apos;ll register your domain, configure DNS, set up SSL
                       certificates, and connect everything to your new website.
                       This process typically takes 24-48 hours.
@@ -391,7 +391,7 @@ function PaymentPageInner() {
                     </div>
                     <button
                       onClick={() => setStep(1)}
-                      className="text-xs text-emerald-600 hover:text-emerald-700 font-medium"
+                      className="text-xs text-blue-600 hover:text-blue-700 font-medium"
                     >
                       Change
                     </button>
@@ -406,7 +406,7 @@ function PaymentPageInner() {
                     </div>
                     <button
                       onClick={() => setStep(2)}
-                      className="text-xs text-emerald-600 hover:text-emerald-700 font-medium"
+                      className="text-xs text-blue-600 hover:text-blue-700 font-medium"
                     >
                       Change
                     </button>
@@ -432,7 +432,7 @@ function PaymentPageInner() {
                     </div>
                     <button
                       onClick={() => setStep(2)}
-                      className="text-xs text-emerald-600 hover:text-emerald-700 font-medium"
+                      className="text-xs text-blue-600 hover:text-blue-700 font-medium"
                     >
                       Change
                     </button>
@@ -447,7 +447,7 @@ function PaymentPageInner() {
                     </div>
                     <button
                       onClick={() => setStep(3)}
-                      className="text-xs text-emerald-600 hover:text-emerald-700 font-medium"
+                      className="text-xs text-blue-600 hover:text-blue-700 font-medium"
                     >
                       Change
                     </button>
@@ -471,7 +471,7 @@ function PaymentPageInner() {
 
                 <a
                   href="#"
-                  className="block w-full text-center py-3.5 px-6 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 text-white font-semibold shadow-lg shadow-emerald-200 hover:shadow-emerald-300 transition-all"
+                  className="block w-full text-center py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold shadow-lg shadow-blue-200 hover:shadow-blue-300 transition-all"
                 >
                   Proceed to Stripe Checkout
                 </a>
@@ -502,7 +502,7 @@ function PaymentPageInner() {
                 onClick={() => canProceed && setStep(step + 1)}
                 className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                   canProceed
-                    ? "bg-gradient-to-r from-emerald-600 to-emerald-500 text-white shadow-md shadow-emerald-200 hover:shadow-lg"
+                    ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-md shadow-blue-200 hover:shadow-lg"
                     : "bg-gray-200 text-gray-400 cursor-not-allowed"
                 }`}
                 disabled={!canProceed}

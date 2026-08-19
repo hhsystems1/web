@@ -25,10 +25,10 @@ export default function FAQ({ items, title = "Frequently Asked Questions" }: FAQ
           <div key={index} className="glass rounded-xl overflow-hidden">
             <button
               onClick={() => setOpenIndex(openIndex === index ? null : index)}
-              className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-emerald-50/50 transition-colors"
+              className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-blue-50/50 transition-colors"
             >
               <span className="font-semibold text-gray-900 pr-4">{item.question}</span>
-              <Plus size={20} className={`text-emerald-500 flex-shrink-0 transition-transform duration-200 ${openIndex === index ? 'rotate-45' : ''}`} />
+              <Plus size={20} className={`text-blue-500 flex-shrink-0 transition-transform duration-200 ${openIndex === index ? 'rotate-45' : ''}`} />
             </button>
 
             {openIndex === index && (

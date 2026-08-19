@@ -59,7 +59,7 @@ export default function PackagesPage() {
 
       <section className="relative px-4 pt-32 pb-16 sm:px-6 md:pt-40">
         <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-emerald-200/60 bg-emerald-50/80 px-4 py-2 text-sm font-semibold text-emerald-700 backdrop-blur-md">
+          <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-blue-200/60 bg-blue-50/80 px-4 py-2 text-sm font-semibold text-blue-700 backdrop-blur-md">
             Simple, transparent pricing
           </div>
 
@@ -76,12 +76,12 @@ export default function PackagesPage() {
 
       <section className="relative px-4 pb-24 sm:px-6">
         <div className="mx-auto max-w-4xl">
-          <div className="relative overflow-hidden rounded-[2rem] border border-emerald-200/50 bg-white/70 shadow-2xl shadow-emerald-200/30 backdrop-blur-xl">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(80,200,120,0.1),transparent_50%)]" />
+          <div className="relative overflow-hidden rounded-[2rem] border border-blue-200/50 bg-white/70 shadow-2xl shadow-blue-200/30 backdrop-blur-xl">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(56,181,255,0.1),transparent_50%)]" />
 
             <div className="relative p-8 sm:p-12">
               <div className="mb-10 text-center">
-                <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">
+                <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">
                   All-In-One Package
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
@@ -95,7 +95,7 @@ export default function PackagesPage() {
                   </div>
                   <div className="h-px w-24 bg-gray-200 sm:h-24 sm:w-px" />
                   <div className="text-center">
-                    <h2 className="text-5xl font-black text-emerald-600 sm:text-6xl">
+                    <h2 className="text-5xl font-black text-blue-600 sm:text-6xl">
                       $99
                     </h2>
                     <p className="mt-2 text-gray-500">
@@ -111,7 +111,7 @@ export default function PackagesPage() {
                     key={feature.title}
                     className="flex items-start gap-4 rounded-xl border border-gray-200/60 bg-white/60 p-5 shadow-xl shadow-gray-100/20 backdrop-blur-xl"
                   >
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 to-blue-400 shadow-md shadow-emerald-200/50">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-blue-400 shadow-md shadow-blue-200/50">
                       <feature.icon size={20} className="text-white" />
                     </div>
                     <div>
@@ -126,7 +126,7 @@ export default function PackagesPage() {
                 ))}
               </div>
 
-              <div className="rounded-2xl border border-emerald-200/50 bg-emerald-50/50 p-6 backdrop-blur-xl">
+              <div className="rounded-2xl border border-blue-200/50 bg-blue-50/50 p-6 backdrop-blur-xl">
                 <h3 className="mb-4 text-lg font-bold text-gray-900">
                   What&apos;s included at a glance
                 </h3>
@@ -146,7 +146,7 @@ export default function PackagesPage() {
                     <div key={item} className="flex items-center gap-3">
                       <CheckCircle2
                         size={18}
-                        className="shrink-0 text-emerald-500"
+                        className="shrink-0 text-blue-500"
                       />
                       <span className="text-sm font-medium text-gray-700">
                         {item}
@@ -159,7 +159,7 @@ export default function PackagesPage() {
               <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-emerald-500 via-emerald-500 to-blue-400 rounded-full hover:shadow-2xl hover:shadow-emerald-300/30 transition-all duration-300 hover:scale-105 border border-emerald-400/30 hover:border-emerald-400/60"
+                  className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-500 via-blue-500 to-blue-400 rounded-full hover:shadow-2xl hover:shadow-blue-300/30 transition-all duration-300 hover:scale-105 border border-blue-400/30 hover:border-blue-400/60"
                 >
                   Get Started Today
                 </Link>

@@ -43,7 +43,7 @@ const stats = [
     value: "12,847",
     change: 12.5,
     icon: Users,
-    color: "emerald",
+    color: "blue",
   },
   {
     label: "Form Submissions",
@@ -79,7 +79,7 @@ const dailyVisitors = [
 ];
 
 const leadSources = [
-  { name: "Direct", percentage: 45, color: "bg-emerald-500" },
+  { name: "Direct", percentage: 45, color: "bg-blue-500" },
   { name: "Google", percentage: 32, color: "bg-blue-500" },
   { name: "Social", percentage: 15, color: "bg-purple-500" },
   { name: "Referral", percentage: 8, color: "bg-amber-500" },
@@ -111,7 +111,7 @@ const recentLeads = [
 ];
 
 const funnelSteps = [
-  { label: "Visitors", value: 12847, color: "bg-emerald-500" },
+  { label: "Visitors", value: 12847, color: "bg-blue-500" },
   { label: "Leads", value: 342, color: "bg-blue-500" },
   { label: "Bookings", value: 89, color: "bg-purple-500" },
   { label: "Customers", value: 34, color: "bg-amber-500" },
@@ -128,7 +128,7 @@ export default function DashboardPage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "New":
-        return "bg-emerald-100 text-emerald-700";
+        return "bg-blue-100 text-blue-700";
       case "Contacted":
         return "bg-blue-100 text-blue-700";
       case "Converted":
@@ -152,7 +152,7 @@ export default function DashboardPage() {
               </div>
               <span
                 className={`flex items-center text-sm font-medium ${
-                  stat.change >= 0 ? "text-emerald-600" : "text-red-500"
+                  stat.change >= 0 ? "text-blue-600" : "text-red-500"
                 }`}
               >
                 {stat.change >= 0 ? (
@@ -179,7 +179,7 @@ export default function DashboardPage() {
               <div key={day.day} className="flex-1 flex flex-col items-center">
                 <div
                   style={{ height: `${(day.value / maxVisitors) * 100}%` }}
-                  className="w-full bg-emerald-500 rounded-t-md min-h-[4px]"
+                  className="w-full bg-blue-500 rounded-t-md min-h-[4px]"
                 />
                 <span className="text-xs text-gray-500 mt-2">{day.day}</span>
               </div>
@@ -250,7 +250,7 @@ export default function DashboardPage() {
                   <div className="w-full bg-gray-100 rounded-full h-2">
                     <div
                       style={{ width: `${device.percentage}%` }}
-                      className="bg-emerald-500 h-2 rounded-full"
+                      className="bg-blue-500 h-2 rounded-full"
                     />
                   </div>
                 </div>
@@ -285,7 +285,7 @@ export default function DashboardPage() {
                 </span>
                 <span
                   className={`text-xs font-medium ${
-                    page.change >= 0 ? "text-emerald-600" : "text-red-500"
+                    page.change >= 0 ? "text-blue-600" : "text-red-500"
                   }`}
                 >
                   {page.change >= 0 ? "+" : ""}
@@ -419,7 +419,7 @@ export default function DashboardPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="bg-white rounded-xl border border-gray-200 p-6 text-center">
-            <div className="text-3xl font-bold text-emerald-500 mb-2">
+            <div className="text-3xl font-bold text-blue-500 mb-2">
               {((342 / 12847) * 100).toFixed(1)}%
             </div>
             <div className="text-sm text-gray-600">Visitor to Lead</div>
@@ -453,8 +453,8 @@ export default function DashboardPage() {
             className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
           >
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
-                <FileText className="w-5 h-5 text-emerald-600" />
+              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                <FileText className="w-5 h-5 text-blue-600" />
               </div>
               <div>
                 <div className="text-sm font-medium text-gray-900">
@@ -488,7 +488,7 @@ export default function DashboardPage() {
           <input
             type="text"
             defaultValue="My Website Analytics"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
           />
         </div>
         <div>
@@ -502,7 +502,7 @@ export default function DashboardPage() {
                   <input
                     type="checkbox"
                     defaultChecked
-                    className="w-4 h-4 text-emerald-500 border-gray-300 rounded focus:ring-emerald-500"
+                    className="w-4 h-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500"
                   />
                   <span className="text-sm text-gray-700">{option}</span>
                 </label>
@@ -514,14 +514,14 @@ export default function DashboardPage() {
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Timezone
           </label>
-          <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none">
+          <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
             <option>UTC-5 (Eastern Time)</option>
             <option>UTC-6 (Central Time)</option>
             <option>UTC-7 (Mountain Time)</option>
             <option>UTC-8 (Pacific Time)</option>
           </select>
         </div>
-        <button className="px-6 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-colors font-medium">
+        <button className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium">
           Save Changes
         </button>
       </div>
@@ -573,7 +573,7 @@ export default function DashboardPage() {
         <div className="p-6 border-b border-gray-100">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center">
                 <BarChart3 className="w-5 h-5 text-white" />
               </div>
               <div>
@@ -600,14 +600,14 @@ export default function DashboardPage() {
               }}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                 activeTab === item.id
-                  ? "bg-emerald-50 text-emerald-600"
+                  ? "bg-blue-50 text-blue-600"
                   : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
               }`}
             >
               <item.icon className="w-5 h-5" />
               {item.label}
               {activeTab === item.id && (
-                <div className="ml-auto w-1.5 h-1.5 bg-emerald-500 rounded-full" />
+                <div className="ml-auto w-1.5 h-1.5 bg-blue-500 rounded-full" />
               )}
             </button>
           ))}
@@ -657,7 +657,7 @@ export default function DashboardPage() {
                         }}
                         className={`w-full px-4 py-2 text-left text-sm hover:bg-gray-50 transition-colors ${
                           dateRange === range
-                            ? "bg-emerald-50 text-emerald-600 font-medium"
+                            ? "bg-blue-50 text-blue-600 font-medium"
                             : "text-gray-700"
                         }`}
                       >
@@ -668,8 +668,8 @@ export default function DashboardPage() {
                 )}
               </div>
 
-              <div className="w-9 h-9 bg-emerald-100 rounded-full flex items-center justify-center">
-                <span className="text-sm font-medium text-emerald-600">
+              <div className="w-9 h-9 bg-blue-100 rounded-full flex items-center justify-center">
+                <span className="text-sm font-medium text-blue-600">
                   JD
                 </span>
               </div>
