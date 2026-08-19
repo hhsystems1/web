@@ -27,7 +27,7 @@ const guideSteps = [
 
 export default function HeroShowcase({ title, subtitle, ctaText, ctaAction }: HeroShowcaseProps) {
   return (
-    <section className="relative min-h-[92vh] overflow-hidden bg-grid px-4 pt-28 pb-14 sm:px-6 md:pt-36">
+    <section className="relative min-h-[92vh] overflow-hidden px-4 pt-28 pb-14 sm:px-6 md:pt-36">
       <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(250,248,245,0.98)_0%,rgba(240,253,244,0.85)_48%,rgba(236,245,255,0.88)_100%)]" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#faf8f5] to-transparent" />
 
