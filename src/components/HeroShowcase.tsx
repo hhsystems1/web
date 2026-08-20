@@ -76,7 +76,7 @@ export default function HeroShowcase({ title, subtitle, ctaText, ctaAction }: He
             <div className="relative">
               <div className="relative h-72 sm:h-80 overflow-hidden bg-gradient-to-br from-blue-50 to-blue-50 flex items-center justify-center">
                 <Image
-                  src="/turdy19.png"
+                  src="/turdy19.webp"
                   alt="Turdy — your website guide"
                   width={400}
                   height={400}

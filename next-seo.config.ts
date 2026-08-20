@@ -14,9 +14,9 @@ const config: DefaultSeoProps = {
     description: 'Modern websites with built-in bookings, secure VPS AI agents, and installable skills. Professional web development services that make your site actually work for you.',
     images: [
       {
-        url: 'https://web.helpinghandssystems.com/hhs-logo-new-transparent.png',
-        width: 921,
-        height: 989,
+        url: 'https://web.helpinghandssystems.com/hhs-og.png',
+        width: 512,
+        height: 512,
         alt: 'Helping Hands Systems - Web Development',
       },
     ],

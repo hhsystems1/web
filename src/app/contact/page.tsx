@@ -75,7 +75,7 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div>
               <div className="mb-4">
-                <Image src="/mettalic letters logo.png" alt="Helping Hands Systems Logo" width={150} height={80} className="h-16 w-auto" />
+                <Image src="/hhs-metallic-logo.webp" alt="Helping Hands Systems Logo" width={150} height={80} className="h-16 w-auto" />
               </div>
               <p className="text-gray-500 mb-4">Conversion-focused websites for local service businesses with live demos and analytics dashboards.</p>
               <div className="space-y-2 text-gray-500">

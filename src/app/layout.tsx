@@ -14,11 +14,14 @@ export const metadata: Metadata = {
   description: "Conversion-focused websites for local service businesses with live demos, lead capture, booking flows, and a built-in analytics dashboard.",
   keywords: "web development, website design, booking systems, lead capture, local business websites, analytics dashboard",
   icons: {
-    icon: '/hhs-logo-dark.png',
-    apple: '/hhs-logo-dark.png',
+    icon: [
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
   },
   openGraph: {
-    images: ['/hhs-logo-dark.png'],
+    images: ['/hhs-og.png'],
   },
 };
 

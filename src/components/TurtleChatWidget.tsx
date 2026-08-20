@@ -55,7 +55,7 @@ function TurtleCharacter({ compact = false }: { compact?: boolean }) {
       <div className="absolute inset-0 rounded-full bg-blue-200/40 blur-xl" />
       <div className="relative h-full w-full overflow-hidden rounded-full border-2 border-blue-300/60 bg-white/80 shadow-lg shadow-blue-200/30">
         <Image
-          src="/hhs-turdy-new.png"
+          src="/hhs-turdy-new.webp"
           alt=""
           width={size}
           height={size}

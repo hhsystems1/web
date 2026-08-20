@@ -159,7 +159,7 @@ export default function TermsPage() {
             <div>
               <div className="mb-4">
                 <Image
-                  src="/mettalic letters logo.png"
+                  src="/hhs-metallic-logo.webp"
                   alt="Helping Hands Systems Logo"
                   width={150}
                   height={80}
