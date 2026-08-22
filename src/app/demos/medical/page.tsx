@@ -419,7 +419,7 @@ export default function MedicalDemoPage() {
 
           <div>
             {formSubmitted ? (
-              <div className="rounded-2xl bg-white/80 border border-blue-200/60 p-12 shadow-sm text-center">
+              <div className="eclipse-border eclipse-blue rounded-2xl bg-white/80 border border-blue-300/70 p-12 shadow-sm text-center">
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-50 border border-blue-100 mx-auto">
                   <CheckCircle2 className="h-8 w-8 text-blue-600" />
                 </div>

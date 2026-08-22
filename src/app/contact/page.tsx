@@ -50,22 +50,26 @@ export default function ContactPage() {
           <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto text-center">
             Tell us about your vision and we&apos;ll show you how we can bring it to life with modern design and conversion-focused features.
           </p>
-          <div className="glass rounded-2xl p-6 md:p-10 shadow-xl shadow-blue-100/20">
-            <ContactForm />
+          <div className="eclipse-border rounded-2xl">
+            <div className="h-full glass rounded-2xl p-6 md:p-10 shadow-xl shadow-blue-100/20">
+              <ContactForm />
+            </div>
           </div>
         </div>
       </Section>
 
       <Section className="bg-gradient-to-b from-gray-50 to-white">
-        <div className="text-center p-12 glass rounded-2xl relative overflow-hidden">
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Want to see what&apos;s possible?</h2>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              Try one of our live demos to see exactly what your website could look like — then customize it with your branding.
-            </p>
-            <Link href="/#demos" className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-500 via-blue-500 to-blue-400 rounded-full hover:shadow-2xl hover:shadow-blue-300/30 transition-all duration-300 hover:scale-105 border border-blue-400/30 hover:border-blue-400/60">
-              View Live Demos →
-            </Link>
+        <div className="eclipse-border rounded-2xl">
+          <div className="h-full text-center p-12 glass rounded-2xl relative overflow-hidden">
+            <div className="relative z-10">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Want to see what&apos;s possible?</h2>
+              <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                Try one of our live demos to see exactly what your website could look like — then customize it with your branding.
+              </p>
+              <Link href="/#demos" className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-500 via-blue-500 to-blue-400 rounded-full hover:shadow-2xl hover:shadow-blue-300/30 transition-all duration-300 hover:scale-105 border border-blue-400/30 hover:border-blue-400/60">
+                View Live Demos →
+              </Link>
+            </div>
           </div>
         </div>
       </Section>

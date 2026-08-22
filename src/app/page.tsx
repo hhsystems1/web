@@ -140,7 +140,7 @@ export default function Home() {
       {/* Problem / Solution */}
       <Section className="bg-gradient-to-b from-[#faf8f5] via-white to-gray-50">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-stretch">
-          <div className="rounded-2xl border border-red-200/50 bg-red-50/50 p-8 shadow-xl shadow-red-100/20 backdrop-blur-xl">
+          <div className="eclipse-border eclipse-red relative rounded-2xl border border-red-300/70 bg-red-50/50 p-8 shadow-xl shadow-red-100/20 backdrop-blur-xl">
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-red-500">The problem</p>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-5">Most business websites just sit there.</h2>
             <p className="text-lg text-gray-600 leading-relaxed mb-6">A lot of local business websites look fine, but they do not help the owner win the customer when someone is ready to take action.</p>
@@ -155,7 +155,7 @@ export default function Home() {
           </div>
 
           <div>
-            <div className="rounded-2xl border border-blue-200/50 bg-blue-50/50 p-8 shadow-xl shadow-blue-100/20 backdrop-blur-xl">
+            <div className="eclipse-border eclipse-blue relative rounded-2xl border border-blue-300/70 bg-blue-50/50 p-8 shadow-xl shadow-blue-100/20 backdrop-blur-xl">
               <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">The solution</p>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-5">What if your website actually worked for you?</h2>
               <p className="text-lg text-gray-600 leading-relaxed mb-6">We build websites that act like a simple front-end sales system: clear offer, trust-building layout, lead capture, booking paths, and follow-up support.</p>
@@ -181,7 +181,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service) => (
-            <div key={service.title}>
+            <div key={service.title} className="eclipse-border rounded-2xl">
               <div className="group relative p-6 rounded-2xl glass hover:shadow-xl hover:shadow-blue-200/40 transition-shadow duration-200">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-blue-400 flex items-center justify-center mb-4 shadow-md shadow-blue-200/50">
                   <service.icon size={24} className="text-white" />
@@ -194,8 +194,7 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Funnel Flow */}
-      <Section className="bg-gradient-to-b from-gray-50 via-white to-gray-50">
+      {/* Funnel Flow */}      <Section className="bg-gradient-to-b from-gray-50 via-white to-gray-50">
         <div className="mx-auto mb-12 max-w-3xl text-center">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">Simple customer flow</p>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">From demo to your live website</h2>
@@ -205,7 +204,7 @@ export default function Home() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {funnelSteps.map((step, index) => (
             <div key={step.title}>
-              <div className="relative rounded-2xl border border-gray-200/60 bg-white/60 p-6 shadow-xl shadow-gray-100/20 backdrop-blur-xl">
+              <div className="eclipse-border relative rounded-2xl border border-gray-300/70 bg-white/60 p-6 shadow-xl shadow-gray-100/20 backdrop-blur-xl">
                 <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-blue-400 text-lg font-bold text-white">{index + 1}</div>
                 <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
                 <p className="mt-3 text-gray-500 leading-relaxed">{step.description}</p>
@@ -244,7 +243,7 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-5">
             {features.map((highlight) => (
               <div key={highlight.title}>
-                <div className="rounded-lg border border-gray-200/60 bg-white/60 p-6 shadow-xl shadow-gray-100/20 backdrop-blur-xl">
+                <div className="eclipse-border rounded-lg border border-gray-300/70 bg-white/60 p-6 shadow-xl shadow-gray-100/20 backdrop-blur-xl">
                   <h3 className="text-2xl font-bold text-gray-900">{highlight.title}</h3>
                   <p className="mt-3 text-gray-500 leading-relaxed">{highlight.description}</p>
                   <div className="mt-5 flex flex-wrap gap-3">
@@ -271,8 +270,8 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {whyChooseUs.map((item) => (
-            <div key={item.title}>
-              <div className="text-center p-6 glass rounded-2xl hover:shadow-xl hover:shadow-blue-200/40 transition-shadow duration-200">
+            <div key={item.title} className="eclipse-border rounded-2xl">
+              <div className="h-full text-center p-6 glass rounded-2xl hover:shadow-xl hover:shadow-blue-200/40 transition-shadow duration-200">
                 <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-blue-400 flex items-center justify-center mx-auto mb-4 shadow-md shadow-blue-200/50">
                   <item.icon size={32} className="text-white" />
                 </div>
@@ -287,13 +286,15 @@ export default function Home() {
 
       {/* CTA */}
       <Section className="bg-gradient-to-b from-white to-gray-50">
-        <div className="text-center p-12 glass rounded-2xl relative overflow-hidden">
+        <div className="eclipse-border rounded-3xl">
+          <div className="h-full text-center p-12 glass rounded-3xl relative overflow-hidden">
           <div className="relative z-10">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Ready to see what this could look like for your business?</h2>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Try a live demo, then customize it with your branding. Your new website is just a few clicks away.</p>
             <Link href="/#demos" className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-500 via-blue-500 to-blue-400 rounded-full hover:shadow-2xl hover:shadow-blue-300/30 transition-all duration-300 hover:scale-105 border border-blue-400/30 hover:border-blue-400/60">
               Explore Live Demos →
             </Link>
+          </div>
           </div>
         </div>
       </Section>

@@ -107,7 +107,7 @@ body::before {
 .glass {
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(24px);
-  border: 1px solid rgba(56, 181, 255, 0.15);
+  border: 1px solid rgba(56, 181, 255, 0.35);
   position: relative;
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.06),
@@ -276,6 +276,100 @@ body::before {
     linear-gradient(rgba(56, 181, 255, 0.06) 1px, transparent 1px),
     linear-gradient(90deg, rgba(56, 181, 255, 0.06) 1px, transparent 1px);
   background-size: 60px 60px;
+}
+
+/* Solar eclipse border — spinning hue ring with soft halo */
+@property --eclipse-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.eclipse-border {
+  position: relative;
+  --eclipse-colors: #fbbf24, #ec4899, #a855f7, #38bdf8, #34d399, #fbbf24;
+}
+
+.eclipse-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(from var(--eclipse-angle), var(--eclipse-colors));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask: linear-gradient(#fff 0 0) content-box exclude, linear-gradient(#fff 0 0);
+  animation: eclipse-spin 8s linear infinite;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.eclipse-border::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  background: conic-gradient(from calc(var(--eclipse-angle) * -1), var(--eclipse-colors));
+  filter: blur(18px);
+  opacity: 0.22;
+  animation: eclipse-spin 8s linear infinite reverse;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes eclipse-spin {
+  to { --eclipse-angle: 360deg; }
+}
+
+/* Hue variants */
+.eclipse-red { --eclipse-colors: #f87171, #fb923c, #fbbf24, #f87171; }
+.eclipse-blue { --eclipse-colors: #38bdf8, #818cf8, #22d3ee, #38bdf8; }
+.eclipse-emerald { --eclipse-colors: #34d399, #2dd4bf, #a3e635, #34d399; }
+.eclipse-purple { --eclipse-colors: #c084fc, #f472b6, #818cf8, #c084fc; }
+.eclipse-gold { --eclipse-colors: #fbbf24, #fb923c, #fde047, #fbbf24; }
+
+/* Turdy — friendly emoji-style bob and wave */
+.turdy-alive {
+  transform-origin: 50% 88%;
+  animation:
+    turdy-bob 3.4s ease-in-out infinite,
+    turdy-wave 6.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.turdy-bob-soft {
+  animation: turdy-bob-soft 4.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes turdy-bob {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -8px; }
+}
+
+@keyframes turdy-wave {
+  0%, 82%, 100% { rotate: 0deg; }
+  86% { rotate: 5deg; }
+  90% { rotate: -4deg; }
+  94% { rotate: 2.5deg; }
+  98% { rotate: 0deg; }
+}
+
+@keyframes turdy-bob-soft {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eclipse-border::before,
+  .eclipse-border::after {
+    animation: none;
+  }
+  .turdy-alive,
+  .turdy-bob-soft {
+    animation: none;
+  }
 }
 
 /* Neon glow utilities for demo cards */

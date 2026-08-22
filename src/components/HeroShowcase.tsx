@@ -80,7 +80,7 @@ export default function HeroShowcase({ title, subtitle, ctaText, ctaAction }: He
                   alt="Turdy — your website guide"
                   width={400}
                   height={400}
-                  className="h-full w-auto object-contain drop-shadow-2xl"
+                  className="turdy-alive h-full w-auto object-contain drop-shadow-2xl"
                   priority
                 />
                 <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white/80 to-transparent" />

@@ -59,7 +59,7 @@ function TurtleCharacter({ compact = false }: { compact?: boolean }) {
           alt=""
           width={size}
           height={size}
-          className="h-full w-full scale-[1.15] object-cover object-[50%_35%]"
+          className="turdy-bob-soft h-full w-full scale-[1.15] object-cover object-[50%_35%]"
           priority={false}
         />
       </div>

@@ -144,7 +144,7 @@ export default function DashboardPage() {
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className="bg-white rounded-xl border border-gray-200 p-6"
+            className="eclipse-border eclipse-blue bg-white rounded-xl border border-gray-300 p-6"
           >
             <div className="flex items-center justify-between mb-4">
               <div className={`p-2 rounded-lg bg-${stat.color}-50`}>

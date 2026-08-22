@@ -16,23 +16,29 @@ interface DemoCardProps {
 
 const neonStyles: Record<Industry, { border: string; shadow: string; badge: string; badgeText: string }> = {
   restaurant: {
-    border: 'border-blue-400/40',
+    border: 'border-blue-400/70',
     shadow: '0 0 20px rgba(56, 181, 255, 0.3), 0 0 40px rgba(56, 181, 255, 0.1)',
     badge: 'bg-blue-500/10 border-blue-400/30',
     badgeText: 'text-blue-700',
   },
   contractor: {
-    border: 'border-blue-400/40',
+    border: 'border-amber-400/70',
     shadow: '0 0 20px rgba(59, 130, 246, 0.3), 0 0 40px rgba(59, 130, 246, 0.1)',
     badge: 'bg-blue-500/10 border-blue-400/30',
     badgeText: 'text-blue-700',
   },
   medical: {
-    border: 'border-purple-400/40',
+    border: 'border-purple-400/70',
     shadow: '0 0 20px rgba(168, 85, 247, 0.3), 0 0 40px rgba(168, 85, 247, 0.1)',
     badge: 'bg-purple-500/10 border-purple-400/30',
     badgeText: 'text-purple-700',
   },
+};
+
+const eclipseHues: Record<Industry, string> = {
+  restaurant: 'eclipse-blue',
+  contractor: 'eclipse-gold',
+  medical: 'eclipse-purple',
 };
 
 const industryLabels: Record<Industry, string> = {
@@ -50,10 +56,11 @@ const industryPlaceholders: Record<Industry, { gradient: string; icon: string }>
 export default function DemoCard({ industry, title, description, features, href, index }: DemoCardProps) {
   const style = neonStyles[industry];
   const placeholder = industryPlaceholders[industry];
+  const eclipseHue = eclipseHues[industry];
 
   return (
     <div
-      className="fade-in-up group relative"
+      className={`eclipse-border ${eclipseHue} fade-in-up group relative rounded-2xl`}
       style={{ animationDelay: `${index * 0.12}s` }}
     >
       <div

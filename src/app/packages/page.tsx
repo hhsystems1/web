@@ -76,7 +76,8 @@ export default function PackagesPage() {
 
       <section className="relative px-4 pb-24 sm:px-6">
         <div className="mx-auto max-w-4xl">
-          <div className="relative overflow-hidden rounded-[2rem] border border-blue-200/50 bg-white/70 shadow-2xl shadow-blue-200/30 backdrop-blur-xl">
+          <div className="eclipse-border rounded-[2.1rem]">
+            <div className="relative overflow-hidden rounded-[2rem] border border-blue-300/70 bg-white/70 shadow-2xl shadow-blue-200/30 backdrop-blur-xl">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(56,181,255,0.1),transparent_50%)]" />
 
             <div className="relative p-8 sm:p-12">
@@ -109,7 +110,7 @@ export default function PackagesPage() {
                 {features.map((feature) => (
                   <div
                     key={feature.title}
-                    className="flex items-start gap-4 rounded-xl border border-gray-200/60 bg-white/60 p-5 shadow-xl shadow-gray-100/20 backdrop-blur-xl"
+                    className="eclipse-border flex items-start gap-4 rounded-xl border border-gray-300/70 bg-white/60 p-5 shadow-xl shadow-gray-100/20 backdrop-blur-xl"
                   >
                     <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-blue-400 shadow-md shadow-blue-200/50">
                       <feature.icon size={20} className="text-white" />
@@ -126,7 +127,7 @@ export default function PackagesPage() {
                 ))}
               </div>
 
-              <div className="rounded-2xl border border-blue-200/50 bg-blue-50/50 p-6 backdrop-blur-xl">
+              <div className="eclipse-border eclipse-blue rounded-2xl border border-blue-300/70 bg-blue-50/50 p-6 backdrop-blur-xl">
                 <h3 className="mb-4 text-lg font-bold text-gray-900">
                   What&apos;s included at a glance
                 </h3>
@@ -172,6 +173,7 @@ export default function PackagesPage() {
                 </Link>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </section>

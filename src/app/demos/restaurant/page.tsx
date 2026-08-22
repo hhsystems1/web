@@ -298,7 +298,7 @@ export default function RestaurantDemoPage() {
           <div>
             <form
               onSubmit={handleSubmit}
-              className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl p-6 md:p-10 shadow-lg shadow-gray-200/50"
+              className="eclipse-border bg-white/80 backdrop-blur-sm border border-gray-300/70 rounded-2xl p-6 md:p-10 shadow-lg shadow-gray-200/50"
             >
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>

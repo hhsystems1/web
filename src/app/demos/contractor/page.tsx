@@ -293,7 +293,7 @@ export default function ContractorDemoPage() {
           </div>
           <form
             onSubmit={handleSubmit}
-            className="bg-white/80 border border-gray-200/60 rounded-2xl p-8 sm:p-10 space-y-6"
+            className="eclipse-border bg-white/80 border border-gray-300/70 rounded-2xl p-8 sm:p-10 space-y-6"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>

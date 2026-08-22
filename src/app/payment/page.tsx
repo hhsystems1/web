@@ -331,7 +331,7 @@ function PaymentPageInner() {
                 Pick the web address where customers will find you
               </p>
 
-              <div className="bg-white/80 border border-gray-200/60 rounded-xl p-6">
+              <div className="eclipse-border bg-white/80 border border-gray-300/70 rounded-xl p-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Domain Name
                 </label>
@@ -456,7 +456,7 @@ function PaymentPageInner() {
               </div>
 
               {/* Total */}
-              <div className="bg-white/80 border border-gray-200/60 rounded-xl p-6">
+              <div className="eclipse-border bg-white/80 border border-gray-300/70 rounded-xl p-6">
                 <div className="flex items-center justify-between mb-5">
                   <div>
                     <p className="text-sm text-gray-500">Monthly Subscription</p>
