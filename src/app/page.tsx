@@ -96,7 +96,7 @@ const whyChooseUs = [
 ];
 
 const demos = [
-  { industry: "restaurant" as const, title: "Restaurant & Cafe", description: "See how a restaurant website can showcase your menu, take reservations, and build a loyal customer base.", features: ["Online menu & ordering", "Reservation booking", "Customer reviews", "Photo gallery"], href: "/demos/restaurant" },
+  { industry: "restaurant" as const, title: "Restaurant & Cafe", description: "See how a restaurant website can showcase your menu, take reservations, and build a loyal customer base.", features: ["Online menu & ordering", "Reservation booking", "Customer reviews", "Photo gallery"], href: "https://hhs-mexican-cuisine.netlify.app" },
   { industry: "contractor" as const, title: "Contractor & Home Services", description: "Discover how a contractor site can generate quote requests, showcase projects, and grow your service area.", features: ["Quote request forms", "Project gallery", "Service area map", "Before & after showcase"], href: "/demos/contractor" },
   { industry: "medical" as const, title: "Medical & Dental Office", description: "Explore how a medical practice website can streamline appointments, build patient trust, and reduce no-shows.", features: ["Appointment booking", "Provider profiles", "Insurance info", "Patient FAQ"], href: "/demos/medical" }
 ];
