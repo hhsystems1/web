@@ -213,6 +213,12 @@ export default function Home() {
 
   const demoPlan = [
     {
+      title: "Restaurant Live Demo",
+      description: "Explore the live HHS Mexican Cuisine website — menu, ordering, and a complete restaurant experience built for a local business.",
+      href: "https://demo926.netlify.app/",
+      livePreview: true
+    },
+    {
       title: "Booking Demo",
       description: "Show a visitor choosing a service, picking a time, and sending the booking request."
     },
@@ -583,7 +589,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-4xl md:text-5xl font-bold text-white mb-6"
             >
-              Demos coming next
+              Live demos and what's coming next
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -591,7 +597,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-xl text-gray-400 leading-relaxed"
             >
-              Short walkthroughs will make it easier to see how each website and agent feature works before starting a project.
+              Try the live HHS Mexican Cuisine website, then see the other demos planned so you can picture how each feature works on day one.
             </motion.p>
           </div>
 
