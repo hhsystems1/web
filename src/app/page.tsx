@@ -34,12 +34,12 @@ const services = [
   {
     icon: MessageSquare,
     title: "Instant Visitor Response",
-    description: "Answers common questions, qualifies interested visitors, and helps turn conversations into real follow-up opportunities."
+    description: "Answers common questions, qualifies interested visitors, and handles phone inquiries via AI Voice agent to turn conversations into real opportunities."
   },
   {
     icon: Zap,
     title: "Lead Follow-Up Support",
-    description: "Keeps new inquiries organized so fewer interested customers get lost after the first message."
+    description: "A full CRM to track every lead, call, and booking so you never lose a customer in the shuffle."
   },
   {
     icon: CreditCard,
@@ -104,7 +104,7 @@ const demos = [
 const features = [
   { title: "Lead capture that answers fast", description: "Forms, chat prompts, and follow-up paths built around the questions your customers already ask.", points: ["Website inquiry forms", "Quote request flows", "Owner-ready lead handoffs"] },
   { title: "Booking flows that remove friction", description: "Calendar and appointment paths that make it easier for visitors to pick a time and move forward.", points: ["Calendar embeds", "Service routing", "Reminder-ready structure"] },
-  { title: "Analytics dashboard included", description: "Track page views, form submissions, bookings, and conversions — all in one clean dashboard.", points: ["Visitor tracking", "Conversion funnel", "Lead source analytics"] }
+  { title: "CRM & Voice AI Integration", description: "Track page views, voice calls, and form submissions — all in one clean dashboard for total lead visibility.", points: ["AI Voice Agent", "CRM Lead Pipeline", "Conversion Analytics"] },
 ];
 
 export default function Home() {

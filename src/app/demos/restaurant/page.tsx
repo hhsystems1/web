@@ -109,10 +109,19 @@ export default function RestaurantDemoPage() {
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 3000);
+    try {
+      await submitLead({
+        ...formData,
+        demo: 'restaurant'
+      });
+      setFormSubmitted(true);
+      setTimeout(() => setFormSubmitted(false), 3000);
+    } catch (err) {
+      console.error('Lead submission failed:', err);
+      alert('Something went wrong. Please try again.');
+    }
   };
 
   return (

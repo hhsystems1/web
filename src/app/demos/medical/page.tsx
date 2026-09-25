@@ -152,9 +152,18 @@ export default function MedicalDemoPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
+    try {
+      await submitLead({
+        ...formData,
+        demo: 'medical'
+      });
+      setFormSubmitted(true);
+    } catch (err) {
+      console.error('Lead submission failed:', err);
+      alert('Something went wrong. Please try again.');
+    }
   };
 
   return (

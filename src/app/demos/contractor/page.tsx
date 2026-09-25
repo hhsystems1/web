@@ -153,10 +153,19 @@ export default function ContractorDemoPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    try {
+      await submitLead({
+        ...formData,
+        demo: 'contractor'
+      });
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 4000);
+    } catch (err) {
+      console.error('Lead submission failed:', err);
+      alert('Something went wrong. Please try again.');
+    }
   };
 
   return (

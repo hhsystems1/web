@@ -28,9 +28,9 @@ const features = [
   },
   {
     icon: Server,
-    title: "Hosting & Ongoing Upkeep",
+    title: "Hosting, AI & CRM",
     description:
-      "Secure hosting, SSL certificate, backups, and site maintenance — $99/month keeps everything running smoothly.",
+      "Secure hosting, SSL, voice AI agent, and CRM lead tracking — $150/month keeps your entire customer acquisition system running smoothly.",
   },
   {
     icon: Mail,
@@ -97,10 +97,10 @@ export default function PackagesPage() {
                   <div className="h-px w-24 bg-gray-200 sm:h-24 sm:w-px" />
                   <div className="text-center">
                     <h2 className="text-5xl font-black text-blue-600 sm:text-6xl">
-                      $99
+                      $150
                     </h2>
                     <p className="mt-2 text-gray-500">
-                      /month for upkeep & hosting
+                      /month for Voice AI, CRM & Hosting
                     </p>
                   </div>
                 </div>
@@ -138,9 +138,8 @@ export default function PackagesPage() {
                     "Ongoing hosting & upkeep",
                     "SSL security certificate",
                     "Contact & quote request forms",
-                    "AI chat assistant",
-                    "Mobile-responsive design",
-                    "SEO-ready setup",
+                    "AI voice agent (Phone)",
+                    "CRM lead tracking",
                     "Analytics dashboard access",
                     "Direct support from our team",
                   ].map((item) => (
