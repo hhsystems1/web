@@ -155,22 +155,15 @@ export default function ContractorDemoPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      await submitLead({
-        ...formData,
-        demo: 'contractor'
-      });
-      setSubmitted(true);
-      setTimeout(() => setSubmitted(false), 4000);
-    } catch (err) {
-      console.error('Lead submission failed:', err);
-      alert('Something went wrong. Please try again.');
-    }
+    // An illustrative flow, not a real contractor lead intake.
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 4000);
   };
 
   return (
     <div className="min-h-screen bg-[#faf8f5] text-gray-900 font-[family-name:var(--font-inter)]">
       <NavIsland />
+      <div className="relative z-10 bg-slate-900 px-4 pt-24 pb-3 text-center text-sm text-white">Illustrative website demo. Forms here do not send real quote requests.</div>
 
       {/* Hero */}
       <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 px-4 overflow-hidden">

@@ -1,19 +1,32 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function ContactForm() {
   const [success, setSuccess] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const url = new URL(window.location.href);
-      if (url.searchParams.get('success') === '1') {
-        setSuccess(true);
-      }
+  async function submit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSubmitting(true);
+    setError(false);
+    const form = event.currentTarget;
+    try {
+      const response = await fetch('/__forms.html', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form) as unknown as URLSearchParams).toString(),
+      });
+      if (!response.ok) throw new Error('Submission failed');
+      form.reset();
+      setSuccess(true);
+    } catch {
+      setError(true);
+    } finally {
+      setSubmitting(false);
     }
-  }, []);
+  }
 
   return (
     <div className="space-y-6">
@@ -23,17 +36,19 @@ export default function ContactForm() {
           <p>Thank you for reaching out. We typically reply within 24 hours.</p>
         </div>
       )}
+      {error && <p role="alert" className="text-red-700">Your message could not be sent. Please email helpinghandsystems1@gmail.com.</p>}
 
       <form
         name="contact"
         method="POST"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
-        action="/contact?success=1"
+        action="/__forms.html"
         className="space-y-6"
-        onSubmit={() => setSubmitting(true)}
+        onSubmit={submit}
       >
         <input type="hidden" name="form-name" value="contact" />
+        <input type="hidden" name="source" value="contact-page" />
         <p className="hidden">
           <label>{"Don't fill this out if you're human:"} <input name="bot-field" /></label>
         </p>

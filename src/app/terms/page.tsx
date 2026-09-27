@@ -32,14 +32,13 @@ export default function TermsPage() {
 
               <section>
                 <h2 className="text-3xl font-semibold text-gray-900 mb-4">2) Plans and pricing (overview)</h2>
-                <p>We offer subscription bundles that may include setup fees:</p>
+                <p>Our RivRyn Front Office offer combines a website, one inbound voice agent, CRM, and owner dashboard for one business location:</p>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li><strong>Starter</strong> – monthly fee (currently advertised at $97), up to 3 pages, contact form</li>
-                  <li><strong>Standard</strong> – monthly fee (currently $197), up to 5 pages, calendar/appointment booking</li>
-                  <li><strong>Professional</strong> – monthly fee (currently $297), up to 5 pages, calendar + chatbot + starter agent workflow setup</li>
-                  <li><strong>Custom</strong> – tailored scope and pricing</li>
+                  <li><strong>Setup:</strong> $500 for the first ten accepted and paid orders, then $750 for new orders.</li>
+                  <li><strong>Monthly service:</strong> $199/month beginning at live activation.</li>
+                  <li><strong>Usage:</strong> voice and messaging costs are separate and disclosed in the individual Order before activation.</li>
                 </ul>
-                <p>Exact inclusions, add‑ons, and fees are as listed on the Site or in your Order. Setup fees are non‑refundable once work begins. We may update prices for future terms; we’ll provide notice as required.</p>
+                <p>Submission of an inquiry does not reserve a founding price. The Order confirms scope, any usage limit, payment schedule, applicable taxes, domain costs, and the activation date. Setup fees are non‑refundable once work begins unless the Order says otherwise. We may update prices for future orders with required notice.</p>
               </section>
 
               <section>

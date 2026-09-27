@@ -1,254 +1,49 @@
-"use client";
+import Link from 'next/link';
+import NavIsland from '@/components/NavIsland';
+import FrontOfficeForm from '@/components/FrontOfficeForm';
 
-import {
-  Globe,
-  Server,
-  MessageSquare,
-  Layout,
-  Mail,
-  Headphones,
-  CheckCircle2,
-} from "lucide-react";
-import Link from "next/link";
-
-import NavIsland from "@/components/NavIsland";
-
-const features = [
-  {
-    icon: Layout,
-    title: "3-Page Custom Website",
-    description:
-      "Professional, conversion-focused website built for your business — Home, About/Services, and Contact.",
-  },
-  {
-    icon: Globe,
-    title: "Free Domain",
-    description:
-      "One year of domain registration included at no extra cost with your build.",
-  },
-  {
-    icon: Server,
-    title: "Hosting, AI & CRM",
-    description:
-      "Secure hosting, SSL, voice AI agent, and CRM lead tracking — $150/month keeps your entire customer acquisition system running smoothly.",
-  },
-  {
-    icon: Mail,
-    title: "Contact Forms",
-    description:
-      "Custom contact and quote request forms so visitors can reach you instantly — no guesswork required.",
-  },
-  {
-    icon: MessageSquare,
-    title: "AI Assistant on Your Site",
-    description:
-      "An intelligent chatbot that answers questions, captures leads, and guides visitors around the clock.",
-  },
-  {
-    icon: Headphones,
-    title: "Ongoing Support",
-    description:
-      "Direct support from our team for updates, questions, and anything you need after launch.",
-  },
+const included = [
+  ['Website', 'A mobile-friendly site with clear services, service area, trust details, and a way to call or request work.'],
+  ['Voice agent', 'One inbound agent configured with your approved answers, intake questions, hours, and a human handoff.'],
+  ['CRM', 'Contacts, inquiries, call activity, pipeline stages, notes, and follow-up tasks in one place.'],
+  ['Owner dashboard', 'A view of leads, calls, appointments, outcomes, and voice usage for your business.'],
 ];
 
 export default function PackagesPage() {
-  return (
-    <main className="relative min-h-screen bg-[#faf8f5]">
-      <NavIsland />
-
-      <section className="relative px-4 pt-32 pb-16 sm:px-6 md:pt-40">
-        <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-blue-200/60 bg-blue-50/80 px-4 py-2 text-sm font-semibold text-blue-700 backdrop-blur-md">
-            Simple, transparent pricing
-          </div>
-
-          <h1 className="text-4xl font-black leading-[0.98] tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-            Website Package
-          </h1>
-
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-600 md:text-xl">
-            Everything you need to launch a professional website that generates
-            real leads — with hosting, support, and an AI assistant included.
-          </p>
-        </div>
-      </section>
-
-      <section className="relative px-4 pb-24 sm:px-6">
-        <div className="mx-auto max-w-4xl">
-          <div className="eclipse-border rounded-[2.1rem]">
-            <div className="relative overflow-hidden rounded-[2rem] border border-blue-300/70 bg-white/70 shadow-2xl shadow-blue-200/30 backdrop-blur-xl">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(56,181,255,0.1),transparent_50%)]" />
-
-            <div className="relative p-8 sm:p-12">
-              <div className="mb-10 text-center">
-                <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">
-                  All-In-One Package
-                </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
-                  <div className="text-center">
-                    <h2 className="text-5xl font-black text-gray-900 sm:text-6xl">
-                      $750
-                    </h2>
-                    <p className="mt-2 text-gray-500">
-                      One-time build fee
-                    </p>
-                  </div>
-                  <div className="h-px w-24 bg-gray-200 sm:h-24 sm:w-px" />
-                  <div className="text-center">
-                    <h2 className="text-5xl font-black text-blue-600 sm:text-6xl">
-                      $150
-                    </h2>
-                    <p className="mt-2 text-gray-500">
-                      /month for Voice AI, CRM & Hosting
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 mb-10">
-                {features.map((feature) => (
-                  <div
-                    key={feature.title}
-                    className="eclipse-border flex items-start gap-4 rounded-xl border border-gray-300/70 bg-white/60 p-5 shadow-xl shadow-gray-100/20 backdrop-blur-xl"
-                  >
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-blue-400 shadow-md shadow-blue-200/50">
-                      <feature.icon size={20} className="text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-base font-bold text-gray-900">
-                        {feature.title}
-                      </h3>
-                      <p className="mt-1 text-sm leading-relaxed text-gray-500">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="eclipse-border eclipse-blue rounded-2xl border border-blue-300/70 bg-blue-50/50 p-6 backdrop-blur-xl">
-                <h3 className="mb-4 text-lg font-bold text-gray-900">
-                  What&apos;s included at a glance
-                </h3>
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                  {[
-                    "Custom 3-page website",
-                    "Free domain registration",
-                    "Ongoing hosting & upkeep",
-                    "SSL security certificate",
-                    "Contact & quote request forms",
-                    "AI voice agent (Phone)",
-                    "CRM lead tracking",
-                    "Analytics dashboard access",
-                    "Direct support from our team",
-                  ].map((item) => (
-                    <div key={item} className="flex items-center gap-3">
-                      <CheckCircle2
-                        size={18}
-                        className="shrink-0 text-blue-500"
-                      />
-                      <span className="text-sm font-medium text-gray-700">
-                        {item}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-500 via-blue-500 to-blue-400 rounded-full hover:shadow-2xl hover:shadow-blue-300/30 transition-all duration-300 hover:scale-105 border border-blue-400/30 hover:border-blue-400/60"
-                >
-                  Get Started Today
-                </Link>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold text-gray-700 rounded-full border border-gray-200/60 bg-white/60 backdrop-blur-md hover:bg-white hover:shadow-lg transition-all duration-300"
-                >
-                  <Mail size={18} />
-                  Ask a Question
-                </Link>
-              </div>
-            </div>
-          </div>
+  return <main className="min-h-screen bg-[#0d1428] text-white">
+    <NavIsland />
+    <section className="relative overflow-hidden px-5 pb-16 pt-32 sm:pt-40">
+      <div className="pointer-events-none absolute -right-32 top-12 h-96 w-96 rounded-full bg-violet-600/20 blur-3xl" />
+      <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.15fr_.85fr] lg:items-center">
+        <div className="relative">
+          <p className="mb-5 text-sm font-semibold uppercase tracking-[.18em] text-cyan-300">Helping Hands Systems · RivRyn Front Office</p>
+          <h1 className="max-w-3xl text-4xl font-black leading-tight tracking-tight sm:text-6xl">Your website, phone inquiries, and follow-up in one working system.</h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">Built for local service owners who are on the job when customers call. Give people a clear way to reach you, organize the conversation, and see what needs attention.</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href="#start" className="rounded-xl bg-cyan-400 px-6 py-4 font-bold text-slate-950 hover:bg-cyan-300">Get the founding offer</a>
+            <Link href="/#demos" className="rounded-xl border border-white/30 px-6 py-4 font-semibold hover:bg-white/10">Explore website demos</Link>
           </div>
         </div>
-      </section>
-
-      <footer className="bg-white border-t border-gray-200 py-12 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
-                Helping Hands Systems
-              </h3>
-              <p className="text-gray-500 mb-4">
-                Conversion-focused websites for local service businesses with
-                live demos and analytics dashboards.
-              </p>
-              <div className="space-y-2 text-gray-500">
-                <p>📞 (606) 660-6147</p>
-                <p>✉️ helpinghandsystems1@gmail.com</p>
-              </div>
-            </div>
-            <div>
-              <h4 className="font-semibold text-gray-900 mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-gray-500">
-                <li>
-                  <Link
-                    href="/#demos"
-                    className="hover:text-gray-900 transition-colors"
-                  >
-                    Live Demos
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/packages"
-                    className="hover:text-gray-900 transition-colors"
-                  >
-                    Website Package
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contact"
-                    className="hover:text-gray-900 transition-colors"
-                  >
-                    Contact
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold text-gray-900 mb-4">Legal</h4>
-              <ul className="space-y-2 text-gray-500">
-                <li>
-                  <Link
-                    href="/privacy"
-                    className="hover:text-gray-900 transition-colors"
-                  >
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/terms"
-                    className="hover:text-gray-900 transition-colors"
-                  >
-                    Terms & Conditions
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-gray-200 pt-8 text-center text-gray-500">
-            <p>&copy; 2026 Helping Hands Systems. All rights reserved.</p>
-          </div>
+        <div className="relative rounded-3xl border border-cyan-300/25 bg-white/10 p-7 shadow-2xl backdrop-blur-xl sm:p-9">
+          <p className="text-sm font-semibold uppercase tracking-[.16em] text-cyan-300">First 10 client setups</p>
+          <div className="mt-4 flex items-end gap-3"><strong className="text-6xl font-black">$500</strong><span className="pb-2 text-slate-300">one-time setup</span></div>
+          <p className="mt-2 text-slate-300">Then $750 setup for new clients.</p>
+          <div className="my-7 h-px bg-white/20" />
+          <p className="text-3xl font-bold">$199<span className="text-lg font-normal text-slate-300"> / month at activation</span></p>
+          <p className="mt-3 text-sm leading-relaxed text-slate-300">Voice and messaging usage is separate. We estimate it with you before activation and agree on a spend limit. Taxes, domain renewal, and third-party costs are clarified in your order.</p>
+          <p className="mt-5 rounded-xl bg-cyan-300/10 p-4 text-sm text-slate-200">A founding spot is confirmed through an accepted order and setup payment. Sending this form does not reserve one.</p>
         </div>
-      </footer>
-    </main>
-  );
+      </div>
+    </section>
+    <section className="bg-slate-50 px-5 py-20 text-slate-950">
+      <div className="mx-auto max-w-6xl">
+        <p className="font-semibold uppercase tracking-[.16em] text-blue-700">The connected bundle</p>
+        <h2 className="mt-3 max-w-3xl text-3xl font-black sm:text-4xl">Four parts, one customer journey.</h2>
+        <div className="mt-9 grid gap-4 sm:grid-cols-2">{included.map(([title, description], index) => <article key={title} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"><span className="text-sm font-bold text-blue-700">0{index + 1}</span><h3 className="mt-3 text-2xl font-bold">{title}</h3><p className="mt-2 text-slate-600">{description}</p></article>)}</div>
+        <div className="mt-8 rounded-2xl bg-[#15244b] p-7 text-slate-100"><h3 className="text-xl font-bold">What we configure with you</h3><p className="mt-2 leading-relaxed text-slate-300">One business and location, one inbound agent and number connection, one calendar, and one lead pipeline. We collect your business facts, test calls and handoffs, and review the setup before your number goes live.</p></div>
+      </div>
+    </section>
+    <section className="px-5 py-20"><div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2"><div><p className="font-semibold uppercase tracking-[.16em] text-cyan-300">How it starts</p><h2 className="mt-3 text-3xl font-black sm:text-4xl">See the flow for your business.</h2><ol className="mt-7 space-y-5 text-slate-300"><li><strong className="text-white">1. Tell us where leads get stuck.</strong> We review your current site, calls, and scheduling.</li><li><strong className="text-white">2. Walk through the demo and order.</strong> You see the site, agent behavior, CRM, and dashboard scope before paying.</li><li><strong className="text-white">3. Configure, test, and launch.</strong> We use your approved business answers and a human fallback. Billing for the monthly service begins at activation.</li></ol><p className="mt-8 text-sm leading-relaxed text-slate-400">The $199 monthly service covers hosting, platform access, maintenance, monitoring, standard support, and up to 30 minutes of routine content or configuration changes. Larger changes and extra locations are quoted separately. A website alone does not create traffic or guarantee new customers.</p></div><div id="start" className="scroll-mt-28 rounded-3xl bg-white p-6 text-slate-950 shadow-2xl sm:p-8"><h2 className="text-2xl font-black">Show me how it would work</h2><p className="my-4 text-slate-600">Tell us about your business. We will reply with a relevant demo and the next step for the first-10 offer.</p><FrontOfficeForm /></div></div></section>
+    <footer className="border-t border-white/15 px-5 py-8 text-sm text-slate-400"><div className="mx-auto flex max-w-6xl flex-wrap justify-between gap-4"><span>© 2026 Helping Hands Systems</span><div className="flex gap-5"><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link><Link href="/contact">Contact</Link></div></div></footer>
+  </main>;
 }

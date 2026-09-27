@@ -111,22 +111,15 @@ export default function RestaurantDemoPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      await submitLead({
-        ...formData,
-        demo: 'restaurant'
-      });
-      setFormSubmitted(true);
-      setTimeout(() => setFormSubmitted(false), 3000);
-    } catch (err) {
-      console.error('Lead submission failed:', err);
-      alert('Something went wrong. Please try again.');
-    }
+    // This is an illustrative business demo; do not collect visitor data as a real reservation.
+    setFormSubmitted(true);
+    setTimeout(() => setFormSubmitted(false), 3000);
   };
 
   return (
     <div className="min-h-screen bg-[#faf8f5] text-gray-900 font-sans">
       <NavIsland />
+      <div className="relative z-10 bg-slate-900 px-4 pt-24 pb-3 text-center text-sm text-white">Illustrative website demo. Forms here do not create real reservations.</div>
 
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">

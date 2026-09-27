@@ -39,7 +39,7 @@ const services = [
   {
     icon: Zap,
     title: "Lead Follow-Up Support",
-    description: "A full CRM to track every lead, call, and booking so you never lose a customer in the shuffle."
+    description: "A CRM to track leads, calls, bookings, and the next follow-up task."
   },
   {
     icon: CreditCard,
@@ -88,10 +88,10 @@ const funnelSteps = [
 
 const whyChooseUs = [
   { icon: Rocket, title: "Modern Builds", stat: "Latest Tech", description: "Built with cutting-edge technologies for maximum performance and future-proofing." },
-  { icon: Gauge, title: "Speed & Performance", stat: "90+ Lighthouse", description: "Optimized for lightning-fast loading times and superior user experience." },
+  { icon: Gauge, title: "Speed & Performance", stat: "Mobile-first", description: "Pages designed to load clearly and work on the devices your customers use." },
   { icon: Shield, title: "SEO-Ready", stat: "Built-in SEO", description: "Search engine optimized from day one to help you rank higher and get found online." },
   { icon: DollarSign, title: "Transparent Pricing", stat: "No Hidden Fees", description: "Clear, upfront pricing with no surprises. You know exactly what you're paying for." },
-  { icon: Headphones, title: "Dedicated Support", stat: "24/7 Available", description: "Personal support from our team whenever you need help or have questions." },
+  { icon: Headphones, title: "Dedicated Support", stat: "Real help", description: "Our team helps configure and maintain the system you use." },
   { icon: Monitor, title: "Analytics Dashboard", stat: "Real-Time Data", description: "Every website includes a dashboard to track visitors, leads, and conversions." }
 ];
 
@@ -122,6 +122,13 @@ export default function Home() {
         ctaText="See Live Demos"
         ctaAction={scrollToWebsiteDemo}
       />
+
+      <section className="relative z-10 bg-[#101426] px-6 py-5 text-white">
+        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+          <div><p className="font-bold">Website + voice agent + CRM + dashboard</p><p className="text-sm text-slate-300">First 10 setups: $500, then $750. $199/month at activation; voice usage separate.</p></div>
+          <Link href="/packages" className="rounded-full bg-cyan-400 px-5 py-3 font-bold text-slate-950 hover:bg-cyan-300">See the complete offer →</Link>
+        </div>
+      </section>
 
       {/* Powered-by Ribbon */}
       <section className="relative z-10 bg-[#faf8f5] px-6 py-5">

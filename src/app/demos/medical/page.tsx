@@ -152,23 +152,16 @@ export default function MedicalDemoPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      await submitLead({
-        ...formData,
-        demo: 'medical'
-      });
-      setFormSubmitted(true);
-    } catch (err) {
-      console.error('Lead submission failed:', err);
-      alert('Something went wrong. Please try again.');
-    }
+    // Illustrative demo only; do not collect personal or medical data.
+    setFormSubmitted(true);
   };
 
   return (
     <div className="min-h-screen bg-[#faf8f5] text-gray-900">
       <NavIsland />
+      <div className="relative z-10 bg-slate-900 px-4 pt-24 pb-3 text-center text-sm text-white">Illustrative website demo. Forms here do not create real appointments or send medical information.</div>
 
       {/* Hero */}
       <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">

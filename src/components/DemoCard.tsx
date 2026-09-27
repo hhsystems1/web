@@ -66,7 +66,7 @@ export default function DemoCard({ industry, title, description, features, href,
       <div
         className={`relative h-full overflow-hidden rounded-2xl border ${style.border} bg-white/80 backdrop-blur-sm transition-all duration-300 group-hover:shadow-xl`}
         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = style.shadow; }}
-        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = undefined; }}
+        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = ''; }}
       >
         <div className={`h-48 bg-gradient-to-br ${placeholder.gradient} flex items-center justify-center border-b border-gray-200/50`}>
           <span className="text-6xl opacity-60 group-hover:scale-110 transition-transform duration-300">{placeholder.icon}</span>
