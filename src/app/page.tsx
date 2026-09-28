@@ -123,13 +123,6 @@ export default function Home() {
         ctaAction={scrollToWebsiteDemo}
       />
 
-      <section className="relative z-10 bg-[#101426] px-6 py-5 text-white">
-        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-          <div><p className="font-bold">Website + voice agent + CRM + dashboard</p><p className="text-sm text-slate-300">First 10 setups: $500, then $750. $199/month at activation; voice usage separate.</p></div>
-          <Link href="/packages" className="rounded-full bg-cyan-400 px-5 py-3 font-bold text-slate-950 hover:bg-cyan-300">See the complete offer →</Link>
-        </div>
-      </section>
-
       {/* Powered-by Ribbon */}
       <section className="relative z-10 bg-[#faf8f5] px-6 py-5">
         <div className="powered-lazy-susan" aria-label="Powered by Helping Hands Systems">

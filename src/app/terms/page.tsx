@@ -32,13 +32,8 @@ export default function TermsPage() {
 
               <section>
                 <h2 className="text-3xl font-semibold text-gray-900 mb-4">2) Plans and pricing (overview)</h2>
-                <p>Our RivRyn Front Office offer combines a website, one inbound voice agent, CRM, and owner dashboard for one business location:</p>
-                <ul className="list-disc pl-6 space-y-2">
-                  <li><strong>Setup:</strong> $500 for the first ten accepted and paid orders, then $750 for new orders.</li>
-                  <li><strong>Monthly service:</strong> $199/month beginning at live activation.</li>
-                  <li><strong>Usage:</strong> voice and messaging costs are separate and disclosed in the individual Order before activation.</li>
-                </ul>
-                <p>Submission of an inquiry does not reserve a founding price. The Order confirms scope, any usage limit, payment schedule, applicable taxes, domain costs, and the activation date. Setup fees are non‑refundable once work begins unless the Order says otherwise. We may update prices for future orders with required notice.</p>
+                <p>Website project scope, fees, ongoing service, and any third-party costs are stated in the individual Order before payment. No pricing or payment is offered on this page.</p>
+                <p>Setup fees are non-refundable once work begins unless the Order says otherwise. We may update pricing for future orders with required notice.</p>
               </section>
 
               <section>
