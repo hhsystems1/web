@@ -51,8 +51,10 @@ header.nav{position:sticky;top:0;z-index:30;background:#fffffff2;backdrop-filter
 /* hero */
 .hero{position:relative;color:#fff;isolation:isolate;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:-2}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 60%}
-.hero:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#0f1a12e6 0%,#0f1a12b3 42%,#0f1a1240 75%,#0f1a1220)}
+.hero-bg video,.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.reel-btn{position:absolute;right:16px;bottom:16px;z-index:2;width:38px;height:38px;border-radius:50%;border:1px solid #ffffff55;background:#0f1a1266;color:#fff;font-size:12px;cursor:pointer;backdrop-filter:blur(6px)}
+.hero:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#0f1a12c7 0%,#0f1a1280 34%,#0f1a1214 62%,transparent),linear-gradient(0deg,#0f1a1259,transparent 30%)}
+.hero h1,.hero .lead{text-shadow:0 2px 18px #0009}
 .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-top:72px;padding-bottom:72px;min-height:640px}
 .hero h1{font-size:clamp(46px,6vw,78px);margin:6px 0 18px}
 .hero h1 em{font-style:normal;color:#ffb37a}
@@ -187,6 +189,36 @@ footer.site a{text-decoration:none}footer.site a:hover{color:#fff}
 .legal .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:0 24px}
 .preview{background:#fff4d6;color:#5b4500;font-size:13px;text-align:center;padding:7px 16px}
 
+/* chat assistant */
+.ch-launch{position:fixed;right:18px;bottom:18px;z-index:45;display:flex;align-items:center;gap:10px}
+.ch-btn{width:64px;height:64px;border-radius:50%;border:3px solid #fff;background:#fff url("https://www.stresslessremodels.com/_next/image?url=%2Fcdn--media%2Fstressless_remodeling_logo_1_wd2x4uk84fmmhsz9lgu77q-1920x742.png&w=640&q=75") no-repeat 6% 46%/auto 118%;box-shadow:0 12px 30px #16201a40;cursor:pointer;position:relative}
+.ch-btn:after{content:"";position:absolute;right:2px;top:2px;width:14px;height:14px;border-radius:50%;background:#16c784;border:2px solid #fff}
+.ch-tip{background:#fff;border:1px solid var(--line);border-radius:14px 14px 4px 14px;padding:10px 12px;font:600 14px var(--body);box-shadow:0 12px 30px #16201a26;max-width:230px;opacity:0;transform:translateY(6px);transition:.35s;pointer-events:none}
+.ch-tip.show{opacity:1;transform:none;pointer-events:auto;cursor:pointer}
+.chat{position:fixed;right:18px;bottom:96px;z-index:46;width:min(380px,calc(100vw - 24px));height:min(600px,calc(100dvh - 130px));background:#fff;border-radius:18px;box-shadow:0 30px 70px #16201a4d;display:flex;flex-direction:column;overflow:hidden;opacity:0;transform:translateY(14px) scale(.98);pointer-events:none;transition:.3s}
+.chat.open{opacity:1;transform:none;pointer-events:auto}
+.ch-head{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--green-d);color:#fff}
+.ch-av{width:40px;height:40px;border-radius:50%;background:#fff url("https://www.stresslessremodels.com/_next/image?url=%2Fcdn--media%2Fstressless_remodeling_logo_1_wd2x4uk84fmmhsz9lgu77q-1920x742.png&w=640&q=75") no-repeat 6% 46%/auto 118%;flex:none}
+.ch-head b{display:block;font:700 15px var(--body)}.ch-head span{font-size:12.5px;color:#cfe0c9}
+.ch-x{margin-left:auto;width:34px;height:34px;border-radius:50%;border:0;background:#ffffff1f;color:#fff;font-size:18px;cursor:pointer}
+.ch-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--sand)}
+.ch-m{max-width:86%;padding:10px 13px;border-radius:14px;font-size:15px;line-height:1.45;animation:chin .25s ease}
+.ch-m.bot{background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px;align-self:flex-start}
+.ch-m.me{background:var(--green);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+.ch-m a{color:var(--orange);font-weight:700}
+.ch-typing{align-self:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;gap:4px}
+.ch-typing i{width:7px;height:7px;border-radius:50%;background:#9aa79d;animation:dot 1s infinite}.ch-typing i:nth-child(2){animation-delay:.15s}.ch-typing i:nth-child(3){animation-delay:.3s}
+@keyframes dot{50%{opacity:.3;transform:translateY(-3px)}}@keyframes chin{from{opacity:0;transform:translateY(6px)}}
+.ch-quick{display:flex;flex-wrap:wrap;gap:6px;padding:10px 12px 0;background:#fff}
+.ch-quick button{border:1.5px solid var(--green);background:#fff;color:var(--green-d);border-radius:100px;padding:7px 11px;font:600 13.5px var(--body);cursor:pointer}
+.ch-quick button:hover{background:var(--green-l)}
+.ch-form{display:flex;gap:8px;padding:10px 12px 12px;background:#fff;border-top:1px solid var(--line)}
+.ch-form input{flex:1;min-width:0;border:1.5px solid var(--line);border-radius:10px;padding:11px 12px;font:400 15.5px var(--body)}
+.ch-form input:focus{outline:none;border-color:var(--green)}
+.ch-form button{border:0;border-radius:10px;background:var(--orange);color:#fff;font:700 14px var(--body);padding:0 14px;cursor:pointer}
+.ch-note{font-size:11.5px;color:var(--muted);text-align:center;padding:0 12px 8px;background:#fff}
+@media(max-width:640px){.ch-launch{bottom:84px;right:12px}.ch-btn{width:56px;height:56px}.chat{right:0;bottom:0;width:100vw;height:100dvh;border-radius:0;z-index:60}}
+@media(prefers-reduced-motion:reduce){.ch-m{animation:none}}
 /* mobile sticky bar */
 .mbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:#fffffff5;backdrop-filter:blur(10px);border-top:1px solid var(--line)}
 .mbar a{flex:1;padding:14px 10px;font-size:15.5px}
@@ -194,7 +226,8 @@ footer.site a{text-decoration:none}footer.site a:hover{color:#fff}
 @media(max-width:980px){
   .nav nav{display:none}
   .hero .wrap{grid-template-columns:1fr;gap:30px;min-height:0;padding-top:48px;padding-bottom:48px}
-  .hero:after{background:linear-gradient(180deg,#0f1a12d9 0%,#0f1a12b3 55%,#0f1a12e6)}
+  .hero:after{background:linear-gradient(180deg,#0f1a1299 0%,#0f1a1240 30%,#0f1a1273 55%,#0f1a12d9 100%)}
+  .hero-bg{bottom:auto;height:100%}
   .svc{grid-template-columns:1fr 1fr}
   .how ol{grid-template-columns:1fr 1fr}
   .band .wrap,.split,.faq{grid-template-columns:1fr}
@@ -232,7 +265,8 @@ footer.site a{text-decoration:none}footer.site a:hover{color:#fff}
 
 <main id="top">
 <section class="hero" aria-labelledby="hero-h">
-  <div class="hero-bg"><img data-img="pool" alt="" fetchpriority="high"></div>
+  <div class="hero-bg"><video id="reel" autoplay muted loop playsinline preload="auto" poster="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/03a050ca-a509-4e52-91e2-3b239d2dfb0c.webp" aria-hidden="true"><source src="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/50a064ff-b865-41dc-9297-a5972f51e590.mp4" type="video/mp4"></video></div>
+  <button class="reel-btn" id="reel-btn" type="button" aria-label="Pause background video">❚❚</button>
   <div class="wrap">
     <div>
       <span class="offer">Up to $1,500 off your estimate</span>
@@ -399,6 +433,14 @@ footer.site a{text-decoration:none}footer.site a:hover{color:#fff}
   <div><h4>Contact</h4><ul><li><a href="tel:+18447332597">(844) 733-2597</a></li><li><a href="mailto:info@stresslessremodels.com">info@stresslessremodels.com</a></li><li>Mon–Fri 8am–4pm</li></ul></div>
 </div><div class="legal"><div class="wrap"><span>© 2026 StressLess Remodeling. ROC 316055 (BurWood, LLC) · Licensed, bonded and insured.</span><span>Terms · Privacy</span></div></div></footer>
 
+<div class="ch-launch"><div class="ch-tip" id="ch-tip">👋 Questions about your project? I can help.</div><button class="ch-btn" id="ch-btn" aria-label="Chat with StressLess" aria-expanded="false" aria-controls="chat"></button></div>
+<div class="chat" id="chat" role="dialog" aria-label="Chat with StressLess" aria-hidden="true">
+  <div class="ch-head"><span class="ch-av" aria-hidden="true"></span><div><b>StressLess Assistant</b><span>Online · replies in seconds</span></div><button class="ch-x" id="ch-x" aria-label="Close chat">×</button></div>
+  <div class="ch-msgs" id="ch-msgs" aria-live="polite"></div>
+  <div class="ch-quick" id="ch-quick"></div>
+  <form class="ch-form" id="ch-form" autocomplete="off"><label class="sr-only" for="ch-in">Message</label><input id="ch-in" placeholder="Type a message…"><button type="submit">Send</button></form>
+  <p class="ch-note">Preview assistant: answers come from StressLess's site. Nothing is sent.</p>
+</div>
 <div class="mbar"><a class="btn btn-g" href="tel:+18447332597">Call</a><a class="btn btn-o" href="#estimate">Free estimate</a></div>
 
 <script>
@@ -419,9 +461,87 @@ footer.site a{text-decoration:none}footer.site a:hover{color:#fff}
   };
   document.querySelectorAll('img[data-img]').forEach(i => { const f = SRC[i.dataset.img]; if (f) i.src = IMG(f); });
 
+  // hero reel: pause button; respect reduced motion and data saver
+  const reel = document.getElementById('reel'), rb = document.getElementById('reel-btn');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches || (navigator.connection && navigator.connection.saveData);
+  if (still) { reel.removeAttribute('autoplay'); reel.pause(); rb.textContent = '▶'; rb.setAttribute('aria-label', 'Play background video'); }
+  rb.onclick = () => { if (reel.paused) { reel.play(); rb.textContent = '❚❚'; rb.setAttribute('aria-label', 'Pause background video'); } else { reel.pause(); rb.textContent = '▶'; rb.setAttribute('aria-label', 'Play background video'); } };
+
   // gallery filter
   const tabs = document.querySelectorAll('.tabs button');
   tabs.forEach(b => b.onclick = () => { tabs.forEach(t => t.setAttribute('aria-pressed', t === b)); document.querySelectorAll('.gal figure').forEach(f => f.hidden = b.dataset.f !== 'all' && f.dataset.c !== b.dataset.f); });
+
+
+  /* ---------- Chat assistant (scripted preview, facts from stresslessremodels.com) ---------- */
+  const chat = document.getElementById('chat'), msgs = document.getElementById('ch-msgs'), quick = document.getElementById('ch-quick'), form = document.getElementById('ch-form'), input = document.getElementById('ch-in'), btn = document.getElementById('ch-btn'), tip = document.getElementById('ch-tip');
+  const PHONE = '<a href="tel:+18447332597">(844) 733-2597</a>';
+  let started = false, flow = null, lead = {};
+  const esc = t => t.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const add = (html, who = 'bot') => { const d = document.createElement('div'); d.className = 'ch-m ' + who; d.innerHTML = html; msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight; };
+  const say = (html, delay = 650) => new Promise(r => { const t = document.createElement('div'); t.className = 'ch-typing'; t.innerHTML = '<i></i><i></i><i></i>'; msgs.appendChild(t); msgs.scrollTop = msgs.scrollHeight; setTimeout(() => { t.remove(); add(html); r(); }, still ? 0 : delay); });
+  const chips = list => { quick.innerHTML = ''; list.forEach(([label, fn]) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = label; b.onclick = () => { add(esc(label), 'me'); quick.innerHTML = ''; fn(); }; quick.appendChild(b); }); };
+  const menu = () => chips([['Get a free estimate', estimate], ['Which coating is best?', coating], ['How long does it take?', () => answer('time')], ['Financing', () => answer('finance')], ['Do you serve my area?', area], ['Talk to a person', human]]);
+  const ANS = {
+    time: 'Many projects are done in <b>as little as a day</b>. Rubber Stone and VUBA Stone installs average 1–2 days, depending on size and the surface.',
+    finance: 'Yes! <b>24 months same as cash</b>: no interest if paid in full within 24 months, then low fixed payments. Subject to credit approval. You can apply at your consultation or online.',
+    price: 'Every project is priced after a <b>free in-home consultation</b>, because size and surface condition change the cost. Right now you can get <b>up to $1,500 off</b> your estimate.',
+    warranty: 'All of our coatings are backed by a warranty, and VUBA Stone carries a <b>6-year warranty</b>. Our in-house crew installs everything; nothing is outsourced.',
+    license: "Yes. We're licensed, bonded and insured (ROC 316055, BurWood, LLC), and family-owned with 15+ years in the business.",
+    commercial: 'Yes. We coat commercial entryways, walkways and outdoor common areas.',
+    mess: "We resurface what you already have, so there's <b>no demolition</b>. Our own crew does the install and the clean-up."
+  };
+  const answer = async k => { await say(ANS[k]); await say('Anything else I can help with?', 500); menu(); };
+  async function estimate() { flow = 'project'; await say("Great! Let's get your free estimate started. What are you upgrading?"); chips(['Pool deck / patio', 'Driveway', 'Garage floor', 'Countertops', 'Cabinets', 'Shower / bath'].map(p => [p, () => { lead.project = p; askZip(); }])); }
+  async function askZip() { flow = 'zip'; await say(`${esc(lead.project)}, nice choice. What's your ZIP code?`); input.placeholder = 'ZIP code'; input.inputMode = 'numeric'; input.focus(); }
+  async function coating() { await say("Happy to help you choose. Where's the surface?"); chips([['Around a pool', () => rec('pool')], ['Driveway / walkway', () => rec('drive')], ['Garage / indoors', () => rec('garage')]]); }
+  async function rec(k) {
+    const R = { pool: '<b>Rubber Stone</b> is our go-to around pools. It\'s slip-resistant, cushioned and noticeably cooler underfoot.', drive: '<b>VUBA Stone</b> is great for driveways. It\'s natural stone in clear resin, handles vehicle traffic and is 100% permeable, so water drains through.', garage: '<b>Sierra Stone</b> is ideal for garages and entryways. It\'s natural stone with industrial epoxy that resists stains and chemicals.' };
+    await say(R[k]); await say('Want a free estimate for it? You can get up to $1,500 off.', 500); chips([['Yes, get my estimate', () => { lead.project = { pool: 'Pool deck / patio', drive: 'Driveway', garage: 'Garage floor' }[k]; askZip(); }], ['Not yet, other questions', menu]]);
+  }
+  async function area() { flow = 'area'; await say("We serve Arizona, New Mexico and California, with offices in Phoenix, Albuquerque and Escondido. What's your ZIP code?"); input.placeholder = 'ZIP code'; input.inputMode = 'numeric'; input.focus(); }
+  const served = z => /^8[5-6]\d{3}$/.test(z) ? 'Arizona' : /^8[7-8]\d{3}$/.test(z) ? 'New Mexico' : /^9[0-2]\d{3}$/.test(z) ? 'Southern California' : null;
+  async function human() { await say(`You can call our team at ${PHONE}, Monday–Friday 8am–4pm. Or leave your number and we'll call you.`); chips([['Leave my number', () => { flow = 'name'; say("Sure! What's your first name?"); input.placeholder = 'First name'; input.inputMode = 'text'; input.focus(); }], ['Back to menu', menu]]); }
+  const intent = t => { t = t.toLowerCase();
+    if (/estimate|quote|consult|book|schedule/.test(t)) return estimate;
+    if (/price|cost|how much|\$|expensive|cheap/.test(t)) return () => answer('price');
+    if (/financ|payment|monthly|credit|interest/.test(t)) return () => answer('finance');
+    if (/how long|time|days?|fast|quick/.test(t)) return () => answer('time');
+    if (/warrant|guarantee/.test(t)) return () => answer('warranty');
+    if (/licen|insur|bond|roc/.test(t)) return () => answer('license');
+    if (/commercial|business|office|hoa/.test(t)) return () => answer('commercial');
+    if (/mess|demo|dust|clean/.test(t)) return () => answer('mess');
+    if (/rubber|vuba|sierra|coating|which|best|pool|driveway|garage|patio/.test(t)) return coating;
+    if (/area|zip|serve|located|where|phoenix|albuquerque|san diego|arizona|california|mexico/.test(t)) return area;
+    if (/human|person|call|talk|phone|someone/.test(t)) return human;
+    return null; };
+  form.onsubmit = async e => {
+    e.preventDefault(); const t = input.value.trim(); if (!t) return; add(esc(t), 'me'); input.value = ''; quick.innerHTML = '';
+    if (flow === 'zip' || flow === 'area') {
+      const z = t.replace(/\D/g, '').slice(0, 5); const st = served(z);
+      if (z.length !== 5) { await say('Hmm, that doesn\'t look like a ZIP code. Mind trying the 5 digits?'); return; }
+      lead.zip = z; input.inputMode = 'text';
+      if (flow === 'area') { flow = null; await say(st ? `Good news, ${z} is in our ${st} service area. 🎉` : `${z} may be outside our usual area, but call ${PHONE} and we'll check.`); chips([['Get a free estimate', estimate], ['Other questions', menu]]); return; }
+      if (!st) await say(`Thanks! ${z} may be outside our usual area, but we'll double-check.`, 400);
+      flow = 'name'; await say("What's your first name?"); input.placeholder = 'First name'; return;
+    }
+    if (flow === 'name') { lead.name = t.split(' ')[0]; flow = 'phone'; await say(`Thanks, ${esc(lead.name)}! What's the best phone number to reach you?`); input.placeholder = 'Phone number'; input.inputMode = 'tel'; return; }
+    if (flow === 'phone') {
+      if (t.replace(/\D/g, '').length < 10) { await say('Could you double-check that number? I need 10 digits.'); return; }
+      flow = null; input.placeholder = 'Type a message…'; input.inputMode = 'text';
+      await say(`You're all set, ${esc(lead.name)}! ✅ ${lead.project ? `We'll call within one business day to book your free consultation for your <b>${esc(lead.project.toLowerCase())}</b>, and your <b>up to $1,500 off</b> is reserved.` : "We'll call you within one business day."}`);
+      await say('<i>(Preview: nothing was actually sent.)</i>', 300); chips([['Ask another question', menu]]); return;
+    }
+    const fn = intent(t); if (fn) return fn();
+    await say(`Good question! I don't have that answer handy, but our team does: ${PHONE}. Or pick a topic below.`); menu();
+  };
+  const open = async () => { chat.classList.add('open'); chat.setAttribute('aria-hidden', 'false'); btn.setAttribute('aria-expanded', 'true'); tip.classList.remove('show');
+    if (!started) { started = true; await say("Hi there! 👋 I'm the StressLess assistant.", 300); await say('I can get your free estimate started, help you pick a coating, or answer questions. What can I help with?', 600); menu(); }
+    setTimeout(() => input.focus(), 50); };
+  const close = () => { chat.classList.remove('open'); chat.setAttribute('aria-hidden', 'true'); btn.setAttribute('aria-expanded', 'false'); btn.focus(); };
+  btn.onclick = () => chat.classList.contains('open') ? close() : open();
+  tip.onclick = open; document.getElementById('ch-x').onclick = close;
+  addEventListener('keydown', e => { if (e.key === 'Escape' && chat.classList.contains('open')) close(); });
+  setTimeout(() => { if (!started) tip.classList.add('show'); }, 6000);
 
   // two-step estimate form (preview: nothing is sent)
   const f = document.getElementById('est-form'), s1 = document.getElementById('s1'), s2 = document.getElementById('s2'), s3 = document.getElementById('s3');
