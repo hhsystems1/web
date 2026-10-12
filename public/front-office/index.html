@@ -246,6 +246,14 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
 .motion [data-reveal]{opacity:0;translate:0 30px;transition:opacity .8s var(--ease) var(--d,0ms),translate .9s var(--ease) var(--d,0ms)}
 .motion [data-reveal].in{opacity:1;translate:0 0}
 
+/* ===== Arrival: Turdy flies in on his ship ===== */
+#ship{position:fixed;left:0;top:0;z-index:39;pointer-events:none;opacity:0;will-change:transform,opacity;transform-origin:50% 50%}
+#ship img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 18px #35f0ff55) drop-shadow(0 18px 24px #0008)}
+#ship .empty{opacity:0}
+#ship.dropped .full{opacity:0}#ship.dropped .empty{opacity:1}
+#trail{position:fixed;inset:0;width:100vw;height:100vh;z-index:38;pointer-events:none}
+#hop{position:fixed;left:0;top:0;z-index:41;pointer-events:none;opacity:0;object-fit:contain;will-change:transform;filter:drop-shadow(0 10px 14px #0b1b3a66)}
+body.arriving #turdy,body.arriving #hey{opacity:0!important}
 /* ===== Turdy ===== */
 #turdy{position:fixed;left:0;top:0;z-index:40;width:80px;height:130px;pointer-events:none;will-change:transform}
 #turdy img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;filter:drop-shadow(0 10px 14px #0b1b3a66)}
@@ -504,6 +512,9 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
   </div>
 </footer>
 
+<canvas id="trail" aria-hidden="true"></canvas>
+<div id="ship" aria-hidden="true"><img class="full" src="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/c2c79907-ce04-4e07-a3ae-f8ff1b3db883.webp" alt="" decoding="async"><img class="empty" src="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/5f761eb9-b205-45a0-919a-107d0240f49d.webp" alt="" decoding="async"></div>
+<img id="hop" src="assets/turdy-front.webp" alt="" aria-hidden="true">
 <div id="turdy" data-pose="wave" aria-hidden="true">
   <img class="p-front" src="assets/turdy-front.webp" alt="">
   <img class="p-right" src="assets/turdy-right.webp" alt="">
@@ -696,6 +707,80 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
     init();
   }
   turdy.addEventListener('click', () => openChat());
+
+  /* ---------- Arrival: Turdy flies in from deep space on his ship ---------- */
+  (function arrival() {
+    const ship = $('#ship'), trail = $('#trail'), hop = $('#hop'), tc = trail.getContext('2d');
+    if (reduce || scrollY > 30) { ship.remove(); trail.remove(); hop.remove(); return; }
+    document.body.classList.add('arriving');
+    const SR = 528 / 760; // ship image ratio (h/w)
+    let done = false, raf = 0, parts = [];
+    const finish = () => {
+      if (done) return; done = true; cancelAnimationFrame(raf);
+      document.body.classList.remove('arriving');
+      [ship, trail, hop].forEach(e => e.remove());
+      removeEventListener('scroll', skip); removeEventListener('pointerdown', skip); removeEventListener('keydown', skip);
+      place();
+    };
+    const skip = () => finish();
+    addEventListener('scroll', skip, { passive: true, once: true }); addEventListener('pointerdown', skip, { once: true }); addEventListener('keydown', skip, { once: true });
+    const imgs = [...ship.querySelectorAll('img')], ready = Promise.all(imgs.map(i => i.decode ? i.decode().catch(() => { throw 0; }) : Promise.resolve()));
+    const giveUp = setTimeout(finish, 4000);
+    ready.then(() => { clearTimeout(giveUp); if (!done) fly(); }).catch(finish);
+
+    const bez = (a, b, c, d, t) => { const u = 1 - t; return u * u * u * a + 3 * u * u * t * b + 3 * u * t * t * c + t * t * t * d; };
+    const ease = t => 1 - Math.pow(1 - t, 3), inOut = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    function fly() {
+      const d = Math.min(2, devicePixelRatio || 1); trail.width = innerWidth * d; trail.height = innerHeight * d; tc.setTransform(d, 0, 0, d, 0, 0);
+      place();
+      const tr = turdy.getBoundingClientRect(), vw = innerWidth, vh = innerHeight, mobile = vw <= 760;
+      const SW = Math.max(150, tr.height * (mobile ? 1.7 : 1.55)), SH = SW * SR;
+      ship.style.width = SW + 'px'; ship.style.height = SH + 'px';
+      // hover so the cockpit sits up-left of Turdy's landing spot
+      const hx = Math.max(8, tr.left - SW * (mobile ? .8 : .86)), hy = Math.max(76, tr.top + tr.height * .12 - SH * .3);
+      const P = [{ x: vw * (mobile ? .95 : .86), y: vh * (mobile ? .22 : .04) }, { x: vw * (mobile ? .98 : .97), y: vh * (mobile ? .42 : .34) }, { x: hx + SW * 1.1, y: hy + SH * .9 }, { x: hx, y: hy }];
+      const T1 = 2600, T2 = 650, T3 = 700, T4 = 1100, t0 = performance.now();
+      hop.style.width = tr.width + 'px'; hop.style.height = tr.height + 'px';
+      let flip = 1;
+      const thr = (x, y, sc) => { // thruster positions (ship image coords) -> viewport
+        [[.93, .48], [.93, .76]].forEach(([fx, fy]) => parts.push({ x: x + (fx - .5) * flip * SW * sc + SW / 2, y: y + (fy - .5) * SH * sc + SH / 2, r: (2 + Math.random() * 3) * sc + 1, a: .9, vx: (1.5 + Math.random()) * flip, vy: (Math.random() - .5) * .6 }));
+      };
+      const drawTrail = () => {
+        tc.clearRect(0, 0, vw, vh); tc.globalCompositeOperation = 'lighter';
+        parts = parts.filter(p => (p.a -= .022) > 0);
+        for (const p of parts) { p.x += p.vx; p.y += p.vy; tc.globalAlpha = p.a; tc.fillStyle = p.a > .6 ? '#e6fffd' : '#35f0ff'; tc.beginPath(); tc.arc(p.x, p.y, p.r * (1.4 - p.a * .4), 0, 6.283); tc.fill(); }
+        tc.globalAlpha = 1; tc.globalCompositeOperation = 'source-over';
+      };
+      const set = (x, y, sc, rot, op) => { ship.style.opacity = op; ship.style.transform = `translate(${x.toFixed(1)}px,${y.toFixed(1)}px) scale(${(sc * flip).toFixed(3)},${sc.toFixed(3)}) rotate(${(rot * Math.sign(flip || 1)).toFixed(2)}deg)`; };
+      const frame = now => {
+        if (done) return;
+        const t = now - t0;
+        if (t < T1) { // approach from deep space: travel the curve, grow, settle the bank
+          const k = t / T1, e = ease(k), m = inOut(k);
+          const x = bez(P[0].x, P[1].x, P[2].x, P[3].x, m), y = bez(P[0].y, P[1].y, P[2].y, P[3].y, m);
+          const sc = .08 + .92 * e * e, rot = -14 * (1 - e) + Math.sin(k * 9) * 3 * (1 - e);
+          set(x, y, sc, rot, Math.min(1, k * 4)); thr(x, y, sc);
+        } else if (t < T1 + T2) { // hover
+          const k = (t - T1) / T2; set(hx, hy + Math.sin(k * Math.PI * 2) * 4, 1, Math.sin(k * Math.PI * 2) * 1.5, 1); if (Math.random() < .5) thr(hx, hy, .6);
+        } else if (t < T1 + T2 + T3) { // Turdy hops out to his spot
+          const k = (t - T1 - T2) / T3, e = inOut(k);
+          ship.classList.add('dropped');
+          const sx = hx + SW * .36 - tr.width / 2, sy = hy + SH * .02, x = sx + (tr.left - sx) * e, y = sy + (tr.top - sy) * e - Math.sin(e * Math.PI) * (mobile ? 70 : 110), sc = .55 + .45 * e;
+          hop.style.opacity = 1; hop.style.transform = `translate(${x.toFixed(1)}px,${y.toFixed(1)}px) scale(${sc.toFixed(3)}) rotate(${(-12 * (1 - e)).toFixed(1)}deg)`;
+          set(hx, hy - e * 6, 1, 0, 1); thr(hx, hy, .5);
+        } else if (t < T1 + T2 + T3 + T4) { // ship zooms off into the distance
+          if (hop.style.opacity !== '0') { hop.style.opacity = 0; document.body.classList.remove('arriving'); place(); }
+          // turn around (first 30%), then head back into the nebula, shrinking into the distance
+          const k = (t - T1 - T2 - T3) / T4, kt = Math.min(1, k / .3), km = Math.max(0, (k - .2) / .8), e = km * km;
+          flip = Math.cos(kt * Math.PI) || .001;
+          const x = hx + e * (vw * (mobile ? .95 : .9) - hx), y = hy + e * (vh * (mobile ? .12 : .02) - hy) - Math.sin(km * Math.PI) * 40, sc = 1 - .92 * ease(km);
+          set(x, y, sc, -10 * e, 1 - Math.max(0, (k - .7) / .3)); if (kt >= 1) thr(x, y, sc);
+        } else { ship.style.opacity = 0; drawTrail(); if (!parts.length) return finish(); }
+        drawTrail(); raf = requestAnimationFrame(frame);
+      };
+      raf = requestAnimationFrame(frame);
+    }
+  })();
 
   /* ---------- Chat (scripted preview) ---------- */
   const chat = $('#chat'), msgs = $('#msgs'), quick = $('#quick'), input = $('#chat-input');
