@@ -308,14 +308,20 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
   .pieces{grid-template-columns:1fr 1fr}
   .sample-grid{grid-template-columns:1fr}
   .sample-copy{order:-1}
+  /* route runs down a left gutter on tablets and phones; content steps in so numbers never touch text */
+  .journey .sec>.wrap,.journey .sample>.wrap{padding-left:84px}
+  .how-head{padding-left:0}.how-head .node{left:-66px;top:0}
+  .row{grid-template-columns:1fr;gap:18px;margin-bottom:72px;position:relative}
+  .row .node{position:absolute;left:-66px;top:0}
+  .row .copy{order:1!important}.row .viz{order:2!important}
+  .pricing .node{left:-66px;top:0}
 }
 @media(max-width:760px){
-  /* route runs down the left gutter on phones; content steps in to make room */
-  .journey .sec>.wrap,.journey .sample>.wrap{padding-left:58px}
-  .how-head{padding-left:0}.how-head .node{left:-48px;top:0}
-  .row{grid-template-columns:1fr;gap:16px;margin-bottom:64px;position:relative}
-  .row .node{position:absolute;left:-48px;top:0}
-  .row .copy{order:1!important}.row .viz{order:2!important}
+  .journey .sec>.wrap,.journey .sample>.wrap{padding-left:66px}
+  .node{width:38px;height:38px;font-size:12.5px}
+  .how-head .node,.row .node,.pricing .node{left:-54px}
+}
+@media(max-width:760px){
   .pieces{grid-template-columns:1fr;gap:14px}
   .pieces li{display:grid;grid-template-columns:52px 1fr;column-gap:14px;align-items:start}
   .pieces .ic{width:52px;height:52px;margin:0;grid-row:span 2}.pieces svg{width:24px;height:24px}
@@ -328,7 +334,6 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
   .viz-crm{grid-template-columns:1fr}
   .viz-dash{grid-template-columns:repeat(3,1fr)}.viz-dash .chart{grid-column:1/-1;height:90px}
   .prices{grid-template-columns:1fr}
-  .pricing .node{left:-48px;top:0}
   .pricing .card-wrap{text-align:left;overflow:visible}
   .faq-grid{grid-template-columns:1fr}
   .sec{padding:80px 0}
@@ -339,6 +344,8 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
+<link rel="preload" as="image" href="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/c2c79907-ce04-4e07-a3ae-f8ff1b3db883.webp">
+<link rel="preload" as="image" href="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/5f761eb9-b205-45a0-919a-107d0240f49d.webp">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -541,6 +548,7 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v)), lerp = (a, b, t) => a + (b - a) * t;
+  if (!location.hash && 'scrollRestoration' in history) history.scrollRestoration = 'manual';
   if (!reduce) document.documentElement.classList.add('motion');
 
   /* ---------- Hero space: layered parallax (sky, 3 star depths, nebula glow, planet) ---------- */
@@ -604,17 +612,13 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
 
   function build() {
     const jr = journey.getBoundingClientRect(), top = jr.top + scrollY;
-    const mobile = innerWidth <= 760;
-    // swirl loop sits in the hero, above the journey container (negative y in route coords)
+    const mobile = innerWidth <= 980; // left-gutter layout
+    // Turdy's spot in the hero (no line there); the route itself starts at node 01
     const sw = $('#swirl').getBoundingClientRect();
-    const C = { x: sw.left + sw.width * .55, y: sw.top + scrollY - top + sw.height * .5 }, R = Math.min(sw.width, sw.height) * (mobile ? .34 : .36);
+    heroSpot = { x: sw.left + scrollX + sw.width * (mobile ? .62 : .58), y: sw.top + scrollY + sw.height * (mobile ? .72 : .62) };
     const nodes = $$('[data-node]').map(n => { const p = docXY(n); return { x: p.x, y: p.y - top, el: n }; });
-    const start = { x: C.x + R * .25, y: C.y - R * .97 };
-    const arc = `M${start.x},${start.y} A${R},${R} 0 1 1 ${C.x - R},${C.y + 2}`;
-    let d = arc;
-    // leave the swirl and drop to node 01 (down the left gutter, never across text)
     const n1 = nodes[0];
-    d += ` C${C.x - R},${C.y + R * 1.7} ${n1.x},${n1.y - Math.max(160, (n1.y - C.y) * .45)} ${n1.x},${n1.y}`;
+    let d = `M${n1.x},${n1.y}`;
     for (let i = 1; i < nodes.length; i++) {
       const a = nodes[i - 1], b = nodes[i], dy = b.y - a.y;
       if (i === 1 && !mobile) {       // 01 -> 02: straight down the gutter (behind the laptop), then curve over to the center column
@@ -624,12 +628,12 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
         d += ` C${a.x + sw},${a.y + dy * .5} ${b.x + sw},${b.y - dy * .5} ${b.x},${b.y}`;
       }
     }
-    ['sw-glow', 'sw-core', 'sw-flow'].forEach(id => document.getElementById(id).setAttribute('d', arc));
+    ['sw-glow', 'sw-core', 'sw-flow'].forEach(id => document.getElementById(id)?.remove());
     const h = journey.offsetHeight;
     svg.setAttribute('height', h); svg.style.height = h + 'px'; svg.setAttribute('viewBox', `0 0 ${journey.offsetWidth} ${h}`);
     [track, glow, core].forEach(p => p.setAttribute('d', d));
     L = core.getTotalLength();
-    const tmp = document.createElementNS('http://www.w3.org/2000/svg', 'path'); tmp.setAttribute('d', arc); svg.appendChild(tmp); loopLen = tmp.getTotalLength(); tmp.remove();
+    loopLen = 0;
     samples = []; for (let s = 0; s <= L; s += 4) samples.push(core.getPointAtLength(s));
     samples.push(core.getPointAtLength(L));
     const near = n => { let best = 0, bd = 1e9; samples.forEach((p, i) => { const dd = (p.x - n.x) ** 2 + (p.y - n.y) ** 2; if (dd < bd) { bd = dd; best = i; } }); return Math.min(L, best * 4); };
@@ -639,7 +643,7 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
     [glow, core].forEach(p => { p.style.strokeDasharray = L; });
     top0 = top; nodesEls = nodes.map(n => ({ el: n.el, l: near(n) }));
   }
-  let top0 = 0, nodesEls = [], loopLen = 0;
+  let top0 = 0, nodesEls = [], loopLen = 0, heroSpot = { x: 0, y: 0 };
   const lenAtScroll = y => { for (let i = 1; i < anchors.length; i++) { const a = anchors[i - 1], b = anchors[i]; if (y <= b.s) return lerp(a.l, b.l, clamp((y - a.s) / (b.s - a.s), 0, 1)); } return anchors[anchors.length - 1].l; };
   const pointAt = l => { const i = clamp(Math.round(l / 4), 0, samples.length - 1); return samples[i]; };
 
@@ -655,19 +659,24 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
   function place() {
     if (!samples.length) return;
     const mobile = innerWidth <= 760;
-    const base = mobile ? 74 : 118, H = lerp(mobile ? 110 : 170, base, clamp(lenAtScroll(scrollY) / Math.max(1, loopLen), 0, 1)), W = H / RATIO;
+    const fall = clamp(scrollY / Math.max(1, anchors[1] ? anchors[1].s : 1), 0, 1), fe = fall * fall * (3 - 2 * fall);
+    const base = innerWidth <= 760 ? 58 : innerWidth <= 980 ? 70 : 118, H = lerp(mobile ? 110 : 170, base, fe), W = H / RATIO;
     const btn = mobile ? 68 : 80, margin = 18;
     const lastS = anchors[anchors.length - 1].s, dockSpan = Math.max(320, innerHeight * .45);
     const y = scrollY;
     const l = lenAtScroll(y);
     // draw the route up to Turdy
-    const drawn = clamp(l, 0, L), lit = Math.max(drawn, loopLen);
+    const drawn = clamp(l, 0, L), lit = drawn;
     glow.style.strokeDashoffset = L - lit; core.style.strokeDashoffset = L - lit;
     const pt = pointAt(drawn); spark.setAttribute('cx', pt.x); spark.setAttribute('cy', pt.y);
     nodesEls.forEach(n => n.el.classList.toggle('lit', drawn >= n.l - 6));
     // body position (viewport coords): feet on the route
     let vx = pt.x - W / 2 - scrollX, vy = pt.y + top0 - scrollY - H * .92, h = H, rot = 0, pose = 'wave';
-    if (y > 8) {
+    if (fall < 1) { // from his hero spot, glide down to node 01 where the line begins
+      const hx = heroSpot.x - W / 2 - scrollX, hy = heroSpot.y - scrollY - H * .92;
+      vx = lerp(hx, vx, fe); vy = lerp(hy, vy, fe) - Math.sin(fe * Math.PI) * (mobile ? 40 : 70);
+      if (y > 8) { pose = vx > hx + 4 ? 'right' : 'left'; rot = Math.sin(fall * 12) * 6; }
+    } else if (y > 8) {
       const a = pointAt(drawn - 10), b = pointAt(drawn + 10), dx = b.x - a.x, dy = b.y - a.y;
       if (Math.abs(dy) > Math.abs(dx) * 2.4) { pose = 'roll'; rot = drawn * 1.4; vy += H * .3; h = H * .8; }
       else { pose = dx >= 0 ? 'right' : 'left'; vy -= Math.abs(Math.sin(drawn / 22)) * H * .18; rot = Math.sin(drawn / 11) * 5; }
@@ -697,7 +706,10 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
   if (reduce) {
     init(); turdy.dataset.pose = 'wave'; dock.classList.add('on'); docked = true;
     [glow, core].forEach(p => p.style.strokeDashoffset = 0);
-    addEventListener('scroll', () => { const pt = pointAt(0); turdy.style.transform = `translate(${pt.x - 30}px,${pt.y + top0 - scrollY - 110}px)`; }, { passive: true });
+    const still = () => { const H = innerWidth <= 760 ? 110 : 170, W = H / RATIO, x = heroSpot.x - W / 2 - scrollX, yy = heroSpot.y - scrollY - H * .92;
+      turdy.style.width = W + 'px'; turdy.style.height = H + 'px'; turdy.style.transform = `translate(${x}px,${yy}px)`;
+      hey.style.left = (x - (innerWidth <= 760 ? 96 : 130)) + 'px'; hey.style.top = (yy + H * .05) + 'px'; };
+    still(); addEventListener('scroll', still, { passive: true }); addEventListener('resize', () => { init(); still(); });
   } else {
     let tick = false;
     addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(() => { place(); tick = false; }); } }, { passive: true });
@@ -711,7 +723,8 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
   /* ---------- Arrival: Turdy flies in from deep space on his ship ---------- */
   (function arrival() {
     const ship = $('#ship'), trail = $('#trail'), hop = $('#hop'), tc = trail.getContext('2d');
-    if (reduce || scrollY > 30) { ship.remove(); trail.remove(); hop.remove(); return; }
+    if (scrollY > 30 && !location.hash) { try { scrollTo(0, 0); } catch (_) {} }
+    if (scrollY > 30) { ship.remove(); trail.remove(); hop.remove(); return; }
     document.body.classList.add('arriving');
     const SR = 528 / 760; // ship image ratio (h/w)
     let done = false, raf = 0, parts = [];
@@ -719,14 +732,25 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
       if (done) return; done = true; cancelAnimationFrame(raf);
       document.body.classList.remove('arriving');
       [ship, trail, hop].forEach(e => e.remove());
-      removeEventListener('scroll', skip); removeEventListener('pointerdown', skip); removeEventListener('keydown', skip);
-      place();
+      ['wheel', 'touchmove', 'keydown', 'pointerdown'].forEach(ev => removeEventListener(ev, skip));
+      if (!reduce) place();
     };
     const skip = () => finish();
-    addEventListener('scroll', skip, { passive: true, once: true }); addEventListener('pointerdown', skip, { once: true }); addEventListener('keydown', skip, { once: true });
-    const imgs = [...ship.querySelectorAll('img')], ready = Promise.all(imgs.map(i => i.decode ? i.decode().catch(() => { throw 0; }) : Promise.resolve()));
-    const giveUp = setTimeout(finish, 4000);
-    ready.then(() => { clearTimeout(giveUp); if (!done) fly(); }).catch(finish);
+    ['wheel', 'touchmove', 'keydown', 'pointerdown'].forEach(ev => addEventListener(ev, skip, { passive: true }));
+    const load = img => new Promise((res, rej) => { if (img.complete && img.naturalWidth) return res(); img.addEventListener('load', res, { once: true }); img.addEventListener('error', rej, { once: true }); });
+    const giveUp = setTimeout(finish, 10000);
+    Promise.all([...ship.querySelectorAll('img')].map(load)).then(() => { clearTimeout(giveUp); if (!done) (reduce ? calm : fly)(); }).catch(finish);
+
+    // Reduce Motion: no flight, just a short fade-in drop-off
+    function calm() {
+      const tr = turdy.getBoundingClientRect(), mobile = innerWidth <= 760, SW = Math.max(150, tr.height * (mobile ? 1.7 : 1.55)), SH = SW * SR;
+      const hx = Math.max(8, tr.left - SW * (mobile ? .8 : .86)), hy = Math.max(76, tr.top + tr.height * .12 - SH * .3);
+      Object.assign(ship.style, { width: SW + 'px', height: SH + 'px', transform: `translate(${hx}px,${hy}px)`, transition: 'opacity .6s' });
+      requestAnimationFrame(() => { ship.style.opacity = 1; });
+      setTimeout(() => { ship.classList.add('dropped'); document.body.classList.remove('arriving'); }, 1400);
+      setTimeout(() => { ship.style.opacity = 0; }, 2300);
+      setTimeout(finish, 3000);
+    }
 
     const bez = (a, b, c, d, t) => { const u = 1 - t; return u * u * u * a + 3 * u * u * t * b + 3 * u * t * t * c + t * t * t * d; };
     const ease = t => 1 - Math.pow(1 - t, 3), inOut = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -754,6 +778,7 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
       const set = (x, y, sc, rot, op) => { ship.style.opacity = op; ship.style.transform = `translate(${x.toFixed(1)}px,${y.toFixed(1)}px) scale(${(sc * flip).toFixed(3)},${sc.toFixed(3)}) rotate(${(rot * Math.sign(flip || 1)).toFixed(2)}deg)`; };
       const frame = now => {
         if (done) return;
+        if (scrollY > 60) return finish();
         const t = now - t0;
         if (t < T1) { // approach from deep space: travel the curve, grow, settle the bank
           const k = t / T1, e = ease(k), m = inOut(k);
