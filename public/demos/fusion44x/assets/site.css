@@ -1,6 +1,6 @@
 /* Fusion 44X — clean water, calm confidence. Navy + aqua, serif headlines, real pool photography. */
 :root{
-  --navy:#062a3f;--navy-2:#0b3b57;--aqua:#0fa3b8;--aqua-d:#0b7f90;--aqua-l:#e4f6f8;--sand:#f6f3ee;--ink:#0d2230;--ink-2:#3d5363;--muted:#6b7f8c;--line:#dfe7ea;--white:#fff;--warn:#b42318;
+  --navy:#062a3f;--navy-2:#0b3b57;--aqua:#0fa3b8;--aqua-d:#0b7f90;--aqua-l:#e4f6f8;--sand:#f6f3ee;--ink:#0d2230;--ink-2:#3d5363;--muted:#586b78;--line:#dfe7ea;--white:#fff;--warn:#b42318;
   --display:'Fraunces',Georgia,'Times New Roman',serif;--body:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
 }
 *{box-sizing:border-box}
@@ -12,7 +12,8 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.08;margin:0;te
 h1{font-size:clamp(40px,6vw,72px)}
 h2{font-size:clamp(30px,4vw,48px)}
 h3{font-size:22px}
-h1 em,h2 em{font-style:italic;color:var(--aqua)}
+h1 em,h2 em{font-style:normal;color:var(--aqua-d)}
+.hero h1 em,.hero h2 em{color:#7fe3ee}
 p{margin:0}
 :focus-visible{outline:3px solid var(--aqua);outline-offset:3px;border-radius:6px}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -28,7 +29,7 @@ p{margin:0}
 .sec{padding:96px 0}
 .tint{background:var(--sand)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:100px;padding:15px 26px;font:600 16px/1 var(--body);text-decoration:none;cursor:pointer;border:2px solid transparent;transition:background .2s,transform .2s,border-color .2s;text-align:center}
-.btn-p{background:var(--aqua);color:#fff}.btn-p:hover{background:var(--aqua-d);transform:translateY(-1px)}
+.btn-p{background:var(--aqua-d);color:#fff}.btn-p:hover{background:var(--navy-2)}
 .btn-o{background:transparent;color:var(--navy);border-color:var(--line)}.btn-o:hover{border-color:var(--aqua)}
 .btn-w{background:#fff;color:var(--navy)}.btn-w:hover{background:var(--aqua-l)}
 .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
@@ -114,10 +115,10 @@ section:not(.hero) .proofs b{color:var(--navy)}section:not(.hero) .proofs span{c
 /* plans */
 .plans{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
 .plan{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
-.plan.hot{border:2px solid var(--aqua);box-shadow:0 20px 50px #0fa3b82e}
+.plan.hot{border:2px solid var(--aqua);box-shadow:0 20px 50px #062a3f1f}
 .plan>img{width:100%;aspect-ratio:16/10;object-fit:cover}
 .plan .pb{padding:20px;display:flex;flex-direction:column;gap:6px;flex:1}
-.plan .tag{align-self:flex-start;background:var(--aqua);color:#fff;font:700 11.5px var(--body);letter-spacing:.08em;text-transform:uppercase;border-radius:100px;padding:5px 10px}
+.plan .tag{align-self:flex-start;background:var(--aqua-d);color:#fff;font:700 12px var(--body);letter-spacing:.08em;text-transform:uppercase;border-radius:100px;padding:5px 10px}
 .plan .gal{font-size:14px;color:var(--muted)}
 .plan .price{font:600 36px/1.1 var(--display);color:var(--navy);margin-top:4px}
 .plan .price.small{font-size:26px}
@@ -216,3 +217,15 @@ footer.site a{color:#b9ccd5;text-decoration:none}footer.site a:hover{color:#fff}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 form.lead [hidden],.done[hidden]{display:none!important}
+
+/* ---------- Audit pass (Impeccable craft floor + Emil motion rules) ---------- */
+:root{--ease-out:cubic-bezier(.23,1,.32,1)}
+::selection{background:var(--aqua-d);color:#fff}
+input,textarea,select{caret-color:var(--aqua-d)}
+a{text-underline-offset:3px}
+.meta{font:700 13px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--aqua-d);margin-top:14px}
+.meta.light{color:#9ee7f0}
+.btn{transition:background-color .2s ease,border-color .2s ease,transform .16s var(--ease-out)}
+.btn:active{transform:scale(.97)}
+.price,.tier b,.big{font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:reduce){.btn:active{transform:none}}
