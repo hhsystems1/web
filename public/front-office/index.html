@@ -14,7 +14,7 @@
    hero's light-trail swirl and threads every step (01-05); Turdy rides it as you scroll, then docks as the chat assistant. */
 :root{
   --space:#030a1c;--navy:#071a3d;--ink:#0b1b3a;--blue:#1f6bff;--blue-2:#3b8bff;--cyan:#33c8ff;--turq:#3fd6c6;
-  --paper:#f6f9ff;--mist:#eaf2ff;--line:#d9e5f7;--muted:#52627e;--dim:#7d8ca8;--white:#fff;
+  --paper:#f6f9ff;--mist:#eaf2ff;--line:#d9e5f7;--muted:#52627e;--dim:#5f6d88;--white:#fff;
   --display:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,Arial,sans-serif;
   --body:'Inter',system-ui,-apple-system,Segoe UI,Arial,sans-serif;
   --hand:'Caveat','Comic Sans MS',cursive;
@@ -37,7 +37,7 @@ h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.
 .link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font:700 15px var(--display);color:var(--blue);text-decoration:none}
 .link:hover{text-decoration:underline;text-underline-offset:3px}
 .btn{display:inline-flex;align-items:center;gap:10px;border-radius:100px;padding:15px 26px;font:700 16px/1 var(--display);text-decoration:none;border:0;transition:transform .2s var(--ease),box-shadow .2s}
-.btn-primary{color:#fff;background:linear-gradient(180deg,#3d8bff,#1559e6);box-shadow:0 10px 30px #1f6bff55,inset 0 1px 0 #ffffff40}
+.btn-primary{color:#fff;background:linear-gradient(180deg,#2468e8,#1250d0);box-shadow:0 10px 30px #1f6bff55,inset 0 1px 0 #ffffff40}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 36px #1f6bff77,inset 0 1px 0 #ffffff40}
 .btn-glow{box-shadow:0 0 0 2px #5fb2ff,0 10px 34px #1f6bff88,inset 0 1px 0 #ffffff40}
 
@@ -76,8 +76,8 @@ h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.
 #stars{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .sp-shade{position:absolute;inset:0;background:linear-gradient(90deg,#05040fe0 0%,#05040fa6 30%,#05040f33 55%,transparent 72%)}
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
-.hero h1{font-size:clamp(42px,5.6vw,78px);font-weight:800;line-height:1.02;letter-spacing:-1.6px}
-.hero h1 em{font-style:normal;background:linear-gradient(90deg,#3df2e0,#7fe3ff 45%,#c59bff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 40px #3df2e044}
+.hero h1{font-size:clamp(42px,5.6vw,78px);font-weight:800;line-height:1.02;letter-spacing:-.025em}
+.hero h1 em{font-style:normal;color:#6ff0e6}
 .hero .lead{color:#d4cff0;font-size:clamp(17px,1.5vw,20px);max-width:520px}
 .hero .btn{margin-top:30px}
 .scroll-cue{display:flex;align-items:center;gap:12px;margin-top:48px;font:600 13px var(--display);color:#a9bde0;text-decoration:none}
@@ -100,7 +100,7 @@ h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.
 #route .glow{fill:none;stroke:#2f8bff;stroke-width:9;stroke-linecap:round;opacity:.45;filter:url(#blur6)}
 #route .core{fill:none;stroke:url(#routeGrad);stroke-width:3.5;stroke-linecap:round}
 #route .spark{fill:#fff;filter:url(#blur2)}
-.node{position:relative;z-index:4;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;font:800 14px var(--display);color:#fff;background:radial-gradient(circle at 32% 28%,#8fd9ff,#2f8bff 55%,#1559e6);box-shadow:0 0 0 5px #fff,0 0 0 6px #cfe2ff,0 0 26px #2f8bffaa;transition:transform .4s var(--ease),box-shadow .4s}
+.node{position:relative;z-index:4;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;font:800 14px var(--display);color:#fff;background:radial-gradient(circle at 32% 28%,#4a9bff,#1f62e0 55%,#1250d0);box-shadow:0 0 0 5px #fff,0 0 0 6px #cfe2ff,0 0 26px #2f8bffaa;transition:transform .4s var(--ease),box-shadow .4s}
 .node.lit{transform:scale(1.12);box-shadow:0 0 0 5px #fff,0 0 0 6px #9cc8ff,0 0 40px #2f8bff}
 
 /* ---------- Sections ---------- */
@@ -119,7 +119,7 @@ h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.
 
 .sample{background:linear-gradient(180deg,#eef4ff,#e6efff 60%,#f6f9ff);border-radius:48px 48px 0 0;margin-top:20px}
 .sample-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}
-.badge{display:inline-block;font:800 10.5px/1 var(--display);letter-spacing:2.4px;text-transform:uppercase;color:#2a4b86;border:1.5px solid #9db8e6;border-radius:100px;padding:7px 14px;margin-bottom:14px;background:#fff}
+.badge{display:inline-block;font:800 12px/1 var(--display);letter-spacing:2.4px;text-transform:uppercase;color:#2a4b86;border:1.5px solid #9db8e6;border-radius:100px;padding:7px 14px;margin-bottom:14px;background:#fff}
 .sample .h2{font-size:clamp(32px,3.6vw,48px)}
 
 /* Laptop + phone mock */
@@ -132,7 +132,7 @@ h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.
 .app .logo{display:flex;align-items:center;gap:6px;font:800 9px/1.1 var(--display);letter-spacing:1px;margin-bottom:14px}
 .app .logo svg{width:24px;height:24px}
 .app nav a{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:7px 8px;border-radius:8px;color:#33445f;text-decoration:none;font-weight:600}
-.app nav a.on{background:#dfeaff;color:var(--blue)}
+.app nav a.on{background:#dfeaff;color:#1250d0}
 .app nav b{background:var(--blue);color:#fff;font-size:10px;border-radius:10px;padding:1px 6px}
 .app main{padding:12px 14px}
 .app h4{font:800 15px var(--display);margin:0 0 10px;display:flex;justify-content:space-between;align-items:center}
@@ -141,11 +141,11 @@ h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.
 .lead-top{display:flex;align-items:center;gap:8px;margin-bottom:10px}
 .lead-top .av{width:26px;height:26px;border-radius:50%;background:#dfeaff;display:grid;place-items:center;color:var(--blue);font-weight:800;font-size:11px}
 .lead-top b{font:800 13px var(--display)}
-.chip{font-size:9.5px;font-weight:700;color:#1f6bff;background:#e6efff;border-radius:6px;padding:2px 7px}
-.lead-top time{margin-left:auto;color:#8a98b2;font-size:10px}
+.chip{font-size:9.5px;font-weight:700;color:#1250d0;background:#e6efff;border-radius:6px;padding:2px 7px}
+.lead-top time{margin-left:auto;color:#5f6d88;font-size:10px}
 .lead-body{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .kv{display:grid;grid-template-columns:62px 1fr;gap:4px 8px;font-size:11px;align-content:start}
-.kv dt{color:#8a98b2}.kv dd{margin:0;font-weight:600;color:#1d2b45}
+.kv dt{color:#5f6d88}.kv dd{margin:0;font-weight:600;color:#1d2b45}
 .ok{color:#14a35a}
 .rec{border:1px solid #e3ebf8;border-radius:10px;padding:8px;display:grid;gap:6px}
 .player{display:flex;align-items:center;gap:6px}
@@ -153,7 +153,7 @@ h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.
 .player i:after{content:"";border-left:6px solid #fff;border-top:4px solid transparent;border-bottom:4px solid transparent;margin-left:2px}
 .bars{display:flex;align-items:center;gap:2px;height:18px;flex:1}
 .bars span{flex:1;background:#9cc0ff;border-radius:2px}
-.player small{color:#8a98b2;font-size:9px}
+.player small{color:#5f6d88;font-size:9px}
 .ai{font-size:10.5px;color:#33445f;line-height:1.45}
 .ai b{display:block;font-size:10px;color:var(--blue);margin-bottom:2px}
 .phone{position:absolute;right:-4%;bottom:0;width:170px;aspect-ratio:9/18.5;border-radius:30px;background:#0b1225;padding:8px;box-shadow:0 30px 60px #0b1b3a55,inset 0 0 0 2px #2a3550}
@@ -266,7 +266,7 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
 
 /* Phone layouts: 420px canvas, cards stacked so text stays readable */
 .narrow .w-browser{width:420px;height:290px}.narrow .w-hero{width:72%}.narrow .w-van{display:none}
-.narrow .w-phone{left:300px;top:150px;width:120px;height:240px;padding:7px;border-radius:24px}.narrow .w-phone .scr{padding:22px 9px 9px;border-radius:18px}.narrow .w-phone h6{font-size:12.5px}
+.narrow .w-phone{left:300px;top:150px;width:120px;height:240px;padding:7px;border-radius:24px}.narrow .w-phone .scr{padding:22px 9px 9px;border-radius:18px}.narrow .w-phone .h6{font-size:12.5px}
 .narrow .w-lead{left:0;top:330px;width:286px}.narrow .w-chip{left:0;top:406px}
 .narrow .v-call{width:420px;height:330px}.narrow .v-msg{max-width:78%}
 .narrow .v-lead{left:96px;top:290px;width:324px}.narrow .v-sent{left:0;top:520px}
@@ -283,7 +283,7 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
 .w-nav b i{width:18px;height:18px;border-radius:5px;background:linear-gradient(135deg,#33c8ff,#1f6bff)}
 .w-nav em{font-style:normal;background:#fff;color:#0b2a6b;border-radius:100px;padding:5px 9px}
 .w-hero{margin-top:26px;width:62%}
-.w-hero h5{font:800 24px/1.1 var(--display);margin:0;letter-spacing:-.4px}
+.w-hero .h5{font:800 24px/1.1 var(--display);margin:0;letter-spacing:-.4px}
 .w-hero p{font-size:11.5px;color:#cfe0ff;margin:8px 0 14px;line-height:1.45}
 .w-cta{display:inline-flex;gap:8px;align-items:center;background:#33c8ff;color:#06204d;font:800 11.5px var(--display);border-radius:100px;padding:9px 14px;position:relative}
 .w-stars{display:flex;gap:6px;align-items:center;font:600 10.5px var(--body);color:#cfe0ff;margin-top:14px}.w-stars b{color:#ffd45c;letter-spacing:1px}
@@ -292,7 +292,7 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
 .w-phone{left:356px;top:92px;width:156px;height:300px;border-radius:28px;padding:9px;background:#0b1530;border:none;box-shadow:0 30px 60px #0b1b3a44}
 .w-phone .scr{width:100%;height:100%;border-radius:21px;overflow:hidden;background:linear-gradient(170deg,#0b2a6b,#1f6bff);color:#fff;padding:26px 12px 12px;position:relative}
 .w-phone .scr:before{content:"";position:absolute;top:8px;left:50%;width:44px;height:6px;margin-left:-22px;border-radius:6px;background:#0b1530}
-.w-phone h6{font:800 15px/1.15 var(--display);margin:6px 0 8px}
+.w-phone .h6{font:800 15px/1.15 var(--display);margin:6px 0 8px}
 .w-phone .f{height:24px;border-radius:7px;background:#ffffff1f;margin-top:7px;font:500 9.5px/24px var(--body);padding:0 8px;color:#cfe0ff}
 .w-phone .w-cta{margin-top:10px;width:100%;justify-content:center;padding:8px}
 .w-cursor{position:absolute;left:150px;top:248px;width:22px;z-index:5;filter:drop-shadow(0 3px 4px #0005)}
@@ -329,8 +329,8 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
 .v-timer span{display:flex;gap:8px}.v-timer i{width:30px;height:30px;border-radius:50%;background:#1a2c55;display:grid;place-items:center;font-style:normal}.v-timer i.end{background:#e5484d;color:#fff}
 .v-lead{left:306px;top:60px;width:254px;padding:14px;z-index:3}
 .motion .scene-wrap.in .v-lead{transition-delay:3.4s}
-.v-lead h6{margin:0 0 10px;font:800 13.5px var(--display);display:flex;align-items:center;gap:8px}
-.v-lead h6 i{width:22px;height:22px;border-radius:7px;background:#16c784;color:#fff;font-style:normal;display:grid;place-items:center;font-size:12px}
+.v-lead .h6{margin:0 0 10px;font:800 13.5px var(--display);display:flex;align-items:center;gap:8px}
+.v-lead .h6 i{width:22px;height:22px;border-radius:7px;background:#16c784;color:#fff;font-style:normal;display:grid;place-items:center;font-size:12px}
 .v-kv{display:grid;grid-template-columns:auto 1fr;gap:7px 12px;font-size:12px;margin:0}
 .v-kv dt{color:var(--dim)}.v-kv dd{margin:0;font-weight:600;text-align:right}
 .v-kv .hot{color:#d9480f}
@@ -345,7 +345,7 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
 .c-head span{margin-left:auto;font-size:11px;color:var(--dim)}
 .c-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;height:270px}
 .c-col{background:#eef3fb;border-radius:12px;padding:8px;position:relative}
-.c-col h6{margin:2px 2px 8px;font:800 10.5px var(--display);letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between}
+.c-col .h6{margin:2px 2px 8px;font:800 10.5px var(--display);letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between}
 .c-item{background:#fff;border:1px solid #e1eaf7;border-radius:10px;padding:8px 9px;margin-bottom:7px;font-size:11px;box-shadow:0 2px 6px #0b1b3a0a}
 .c-item b{display:block;font:700 11.5px var(--display)}.c-item span{color:var(--dim);font-size:10.5px}
 .c-tag{display:inline-block;margin-top:5px;font:700 9.5px var(--display);border-radius:100px;padding:3px 7px;background:#e8f1ff;color:var(--blue)}
@@ -362,7 +362,7 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
 .c-rec .bars{flex:1;display:flex;gap:2px;align-items:center;height:20px}.c-rec .bars i{flex:1;background:#9cc3ff;border-radius:2px}
 .c-rec .bars i.p{background:var(--blue)}
 .c-rec small{font:700 10.5px var(--display);color:var(--muted)}
-.c-ai{font-size:11.5px;line-height:1.45;color:var(--muted);padding:8px 10px;border-left:3px solid var(--cyan);background:#f7fbff;border-radius:0 8px 8px 0;margin-bottom:8px}
+.c-ai{font-size:11.5px;line-height:1.45;color:var(--muted);padding:8px 10px;border:1px solid #cfe6ff;background:#f7fbff;border-radius:8px;margin-bottom:8px}
 .c-ai b{color:var(--ink)}
 .c-tasks{list-style:none;margin:0;padding:0;display:grid;gap:6px}
 .c-tasks li{display:flex;gap:8px;align-items:center;font:600 11.5px var(--display)}
@@ -380,7 +380,7 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
 .d-kpi em{font-style:normal;font:700 10.5px var(--display);color:#0d8a5b}
 .d-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:10px;margin-top:10px}
 .d-chart{background:#fff;border:1px solid #e1eaf7;border-radius:12px;padding:10px 12px;height:196px;position:relative}
-.d-chart h6,.d-next h6{margin:0 0 4px;font:800 12px var(--display);display:flex;justify-content:space-between}.d-chart h6 span,.d-next h6 span{font:600 10.5px var(--body);color:var(--dim)}
+.d-chart .h6,.d-next .h6{margin:0 0 4px;font:800 12px var(--display);display:flex;justify-content:space-between}.d-chart .h6 span,.d-next .h6 span{font:600 10.5px var(--body);color:var(--dim)}
 .d-chart svg{position:absolute;left:12px;right:12px;bottom:10px;width:calc(100% - 24px);height:150px;overflow:visible}
 .d-line{fill:none;stroke:url(#dgrad);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:600;stroke-dashoffset:0}
 .motion .scene-wrap .d-line{stroke-dashoffset:600;transition:stroke-dashoffset 1.6s var(--ease) .3s}
@@ -503,6 +503,17 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
   .brand span{font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* Audit pass (Impeccable craft floor + Emil motion rules) */
+:root{--ease-out:cubic-bezier(.23,1,.32,1)}
+::selection{background:#1f6bff;color:#fff}
+input,textarea,select{caret-color:#1f6bff}
+p.h5,p.h6{margin:0}
+.btn{transition:transform .16s var(--ease-out),box-shadow .2s ease}
+.btn:active{transform:scale(.97)}
+.node{text-shadow:0 1px 2px #0a2a6a}
+@media (hover:none),(pointer:coarse){.btn-primary:hover{transform:none}}
+@media (prefers-reduced-motion:reduce){.btn:active{transform:none}}
 </style>
 <link rel="preload" as="image" href="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/c2c79907-ce04-4e07-a3ae-f8ff1b3db883.webp">
 <link rel="preload" as="image" href="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/5f761eb9-b205-45a0-919a-107d0240f49d.webp">
@@ -573,7 +584,7 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
 
     <section class="sec how" id="how" aria-labelledby="how-title">
       <div class="wrap how-grid">
-        <div class="how-head"><span class="node" data-node>01</span><div data-reveal><p class="kicker">How it works</p><h2 id="how-title" class="h2">Four pieces.<br>One connected system.</h2><p class="lead">From the first visit to the final follow-up, Helping Hands Systems brings your website, calls, CRM and dashboard together so nothing falls through the cracks.</p><a class="link" href="#steps">See the full journey →</a></div></div>
+        <div class="how-head"><span class="node" data-node>01</span><div data-reveal><h2 id="how-title" class="h2">Four pieces.<br>One connected system.</h2><p class="lead">From the first visit to the final follow-up, Helping Hands Systems brings your website, calls, CRM and dashboard together so nothing falls through the cracks.</p><a class="link" href="#steps">See the full journey →</a></div></div>
         <ul class="pieces">
           <li data-reveal><span class="ic"><svg aria-hidden="true"><use href="#i-site"/></svg></span><h3>Website</h3><p>A professional website that turns visitors into inquiries.</p></li>
           <li data-reveal style="--d:100ms"><span class="ic"><svg aria-hidden="true"><use href="#i-call"/></svg></span><h3>Calls</h3><p>An AI voice agent answers calls and captures details.</p></li>
@@ -618,12 +629,12 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
       <div class="w-bar"><i></i><i></i><i></i><span>riverplumbing.co</span></div>
       <div class="w-site">
         <div class="w-nav"><b><i></i>River Plumbing</b><span>Services</span><span>Reviews</span><em>(615) 555-0184</em></div>
-        <div class="w-hero"><h5>Fast, friendly plumbing in Nashville.</h5><p>Same-day repairs, upfront pricing and a real person on every call.</p><span class="w-cta">Book a visit →</span>
+        <div class="w-hero"><p class="h5">Fast, friendly plumbing in Nashville.</p><p>Same-day repairs, upfront pricing and a real person on every call.</p><span class="w-cta">Book a visit →</span>
           <div class="w-stars"><b>★★★★★</b> 4.9 from 212 reviews</div></div>
         <div class="w-van"><svg viewBox="0 0 140 70" aria-hidden="true"><rect x="6" y="14" width="86" height="40" rx="6" fill="#eaf2ff"/><path d="M92 26h22l16 16v12H92z" fill="#cfe0ff"/><rect x="98" y="30" width="16" height="10" rx="2" fill="#7fb2ff"/><circle cx="30" cy="56" r="9" fill="#0b2a6b"/><circle cx="30" cy="56" r="4" fill="#cfe0ff"/><circle cx="108" cy="56" r="9" fill="#0b2a6b"/><circle cx="108" cy="56" r="4" fill="#cfe0ff"/><rect x="16" y="26" width="52" height="6" rx="3" fill="#1f6bff"/><rect x="16" y="37" width="34" height="5" rx="2.5" fill="#7fb2ff"/></svg></div>
       </div>
     </div>
-    <div class="sc-card w-phone"><div class="scr"><div class="w-nav" style="font-size:9px"><b style="font-size:10.5px"><i style="width:13px;height:13px"></i>River</b></div><h6>Need a plumber today?</h6><div class="f">Your name</div><div class="f">Phone number</div><div class="f">What's going on?</div><span class="w-cta">Book a visit</span></div></div>
+    <div class="sc-card w-phone"><div class="scr"><div class="w-nav" style="font-size:9px"><b style="font-size:10.5px"><i style="width:13px;height:13px"></i>River</b></div><p class="h6">Need a plumber today?</p><div class="f">Your name</div><div class="f">Phone number</div><div class="f">What's going on?</div><span class="w-cta">Book a visit</span></div></div>
     <svg class="w-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2l15 9-6.5 1.6L16 20l-3 1.4-3.6-7.4L4 18z" fill="#fff" stroke="#0b1b3a" stroke-width="1.5" stroke-linejoin="round"/></svg>
     <div class="sc-card w-lead sc-pop"><span class="ic"><svg aria-hidden="true"><use href="#i-site"/></svg></span><div><b>New inquiry · Mike R.</b><span>Water heater leaking · Today</span></div><span class="sc-pill sc-live">Sent to CRM</span></div>
     <div class="sc-card w-chip sc-pop"><i>✓</i>Mobile-ready · loads in 1.2s</div>
@@ -645,7 +656,7 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
       </div>
       <div class="v-timer"><b>00:42</b><span><i>🎙</i><i class="end">✕</i></span></div>
     </div>
-    <div class="sc-card v-lead sc-pop"><h6><i>✓</i>Lead captured</h6>
+    <div class="sc-card v-lead sc-pop"><p class="h6"><i>✓</i>Lead captured</p>
       <dl class="v-kv"><dt>Name</dt><dd>Mike Rivera</dd><dt>Service</dt><dd>Water heater leak</dd><dt>Address</dt><dd>412 Oak St</dd><dt>Urgency</dt><dd class="hot">Today, after 2pm</dd></dl>
       <div class="v-sum"><b style="color:var(--ink)">AI summary:</b> Active leak in garage. Wants same-day visit. Quote requested.</div></div>
     <div class="sc-card v-sent sc-pop"><i>→</i>Added to CRM · text sent to you</div>
@@ -660,14 +671,14 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
     <div class="sc-card c-board">
       <div class="c-head"><b>Pipeline</b><span>This week · 24 leads</span></div>
       <div class="c-cols">
-        <div class="c-col"><h6>New <span>8</span></h6>
+        <div class="c-col"><p class="h6">New <span>8</span></p>
           <div class="c-item"><b>Ana Lopez</b><span>Drain clog</span><br><span class="c-tag">Website</span></div>
           <div class="c-item c-move"><b>Mike Rivera</b><span>Water heater</span><br><span class="c-tag o">Call · urgent</span></div>
         </div>
-        <div class="c-col"><h6>Estimate <span>5</span></h6>
+        <div class="c-col"><p class="h6">Estimate <span>5</span></p>
           <div class="c-item"><b>Dan Cole</b><span>Repipe quote</span><br><span class="c-tag">Call</span></div>
         </div>
-        <div class="c-col"><h6>Booked <span>9</span></h6>
+        <div class="c-col"><p class="h6">Booked <span>9</span></p>
           <div class="c-item"><b>Priya Shah</b><span>Faucet install</span><br><span class="c-tag g">Fri 10am</span></div>
           <div class="c-item"><b>Tom Hale</b><span>Leak repair</span><br><span class="c-tag g">Mon 2pm</span></div>
         </div>
@@ -696,13 +707,13 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
         <div class="d-kpi"><span><svg aria-hidden="true"><use href="#i-site"/></svg>In pipeline</span><strong>$<b data-count="18" style="font:inherit">0</b>.4k</strong><em>▲ $4.1k</em></div>
       </div>
       <div class="d-grid">
-        <div class="d-chart"><h6>Leads by day <span>Mon–Sun</span></h6>
+        <div class="d-chart"><p class="h6">Leads by day <span>Mon–Sun</span></p>
           <svg viewBox="0 0 300 150" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="dgrad" x1="0" x2="1"><stop offset="0" stop-color="#33c8ff"/><stop offset="1" stop-color="#1f6bff"/></linearGradient><linearGradient id="dfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f6bff" stop-opacity=".22"/><stop offset="1" stop-color="#1f6bff" stop-opacity="0"/></linearGradient></defs>
             <g stroke="#eef3fb" stroke-width="1"><line x1="0" y1="30" x2="300" y2="30"/><line x1="0" y1="70" x2="300" y2="70"/><line x1="0" y1="110" x2="300" y2="110"/></g>
             <path class="d-area" d="M0 112 C25 108 30 90 50 92 S85 70 100 74 S135 96 150 80 S185 40 200 46 S235 60 250 38 S285 20 300 24 V150 H0Z"/>
             <path class="d-line" d="M0 112 C25 108 30 90 50 92 S85 70 100 74 S135 96 150 80 S185 40 200 46 S235 60 250 38 S285 20 300 24"/>
             <circle cx="300" cy="24" r="5" fill="#1f6bff" stroke="#fff" stroke-width="2"/></svg></div>
-        <div class="d-next"><h6>Next steps <span>3 today</span></h6><ul>
+        <div class="d-next"><p class="h6">Next steps <span>3 today</span></p><ul>
           <li><i style="background:#fff2e6;color:#c2410c">!</i><div><b>Call back Mike R.</b><span>Urgent · water heater</span></div></li>
           <li><i style="background:#e8f1ff;color:#1f6bff">$</i><div><b>Send 2 estimates</b><span>Dan C. · Ana L.</span></div></li>
           <li><i style="background:#e7fbf3;color:#0d8a5b">✓</i><div><b>4 jobs tomorrow</b><span>Route ready</span></div></li></ul></div>
@@ -737,7 +748,7 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
 
   <section class="sec faq" id="faq" aria-labelledby="faq-title" style="padding-top:20px">
     <div class="wrap">
-      <div class="faq-head" data-reveal><div><p class="kicker">FAQ</p><h2 id="faq-title" class="h2">Common questions.</h2></div><button class="link" style="border:0;background:none;padding:0;margin:0" data-chat>Still have questions? Ask Turdy →</button></div>
+      <div class="faq-head" data-reveal><div><h2 id="faq-title" class="h2">Common questions.</h2></div><button class="link" style="border:0;background:none;padding:0;margin:0" data-chat>Still have questions? Ask Turdy →</button></div>
       <div class="faq-grid" data-reveal style="--d:100ms">
         <details><summary>What is included in the $500 setup?</summary><p>Your website, AI voice agent, CRM and owner dashboard, set up and connected for your business, plus basic setup of your services and call flow.</p></details>
         <details><summary>Is this really a limited private preview?</summary><p>Yes. The $500 setup price is for our first 10 customers while we finish testing the full system with real businesses.</p></details>
