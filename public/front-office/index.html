@@ -53,16 +53,32 @@ h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.
 .nav .btn{padding:12px 22px;font-size:14px}
 
 /* ---------- Hero (night orbit) ---------- */
-.hero{position:relative;overflow:hidden;background:radial-gradient(1200px 700px at 75% 30%,#0b2a6b 0%,#061536 45%,#030a1c 80%);color:#fff;padding:70px 0 170px;isolation:isolate}
-#stars{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
-.earth{position:absolute;right:-30vw;bottom:-70vw;width:120vw;aspect-ratio:1;border-radius:50%;z-index:-1;
-  background:radial-gradient(circle at 40% 12%,#16408f 0%,#0a2257 22%,#04102c 48%,#020818 70%);
-  box-shadow:0 0 0 2px #7fd0ff,0 0 40px 8px #3b9dffaa,0 0 140px 40px #1f6bff55}
-#citylights{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.hero{position:relative;overflow:hidden;background:#05040f;color:#fff;padding:70px 0 170px;isolation:isolate}
+/* Deep-space hero: separate layers (sky, stars, nebula glow, planet, atmosphere) move at different depths */
+.space{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.sp-stage{position:absolute;right:-3%;bottom:-7%;width:max(112%,calc(var(--hh,900px)*1.769*1.08));aspect-ratio:2400/1357}
+.sp-layer{position:absolute;inset:0;will-change:transform}
+.sp-layer img{position:absolute;display:block;max-width:none}
+.sp-sky img{inset:0;width:100%;height:100%}
+.sp-planet img{left:30.583%;top:37.288%;width:69.417%;height:62.712%}
+.sp-atmo{position:absolute;left:3.817%;top:38.12%;width:215.03%;aspect-ratio:1;border-radius:50%;box-shadow:0 0 34px 4px #35f0ff70,0 0 120px 26px #8b5cff38,0 0 220px 60px #2fd8ff1c;mix-blend-mode:screen;opacity:.85}
+.motion .sp-atmo{animation:breathe 7s ease-in-out infinite}
+@keyframes breathe{50%{opacity:1;box-shadow:0 0 44px 6px #35f0ff88,0 0 150px 34px #8b5cff48,0 0 260px 70px #2fd8ff26}}
+.sp-glow{position:absolute;inset:0;mix-blend-mode:screen}
+.sp-glow i{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5}
+.sp-glow i:nth-child(1){left:38%;top:4%;width:34%;height:46%;background:radial-gradient(circle,#7b2cff 0%,#7b2cff00 70%)}
+.sp-glow i:nth-child(2){left:64%;top:-6%;width:30%;height:44%;background:radial-gradient(circle,#13e6d2 0%,#13e6d200 70%);opacity:.42}
+.sp-glow i:nth-child(3){left:10%;top:30%;width:30%;height:40%;background:radial-gradient(circle,#4a1a8c 0%,#4a1a8c00 70%);opacity:.45}
+.motion .sp-glow i:nth-child(1){animation:drift1 22s ease-in-out infinite}
+.motion .sp-glow i:nth-child(2){animation:drift2 26s ease-in-out infinite}
+@keyframes drift1{50%{transform:translate(4%,6%) scale(1.15);opacity:.62}}
+@keyframes drift2{50%{transform:translate(-5%,4%) scale(1.12);opacity:.55}}
+#stars{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.sp-shade{position:absolute;inset:0;background:linear-gradient(90deg,#05040fe0 0%,#05040fa6 30%,#05040f33 55%,transparent 72%)}
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
 .hero h1{font-size:clamp(42px,5.6vw,78px);font-weight:800;line-height:1.02;letter-spacing:-1.6px}
-.hero h1 em{font-style:normal;background:linear-gradient(90deg,#33c8ff,#5fe0ff 60%,#9ff0ff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 40px #33c8ff44}
-.hero .lead{color:#c9d7f0;font-size:clamp(17px,1.5vw,20px);max-width:520px}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#3df2e0,#7fe3ff 45%,#c59bff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 40px #3df2e044}
+.hero .lead{color:#d4cff0;font-size:clamp(17px,1.5vw,20px);max-width:520px}
 .hero .btn{margin-top:30px}
 .scroll-cue{display:flex;align-items:center;gap:12px;margin-top:48px;font:600 13px var(--display);color:#a9bde0;text-decoration:none}
 .scroll-cue span{width:22px;height:34px;border:2px solid #7f95bd;border-radius:12px;position:relative}
@@ -278,6 +294,7 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
 @media(max-width:980px){
   .nav-links{display:none}
   .hero-grid{grid-template-columns:1fr}
+  .sp-shade{background:linear-gradient(180deg,#05040fd9 0%,#05040fa0 42%,#05040f22 70%,transparent 85%)}
   .swirl-anchor{height:300px;margin-top:10px}
   .how-grid{grid-template-columns:1fr;gap:30px}
   .pieces{grid-template-columns:1fr 1fr}
@@ -346,9 +363,17 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
 
 <main id="top">
   <section class="hero" aria-labelledby="hero-title">
-    <canvas id="stars" aria-hidden="true"></canvas>
-    <div class="earth" aria-hidden="true"></div>
-    <canvas id="citylights" aria-hidden="true"></canvas>
+    <div class="space" aria-hidden="true">
+      <div class="sp-stage" id="sp-stage">
+        <div class="sp-layer sp-sky" data-px="-8" data-py="-6" data-sy=".18"><img src="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/3a5276c8-2fd3-483b-bbad-5c95286fd0bd.webp" alt="" fetchpriority="high" decoding="async"></div>
+      </div>
+      <canvas id="stars"></canvas>
+      <div class="sp-stage">
+        <div class="sp-layer sp-glow" data-px="-14" data-py="-10" data-sy=".12"><i></i><i></i><i></i></div>
+        <div class="sp-layer sp-planet" data-px="-22" data-py="-12" data-sy=".02"><img src="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/af82a4ae-18a3-452d-ad09-3b14f90be6e6.webp" alt="" decoding="async"><div class="sp-atmo"></div></div>
+      </div>
+      <div class="sp-shade"></div>
+    </div>
     <div class="wrap hero-grid">
       <div>
         <h1 id="hero-title">A call comes in.<br>Your business<br><em>moves forward.</em></h1>
@@ -507,27 +532,45 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v)), lerp = (a, b, t) => a + (b - a) * t;
   if (!reduce) document.documentElement.classList.add('motion');
 
-  /* ---------- Hero sky: stars + city lights on the planet ---------- */
-  const hero = $('.hero');
+  /* ---------- Hero space: layered parallax (sky, 3 star depths, nebula glow, planet) ---------- */
+  const hero = $('.hero'), starCv = $('#stars'), sctx = starCv.getContext('2d');
+  const layers = $$('.sp-layer');
+  let stars = [], sw = 0, sh = 0, sd = 1, px = 0, py = 0, tx = 0, ty = 0, heroOn = true, shoot = null, lastShoot = 0;
   function sky() {
-    const st = $('#stars'), cl = $('#citylights'), w = hero.clientWidth, h = hero.clientHeight, d = Math.min(2, devicePixelRatio || 1);
-    [st, cl].forEach(c => { c.width = w * d; c.height = h * d; c.getContext('2d').setTransform(d, 0, 0, d, 0, 0); });
-    const s = st.getContext('2d');
-    for (let i = 0; i < w * h / 2600; i++) { s.globalAlpha = .3 + Math.random() * .7; s.fillStyle = '#fff'; s.beginPath(); s.arc(Math.random() * w, Math.random() * h * .8, Math.random() ** 3 * 1.5 + .3, 0, 6.283); s.fill(); }
-    // city lights: clusters on the planet's visible cap
-    const earth = $('.earth').getBoundingClientRect(), hr = hero.getBoundingClientRect();
-    const cx = earth.left - hr.left + earth.width / 2, cy = earth.top - hr.top + earth.height / 2, R = earth.width / 2;
-    const c = cl.getContext('2d');
-    for (let k = 0; k < 26; k++) {
-      const ang = -Math.PI / 2 + (Math.random() - .5) * 1.5, rr = R * (.82 + Math.random() * .17);
-      const ox = cx + Math.cos(ang) * rr, oy = cy + Math.sin(ang) * rr;
-      for (let i = 0; i < 40; i++) {
-        const x = ox + (Math.random() - .5) * 60, y = oy + (Math.random() - .5) * 26;
-        if (Math.hypot(x - cx, y - cy) > R * .995 || y > h) continue;
-        c.globalAlpha = .25 + Math.random() * .6; c.fillStyle = Math.random() > .7 ? '#ffd9a0' : '#9fd7ff';
-        c.beginPath(); c.arc(x, y, Math.random() * 1.1 + .3, 0, 6.283); c.fill();
+    hero.style.setProperty('--hh', hero.clientHeight + 'px');
+    sd = Math.min(2, devicePixelRatio || 1); sw = hero.clientWidth; sh = hero.clientHeight;
+    starCv.width = sw * sd; starCv.height = sh * sd; sctx.setTransform(sd, 0, 0, sd, 0, 0);
+    const n = Math.round(sw * sh / 1900), tints = ['#ffffff', '#ffffff', '#ffffff', '#bff8ff', '#d9c4ff', '#9ff3ea'];
+    stars = Array.from({ length: n }, () => { const z = Math.random() ** 1.8; return { x: Math.random() * sw, y: Math.random() * sh, z, r: .35 + z * 1.5, a: .35 + Math.random() * .65, tw: Math.random() * 6.28, ts: .6 + Math.random() * 2, c: tints[Math.random() * tints.length | 0] }; });
+    drawSpace(performance.now());
+  }
+  function drawSpace(t) {
+    sctx.clearRect(0, 0, sw, sh);
+    const sc = Math.min(scrollY, sh);
+    for (const s of stars) {
+      const d = .15 + s.z * .85;
+      let x = (s.x + px * -34 * d) % sw, y = (s.y + py * -22 * d + sc * (.28 - d * .2)) % sh;
+      if (x < 0) x += sw; if (y < 0) y += sh;
+      const tw = reduce ? 1 : .65 + .35 * Math.sin(t / 1000 * s.ts + s.tw);
+      sctx.globalAlpha = s.a * tw; sctx.fillStyle = s.c;
+      sctx.beginPath(); sctx.arc(x, y, s.r, 0, 6.283); sctx.fill();
+      if (s.r > 1.5) { sctx.globalAlpha = s.a * tw * .25; sctx.beginPath(); sctx.arc(x, y, s.r * 3, 0, 6.283); sctx.fill(); }
+    }
+    if (!reduce) {
+      if (!shoot && t - lastShoot > 5200 && Math.random() < .01) { shoot = { x: sw * (.15 + Math.random() * .6), y: sh * Math.random() * .35, l: 0, t0: t }; lastShoot = t; }
+      if (shoot) {
+        const k = (t - shoot.t0) / 900; if (k > 1) shoot = null;
+        else { const x = shoot.x + k * 260, y = shoot.y + k * 110, g = sctx.createLinearGradient(x - 120, y - 51, x, y); g.addColorStop(0, '#9ff3ea00'); g.addColorStop(1, '#e8fffd'); sctx.globalAlpha = Math.sin(k * Math.PI); sctx.strokeStyle = g; sctx.lineWidth = 1.6; sctx.beginPath(); sctx.moveTo(x - 120, y - 51); sctx.lineTo(x, y); sctx.stroke(); }
       }
     }
+    sctx.globalAlpha = 1;
+    for (const L of layers) L.style.transform = `translate3d(${(px * +L.dataset.px).toFixed(2)}px,${(py * +L.dataset.py + sc * +L.dataset.sy).toFixed(2)}px,0)`;
+  }
+  if (!reduce) {
+    addEventListener('pointermove', e => { if (e.pointerType === 'mouse') { tx = e.clientX / innerWidth * 2 - 1; ty = e.clientY / innerHeight * 2 - 1; } }, { passive: true });
+    new IntersectionObserver(([e]) => { heroOn = e.isIntersecting; }).observe(hero);
+    const loop = t => { if (heroOn && !document.hidden) { px += (tx - px) * .05; py += (ty - py) * .05; drawSpace(t); } requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
   }
 
   /* ---------- Small interactive details ---------- */
