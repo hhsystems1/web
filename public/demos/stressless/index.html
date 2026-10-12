@@ -52,7 +52,8 @@ header.nav{position:sticky;top:0;z-index:30;background:#fffffff2;backdrop-filter
 .hero{position:relative;color:#fff;isolation:isolate;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:-2}
 .hero-bg video,.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
-.reel-btn{position:absolute;right:16px;bottom:16px;z-index:2;width:38px;height:38px;border-radius:50%;border:1px solid #ffffff55;background:#0f1a1266;color:#fff;font-size:12px;cursor:pointer;backdrop-filter:blur(6px)}
+.reel-btn.play{width:auto;padding:0 14px;border-radius:100px;font:700 13px var(--body);background:#0f1a12b3}
+.reel-btn{position:absolute;right:16px;bottom:16px;z-index:2;min-width:38px;height:38px;border-radius:50%;border:1px solid #ffffff55;background:#0f1a1266;color:#fff;font-size:12px;cursor:pointer;backdrop-filter:blur(6px)}
 .hero:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#0f1a12c7 0%,#0f1a1280 34%,#0f1a1214 62%,transparent),linear-gradient(0deg,#0f1a1259,transparent 30%)}
 .hero h1,.hero .lead{text-shadow:0 2px 18px #0009}
 .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-top:72px;padding-bottom:72px;min-height:640px}
@@ -265,7 +266,7 @@ footer.site a{text-decoration:none}footer.site a:hover{color:#fff}
 
 <main id="top">
 <section class="hero" aria-labelledby="hero-h">
-  <div class="hero-bg"><video id="reel" autoplay muted loop playsinline preload="auto" poster="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/03a050ca-a509-4e52-91e2-3b239d2dfb0c.webp" aria-hidden="true"><source src="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/50a064ff-b865-41dc-9297-a5972f51e590.mp4" type="video/mp4"></video></div>
+  <div class="hero-bg"><video id="reel" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture preload="auto" poster="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/03a050ca-a509-4e52-91e2-3b239d2dfb0c.webp" aria-hidden="true"><source src="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/50a064ff-b865-41dc-9297-a5972f51e590.mp4" type="video/mp4"></video></div>
   <button class="reel-btn" id="reel-btn" type="button" aria-label="Pause background video">❚❚</button>
   <div class="wrap">
     <div>
@@ -461,11 +462,18 @@ footer.site a{text-decoration:none}footer.site a:hover{color:#fff}
   };
   document.querySelectorAll('img[data-img]').forEach(i => { const f = SRC[i.dataset.img]; if (f) i.src = IMG(f); });
 
-  // hero reel: pause button; respect reduced motion and data saver
+  // hero reel: autoplay where allowed; if the phone blocks it (iOS Low Power Mode), start on first touch
   const reel = document.getElementById('reel'), rb = document.getElementById('reel-btn');
-  const still = matchMedia('(prefers-reduced-motion: reduce)').matches || (navigator.connection && navigator.connection.saveData);
-  if (still) { reel.removeAttribute('autoplay'); reel.pause(); rb.textContent = '▶'; rb.setAttribute('aria-label', 'Play background video'); }
-  rb.onclick = () => { if (reel.paused) { reel.play(); rb.textContent = '❚❚'; rb.setAttribute('aria-label', 'Pause background video'); } else { reel.pause(); rb.textContent = '▶'; rb.setAttribute('aria-label', 'Play background video'); } };
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let userPaused = false;
+  const ui = () => { const p = reel.paused; rb.textContent = p ? '▶ Play' : '❚❚'; rb.classList.toggle('play', p); rb.setAttribute('aria-label', p ? 'Play background video' : 'Pause background video'); };
+  const tryPlay = () => { reel.muted = true; const pr = reel.play(); if (pr && pr.then) pr.then(ui, ui); else ui(); };
+  reel.addEventListener('play', ui); reel.addEventListener('pause', ui);
+  tryPlay(); reel.addEventListener('canplay', () => { if (reel.paused && !userPaused) tryPlay(); }, { once: true });
+  const kick = () => { if (reel.paused && !userPaused) tryPlay(); };
+  ['touchstart', 'pointerdown', 'keydown'].forEach(ev => addEventListener(ev, kick, { once: true, passive: true }));
+  rb.onclick = e => { e.stopPropagation(); if (reel.paused) { userPaused = false; tryPlay(); } else { userPaused = true; reel.pause(); } };
+  void still;
 
   // gallery filter
   const tabs = document.querySelectorAll('.tabs button');
