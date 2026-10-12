@@ -105,7 +105,7 @@ h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.
 
 /* ---------- Sections ---------- */
 .sec{padding:110px 0;position:relative}
-.devices,.viz,.price,.pieces .ic,.faq details{position:relative;z-index:2}
+.devices,.viz,.viz-scene,.price,.pieces .ic,.faq details{position:relative;z-index:2}
 .how{padding-top:40px}
 .how-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:start}
 .how-head{position:relative}
@@ -174,7 +174,7 @@ h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.
 .steps{padding-top:90px}
 .row{display:grid;grid-template-columns:1fr 70px 1fr;align-items:center;gap:20px;margin-bottom:90px}
 .row .node{justify-self:center}
-.row .node{order:2}.row .viz{order:1}.row .copy{order:3}.row.flip .copy{order:1}.row.flip .viz{order:3}
+.row .node{order:2}.row .viz,.row .viz-scene{order:1}.row .copy{order:3}.row.flip .copy{order:1}.row.flip .viz,.row.flip .viz-scene{order:3}
 .row .copy h3{font-size:clamp(24px,2.4vw,30px);font-weight:800;line-height:1.15}
 .row .copy p{color:var(--muted);margin:10px 0 0}
 .viz{border-radius:22px;overflow:hidden;box-shadow:0 24px 60px #0b1b3a1f;background:#fff;border:1px solid #e3ebf8}
@@ -245,6 +245,156 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
 /* Reveal */
 .motion [data-reveal]{opacity:0;translate:0 30px;transition:opacity .8s var(--ease) var(--d,0ms),translate .9s var(--ease) var(--d,0ms)}
 .motion [data-reveal].in{opacity:1;translate:0 0}
+
+
+/* ===== Product scenes (website, voice, CRM, dashboard) =====
+   Each scene is drawn on a fixed 560px design canvas and scaled to its column, so it stays crisp at any size. */
+.scene-wrap{position:relative;z-index:2;width:100%;aspect-ratio:var(--cw,560)/var(--sh,400)}
+.scene{position:absolute;left:0;top:0;width:calc(var(--cw,560) * 1px);height:calc(var(--sh,400) * 1px);transform-origin:0 0;transform:scale(var(--k,1));font-family:var(--body);color:var(--ink)}
+.scene *{box-sizing:border-box}
+.sc-card{position:absolute;background:#fff;border:1px solid #e1eaf7;border-radius:16px;box-shadow:0 22px 50px #0b1b3a1c,0 2px 6px #0b1b3a0d}
+.sc-dark{background:#0a1838;border-color:#1c3263;color:#eaf2ff;box-shadow:0 26px 60px #071a3d55}
+.sc-pill{display:inline-flex;align-items:center;gap:6px;border-radius:100px;font:700 11px/1 var(--display);padding:6px 10px}
+.sc-live{background:#e7fbf3;color:#0d8a5b}.sc-live:before{content:"";width:7px;height:7px;border-radius:50%;background:#16c784;box-shadow:0 0 0 3px #16c78433}
+.motion .sc-live:before{animation:livepulse 1.6s ease-in-out infinite}
+@keyframes livepulse{50%{box-shadow:0 0 0 6px #16c78400}}
+.sc-k{font:600 10.5px var(--display);letter-spacing:1.4px;text-transform:uppercase;color:var(--dim)}
+.sc-pop{opacity:0;transform:translateY(14px) scale(.96);transition:opacity .5s var(--ease),transform .6s var(--ease)}
+.scene-wrap.in .sc-pop{opacity:1;transform:none}
+.scene-wrap:not(.in) .sc-pop{transition:none}
+.sc-note{position:absolute;right:10px;bottom:-24px;font-size:11px;color:var(--dim)}
+
+/* Phone layouts: 420px canvas, cards stacked so text stays readable */
+.narrow .w-browser{width:420px;height:290px}.narrow .w-hero{width:72%}.narrow .w-van{display:none}
+.narrow .w-phone{left:300px;top:150px;width:120px;height:240px;padding:7px;border-radius:24px}.narrow .w-phone .scr{padding:22px 9px 9px;border-radius:18px}.narrow .w-phone h6{font-size:12.5px}
+.narrow .w-lead{left:0;top:330px;width:286px}.narrow .w-chip{left:0;top:406px}
+.narrow .v-call{width:420px;height:330px}.narrow .v-msg{max-width:78%}
+.narrow .v-lead{left:96px;top:290px;width:324px}.narrow .v-sent{left:0;top:520px}
+.narrow .c-board{width:420px}.narrow .c-panel{left:96px;top:250px;width:324px}
+.narrow .d-app{width:420px;height:560px}.narrow .d-kpis{grid-template-columns:1fr 1fr}.narrow .d-grid{grid-template-columns:1fr}.narrow .d-chart,.narrow .d-next{height:170px}.narrow .d-chart svg{height:124px}
+.narrow .d-alert{left:150px;top:-16px}
+/* Website */
+.w-browser{left:0;top:18px;width:430px;height:300px;overflow:hidden;padding:0}
+.w-bar{height:34px;background:#f1f5fc;border-bottom:1px solid #e1eaf7;display:flex;align-items:center;gap:6px;padding:0 12px}
+.w-bar i{width:9px;height:9px;border-radius:50%;background:#d5deec}
+.w-bar span{margin-left:10px;flex:1;height:20px;border-radius:6px;background:#fff;border:1px solid #e1eaf7;font:500 10.5px/18px var(--body);color:var(--dim);padding:0 8px}
+.w-site{height:266px;background:linear-gradient(120deg,#0b2a6b 0%,#0e3a8f 55%,#1f6bff 120%);color:#fff;position:relative;padding:18px 20px}
+.w-nav{display:flex;align-items:center;gap:14px;font:700 10.5px var(--display);color:#cfe0ff}.w-nav b{font:800 13px var(--display);color:#fff;margin-right:auto;display:flex;align-items:center;gap:7px}
+.w-nav b i{width:18px;height:18px;border-radius:5px;background:linear-gradient(135deg,#33c8ff,#1f6bff)}
+.w-nav em{font-style:normal;background:#fff;color:#0b2a6b;border-radius:100px;padding:5px 9px}
+.w-hero{margin-top:26px;width:62%}
+.w-hero h5{font:800 24px/1.1 var(--display);margin:0;letter-spacing:-.4px}
+.w-hero p{font-size:11.5px;color:#cfe0ff;margin:8px 0 14px;line-height:1.45}
+.w-cta{display:inline-flex;gap:8px;align-items:center;background:#33c8ff;color:#06204d;font:800 11.5px var(--display);border-radius:100px;padding:9px 14px;position:relative}
+.w-stars{display:flex;gap:6px;align-items:center;font:600 10.5px var(--body);color:#cfe0ff;margin-top:14px}.w-stars b{color:#ffd45c;letter-spacing:1px}
+.w-van{position:absolute;right:-6px;bottom:0;width:190px;height:150px;border-radius:120px 0 0 0;background:radial-gradient(circle at 70% 70%,#33c8ff55,transparent 60%)}
+.w-van svg{position:absolute;right:20px;bottom:24px;width:140px}
+.w-phone{left:356px;top:92px;width:156px;height:300px;border-radius:28px;padding:9px;background:#0b1530;border:none;box-shadow:0 30px 60px #0b1b3a44}
+.w-phone .scr{width:100%;height:100%;border-radius:21px;overflow:hidden;background:linear-gradient(170deg,#0b2a6b,#1f6bff);color:#fff;padding:26px 12px 12px;position:relative}
+.w-phone .scr:before{content:"";position:absolute;top:8px;left:50%;width:44px;height:6px;margin-left:-22px;border-radius:6px;background:#0b1530}
+.w-phone h6{font:800 15px/1.15 var(--display);margin:6px 0 8px}
+.w-phone .f{height:24px;border-radius:7px;background:#ffffff1f;margin-top:7px;font:500 9.5px/24px var(--body);padding:0 8px;color:#cfe0ff}
+.w-phone .w-cta{margin-top:10px;width:100%;justify-content:center;padding:8px}
+.w-cursor{position:absolute;left:150px;top:248px;width:22px;z-index:5;filter:drop-shadow(0 3px 4px #0005)}
+.motion .scene-wrap.in .w-cursor{animation:wcur 4.2s var(--ease) .4s both}
+@keyframes wcur{0%{transform:translate(150px,70px);opacity:0}15%{opacity:1}45%{transform:translate(0,0)}52%{transform:translate(0,0) scale(.85)}58%,100%{transform:translate(0,0)}}
+.w-lead{left:250px;top:0;width:250px;padding:12px 14px;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;z-index:4}
+.motion .scene-wrap.in .w-lead{transition-delay:2.1s}
+.w-lead .ic{width:34px;height:34px;border-radius:10px;background:#e8f1ff;color:var(--blue);display:grid;place-items:center}.w-lead .ic svg{width:18px;height:18px}
+.w-lead b{display:block;font:800 13px var(--display)}.w-lead span{font-size:11.5px;color:var(--muted)}
+.w-lead .sc-live{position:absolute;right:12px;top:12px}
+.w-chip{left:8px;top:300px;padding:9px 12px;display:flex;gap:8px;align-items:center;font:700 11.5px var(--display);z-index:4}
+.w-chip i{width:20px;height:20px;border-radius:50%;background:#16c784;color:#fff;display:grid;place-items:center;font-style:normal;font-size:11px}
+.motion .scene-wrap.in .w-chip{transition-delay:.5s}
+
+/* Voice */
+.v-call{left:0;top:0;width:300px;height:352px;padding:18px;overflow:hidden;background:radial-gradient(circle at 30% 0%,#16408f,#0a1838 60%)}
+.v-top{display:flex;align-items:center;gap:12px}
+.v-face{width:52px;height:52px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 2px #55d2ff,0 0 22px #2f7bff;background:#0a2257;flex:none}.v-face img{width:100%;height:100%;object-fit:cover;object-position:50% 0}
+.v-top b{display:block;font:800 14px var(--display);color:#fff}.v-top span{font-size:11.5px;color:#9fb6dc}
+.v-top .sc-live{margin-left:auto;background:#0f3b2f;color:#5ff0b0}
+.v-wave{display:flex;align-items:center;gap:3px;height:38px;margin:14px 0 6px}
+.v-wave i{flex:1;border-radius:3px;background:linear-gradient(#55d2ff,#3fd6c6);height:calc(var(--h) * 1%);opacity:.9}
+.motion .scene-wrap.in .v-wave i{animation:vbar 1.1s ease-in-out infinite alternate;animation-delay:var(--d)}
+@keyframes vbar{to{height:calc(var(--h) * .35%)}}
+.v-msgs{display:grid;gap:8px;margin-top:6px}
+.v-msg{max-width:84%;padding:9px 11px;border-radius:12px;font-size:12px;line-height:1.4}
+.v-msg.c{background:#1a2c55;color:#dbe7ff;border-bottom-left-radius:4px}
+.v-msg.a{background:#1f6bff;color:#fff;justify-self:end;border-bottom-right-radius:4px}
+.v-msg small{display:block;font:700 9.5px var(--display);letter-spacing:1px;text-transform:uppercase;opacity:.7;margin-bottom:2px}
+.motion .scene-wrap .v-msg{opacity:0;transform:translateY(8px);transition:opacity .4s,transform .5s var(--ease)}
+.motion .scene-wrap.in .v-msg{opacity:1;transform:none}
+.motion .scene-wrap.in .v-msg:nth-child(2){transition-delay:.9s}.motion .scene-wrap.in .v-msg:nth-child(3){transition-delay:1.8s}.motion .scene-wrap.in .v-msg:nth-child(4){transition-delay:2.7s}
+.v-timer{position:absolute;left:18px;bottom:14px;right:18px;display:flex;justify-content:space-between;align-items:center;font:700 11.5px var(--display);color:#9fb6dc}
+.v-timer span{display:flex;gap:8px}.v-timer i{width:30px;height:30px;border-radius:50%;background:#1a2c55;display:grid;place-items:center;font-style:normal}.v-timer i.end{background:#e5484d;color:#fff}
+.v-lead{left:306px;top:60px;width:254px;padding:14px;z-index:3}
+.motion .scene-wrap.in .v-lead{transition-delay:3.4s}
+.v-lead h6{margin:0 0 10px;font:800 13.5px var(--display);display:flex;align-items:center;gap:8px}
+.v-lead h6 i{width:22px;height:22px;border-radius:7px;background:#16c784;color:#fff;font-style:normal;display:grid;place-items:center;font-size:12px}
+.v-kv{display:grid;grid-template-columns:auto 1fr;gap:7px 12px;font-size:12px;margin:0}
+.v-kv dt{color:var(--dim)}.v-kv dd{margin:0;font-weight:600;text-align:right}
+.v-kv .hot{color:#d9480f}
+.v-sum{margin-top:10px;padding:9px 10px;border-radius:10px;background:#f3f7ff;font-size:11.5px;color:var(--muted);line-height:1.45}
+.v-sent{left:320px;top:296px;padding:9px 12px;font:700 11.5px var(--display);display:flex;gap:8px;align-items:center;z-index:3}
+.motion .scene-wrap.in .v-sent{transition-delay:4.1s}
+.v-sent i{width:20px;height:20px;border-radius:6px;background:var(--blue);color:#fff;display:grid;place-items:center;font-style:normal;font-size:11px}
+
+/* CRM */
+.c-board{left:0;top:0;width:400px;height:330px;padding:14px;background:#f7faff}
+.c-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}.c-head b{font:800 14px var(--display)}
+.c-head span{margin-left:auto;font-size:11px;color:var(--dim)}
+.c-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;height:270px}
+.c-col{background:#eef3fb;border-radius:12px;padding:8px;position:relative}
+.c-col h6{margin:2px 2px 8px;font:800 10.5px var(--display);letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between}
+.c-item{background:#fff;border:1px solid #e1eaf7;border-radius:10px;padding:8px 9px;margin-bottom:7px;font-size:11px;box-shadow:0 2px 6px #0b1b3a0a}
+.c-item b{display:block;font:700 11.5px var(--display)}.c-item span{color:var(--dim);font-size:10.5px}
+.c-tag{display:inline-block;margin-top:5px;font:700 9.5px var(--display);border-radius:100px;padding:3px 7px;background:#e8f1ff;color:var(--blue)}
+.c-tag.g{background:#e7fbf3;color:#0d8a5b}.c-tag.o{background:#fff2e6;color:#c2410c}
+.c-move{position:absolute;left:8px;top:120px;width:calc(100% - 16px);border-color:#9cc3ff;box-shadow:0 10px 24px #1f6bff2e;z-index:3}
+.motion .scene-wrap.in .c-move{animation:cmove 1.2s var(--ease) 1.2s both}
+@keyframes cmove{from{transform:translateX(0)}to{transform:translateX(calc(100% + 18px))}}
+.c-panel{left:300px;top:44px;width:256px;padding:14px;z-index:4}
+.motion .scene-wrap.in .c-panel{transition-delay:.4s}
+.c-who{display:flex;gap:10px;align-items:center;margin-bottom:10px}.c-who .av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#33c8ff,#1f6bff);color:#fff;display:grid;place-items:center;font:800 13px var(--display)}
+.c-who b{display:block;font:800 14px var(--display)}.c-who span{font-size:11.5px;color:var(--dim)}
+.c-rec{display:flex;align-items:center;gap:8px;padding:8px;border-radius:10px;background:#f3f7ff;margin-bottom:8px}
+.c-rec .pl{width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:10px;flex:none}
+.c-rec .bars{flex:1;display:flex;gap:2px;align-items:center;height:20px}.c-rec .bars i{flex:1;background:#9cc3ff;border-radius:2px}
+.c-rec .bars i.p{background:var(--blue)}
+.c-rec small{font:700 10.5px var(--display);color:var(--muted)}
+.c-ai{font-size:11.5px;line-height:1.45;color:var(--muted);padding:8px 10px;border-left:3px solid var(--cyan);background:#f7fbff;border-radius:0 8px 8px 0;margin-bottom:8px}
+.c-ai b{color:var(--ink)}
+.c-tasks{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.c-tasks li{display:flex;gap:8px;align-items:center;font:600 11.5px var(--display)}
+.c-tasks i{width:16px;height:16px;border-radius:5px;border:2px solid #b9cbe6;flex:none;font-style:normal;display:grid;place-items:center;font-size:9px;color:#fff}
+.c-tasks .d i{background:#16c784;border-color:#16c784}.c-tasks .d{color:var(--dim);text-decoration:line-through}
+
+/* Dashboard */
+.d-app{left:0;top:0;width:560px;height:360px;padding:16px;background:#f7faff}
+.d-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}.d-top b{font:800 15px var(--display)}.d-top span{font-size:11.5px;color:var(--dim)}
+.d-top .sel{margin-left:auto;border:1px solid #e1eaf7;background:#fff;border-radius:8px;padding:5px 9px;font:700 10.5px var(--display);color:var(--muted)}
+.d-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.d-kpi{background:#fff;border:1px solid #e1eaf7;border-radius:12px;padding:10px 11px}
+.d-kpi span{display:flex;align-items:center;gap:6px;font:700 10.5px var(--display);color:var(--muted)}.d-kpi span svg{width:14px;height:14px;color:var(--blue)}
+.d-kpi strong{display:block;font:800 24px/1.1 var(--display);margin-top:6px;letter-spacing:-.5px}
+.d-kpi em{font-style:normal;font:700 10.5px var(--display);color:#0d8a5b}
+.d-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:10px;margin-top:10px}
+.d-chart{background:#fff;border:1px solid #e1eaf7;border-radius:12px;padding:10px 12px;height:196px;position:relative}
+.d-chart h6,.d-next h6{margin:0 0 4px;font:800 12px var(--display);display:flex;justify-content:space-between}.d-chart h6 span,.d-next h6 span{font:600 10.5px var(--body);color:var(--dim)}
+.d-chart svg{position:absolute;left:12px;right:12px;bottom:10px;width:calc(100% - 24px);height:150px;overflow:visible}
+.d-line{fill:none;stroke:url(#dgrad);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:600;stroke-dashoffset:0}
+.motion .scene-wrap .d-line{stroke-dashoffset:600;transition:stroke-dashoffset 1.6s var(--ease) .3s}
+.motion .scene-wrap.in .d-line{stroke-dashoffset:0}
+.d-area{fill:url(#dfill);opacity:1}
+.motion .scene-wrap .d-area{opacity:0;transition:opacity .8s 1.2s}.motion .scene-wrap.in .d-area{opacity:1}
+.d-next{background:#fff;border:1px solid #e1eaf7;border-radius:12px;padding:10px 12px;height:196px}
+.d-next ul{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:8px}
+.d-next li{display:grid;grid-template-columns:26px 1fr;gap:8px;align-items:center;font-size:11.5px;line-height:1.3}
+.d-next li i{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-style:normal;font-size:12px}
+.d-next li b{display:block;font:700 11.5px var(--display)}.d-next li span{color:var(--dim);font-size:10.5px}
+.d-alert{left:330px;top:-14px;padding:9px 12px;display:flex;gap:8px;align-items:center;font:700 11.5px var(--display);z-index:3}
+.motion .scene-wrap.in .d-alert{transition-delay:1.8s}
+.d-alert i{width:22px;height:22px;border-radius:50%;background:#16c784;color:#fff;display:grid;place-items:center;font-style:normal;font-size:11px}
 
 /* ===== Arrival: Turdy flies in on his ship ===== */
 #ship{position:fixed;left:0;top:0;z-index:39;pointer-events:none;opacity:0;will-change:transform,opacity;transform-origin:50% 50%}
@@ -322,7 +472,7 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
   .how-head{padding-left:0}.how-head .node{left:-66px;top:0}
   .row{grid-template-columns:1fr;gap:18px;margin-bottom:72px;position:relative}
   .row .node{position:absolute;left:-66px;top:0}
-  .row .copy{order:1!important}.row .viz{order:2!important}
+  .row .copy{order:1!important}.row .viz,.row .viz-scene{order:2!important}
   .pricing .node{left:-66px;top:0}
 }
 @media(max-width:760px){
@@ -462,22 +612,106 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
     <section class="sec steps" id="steps" aria-label="The four pieces in detail">
       <div class="wrap">
         <div class="row">
-          <div data-reveal class="viz viz-site"><div class="bar"><i></i><i></i><i></i></div><div class="page"><div><h4>Your front office,<br><em>connected.</em></h4><span class="mini-btn">Request a demo →</span></div><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#hhs-mark"/></svg></div></div>
+          <div data-reveal class="viz-scene"><div class="scene-wrap" data-scene data-shn="460" style="--sh:400" aria-label="Illustration: a sample service-business website on desktop and phone, sending a new inquiry to the CRM" role="img">
+  <div class="scene">
+    <div class="sc-card w-browser">
+      <div class="w-bar"><i></i><i></i><i></i><span>riverplumbing.co</span></div>
+      <div class="w-site">
+        <div class="w-nav"><b><i></i>River Plumbing</b><span>Services</span><span>Reviews</span><em>(615) 555-0184</em></div>
+        <div class="w-hero"><h5>Fast, friendly plumbing in Nashville.</h5><p>Same-day repairs, upfront pricing and a real person on every call.</p><span class="w-cta">Book a visit →</span>
+          <div class="w-stars"><b>★★★★★</b> 4.9 from 212 reviews</div></div>
+        <div class="w-van"><svg viewBox="0 0 140 70" aria-hidden="true"><rect x="6" y="14" width="86" height="40" rx="6" fill="#eaf2ff"/><path d="M92 26h22l16 16v12H92z" fill="#cfe0ff"/><rect x="98" y="30" width="16" height="10" rx="2" fill="#7fb2ff"/><circle cx="30" cy="56" r="9" fill="#0b2a6b"/><circle cx="30" cy="56" r="4" fill="#cfe0ff"/><circle cx="108" cy="56" r="9" fill="#0b2a6b"/><circle cx="108" cy="56" r="4" fill="#cfe0ff"/><rect x="16" y="26" width="52" height="6" rx="3" fill="#1f6bff"/><rect x="16" y="37" width="34" height="5" rx="2.5" fill="#7fb2ff"/></svg></div>
+      </div>
+    </div>
+    <div class="sc-card w-phone"><div class="scr"><div class="w-nav" style="font-size:9px"><b style="font-size:10.5px"><i style="width:13px;height:13px"></i>River</b></div><h6>Need a plumber today?</h6><div class="f">Your name</div><div class="f">Phone number</div><div class="f">What's going on?</div><span class="w-cta">Book a visit</span></div></div>
+    <svg class="w-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2l15 9-6.5 1.6L16 20l-3 1.4-3.6-7.4L4 18z" fill="#fff" stroke="#0b1b3a" stroke-width="1.5" stroke-linejoin="round"/></svg>
+    <div class="sc-card w-lead sc-pop"><span class="ic"><svg aria-hidden="true"><use href="#i-site"/></svg></span><div><b>New inquiry · Mike R.</b><span>Water heater leaking · Today</span></div><span class="sc-pill sc-live">Sent to CRM</span></div>
+    <div class="sc-card w-chip sc-pop"><i>✓</i>Mobile-ready · loads in 1.2s</div>
+  </div>
+</div></div>
           <span class="node" data-node>02</span>
           <div class="copy" data-reveal style="--d:120ms"><h3>A website that works for you.</h3><p>A modern, mobile-friendly website built for service businesses. It turns visitors into inquiries and connects straight to your voice agent and CRM.</p><a class="link" href="#sample">See the website sample →</a></div>
         </div>
         <div class="row flip">
-          <div data-reveal class="viz viz-voice"><span class="face"><img src="assets/turdy-head.webp" alt=""></span><div><span class="bubble">Thanks for calling!<br>How can I help you today?</span><div class="wave" id="wave" aria-hidden="true"></div></div></div>
+          <div data-reveal class="viz-scene"><div class="scene-wrap" data-scene data-shn="566" style="--sh:380" aria-label="Illustration: Turdy the AI voice agent answering a call, transcribing it and capturing the lead" role="img">
+  <div class="scene">
+    <div class="sc-card sc-dark v-call">
+      <div class="v-top"><span class="v-face"><img src="assets/turdy-head.webp" alt=""></span><div><b>Turdy is answering</b><span>New caller · 0:42</span></div><span class="sc-pill sc-live">Live</span></div>
+      <div class="v-wave"><i style="--h:30;--d:-0.00s"></i><i style="--h:55;--d:-0.07s"></i><i style="--h:80;--d:-0.14s"></i><i style="--h:45;--d:-0.21s"></i><i style="--h:95;--d:-0.28s"></i><i style="--h:60;--d:-0.35s"></i><i style="--h:35;--d:-0.42s"></i><i style="--h:70;--d:-0.49s"></i><i style="--h:90;--d:-0.56s"></i><i style="--h:50;--d:-0.63s"></i><i style="--h:25;--d:-0.70s"></i><i style="--h:65;--d:-0.77s"></i><i style="--h:85;--d:-0.84s"></i><i style="--h:40;--d:-0.91s"></i><i style="--h:75;--d:-0.98s"></i><i style="--h:55;--d:-1.05s"></i><i style="--h:30;--d:-1.12s"></i><i style="--h:60;--d:-1.19s"></i><i style="--h:90;--d:-1.26s"></i><i style="--h:45;--d:-1.33s"></i><i style="--h:70;--d:-1.40s"></i><i style="--h:35;--d:-1.47s"></i><i style="--h:80;--d:-1.54s"></i><i style="--h:50;--d:-1.61s"></i><i style="--h:40;--d:-1.68s"></i><i style="--h:65;--d:-1.75s"></i><i style="--h:30;--d:-1.82s"></i><i style="--h:55;--d:-1.89s"></i></div>
+      <div class="v-msgs">
+        <div class="v-msg a"><small>Turdy</small>Thanks for calling River Plumbing! How can I help?</div>
+        <div class="v-msg c"><small>Caller</small>My water heater is leaking into the garage.</div>
+        <div class="v-msg a"><small>Turdy</small>I can get a tech out today. What's the best address?</div>
+      </div>
+      <div class="v-timer"><b>00:42</b><span><i>🎙</i><i class="end">✕</i></span></div>
+    </div>
+    <div class="sc-card v-lead sc-pop"><h6><i>✓</i>Lead captured</h6>
+      <dl class="v-kv"><dt>Name</dt><dd>Mike Rivera</dd><dt>Service</dt><dd>Water heater leak</dd><dt>Address</dt><dd>412 Oak St</dd><dt>Urgency</dt><dd class="hot">Today, after 2pm</dd></dl>
+      <div class="v-sum"><b style="color:var(--ink)">AI summary:</b> Active leak in garage. Wants same-day visit. Quote requested.</div></div>
+    <div class="sc-card v-sent sc-pop"><i>→</i>Added to CRM · text sent to you</div>
+  </div>
+</div></div>
           <span class="node" data-node>03</span>
           <div class="copy" data-reveal style="--d:120ms"><h3>An AI voice agent that answers every call.</h3><p>Your voice agent picks up, captures the details and creates a new lead in your CRM. You get the full recording and summary, so you can follow up with confidence.</p><a class="link" href="#sample">Listen to a sample call →</a></div>
         </div>
         <div class="row">
-          <div data-reveal class="viz viz-crm" id="crm-viz"><div class="who"><div class="lead-top"><span class="av">SM</span><b>Sarah Mitchell</b></div><dl class="kv"><dt>Service</dt><dd>Leak repair</dd><dt>Source</dt><dd>Website</dd><dt>Status</dt><dd class="ok">Estimate requested</dd></dl></div><ul><li><i></i>New website lead</li><li><i></i>Call recording</li><li><i></i>AI summary</li><li><i></i>Send estimate</li><li><i></i>Follow up</li></ul></div>
+          <div data-reveal class="viz-scene"><div class="scene-wrap" data-scene data-shn="560" style="--sh:380" aria-label="Illustration: a CRM pipeline board with a lead moving to Estimate and a contact panel with recording, AI summary and tasks" role="img">
+  <div class="scene">
+    <div class="sc-card c-board">
+      <div class="c-head"><b>Pipeline</b><span>This week · 24 leads</span></div>
+      <div class="c-cols">
+        <div class="c-col"><h6>New <span>8</span></h6>
+          <div class="c-item"><b>Ana Lopez</b><span>Drain clog</span><br><span class="c-tag">Website</span></div>
+          <div class="c-item c-move"><b>Mike Rivera</b><span>Water heater</span><br><span class="c-tag o">Call · urgent</span></div>
+        </div>
+        <div class="c-col"><h6>Estimate <span>5</span></h6>
+          <div class="c-item"><b>Dan Cole</b><span>Repipe quote</span><br><span class="c-tag">Call</span></div>
+        </div>
+        <div class="c-col"><h6>Booked <span>9</span></h6>
+          <div class="c-item"><b>Priya Shah</b><span>Faucet install</span><br><span class="c-tag g">Fri 10am</span></div>
+          <div class="c-item"><b>Tom Hale</b><span>Leak repair</span><br><span class="c-tag g">Mon 2pm</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="sc-card c-panel sc-pop">
+      <div class="c-who"><span class="av">MR</span><div><b>Mike Rivera</b><span>412 Oak St · (615) 555-0184</span></div></div>
+      <div class="c-rec"><span class="pl">▶</span><div class="bars"><i class="p" style="height:40%"></i><i class="p" style="height:70%"></i><i class="p" style="height:55%"></i><i class="p" style="height:90%"></i><i class="p" style="height:35%"></i><i class="p" style="height:60%"></i><i class="p" style="height:80%"></i><i class="p" style="height:45%"></i><i class="p" style="height:65%"></i><i class="" style="height:30%"></i><i class="" style="height:75%"></i><i class="" style="height:50%"></i><i class="" style="height:85%"></i><i class="" style="height:40%"></i><i class="" style="height:60%"></i><i class="" style="height:35%"></i><i class="" style="height:70%"></i><i class="" style="height:45%"></i><i class="" style="height:55%"></i><i class="" style="height:30%"></i></div><small>0:42</small></div>
+      <div class="c-ai"><b>Summary:</b> Water heater leaking in garage. Same-day visit after 2pm. Wants a quote.</div>
+      <ul class="c-tasks"><li class="d"><i>✓</i>Text confirmation sent</li><li><i></i>Call back by 1:00pm</li><li><i></i>Send estimate</li></ul>
+    </div>
+  </div>
+</div></div>
           <span class="node" data-node>04</span>
           <div class="copy" data-reveal style="--d:120ms"><h3>A CRM that keeps you organized.</h3><p>Every inquiry is saved with recordings, tags, notes and follow-up tasks. No more sticky notes or missed opportunities.</p><a class="link" href="#sample">See the CRM sample →</a></div>
         </div>
         <div class="row flip">
-          <div data-reveal class="viz"><div class="viz-dash" id="dash-viz"><div class="tile"><span><svg aria-hidden="true"><use href="#i-crm"/></svg>Leads</span><strong data-count="24">0</strong></div><div class="tile"><span><svg aria-hidden="true"><use href="#i-call"/></svg>Calls</span><strong data-count="18">0</strong></div><div class="tile"><span><svg aria-hidden="true"><use href="#i-dash"/></svg>Tasks</span><strong data-count="7">0</strong></div><div class="chart" aria-hidden="true"><i data-h="30"></i><i data-h="45"></i><i data-h="38"></i><i data-h="60"></i><i data-h="52"></i><i data-h="78"></i><i data-h="92"></i></div></div><span class="viz-note">Sample numbers for illustration.</span></div>
+          <div data-reveal class="viz-scene"><div class="scene-wrap" data-scene data-shn="580" style="--sh:380" aria-label="Illustration: an owner dashboard with weekly leads, calls answered, booked jobs, pipeline value, a trend chart and next steps" role="img">
+  <div class="scene" id="dash-viz">
+    <div class="sc-card d-app">
+      <div class="d-top"><b>Good morning, Dana</b><span>Here's your week</span><span class="sel">This week ▾</span></div>
+      <div class="d-kpis">
+        <div class="d-kpi"><span><svg aria-hidden="true"><use href="#i-crm"/></svg>New leads</span><strong data-count="24">0</strong><em>▲ 18%</em></div>
+        <div class="d-kpi"><span><svg aria-hidden="true"><use href="#i-call"/></svg>Calls answered</span><strong><b data-count="100" style="font:inherit">0</b>%</strong><em>0 missed</em></div>
+        <div class="d-kpi"><span><svg aria-hidden="true"><use href="#i-dash"/></svg>Jobs booked</span><strong data-count="9">0</strong><em>▲ 3</em></div>
+        <div class="d-kpi"><span><svg aria-hidden="true"><use href="#i-site"/></svg>In pipeline</span><strong>$<b data-count="18" style="font:inherit">0</b>.4k</strong><em>▲ $4.1k</em></div>
+      </div>
+      <div class="d-grid">
+        <div class="d-chart"><h6>Leads by day <span>Mon–Sun</span></h6>
+          <svg viewBox="0 0 300 150" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="dgrad" x1="0" x2="1"><stop offset="0" stop-color="#33c8ff"/><stop offset="1" stop-color="#1f6bff"/></linearGradient><linearGradient id="dfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f6bff" stop-opacity=".22"/><stop offset="1" stop-color="#1f6bff" stop-opacity="0"/></linearGradient></defs>
+            <g stroke="#eef3fb" stroke-width="1"><line x1="0" y1="30" x2="300" y2="30"/><line x1="0" y1="70" x2="300" y2="70"/><line x1="0" y1="110" x2="300" y2="110"/></g>
+            <path class="d-area" d="M0 112 C25 108 30 90 50 92 S85 70 100 74 S135 96 150 80 S185 40 200 46 S235 60 250 38 S285 20 300 24 V150 H0Z"/>
+            <path class="d-line" d="M0 112 C25 108 30 90 50 92 S85 70 100 74 S135 96 150 80 S185 40 200 46 S235 60 250 38 S285 20 300 24"/>
+            <circle cx="300" cy="24" r="5" fill="#1f6bff" stroke="#fff" stroke-width="2"/></svg></div>
+        <div class="d-next"><h6>Next steps <span>3 today</span></h6><ul>
+          <li><i style="background:#fff2e6;color:#c2410c">!</i><div><b>Call back Mike R.</b><span>Urgent · water heater</span></div></li>
+          <li><i style="background:#e8f1ff;color:#1f6bff">$</i><div><b>Send 2 estimates</b><span>Dan C. · Ana L.</span></div></li>
+          <li><i style="background:#e7fbf3;color:#0d8a5b">✓</i><div><b>4 jobs tomorrow</b><span>Route ready</span></div></li></ul></div>
+      </div>
+    </div>
+    <div class="sc-card d-alert sc-pop"><i>✓</i>Every call answered this week</div>
+  </div>
+  <span class="sc-note">Sample business and numbers for illustration.</span>
+</div></div>
           <span class="node" data-node>05</span>
           <div class="copy" data-reveal style="--d:120ms"><h3>An owner dashboard for clarity.</h3><p>A clear view of your leads, calls and next steps. See what’s happening in your business, all in one place, without the complexity.</p><a class="link" href="#sample">See the dashboard sample →</a></div>
         </div>
@@ -604,9 +838,9 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
 
   /* ---------- Small interactive details ---------- */
   const bars = $('#rec-bars'); for (let i = 0; i < 34; i++) { const b = document.createElement('span'); b.style.height = (20 + Math.abs(Math.sin(i * 1.7)) * 80) + '%'; bars.appendChild(b); }
-  const wave = $('#wave'); for (let i = 0; i < 28; i++) { const b = document.createElement('span'); b.style.setProperty('--h', (30 + Math.abs(Math.sin(i * 1.3)) * 70) + '%'); b.style.animationDelay = (-i * .08) + 's'; wave.appendChild(b); }
+  const wave = $('#wave'); if (wave) for (let i = 0; i < 28; i++) { const b = document.createElement('span'); b.style.setProperty('--h', (30 + Math.abs(Math.sin(i * 1.3)) * 70) + '%'); b.style.animationDelay = (-i * .08) + 's'; wave.appendChild(b); }
   const onView = (el, fn) => { if (reduce) return fn(); new IntersectionObserver(([e], o) => { if (e.isIntersecting) { fn(); o.disconnect(); } }, { threshold: .4 }).observe(el); };
-  onView($('#crm-viz'), () => $('#crm-viz').classList.add('in'));
+  if ($('#crm-viz')) onView($('#crm-viz'), () => $('#crm-viz').classList.add('in'));
   onView($('#dash-viz'), () => {
     $$('#dash-viz .chart i').forEach(i => i.style.height = i.dataset.h + '%');
     $$('#dash-viz [data-count]').forEach(el => { const to = +el.dataset.count; if (reduce) { el.textContent = to; return; } const t0 = performance.now(); const tick = t => { const k = clamp((t - t0) / 1000, 0, 1); el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(tick); }; requestAnimationFrame(tick); });
@@ -615,6 +849,16 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
   if (reduce) rv.forEach(e => e.classList.add('in'));
   else { const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 }); rv.forEach(e => io.observe(e)); setTimeout(() => rv.forEach(e => { if (e.getBoundingClientRect().top < innerHeight) e.classList.add('in'); }), 1500); }
 
+
+  /* ---------- Product scenes: scale the 560px canvas to the column; play once in view ---------- */
+  const scenes = $$('[data-scene]');
+  const fit = () => scenes.forEach(w => {
+    if (!w.dataset.sh) w.dataset.sh = getComputedStyle(w).getPropertyValue('--sh').trim() || '400';
+    const narrow = w.parentElement.clientWidth < 480, cw = narrow ? 420 : 560;
+    w.classList.toggle('narrow', narrow); w.style.setProperty('--cw', cw); w.style.setProperty('--sh', narrow ? w.dataset.shn : w.dataset.sh);
+    w.style.setProperty('--k', (w.clientWidth / cw).toFixed(4)); });
+  fit(); new ResizeObserver(fit).observe(document.body);
+  scenes.forEach(w => { if (reduce) { w.classList.add('in'); return; } new IntersectionObserver(([e], o) => { if (e.isIntersecting) { w.classList.add('in'); o.disconnect(); } }, { threshold: .35 }).observe(w); });
   /* ---------- The route: hero swirl -> 01 -> 02 ... 05 -> pricing ---------- */
   const journey = $('#journey'), svg = $('#route'), track = $('#track'), glow = $('#glow'), core = $('#core-line'), spark = $('#spark');
   let L = 0, samples = [], anchors = [], swirl = null, total = 0;
