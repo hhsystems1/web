@@ -249,16 +249,25 @@ footer a{text-decoration:none}footer a:hover{color:#fff}
 /* ===== Arrival: Turdy flies in on his ship ===== */
 #ship{position:fixed;left:0;top:0;z-index:39;pointer-events:none;opacity:0;will-change:transform,opacity;transform-origin:50% 50%}
 #ship img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 18px #35f0ff55) drop-shadow(0 18px 24px #0008)}
+#ship .bob{position:absolute;inset:0}
+.motion #ship.idle .bob{animation:ship-bob 3s ease-in-out infinite}
+@keyframes ship-bob{50%{transform:translateY(-7px) rotate(-1.2deg)}}
 #ship .empty{opacity:0}
+#turdy.in-ship{opacity:0!important}
 #ship.dropped .full{opacity:0}#ship.dropped .empty{opacity:1}
 #trail{position:fixed;inset:0;width:100vw;height:100vh;z-index:38;pointer-events:none}
-#hop{position:fixed;left:0;top:0;z-index:41;pointer-events:none;opacity:0;object-fit:contain;will-change:transform;filter:drop-shadow(0 10px 14px #0b1b3a66)}
-body.arriving #turdy,body.arriving #hey{opacity:0!important}
 /* ===== Turdy ===== */
 #turdy{position:fixed;left:0;top:0;z-index:40;width:80px;height:130px;pointer-events:none;will-change:transform}
 #turdy img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;filter:drop-shadow(0 10px 14px #0b1b3a66)}
 #turdy[data-pose="wave"] .p-front,#turdy[data-pose="right"] .p-right,#turdy[data-pose="left"] .p-left,#turdy[data-pose="roll"] .p-back{opacity:1}
 #turdy[data-pose="docked"]{opacity:0}
+#turdy .p-point{inset:0 auto auto 0;width:auto;height:100%;transform-origin:50% 50%}
+#turdy[data-pose="point"] .p-point{opacity:1}
+#turdy.face-left .p-point{left:auto;right:0;transform:scaleX(-1)}
+.motion #turdy[data-pose="point"] .p-point{animation:point-nudge 1.6s ease-in-out infinite}
+.motion #turdy.face-left[data-pose="point"] .p-point{animation-name:point-nudge-l}
+@keyframes point-nudge{50%{transform:translateX(3px) rotate(1.5deg)}}
+@keyframes point-nudge-l{0%,100%{transform:scaleX(-1)}50%{transform:scaleX(-1) translateX(3px) rotate(1.5deg)}}
 .motion #turdy[data-pose="wave"] .p-front{animation:wave-bob 2.4s ease-in-out infinite;transform-origin:50% 90%}
 @keyframes wave-bob{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(3deg) translateY(-3px)}}
 #turdy.clickable{pointer-events:auto;cursor:pointer}
@@ -340,6 +349,7 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
   .dock-btn{width:68px;height:68px}
   .chat{bottom:calc(96px + env(safe-area-inset-bottom,0px));right:16px}
   .hey{font-size:22px}
+  .swirl-anchor{height:60px;margin-top:0}
   .brand span{font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
@@ -520,13 +530,13 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
 </footer>
 
 <canvas id="trail" aria-hidden="true"></canvas>
-<div id="ship" aria-hidden="true"><img class="full" src="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/c2c79907-ce04-4e07-a3ae-f8ff1b3db883.webp" alt="" decoding="async"><img class="empty" src="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/5f761eb9-b205-45a0-919a-107d0240f49d.webp" alt="" decoding="async"></div>
-<img id="hop" src="assets/turdy-front.webp" alt="" aria-hidden="true">
+<div id="ship" aria-hidden="true"><div class="bob"><img class="full" src="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/c2c79907-ce04-4e07-a3ae-f8ff1b3db883.webp" alt="" decoding="async"><img class="empty" src="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/5f761eb9-b205-45a0-919a-107d0240f49d.webp" alt="" decoding="async"></div></div>
 <div id="turdy" data-pose="wave" aria-hidden="true">
   <img class="p-front" src="assets/turdy-front.webp" alt="">
   <img class="p-right" src="assets/turdy-right.webp" alt="">
   <img class="p-left" src="assets/turdy-left.webp" alt="">
   <img class="p-back" src="assets/turdy-back.webp" alt="">
+  <img class="p-point" src="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/52c11e14-3015-4288-ba01-c2a9223b8dad.webp" alt="">
 </div>
 <p class="hey" id="hey" aria-hidden="true">Hey there!</p>
 
@@ -613,9 +623,13 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
   function build() {
     const jr = journey.getBoundingClientRect(), top = jr.top + scrollY;
     const mobile = innerWidth <= 980; // left-gutter layout
-    // Turdy's spot in the hero (no line there); the route itself starts at node 01
-    const sw = $('#swirl').getBoundingClientRect();
-    heroSpot = { x: sw.left + scrollX + sw.width * (mobile ? .62 : .58), y: sw.top + scrollY + sw.height * (mobile ? .72 : .62) };
+    // The ship hovers in the hero with Turdy inside; his route starts at the cockpit and the line at node 01
+    { const vw = innerWidth, SRr = 528 / 760, swr = $('#swirl').getBoundingClientRect();
+      if (vw <= 760) { const btn = $('.hero .btn').getBoundingClientRect(), cue = $('.scroll-cue').getBoundingClientRect(), SW = Math.min(150, vw * .38);
+        shipRect = { x: Math.max(btn.right + 4, vw - SW - 6) + scrollX, y: Math.max(btn.bottom - 6, cue.top - SW * SRr * .45) + scrollY, w: SW, h: SW * SRr }; }
+      else { const SW = vw <= 980 ? 250 : Math.min(330, swr.width * .62);
+        shipRect = { x: swr.left + scrollX + swr.width * .55 - SW / 2, y: Math.max(swr.top + scrollY - (vw <= 980 ? 10 : 70), 84), w: SW, h: SW * SRr }; }
+      heroSpot = { x: shipRect.x + shipRect.w * .38, y: shipRect.y + shipRect.h * .66 }; }
     const nodes = $$('[data-node]').map(n => { const p = docXY(n); return { x: p.x, y: p.y - top, el: n }; });
     const n1 = nodes[0];
     let d = `M${n1.x},${n1.y}`;
@@ -641,10 +655,17 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
     anchors = [{ s: 0, l: 0 }].concat(nodes.map(n => ({ s: Math.max(1, n.y + top - innerHeight * .58), l: near(n) })));
     for (let i = 1; i < anchors.length; i++) if (anchors[i].s <= anchors[i - 1].s) anchors[i].s = anchors[i - 1].s + 1;
     [glow, core].forEach(p => { p.style.strokeDasharray = L; });
-    top0 = top; nodesEls = nodes.map(n => ({ el: n.el, l: near(n) }));
+    const sideOf = n => { const box = n.el.closest('.row,.how-head,.pricing,.card-wrap') || n.el.parentElement; const t = box && (box.querySelector('.copy h3,.copy h2,h2,h3') || box); if (!t) return 1; const r = t.getBoundingClientRect(); return (r.left + r.width / 2 + scrollX) >= n.x ? 1 : -1; };
+    top0 = top; nodesEls = nodes.map(n => ({ el: n.el, l: near(n), x: n.x, y: n.y, side: sideOf(n) }));
   }
-  let top0 = 0, nodesEls = [], loopLen = 0, heroSpot = { x: 0, y: 0 };
-  const lenAtScroll = y => { for (let i = 1; i < anchors.length; i++) { const a = anchors[i - 1], b = anchors[i]; if (y <= b.s) return lerp(a.l, b.l, clamp((y - a.s) / (b.s - a.s), 0, 1)); } return anchors[anchors.length - 1].l; };
+  let top0 = 0, nodesEls = [], loopLen = 0, heroSpot = { x: 0, y: 0 }, shipRect = { x: 0, y: 0, w: 0, h: 0 }, shipBusy = false;
+  const DWELL = .22; // share of each section's scroll where Turdy stays put at a stop
+  const stopAt = y => { // which stop he's at (index into nodesEls) or progress k between stops
+    for (let i = 2; i < anchors.length; i++) { const a = anchors[i - 1], b = anchors[i]; if (y <= b.s) { const t = clamp((y - a.s) / (b.s - a.s), 0, 1); if (t <= DWELL) return { at: i - 2, k: 0 }; if (t >= 1 - DWELL) return { at: i - 1, k: 1 }; return { at: -1, k: (t - DWELL) / (1 - 2 * DWELL) }; } }
+    return { at: nodesEls.length - 1, k: 1 }; };
+  const lenAtScroll = y => { if (anchors.length < 2 || y <= anchors[1].s) return 0;
+    for (let i = 2; i < anchors.length; i++) { const a = anchors[i - 1], b = anchors[i]; if (y <= b.s) { const t = clamp((y - a.s) / (b.s - a.s), 0, 1), k = clamp((t - DWELL) / (1 - 2 * DWELL), 0, 1); return lerp(a.l, b.l, k); } }
+    return anchors[anchors.length - 1].l; };
   const pointAt = l => { const i = clamp(Math.round(l / 4), 0, samples.length - 1); return samples[i]; };
 
   /* ---------- Turdy ---------- */
@@ -656,11 +677,26 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
     if (on && !greeted && !chatOpen) { greeted = true; greet.classList.add('show'); clearTimeout(gT); gT = setTimeout(() => greet.classList.remove('show'), 5500); }
     if (!on) greet.classList.remove('show');
   }
+  const shipEl = $('#ship');
+  function placeShip(fall) {
+    if (!shipEl || !shipEl.isConnected || shipBusy) return;
+    const R = shipRect, vw = innerWidth, vh = innerHeight, x0 = R.x - scrollX, y0 = R.y - scrollY;
+    shipEl.style.width = R.w + 'px'; shipEl.style.height = R.h + 'px';
+    const d = clamp((fall - .06) / .5, 0, 1); // departure progress, scrubbed by scroll
+    shipEl.classList.toggle('dropped', fall > .1); shipEl.classList.toggle('idle', d <= 0);
+    if (d <= 0) { shipEl.style.opacity = 1; shipEl.style.transform = `translate(${x0}px,${y0}px)`; return; }
+    const kt = Math.min(1, d / .3), km = Math.max(0, (d - .2) / .8), e = km * km, flip = Math.cos(kt * Math.PI) || .001;
+    const x = x0 + e * (vw * .92 - x0), yy = y0 + e * (vh * .02 - y0) - Math.sin(km * Math.PI) * 40, sc = 1 - .92 * (1 - Math.pow(1 - km, 3));
+    shipEl.style.opacity = 1 - Math.max(0, (d - .75) / .25);
+    shipEl.style.transform = `translate(${x.toFixed(1)}px,${yy.toFixed(1)}px) scale(${(sc * flip).toFixed(3)},${sc.toFixed(3)}) rotate(${(-10 * e).toFixed(2)}deg)`;
+  }
   function place() {
     if (!samples.length) return;
     const mobile = innerWidth <= 760;
-    const fall = clamp(scrollY / Math.max(1, anchors[1] ? anchors[1].s : 1), 0, 1), fe = fall * fall * (3 - 2 * fall);
-    const base = innerWidth <= 760 ? 58 : innerWidth <= 980 ? 70 : 118, H = lerp(mobile ? 110 : 170, base, fe), W = H / RATIO;
+    const HOP = .1; // share of the hero->01 scroll where Turdy is still sitting in the ship
+    const fall = clamp(scrollY / Math.max(1, anchors[1] ? anchors[1].s : 1), 0, 1), q = clamp((fall - HOP) / (1 - HOP), 0, 1), fe = q * q * (3 - 2 * q);
+    const base = innerWidth <= 760 ? 58 : innerWidth <= 980 ? 70 : 118, H = lerp(shipRect.h * .95, base, fe), W = H / RATIO;
+    placeShip(fall);
     const btn = mobile ? 68 : 80, margin = 18;
     const lastS = anchors[anchors.length - 1].s, dockSpan = Math.max(320, innerHeight * .45);
     const y = scrollY;
@@ -670,16 +706,29 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
     glow.style.strokeDashoffset = L - lit; core.style.strokeDashoffset = L - lit;
     const pt = pointAt(drawn); spark.setAttribute('cx', pt.x); spark.setAttribute('cy', pt.y);
     nodesEls.forEach(n => n.el.classList.toggle('lit', drawn >= n.l - 6));
-    // body position (viewport coords): feet on the route
-    let vx = pt.x - W / 2 - scrollX, vy = pt.y + top0 - scrollY - H * .92, h = H, rot = 0, pose = 'wave';
-    if (fall < 1) { // from his hero spot, glide down to node 01 where the line begins
+    // body position (viewport coords): feet on the route. Upright while travelling,
+    // one somersault between sections, and at each numbered stop he points at the words.
+    let vx = pt.x - W / 2 - scrollX, vy = pt.y + top0 - scrollY - H * .92, h = H, rot = 0, pose = 'wave', face = 1;
+    const flipRot = q => 360 * (q < .5 ? 2 * q * q : 1 - Math.pow(-2 * q + 2, 2) / 2);
+    if (fall < 1) { // hop out of the cockpit, somersault, land on node 01 where the line begins
       const hx = heroSpot.x - W / 2 - scrollX, hy = heroSpot.y - scrollY - H * .92;
-      vx = lerp(hx, vx, fe); vy = lerp(hy, vy, fe) - Math.sin(fe * Math.PI) * (mobile ? 40 : 70);
-      if (y > 8) { pose = vx > hx + 4 ? 'right' : 'left'; rot = Math.sin(fall * 12) * 6; }
-    } else if (y > 8) {
-      const a = pointAt(drawn - 10), b = pointAt(drawn + 10), dx = b.x - a.x, dy = b.y - a.y;
-      if (Math.abs(dy) > Math.abs(dx) * 2.4) { pose = 'roll'; rot = drawn * 1.4; vy += H * .3; h = H * .8; }
-      else { pose = dx >= 0 ? 'right' : 'left'; vy -= Math.abs(Math.sin(drawn / 22)) * H * .18; rot = Math.sin(drawn / 11) * 5; }
+      // curve: drop down on the ship's side first, then sweep over to 01 below the headline
+      const nx = vx, ny = vy, cx = hx, cy = ny, u = 1 - fe;
+      vx = u * u * hx + 2 * u * fe * cx + fe * fe * nx; vy = u * u * hy + 2 * u * fe * cy + fe * fe * ny - Math.sin(fe * Math.PI) * (mobile ? 30 : 50);
+      face = vx < hx - 2 ? -1 : 1; pose = q <= 0 ? 'wave' : face > 0 ? 'right' : 'left';
+      if (fe > .2 && fe < .7) rot = flipRot((fe - .2) / .5) * face;
+    } else {
+      const st = stopAt(y);
+      if (st.at >= 0) { // standing at a stop: just above the number, pointing toward its text
+        const n = nodesEls[st.at]; face = n.side;
+        vx = n.x - W / 2 - scrollX - face * W * .45; vy = n.y + top0 - scrollY - H - (mobile ? 18 : 24);
+        pose = 'point';
+      } else { // travelling between stops: hop along the line with one somersault mid-way
+        const a = pointAt(drawn - 12), b = pointAt(drawn + 12); face = (b.x - a.x) < -2 ? -1 : 1;
+        pose = face > 0 ? 'right' : 'left';
+        vy -= Math.sin(st.k * Math.PI) * H * .55;
+        if (st.k > .3 && st.k < .7) rot = flipRot((st.k - .3) / .4) * face;
+      }
     }
     // after the last stop, hop into the chat dock
     let k = 0;
@@ -691,14 +740,13 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
       pose = k > .96 ? 'docked' : (ex > vx ? 'right' : 'left'); rot = 0;
     }
     const w = h / RATIO;
-    if (pose === 'roll') { turdy.style.width = w + 'px'; turdy.style.height = w * (954 / 550) + 'px'; }
-    else { turdy.style.width = w + 'px'; turdy.style.height = h + 'px'; }
-    turdy.dataset.pose = pose;
+    turdy.style.width = w + 'px'; turdy.style.height = h + 'px';
+    turdy.dataset.pose = pose; turdy.classList.toggle('face-left', face < 0); turdy.classList.toggle('in-ship', !!shipEl && fall <= HOP);
     turdy.style.transform = `translate(${vx.toFixed(1)}px,${vy.toFixed(1)}px) rotate(${rot.toFixed(1)}deg)`;
     turdy.classList.toggle('clickable', pose === 'wave');
-    // greeting in the hero
-    hey.style.opacity = y < 30 ? 1 : 0;
-    hey.style.left = (vx - (mobile ? 96 : 130)) + 'px'; hey.style.top = (vy + h * .05) + 'px';
+    // greeting in the hero, above the ship
+    hey.style.opacity = y < 30 && !shipBusy ? 1 : 0;
+    hey.style.left = (shipRect.x - scrollX + (mobile ? -6 : -40)) + 'px'; hey.style.top = (shipRect.y - scrollY - (mobile ? 18 : 8)) + 'px';
     setDocked(y > lastS + dockSpan * .96);
   }
 
@@ -706,9 +754,11 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
   if (reduce) {
     init(); turdy.dataset.pose = 'wave'; dock.classList.add('on'); docked = true;
     [glow, core].forEach(p => p.style.strokeDashoffset = 0);
-    const still = () => { const H = innerWidth <= 760 ? 110 : 170, W = H / RATIO, x = heroSpot.x - W / 2 - scrollX, yy = heroSpot.y - scrollY - H * .92;
+    const still = () => { const inShip = scrollY < 40, H = innerWidth <= 760 ? 110 : 170, W = H / RATIO, x = heroSpot.x - W / 2 - scrollX, yy = heroSpot.y - scrollY - H * .92;
+      turdy.classList.toggle('in-ship', inShip); turdy.dataset.pose = 'wave';
+      if (shipEl) { Object.assign(shipEl.style, { width: shipRect.w + 'px', height: shipRect.h + 'px', opacity: inShip ? 1 : 0, transform: `translate(${shipRect.x - scrollX}px,${shipRect.y - scrollY}px)` }); shipEl.classList.remove('dropped'); }
       turdy.style.width = W + 'px'; turdy.style.height = H + 'px'; turdy.style.transform = `translate(${x}px,${yy}px)`;
-      hey.style.left = (x - (innerWidth <= 760 ? 96 : 130)) + 'px'; hey.style.top = (yy + H * .05) + 'px'; };
+      if (innerWidth <= 760) { hey.style.left = (x - 70) + 'px'; hey.style.top = (yy - 26) + 'px'; } else { hey.style.left = (x - 130) + 'px'; hey.style.top = (yy + H * .05) + 'px'; } };
     still(); addEventListener('scroll', still, { passive: true }); addEventListener('resize', () => { init(); still(); });
   } else {
     let tick = false;
@@ -720,88 +770,42 @@ body.arriving #turdy,body.arriving #hey{opacity:0!important}
   }
   turdy.addEventListener('click', () => openChat());
 
-  /* ---------- Arrival: Turdy flies in from deep space on his ship ---------- */
+  /* ---------- Arrival: on load the ship flies in from deep space and hovers with Turdy aboard ---------- */
   (function arrival() {
-    const ship = $('#ship'), trail = $('#trail'), hop = $('#hop'), tc = trail.getContext('2d');
-    if (scrollY > 30 && !location.hash) { try { scrollTo(0, 0); } catch (_) {} }
-    if (scrollY > 30) { ship.remove(); trail.remove(); hop.remove(); return; }
-    document.body.classList.add('arriving');
-    const SR = 528 / 760; // ship image ratio (h/w)
+    const ship = shipEl, trail = $('#trail'), tc = trail.getContext('2d');
+    if (!ship) return;
+    if (scrollY > 30 && !location.hash) { try { scrollTo({ top: 0, behavior: 'instant' }); } catch (_) {} }
+    const R = () => ({ x: shipRect.x - scrollX, y: shipRect.y - scrollY, w: shipRect.w, h: shipRect.h });
+    if (reduce || scrollY > 30) { trail.remove(); ship.style.opacity = 1; place(); return; }
+    shipBusy = true; ship.style.opacity = 0;
     let done = false, raf = 0, parts = [];
-    const finish = () => {
-      if (done) return; done = true; cancelAnimationFrame(raf);
-      document.body.classList.remove('arriving');
-      [ship, trail, hop].forEach(e => e.remove());
-      ['wheel', 'touchmove', 'keydown', 'pointerdown'].forEach(ev => removeEventListener(ev, skip));
-      if (!reduce) place();
-    };
-    const skip = () => finish();
-    ['wheel', 'touchmove', 'keydown', 'pointerdown'].forEach(ev => addEventListener(ev, skip, { passive: true }));
+    const end = () => { if (done) return; done = true; cancelAnimationFrame(raf); shipBusy = false; trail.remove(); ['wheel', 'touchmove', 'keydown'].forEach(ev => removeEventListener(ev, end)); place(); };
+    ['wheel', 'touchmove', 'keydown'].forEach(ev => addEventListener(ev, end, { passive: true })); // scrolling takes over immediately
     const load = img => new Promise((res, rej) => { if (img.complete && img.naturalWidth) return res(); img.addEventListener('load', res, { once: true }); img.addEventListener('error', rej, { once: true }); });
-    const giveUp = setTimeout(finish, 10000);
-    Promise.all([...ship.querySelectorAll('img')].map(load)).then(() => { clearTimeout(giveUp); if (!done) (reduce ? calm : fly)(); }).catch(finish);
-
-    // Reduce Motion: no flight, just a short fade-in drop-off
-    function calm() {
-      const tr = turdy.getBoundingClientRect(), mobile = innerWidth <= 760, SW = Math.max(150, tr.height * (mobile ? 1.7 : 1.55)), SH = SW * SR;
-      const hx = Math.max(8, tr.left - SW * (mobile ? .8 : .86)), hy = Math.max(76, tr.top + tr.height * .12 - SH * .3);
-      Object.assign(ship.style, { width: SW + 'px', height: SH + 'px', transform: `translate(${hx}px,${hy}px)`, transition: 'opacity .6s' });
-      requestAnimationFrame(() => { ship.style.opacity = 1; });
-      setTimeout(() => { ship.classList.add('dropped'); document.body.classList.remove('arriving'); }, 1400);
-      setTimeout(() => { ship.style.opacity = 0; }, 2300);
-      setTimeout(finish, 3000);
-    }
-
+    const giveUp = setTimeout(end, 10000);
+    Promise.all([...ship.querySelectorAll('img')].map(load)).then(() => { clearTimeout(giveUp); if (!done) fly(); }).catch(end);
     const bez = (a, b, c, d, t) => { const u = 1 - t; return u * u * u * a + 3 * u * u * t * b + 3 * u * t * t * c + t * t * t * d; };
     const ease = t => 1 - Math.pow(1 - t, 3), inOut = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
     function fly() {
       const d = Math.min(2, devicePixelRatio || 1); trail.width = innerWidth * d; trail.height = innerHeight * d; tc.setTransform(d, 0, 0, d, 0, 0);
-      place();
-      const tr = turdy.getBoundingClientRect(), vw = innerWidth, vh = innerHeight, mobile = vw <= 760;
-      const SW = Math.max(150, tr.height * (mobile ? 1.7 : 1.55)), SH = SW * SR;
+      const r = R(), vw = innerWidth, vh = innerHeight, mobile = vw <= 760, SW = r.w, SH = r.h;
       ship.style.width = SW + 'px'; ship.style.height = SH + 'px';
-      // hover so the cockpit sits up-left of Turdy's landing spot
-      const hx = Math.max(8, tr.left - SW * (mobile ? .8 : .86)), hy = Math.max(76, tr.top + tr.height * .12 - SH * .3);
-      const P = [{ x: vw * (mobile ? .95 : .86), y: vh * (mobile ? .22 : .04) }, { x: vw * (mobile ? .98 : .97), y: vh * (mobile ? .42 : .34) }, { x: hx + SW * 1.1, y: hy + SH * .9 }, { x: hx, y: hy }];
-      const T1 = 2600, T2 = 650, T3 = 700, T4 = 1100, t0 = performance.now();
-      hop.style.width = tr.width + 'px'; hop.style.height = tr.height + 'px';
-      let flip = 1;
-      const thr = (x, y, sc) => { // thruster positions (ship image coords) -> viewport
-        [[.93, .48], [.93, .76]].forEach(([fx, fy]) => parts.push({ x: x + (fx - .5) * flip * SW * sc + SW / 2, y: y + (fy - .5) * SH * sc + SH / 2, r: (2 + Math.random() * 3) * sc + 1, a: .9, vx: (1.5 + Math.random()) * flip, vy: (Math.random() - .5) * .6 }));
-      };
-      const drawTrail = () => {
+      const P = [{ x: vw * (mobile ? .95 : .86), y: vh * (mobile ? .18 : .04) }, { x: vw * (mobile ? .98 : .97), y: vh * (mobile ? .4 : .34) }, { x: r.x + SW * 1.1, y: r.y + SH * .9 }, { x: r.x, y: r.y }];
+      const T = 2600, t0 = performance.now();
+      const thr = (x, y, sc) => [[.93, .48], [.93, .76]].forEach(([fx, fy]) => parts.push({ x: x + (fx - .5) * SW * sc + SW / 2, y: y + (fy - .5) * SH * sc + SH / 2, r: (2 + Math.random() * 3) * sc + 1, a: .9, vx: 1.5 + Math.random(), vy: (Math.random() - .5) * .6 }));
+      const frame = now => {
+        if (done) return;
+        const k = Math.min(1, (now - t0) / T), e = ease(k), m = inOut(k);
+        if (k < 1) {
+          const x = bez(P[0].x, P[1].x, P[2].x, P[3].x, m), y = bez(P[0].y, P[1].y, P[2].y, P[3].y, m), sc = .08 + .92 * e * e, rot = -14 * (1 - e) + Math.sin(k * 9) * 3 * (1 - e);
+          ship.style.opacity = Math.min(1, k * 4); ship.style.transform = `translate(${x.toFixed(1)}px,${y.toFixed(1)}px) scale(${sc.toFixed(3)}) rotate(${rot.toFixed(2)}deg)`; thr(x, y, sc);
+        }
         tc.clearRect(0, 0, vw, vh); tc.globalCompositeOperation = 'lighter';
         parts = parts.filter(p => (p.a -= .022) > 0);
         for (const p of parts) { p.x += p.vx; p.y += p.vy; tc.globalAlpha = p.a; tc.fillStyle = p.a > .6 ? '#e6fffd' : '#35f0ff'; tc.beginPath(); tc.arc(p.x, p.y, p.r * (1.4 - p.a * .4), 0, 6.283); tc.fill(); }
         tc.globalAlpha = 1; tc.globalCompositeOperation = 'source-over';
-      };
-      const set = (x, y, sc, rot, op) => { ship.style.opacity = op; ship.style.transform = `translate(${x.toFixed(1)}px,${y.toFixed(1)}px) scale(${(sc * flip).toFixed(3)},${sc.toFixed(3)}) rotate(${(rot * Math.sign(flip || 1)).toFixed(2)}deg)`; };
-      const frame = now => {
-        if (done) return;
-        if (scrollY > 60) return finish();
-        const t = now - t0;
-        if (t < T1) { // approach from deep space: travel the curve, grow, settle the bank
-          const k = t / T1, e = ease(k), m = inOut(k);
-          const x = bez(P[0].x, P[1].x, P[2].x, P[3].x, m), y = bez(P[0].y, P[1].y, P[2].y, P[3].y, m);
-          const sc = .08 + .92 * e * e, rot = -14 * (1 - e) + Math.sin(k * 9) * 3 * (1 - e);
-          set(x, y, sc, rot, Math.min(1, k * 4)); thr(x, y, sc);
-        } else if (t < T1 + T2) { // hover
-          const k = (t - T1) / T2; set(hx, hy + Math.sin(k * Math.PI * 2) * 4, 1, Math.sin(k * Math.PI * 2) * 1.5, 1); if (Math.random() < .5) thr(hx, hy, .6);
-        } else if (t < T1 + T2 + T3) { // Turdy hops out to his spot
-          const k = (t - T1 - T2) / T3, e = inOut(k);
-          ship.classList.add('dropped');
-          const sx = hx + SW * .36 - tr.width / 2, sy = hy + SH * .02, x = sx + (tr.left - sx) * e, y = sy + (tr.top - sy) * e - Math.sin(e * Math.PI) * (mobile ? 70 : 110), sc = .55 + .45 * e;
-          hop.style.opacity = 1; hop.style.transform = `translate(${x.toFixed(1)}px,${y.toFixed(1)}px) scale(${sc.toFixed(3)}) rotate(${(-12 * (1 - e)).toFixed(1)}deg)`;
-          set(hx, hy - e * 6, 1, 0, 1); thr(hx, hy, .5);
-        } else if (t < T1 + T2 + T3 + T4) { // ship zooms off into the distance
-          if (hop.style.opacity !== '0') { hop.style.opacity = 0; document.body.classList.remove('arriving'); place(); }
-          // turn around (first 30%), then head back into the nebula, shrinking into the distance
-          const k = (t - T1 - T2 - T3) / T4, kt = Math.min(1, k / .3), km = Math.max(0, (k - .2) / .8), e = km * km;
-          flip = Math.cos(kt * Math.PI) || .001;
-          const x = hx + e * (vw * (mobile ? .95 : .9) - hx), y = hy + e * (vh * (mobile ? .12 : .02) - hy) - Math.sin(km * Math.PI) * 40, sc = 1 - .92 * ease(km);
-          set(x, y, sc, -10 * e, 1 - Math.max(0, (k - .7) / .3)); if (kt >= 1) thr(x, y, sc);
-        } else { ship.style.opacity = 0; drawTrail(); if (!parts.length) return finish(); }
-        drawTrail(); raf = requestAnimationFrame(frame);
+        if (k >= 1) { if (shipBusy) { shipBusy = false; place(); } if (!parts.length) return end(); }
+        raf = requestAnimationFrame(frame);
       };
       raf = requestAnimationFrame(frame);
     }
