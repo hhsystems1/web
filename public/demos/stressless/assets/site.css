@@ -434,3 +434,27 @@ a{text-underline-offset:3px}
 .opt-card:active{transform:scale(.98)}
 .wtable span,.deal h3,.big{font-variant-numeric:tabular-nums}
 @media (prefers-reduced-motion:reduce){.btn:active,.opt-card:active{transform:none}}
+
+/* ---------- rating badges in each platform's colours + leave a review ---------- */
+a.badge{text-decoration:none;color:inherit;border-width:2px;transition:transform .16s cubic-bezier(.23,1,.32,1),box-shadow .2s ease}
+@media (hover:hover) and (pointer:fine){a.badge:hover{transform:translateY(-2px);box-shadow:0 10px 22px #16201a1a}}
+a.badge:active{transform:scale(.97)}
+.b-google{border-color:#4285f4}.b-google b{color:#1a73e8}.b-google strong{color:#1a73e8!important}.b-google .stars{color:#fbbc04;letter-spacing:1px}
+.b-angi{border-color:#ff6153}.b-angi b,.b-angi strong{color:#d63a2c!important}
+.b-bbb{border-color:#015a75;background:#015a75!important}.b-bbb b,.b-bbb strong{color:#fff!important}.b-bbb span{color:#cfe3ea!important}
+.leave{margin-top:36px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding:24px;border-radius:18px;background:var(--green-l);border:1px solid #cfe3c8}
+.leave h3{font-size:30px}
+.leave p{color:var(--ink-2);margin-top:4px;max-width:520px}
+.leave-btns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.lb{display:inline-flex;align-items:center;min-height:48px;padding:12px 18px;border-radius:10px;font:700 15px var(--body);text-decoration:none;border:2px solid;transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.lb:active{transform:scale(.97)}
+.lb-angi{border-color:#ff6153;color:#c2321f;background:#fff}
+.lb-bbb{border-color:#015a75;background:#015a75;color:#fff}
+@media(max-width:640px){.leave{padding:20px}.leave-btns{width:100%}.leave-btns .btn{flex:1 1 100%}.lb{flex:1;justify-content:center}}
+.lb-google{border-color:#1a73e8;background:#1a73e8;color:#fff;gap:6px}.lb-google span{color:#fbbc04}
+@media(max-width:640px){
+  .badges{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%}
+  .badge{flex-direction:column;align-items:flex-start;gap:4px;padding:10px 12px}
+  .badge b{font-size:28px}
+  .leave-btns .lb-google{flex:1 1 100%;justify-content:center}
+}
