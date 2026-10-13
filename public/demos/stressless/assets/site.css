@@ -476,7 +476,7 @@ a.badge:active{transform:scale(.97)}
 .tabs button[aria-pressed=true] .n{background:#ffffff2e;color:#fff}
 .tabs button:active{transform:scale(.97)}
 .tabs button{transition:transform .12s ease-out}
-.pv{border:0;padding:0;margin:0;max-width:none;max-height:none;width:100vw;height:100dvh;background:#0d120ef2;color:#fff;display:none;flex-direction:column}
+.pv{border:0;padding:0;margin:0;max-width:none;max-height:none;width:100vw;height:100dvh;background:#0d120e;color:#fff;display:none;flex-direction:column}
 .pv[open]{display:flex;animation:lbIn .2s cubic-bezier(.23,1,.32,1)}
 .pv::backdrop{background:#0d120ecc}
 .pv-stage{flex:1;min-height:0;position:relative;display:grid;place-items:center;padding:56px 12px 8px}
