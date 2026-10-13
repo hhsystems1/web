@@ -365,3 +365,22 @@ footer.site .fine{grid-column:1/-1;border-top:1px solid var(--edge);padding-top:
   .cat h3{font-size:19px}
   .cat span{display:none}
 }
+
+/* social icons + follow cards */
+.social{display:flex;gap:10px;margin-top:16px}
+.social a{display:grid!important;place-items:center;width:42px;height:42px;padding:0!important;border-radius:50%;background:#fff;border:1px solid var(--edge);transition:transform .16s var(--ease-out)}
+.social img{width:20px;height:20px;border-radius:4px}
+@media (hover:hover) and (pointer:fine){.social a:hover{transform:translateY(-2px)}}
+.proof a{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--edge);background:#ffffff0a;border-radius:100px;padding:8px 14px;font-size:14.5px;color:var(--on-dark-2);text-decoration:none}
+.proof a b{color:#fff}.proof a:hover{border-color:#fff}
+.online{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.oc{display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:center;padding:16px;border:1px solid var(--line);border-radius:14px;background:#fff;text-decoration:none;color:var(--text);box-shadow:0 4px 14px #0e0f1112;transition:transform .16s var(--ease-out),box-shadow .2s ease}
+.oc img{width:32px;height:32px;border-radius:8px}
+.oc b{display:block;font:800 18px/1.1 var(--display);font-stretch:85%;text-transform:uppercase}
+.oc small{display:block;color:var(--muted);font-size:13.5px;margin-top:3px}
+.oc em{font-style:normal;font:700 13.5px var(--body);color:var(--red);display:inline-flex;align-items:center;gap:4px;text-decoration:underline;text-underline-offset:3px}
+.ext{width:13px;height:13px}
+@media (hover:hover) and (pointer:fine){.oc:hover{transform:translateY(-2px);box-shadow:0 12px 26px #0e0f111f}}
+.oc:active{transform:scale(.98)}
+@media(max-width:1100px){.online{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.online{grid-template-columns:1fr}}
