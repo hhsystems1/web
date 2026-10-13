@@ -441,7 +441,7 @@ a.badge{display:flex;align-items:center;gap:12px;padding:12px 16px 12px 14px;bac
 a.badge img{width:32px;height:32px;border-radius:8px;flex:none}
 a.badge .bd{display:grid;gap:2px}
 a.badge .br{display:flex;align-items:center;gap:8px}
-a.badge b{font:700 28px/1 var(--head)}
+a.badge b{font:700 28px/1 var(--head);color:var(--ink)}
 a.badge .stars{color:#fbbc04;font-size:14px;letter-spacing:1px}
 a.badge .bn{font:700 14px var(--body);color:var(--ink)}
 a.badge .bn em{font-style:normal;font-weight:600;color:var(--green-d);display:inline-flex;align-items:center;gap:3px;margin-left:4px;text-decoration:underline;text-underline-offset:3px}
