@@ -54,6 +54,46 @@
     }));
   });
 
+  // Gallery lightbox (any .gal on any page)
+  if (document.querySelector('.gal .gal-open')) {
+    const lb = document.createElement('dialog');
+    lb.className = 'pv'; lb.setAttribute('aria-label', 'Project photo');
+    lb.innerHTML = '<div class="pv-stage"><img alt=""><button type="button" class="pv-x" aria-label="Close">\u2715</button><button type="button" class="pv-nav pv-prev" aria-label="Previous photo">\u2039</button><button type="button" class="pv-nav pv-next" aria-label="Next photo">\u203a</button></div><div class="pv-bar"><div class="pv-meta"><p class="pv-cap"></p><span class="pv-n"></span></div><a class="btn btn-o pv-cta" href="book.html">Get a quote like this</a></div>';
+    document.body.appendChild(lb);
+    const li = lb.querySelector('img'), cap = lb.querySelector('.pv-cap'), num = lb.querySelector('.pv-n');
+    let list = [], i = 0, opener = null;
+    const show = n => {
+      i = (n + list.length) % list.length;
+      const f = list[i], im = f.querySelector('img');
+      li.classList.remove('in');
+      li.src = (im.currentSrc || im.src).replace(/([?&]w=)\d+/, '$11920');
+      li.alt = im.alt; cap.textContent = f.querySelector('figcaption').textContent;
+      num.textContent = (i + 1) + ' of ' + list.length;
+      lb.classList.toggle('one', list.length < 2);
+      const nx = list[(i + 1) % list.length].querySelector('img'); new Image().src = nx.src.replace(/([?&]w=)\d+/, '$11920');
+    };
+    li.addEventListener('load', () => li.classList.add('in'));
+    document.querySelectorAll('.gal').forEach(g => g.addEventListener('click', e => {
+      const b = e.target.closest('.gal-open'); if (!b) return;
+      list = [...g.querySelectorAll('figure')].filter(f => !f.hidden);
+      opener = b; show(list.indexOf(b.closest('figure')));
+      lb.showModal(); document.documentElement.classList.add('pv-on');
+    }));
+    lb.querySelector('.pv-prev').onclick = () => show(i - 1);
+    lb.querySelector('.pv-next').onclick = () => show(i + 1);
+    lb.querySelector('.pv-x').onclick = () => lb.close();
+    lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.contains('pv-stage')) lb.close(); });
+    lb.addEventListener('close', () => { document.documentElement.classList.remove('pv-on'); if (opener) opener.focus({ preventScroll: true }); });
+    lb.addEventListener('keydown', e => { if (e.key === 'ArrowRight') show(i + 1); if (e.key === 'ArrowLeft') show(i - 1); });
+    let sx = null, sy = 0;
+    lb.addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+    lb.addEventListener('touchend', e => {
+      if (sx === null) return; const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; sx = null;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) show(i + (dx < 0 ? 1 : -1));
+      else if (dy > 90 && Math.abs(dy) > Math.abs(dx)) lb.close();
+    }, { passive: true });
+  }
+
   // Two-step estimate forms (any page)
   document.querySelectorAll('form.est-form').forEach(f => {
     const q = s => f.querySelector(s), card = f.closest('.est');
