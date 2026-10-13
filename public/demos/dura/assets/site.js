@@ -55,7 +55,7 @@
     const v = p.v.find(x => String(x.id) === String(vid)); if (!v) return;
     const l = cart.find(x => String(x.id) === String(v.id));
     if (l) l.q += q; else cart.push({ id: v.id, h: p.h, n: p.name, t: v.t === 'Default Title' ? '' : v.t, p: v.p, i: p.imgs[0] || '', q });
-    save(); toast(`Added: ${p.name}`); openCart();
+    save(); openCart();
   }
   function paintCart() {
     const n = count();
