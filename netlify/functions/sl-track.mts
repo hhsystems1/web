@@ -7,7 +7,7 @@ const EVENTS = new Set([
   "page_view", "scroll_50", "scroll_90", "cta_click", "call_tap",
   "form_start", "form_step1", "form_step2", "form_submit", "form_abandon",
   "lead_chat", "lead_contact", "lead_referral", "lead_careers", "photo_open",
-  "design_start", "design_quote", "design_upgrade", "lead_design",
+  "design_start", "design_quote", "design_upgrade", "design_upload", "design_product", "lead_design",
 ]);
 const seg = (v: unknown, max = 48) =>
   String(v ?? "").toLowerCase().replace(/\.html$/, "").replace(/[^a-z0-9._-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, max) || "none";

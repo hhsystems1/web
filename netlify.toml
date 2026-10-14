@@ -7,6 +7,18 @@
   NODE_ENV = "production"
 
 [[redirects]]
+  from = "/demos/stressless/viz/photo/:file"
+  to = "https://www.stresslessremodels.com/_next/image?url=%2Fcdn--media%2F:file&w=1080&q=80"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/demos/stressless/viz/tex/:file"
+  to = "https://cdn.shopify.com/s/files/1/0759/2978/0515/files/:file"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/demos/stressless/*"
   to = "/demos/stressless/404.html"
   status = 404
