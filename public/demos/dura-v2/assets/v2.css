@@ -365,7 +365,7 @@ em.save{font-style:normal;background:var(--save);color:#fff;font:500 14px/1 var(
   background:repeating-linear-gradient(100deg,rgba(255,255,255,0) 0 22px,rgba(190,215,255,.16) 22px 23px,rgba(255,255,255,0) 23px 47px);background-size:100% 160px;animation:hx-rain .45s linear infinite}
 .hx.washing .hx-rain{opacity:1}
 @keyframes hx-rain{to{background-position:0 160px}}
-.hx-in{position:relative;z-index:3;min-height:clamp(600px,82vh,800px);display:grid;grid-template-columns:minmax(0,520px) minmax(0,1fr);align-content:center;gap:0 24px}
+.hx-in{position:relative;z-index:3;min-height:clamp(560px,74vh,760px);display:grid;grid-template-columns:minmax(0,520px) minmax(0,1fr);align-content:center;gap:0 24px}
 .hx-copy{grid-column:1}
 .hx-copy{padding-block:56px}
 .hx h1{font-size:clamp(54px,6.4vw,96px);line-height:.88;margin:0}

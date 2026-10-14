@@ -89,7 +89,7 @@ const fail = why => { hx && hx.dispatchEvent(new CustomEvent('hx:fail', { detail
   const look = new THREE.Vector3(0, H * 0.42, 0);
   const wheelAz = Math.atan2(wheel.x, wheel.z);              // azimuth that faces the wheel
   const endAz = wheelAz + 0.62, startAz = endAz - Math.PI * 2 - 0.9;
-  const R0 = L * 6.5, R1 = L * (phone() ? 1.7 : 3.1);
+  const R0 = L * 6.5, R1 = L * (phone() ? 1.7 : 3.5);
   const P0 = 0.08, P1 = Math.PI / 2 - 0.2;                  // straight-down high -> low and level
   const ease = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   const DUR = 6.2;
@@ -109,7 +109,7 @@ const fail = why => { hx && hx.dispatchEvent(new CustomEvent('hx:fail', { detail
     const w = canvas.clientWidth, h = canvas.clientHeight; if (!w || !h) return;
     renderer.setSize(w, h, false); camera.aspect = w / h;
     // desktop: push the car to the right of the headline
-    if (!phone()) camera.setViewOffset(w, h, -w * 0.17, 0, w, h); else camera.clearViewOffset();
+    if (!phone()) camera.setViewOffset(w, h, -w * 0.17, h * 0.16, w, h); else camera.clearViewOffset();
     camera.fov = phone() ? 40 : 30; camera.updateProjectionMatrix();
   };
   addEventListener('resize', resize);
