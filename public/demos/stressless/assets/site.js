@@ -13,8 +13,53 @@
     const body = new URLSearchParams({ 'form-name': 'stressless-lead', page: location.pathname, ...data });
     const r = await fetch('forms.html', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() });
     if (!r.ok) throw new Error('send failed: ' + r.status);
+    if (data.source === 'chat' && window.slTrack) window.slTrack('lead_chat');
     return r;
   };
+
+
+  // ---- Lead-system tracking: counts only, no personal details (see /api/track) ----
+  const PAGE = (location.pathname.split('/').pop() || 'index.html').replace(/\.html$/, '') || 'index';
+  const DEV = innerWidth < 760 ? 'mobile' : 'desktop';
+  const track = (e, x) => {
+    const body = JSON.stringify({ site: 'stressless', e, p: PAGE, d: DEV, x: x || '' });
+    try { if (!(navigator.sendBeacon && navigator.sendBeacon('/api/track', new Blob([body], { type: 'application/json' })))) fetch('/api/track', { method: 'POST', body, keepalive: true }); } catch (_) {}
+  };
+  window.slTrack = track;
+  {
+    const q = new URLSearchParams(location.search);
+    let src = q.get('utm_source') || (q.get('gclid') ? 'google-ads' : q.get('fbclid') ? 'facebook-ads' : '');
+    if (!src) { try { const h = document.referrer ? new URL(document.referrer).hostname : ''; src = !h ? 'direct' : h === location.hostname ? 'internal' : h.replace(/^www\./, ''); } catch (_) { src = 'direct'; } }
+    track('page_view', src);
+  }
+  {
+    const seen = {};
+    addEventListener('scroll', () => {
+      const pct = (scrollY + innerHeight) / document.documentElement.scrollHeight;
+      if (pct > 0.5 && !seen[50]) { seen[50] = 1; track('scroll_50'); }
+      if (pct > 0.9 && !seen[90]) { seen[90] = 1; track('scroll_90'); }
+    }, { passive: true });
+  }
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a'); if (!a) return;
+    const where = a.closest('.mbar') ? 'sticky-bar' : a.closest('header') ? 'header' : a.closest('footer') ? 'footer' : a.closest('.final') ? 'closing' : a.closest('.hero') ? 'hero' : (a.closest('section[id]') || {}).id || 'body';
+    const href = a.getAttribute('href') || '';
+    if (href.startsWith('tel:')) track('call_tap', where);
+    else if (/book\.html|#estimate/.test(href)) track('cta_click', where);
+  });
+  // Estimate-form funnel: started, step 1 done, step 2 started, submitted, or abandoned at a field
+  document.querySelectorAll('form.est-form').forEach(f => {
+    let started = false, step2 = false, done = false, last = 'project';
+    f.addEventListener('focusin', e => {
+      if (!started) { started = true; track('form_start'); }
+      const n = e.target.name; if (n && n !== 'bot-field') last = n;
+      if (!step2 && e.target.closest('.s2')) { step2 = true; track('form_step2', last); }
+    });
+    f.addEventListener('change', e => { if (!started) { started = true; track('form_start'); } if (e.target.name) last = e.target.name; });
+    f.addEventListener('sl:step1', () => track('form_step1'));
+    f.addEventListener('sl:done', () => { done = true; track('form_submit'); });
+    addEventListener('pagehide', () => { if (started && !done) { track('form_abandon', last); started = false; } });
+  });
 
   // Desktop dropdowns (hover works too; click/keyboard handled here)
   const closeAll = except => document.querySelectorAll('.dd.open').forEach(d => { if (d !== except) { d.classList.remove('open'); d.firstElementChild.setAttribute('aria-expanded', 'false'); } });
@@ -59,6 +104,7 @@
       btn.disabled = true; msg.className = 'mf-msg'; msg.textContent = 'Sending…';
       try {
         await send(data);
+        track('lead_' + f.dataset.kind);
         const done = { referral: "Thanks! We'll reach out to your referral and keep you posted on your $500.", careers: "Thanks for introducing yourself. We'll be in touch.", contact: "Thanks! A member of our team will get back to you within 24 hours." };
         f.reset(); msg.className = 'mf-msg ok'; msg.textContent = done[f.dataset.kind] || 'Thanks! We got it.';
       } catch (err) {
@@ -99,7 +145,7 @@
       const b = e.target.closest('.gal-open'); if (!b) return;
       list = [...g.querySelectorAll('figure')].filter(f => !f.hidden);
       opener = b; show(list.indexOf(b.closest('figure')));
-      lb.showModal(); document.documentElement.classList.add('pv-on');
+      lb.showModal(); document.documentElement.classList.add('pv-on'); track('photo_open', g.classList.contains('gal-all') ? 'gallery' : 'grid');
     }));
     lb.querySelector('.pv-prev').onclick = () => show(i - 1);
     lb.querySelector('.pv-next').onclick = () => show(i + 1);
@@ -126,7 +172,7 @@
       if (!pick || !/^\d{5}$/.test(zip)) { e1.hidden = false; return; }
       e1.hidden = true;
       q('.pick').textContent = `${pick.value} in ${zip}. Up to $1,500 off.`;
-      s1.hidden = true; s2.hidden = false; card.querySelector('.d2').classList.add('on'); f.first.focus();
+      s1.hidden = true; s2.hidden = false; card.querySelector('.d2').classList.add('on'); f.dispatchEvent(new Event('sl:step1')); f.first.focus();
     });
     q('.back').addEventListener('click', () => { s2.hidden = true; s1.hidden = false; card.querySelector('.d2').classList.remove('on'); });
     f.addEventListener('submit', async e => {
@@ -138,7 +184,7 @@
       submit.disabled = true; submit.textContent = 'Sending…';
       try {
         await send({ source: 'estimate form', project: f.querySelector('[name=project]:checked').value, zip: f.zip.value.trim(), first: f.first.value.trim(), last: f.last.value.trim(), phone: f.phone.value.trim(), email: f.email.value.trim(), message: f.message ? f.message.value.trim() : '', sms_consent: f.sms_consent && f.sms_consent.checked ? 'yes' : 'no' });
-        s2.hidden = true; s3.hidden = false; s3.focus();
+        s2.hidden = true; s3.hidden = false; f.dispatchEvent(new Event('sl:done')); s3.focus();
       } catch (err) {
         e2.innerHTML = `Sorry, that didn't go through. Please try again or call <a href="tel:${TEL}">${PHONE_TXT}</a>.`; e2.hidden = false;
       } finally { submit.disabled = false; submit.textContent = CTA; }

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lead Results | StressLess Remodeling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#16201a;--ink-2:#3c4a40;--muted:#66746a;--line:#e3e8e0;--sand:#f7f4ee;--card:#fff;--green:#2e7424;--green-d:#1d3a1f;--green-l:#e8f3e3;--orange:#c4410c;--bar:#2e7424;--bar2:#9fc795;
+--head:'Barlow Condensed',Impact,'Arial Narrow',sans-serif;--body:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--sand);color:var(--ink);font:400 15px/1.5 var(--body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px}
+header{background:var(--green-d);color:#fff}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px;flex-wrap:wrap;padding-block:10px}
+header b{font:700 24px/1 var(--head);letter-spacing:.3px;text-transform:uppercase}
+header span{color:#c9dcc4;font-size:13.5px}
+.ctrl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.ctrl button{border:1px solid #ffffff40;background:transparent;color:#fff;border-radius:100px;padding:7px 13px;font:600 13.5px var(--body);cursor:pointer;transition:transform .12s ease-out,background .15s ease-out}
+.ctrl button[aria-pressed=true]{background:#fff;color:var(--green-d)}
+.ctrl button:active{transform:scale(.97)}
+.ctrl a{color:#c9dcc4;font-size:13.5px}
+.banner{margin-top:16px;padding:10px 14px;border-radius:10px;background:#fff4e6;color:#7a3a07;font-size:14px;border:1px solid #f3d3b0}
+.banner[hidden]{display:none}
+h1{font:700 clamp(30px,4vw,44px)/1 var(--head);text-transform:uppercase;margin:24px 0 4px}
+.sub{color:var(--muted);margin:0}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:20px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.kpi small{display:block;color:var(--muted);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.4px}
+.kpi b{display:block;font:700 38px/1.1 var(--head);font-variant-numeric:tabular-nums;margin-top:4px}
+.kpi span{font-size:13px;color:var(--muted)}
+.kpi.lead{background:var(--green-l);border-color:#cfe5c7}.kpi.lead b{color:var(--green-d)}
+.grid{display:grid;grid-template-columns:1.25fr 1fr;gap:12px;margin-top:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;min-width:0}
+.card h2{font:700 22px/1.1 var(--head);text-transform:uppercase;margin:0 0 4px}
+.card p.note{color:var(--muted);font-size:13.5px;margin:0 0 12px}
+.funnel{display:grid;gap:8px}
+.fs{display:grid;grid-template-columns:150px 1fr 54px;gap:10px;align-items:center;font-size:14px}
+.fs .t{height:26px;background:var(--sand);border-radius:6px;overflow:hidden}
+.fs .f{height:100%;background:var(--bar);border-radius:6px}
+.fs b{text-align:right;font-variant-numeric:tabular-nums}
+.drop{font-size:12.5px;color:var(--orange);font-weight:600;margin:-2px 0 2px 160px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;color:var(--muted);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.3px;padding:6px 8px;border-bottom:1px solid var(--line)}
+td{padding:8px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+td.n,th.n{text-align:right}
+tr:last-child td{border-bottom:0}
+.bars{display:grid;gap:7px}
+.br{display:grid;grid-template-columns:minmax(0,1fr) 46px;gap:10px;align-items:center;font-size:14px}
+.br .l{position:relative;padding:5px 8px;border-radius:6px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.br .l i{position:absolute;inset:0 auto 0 0;background:var(--green-l);border-radius:6px;z-index:0}
+.br .l span{position:relative}
+.br b{text-align:right;font-variant-numeric:tabular-nums}
+.empty{color:var(--muted);font-size:14px;padding:8px 0}
+svg text{font:500 11.5px var(--body);fill:var(--muted)}
+.legend{display:flex;gap:14px;font-size:13px;color:var(--muted);margin-bottom:6px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.next{background:var(--green-d);color:#fff;border-radius:14px;padding:18px;margin-top:12px}
+.next h2{font:700 22px/1.1 var(--head);text-transform:uppercase;margin:0 0 6px}
+.next p{margin:0;color:#dfeadb}
+footer{color:var(--muted);font-size:13px;padding:24px 0 40px}
+@media (max-width:980px){.kpis{grid-template-columns:repeat(2,1fr)}.kpi.lead{grid-column:1/-1;order:-1}.grid{grid-template-columns:1fr}}
+@media (max-width:520px){.fs{grid-template-columns:104px 1fr 44px}.drop{margin-left:114px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div><b>StressLess · Lead results</b><br><span id="range">Loading…</span></div>
+  <div class="ctrl" role="group" aria-label="Date range"><button type="button" data-days="7" aria-pressed="false">7 days</button><button type="button" data-days="30" aria-pressed="true">30 days</button><button type="button" data-days="90" aria-pressed="false">90 days</button><button type="button" id="sample" aria-pressed="false">Sample data</button><a href="index.html">View site ↗</a></div></div></header>
+<main class="wrap">
+  <p class="banner" id="banner" hidden>Showing <b>sample numbers</b> to demonstrate the report. Switch off "Sample data" to see this site's real traffic.</p>
+  <h1>How the site is performing</h1>
+  <p class="sub">Visitors, leads, and where people drop off. Counts only: no names or contact details are stored here.</p>
+  <section class="kpis" aria-label="Totals">
+    <div class="kpi"><small>Visits</small><b id="k-views">–</b><span>page views</span></div>
+    <div class="kpi lead"><small>Leads</small><b id="k-leads">–</b><span id="k-leads-s">forms + calls + chat</span></div>
+    <div class="kpi"><small>Estimate forms</small><b id="k-forms">–</b><span>submitted</span></div>
+    <div class="kpi"><small>Call taps</small><b id="k-calls">–</b><span>tapped to call</span></div>
+    <div class="kpi"><small>Conversion</small><b id="k-conv">–</b><span>leads per 100 visits</span></div>
+  </section>
+  <div class="grid">
+    <section class="card"><h2>Estimate form funnel</h2><p class="note">Where people stop on the two-step form.</p><div class="funnel" id="funnel"></div></section>
+    <section class="card"><h2>Where they quit the form</h2><p class="note">The last field touched before leaving without submitting.</p><div class="bars" id="dropoff"></div></section>
+  </div>
+  <section class="card" style="margin-top:12px"><h2>Visits and leads by day</h2><div class="legend"><span><i style="background:var(--bar2)"></i>Visits (left scale)</span><span><i style="background:var(--green)"></i>Leads (right scale)</span></div><div id="daily"></div></section>
+  <div class="grid">
+    <section class="card"><h2>Pages</h2><p class="note">Which pages bring in leads, not just traffic.</p><table><thead><tr><th>Page</th><th class="n">Visits</th><th class="n">Leads</th><th class="n">Rate</th></tr></thead><tbody id="pages"></tbody></table></section>
+    <div style="display:grid;gap:12px;min-width:0">
+      <section class="card"><h2>Where visitors come from</h2><div class="bars" id="sources"></div></section>
+      <section class="card"><h2>Which buttons get tapped</h2><div class="bars" id="ctas"></div></section>
+      <section class="card"><h2>Phone vs. desktop</h2><div class="bars" id="devices"></div></section>
+    </div>
+  </div>
+  <section class="next" aria-label="This month's focus"><h2>This month's improvement</h2><p id="focus">Loading…</p></section>
+  <footer>Heatmaps and session recordings: Microsoft Clarity (connected per client). Report prepared by Helping Hands Systems.</footer>
+</main>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const fmt = n => Number(n || 0).toLocaleString('en-US');
+  const NAMES = { index: 'Home', 'pool-decks': 'Pool decks', driveways: 'Driveways', patios: 'Patios', 'garage-floors': 'Garage floors', 'concrete-coatings': 'Concrete coatings', countertops: 'Countertops', 'cabinet-refacing': 'Cabinet refacing', 'kitchen-remodel': 'Kitchen remodel', 'bathroom-remodel': 'Bathroom remodel', showers: 'Showers', commercial: 'Commercial', book: 'Book page', gallery: 'Gallery', reviews: 'Reviews', pricing: 'Pricing', contact: 'Contact' };
+  const STEP = { form_start: 'Started the form', form_step1: 'Finished step 1', form_step2: 'Started step 2', form_submit: 'Submitted' };
+  const FIELD = { project: 'Project choice', zip: 'ZIP code', first: 'First name', last: 'Last name', phone: 'Phone', email: 'Email', message: 'Message', sms_consent: 'Text consent' };
+  const WHERE = { 'sticky-bar': 'Phone sticky bar', header: 'Header', hero: 'Top of page', closing: 'Closing section', footer: 'Footer', body: 'Page body', estimate: 'Estimate section' };
+  const SAMPLE = { days: 30, totals: { views: 2480, forms: 41, calls: 57, chat: 9, other: 4, cta: 312 },
+    funnel: [{ stage: 'form_start', count: 168 }, { stage: 'form_step1', count: 112 }, { stage: 'form_step2', count: 74 }, { stage: 'form_submit', count: 41 }],
+    dropoff: [['email', 19], ['phone', 11], ['zip', 9], ['project', 6]],
+    pages: [{ page: 'index', views: 980, leads: 38 }, { page: 'pool-decks', views: 512, leads: 31 }, { page: 'book', views: 141, leads: 22 }, { page: 'garage-floors', views: 236, leads: 8 }, { page: 'countertops', views: 198, leads: 6 }, { page: 'gallery', views: 233, leads: 3 }],
+    devices: [['mobile', 1712], ['desktop', 768]], sources: [['google.com', 1104], ['direct', 642], ['facebook-ads', 388], ['instagram.com', 214], ['bing.com', 72]],
+    ctas: [['sticky-bar', 121], ['hero', 96], ['header', 58], ['closing', 44], ['footer', 6]], scroll: { half: 1320, most: 610 },
+    daily: Array.from({ length: 30 }, (_, i) => ({ day: new Date(Date.now() - (29 - i) * 864e5).toISOString().slice(0, 10), views: Math.round(70 + 25 * Math.sin(i / 3) + (i % 7 === 5 ? -30 : 0) + i), leads: Math.max(0, Math.round(3 + 1.8 * Math.sin(i / 2.5) + (i % 7 === 5 ? -2 : 0))) })) };
+  let days = 30, sample = false;
+
+  const bars = (el, rows, label) => {
+    const max = Math.max(1, ...rows.map(r => r[1]));
+    el.innerHTML = rows.length ? rows.map(([k, v]) => `<div class="br"><div class="l"><i style="width:${(v / max * 100).toFixed(1)}%"></i><span>${label(k)}</span></div><b>${fmt(v)}</b></div>`).join('') : '<p class="empty">No data yet.</p>';
+  };
+  const chart = rows => {
+    const W = 1100, H = 220, L = 40, R = 44, T = 12, B = 28, n = rows.length;
+    const vmax = Math.max(4, ...rows.map(r => r.views)), lmax = Math.max(2, ...rows.map(r => r.leads));
+    const x = i => L + (n === 1 ? 0 : i * (W - L - R) / (n - 1)), y = v => T + (H - T - B) * (1 - v / vmax), yl = v => T + (H - T - B) * (1 - v / lmax);
+    const bw = Math.max(2, (W - L - R) / n * 0.6);
+    const bars = rows.map((r, i) => `<rect x="${(x(i) - bw / 2).toFixed(1)}" y="${y(r.views).toFixed(1)}" width="${bw.toFixed(1)}" height="${(H - B - y(r.views)).toFixed(1)}" rx="2" fill="var(--bar2)"><title>${r.day}: ${r.views} visits</title></rect>`).join('');
+    const line = rows.map((r, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${yl(r.leads).toFixed(1)}`).join('');
+    const dots = rows.map((r, i) => `<circle cx="${x(i).toFixed(1)}" cy="${yl(r.leads).toFixed(1)}" r="3" fill="var(--green)"><title>${r.day}: ${r.leads} leads</title></circle>`).join('');
+    const step = Math.ceil(n / 6), ticks = rows.map((r, i) => i % step === 0 || i === n - 1 ? `<text x="${x(i).toFixed(1)}" y="${H - 8}" text-anchor="${i === n - 1 ? 'end' : i === 0 ? 'start' : 'middle'}">${new Date(r.day + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</text>` : '').join('');
+    const grid = [0, .5, 1].map(f => `<line x1="${L}" x2="${W - R}" y1="${y(vmax * f)}" y2="${y(vmax * f)}" stroke="#e3e8e0"/><text x="${L - 6}" y="${y(vmax * f) + 4}" text-anchor="end">${Math.round(vmax * f)}</text><text x="${W - R + 8}" y="${yl(lmax * f) + 4}" style="fill:var(--green)">${Math.round(lmax * f)}</text>`).join('');
+    $('daily').innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Visits and leads by day">${grid}${bars}<path d="${line}" fill="none" stroke="var(--green)" stroke-width="2"/>${dots}${ticks}</svg>`;
+  };
+  const render = d => {
+    const t = d.totals, leads = t.forms + t.calls + t.chat + t.other;
+    $('range').textContent = sample ? `Sample report · last ${d.days} days` : `Last ${d.days} days · ${d.from} to ${d.to}`;
+    $('k-views').textContent = fmt(t.views); $('k-leads').textContent = fmt(leads); $('k-forms').textContent = fmt(t.forms); $('k-calls').textContent = fmt(t.calls);
+    $('k-leads-s').textContent = `${fmt(t.forms)} forms · ${fmt(t.calls)} calls · ${fmt(t.chat)} chat`;
+    $('k-conv').textContent = t.views ? (leads / t.views * 100).toFixed(1) + '%' : '–';
+    const f0 = Math.max(1, d.funnel[0].count);
+    $('funnel').innerHTML = d.funnel.map((s, i) => {
+      const prev = i ? d.funnel[i - 1].count : 0, lost = i && prev ? Math.round((1 - s.count / prev) * 100) : 0;
+      return (i && prev ? `<div class="drop">−${lost}% dropped off</div>` : '') + `<div class="fs"><span>${STEP[s.stage]}</span><div class="t"><div class="f" style="width:${(s.count / f0 * 100).toFixed(1)}%"></div></div><b>${fmt(s.count)}</b></div>`;
+    }).join('');
+    bars($('dropoff'), d.dropoff, k => FIELD[k] || k);
+    bars($('sources'), d.sources, k => k === 'none' ? 'direct' : k);
+    bars($('ctas'), d.ctas, k => WHERE[k] || k.replace(/-/g, ' '));
+    bars($('devices'), d.devices, k => k === 'mobile' ? 'Phone' : 'Desktop');
+    $('pages').innerHTML = d.pages.length ? d.pages.map(p => `<tr><td>${NAMES[p.page] || p.page}</td><td class="n">${fmt(p.views)}</td><td class="n">${fmt(p.leads)}</td><td class="n">${p.views ? (p.leads / p.views * 100).toFixed(1) + '%' : '–'}</td></tr>`).join('') : '<tr><td colspan="4" class="empty">No visits yet.</td></tr>';
+    chart(d.daily);
+    // The one change to make next: the biggest leak, in plain words
+    let worst = null;
+    d.funnel.forEach((s, i) => { if (i && d.funnel[i - 1].count >= 10) { const lost = 1 - s.count / d.funnel[i - 1].count; if (!worst || lost > worst.lost) worst = { lost, from: d.funnel[i - 1].stage, to: s.stage }; } });
+    const field = d.dropoff[0];
+    $('focus').textContent = !worst ? 'Not enough form traffic yet to pick a change. Keep collecting data for a few weeks.'
+      : `The biggest leak is between "${STEP[worst.from]}" and "${STEP[worst.to]}" (${Math.round(worst.lost * 100)}% drop).` + (field ? ` Most people who quit stopped at the ${(FIELD[field[0]] || field[0]).toLowerCase()} field, so this month we test making it simpler or optional and measure the result.` : '');
+  };
+  let req = 0;
+  const load = async () => {
+    const me = ++req;
+    $('banner').hidden = !sample;
+    if (sample) { render(SAMPLE); return; }
+    try {
+      const r = await fetch(`/api/stats?site=stressless&days=${days}`, { cache: 'no-store' });
+      if (!r.ok) throw new Error(r.status);
+      const d = await r.json(); if (me === req) render(d);
+    } catch (e) { if (me !== req) return; $('range').textContent = 'Could not load stats right now.'; $('focus').textContent = 'Stats are unavailable at the moment. Try again shortly.'; }
+  };
+  document.querySelectorAll('[data-days]').forEach(b => b.addEventListener('click', () => {
+    days = +b.dataset.days; sample = false; $('sample').setAttribute('aria-pressed', 'false');
+    document.querySelectorAll('[data-days]').forEach(x => x.setAttribute('aria-pressed', x === b)); load();
+  }));
+  $('sample').addEventListener('click', () => { sample = !sample; $('sample').setAttribute('aria-pressed', sample); load(); });
+  load();
+})();
+</script>
+</body>
+</html>
