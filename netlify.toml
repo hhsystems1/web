@@ -6,6 +6,9 @@
   NEXT_TELEMETRY_DISABLED = "1"
   NODE_ENV = "production"
 
+[images]
+  remote_images = ["https://d8j0ntlcm91z4\\.cloudfront\\.net/.*"]
+
 [[redirects]]
   from = "/demos/stressless/viz/r/:file"
   to = "https://d8j0ntlcm91z4.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/:file"

@@ -40,37 +40,37 @@
   // ---- address forms → analyzer ----
   $$('form[data-addr]').forEach(f => f.addEventListener('submit', () => track('address_entered', f.dataset.addr)));
 
-  // ---- power-flow house ----
-  const house = $('#house');
-  if (house) {
+  // ---- energy flow ----
+  const ph = $('#ef-ph');
+  if (ph) {
     const txt = $('#flowtxt'), gen = $('#gen-on');
-    const T = {
-      day: 'Daytime: panels power the house first. Extra solar charges the battery, then flows out to the grid for credit.',
-      night: 'Nighttime: no solar. The battery runs the house through the evening peak; the grid covers anything left.',
-      outage: 'Outage: the grid is down and the system disconnects from it for line-worker safety. The battery keeps your backed-up circuits running; tomorrow\'s sun recharges it.',
-      outageGen: 'Long outage with a generator: when the battery runs low or clouds roll in, the generator starts, runs the home and recharges the battery.',
+    const M = {
+      day: { badge: 'Daytime', dash: ['sol-home', 'sol-batt', 'home-grid'], on: ['solar', 'home', 'batt', 'grid'],
+        v: { solar: 'Producing', home: 'On solar', batt: 'Charging', grid: 'Gets extra', gen: 'Off' },
+        t: 'Panels power the house first. Extra solar charges the battery, then flows out to the grid for credit.' },
+      night: { badge: 'Nighttime', dash: ['batt-home', 'grid-home'], on: ['home', 'batt', 'grid'],
+        v: { solar: 'Off', home: 'Battery + grid', batt: 'Powering home', grid: 'Covers the rest', gen: 'Off' },
+        t: 'No solar at night. The battery runs the house through the evening peak, when power often costs the most; the grid covers anything left.' },
+      outage: { badge: 'Grid outage', dash: ['batt-home'], on: ['home', 'batt'],
+        v: { solar: 'Recharges by day', home: 'Backed-up circuits', batt: 'Powering home', grid: 'Down', gen: 'Off' },
+        t: 'The grid is down, so the system disconnects from it for line-worker safety. The battery keeps your backed-up circuits running, and tomorrow\'s sun recharges it.' },
     };
-    const on = ids => $$('.fp', house).forEach(p => p.classList.toggle('on', ids.includes(p.id)));
     const set = mode => {
-      house.dataset.mode = mode;
+      const m = M[mode], g = gen.checked && mode === 'outage';
+      ph.dataset.mode = mode;
+      $('.ef-day', ph).classList.toggle('off', mode !== 'day');
+      $('.ef-dusk', ph).classList.toggle('off', mode === 'day');
+      $('#ef-badge-t').textContent = m.badge;
       $$('.modes button').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === mode));
-      const g = gen.checked;
-      $('#sun', house).style.opacity = mode === 'day' ? 1 : 0;
-      $('#moon', house).style.opacity = mode === 'day' ? 0 : 1;
-      $('#cut', house).style.opacity = mode === 'outage' ? 1 : 0;
-      $('#wire', house).setAttribute('stroke', mode === 'outage' ? '#7A8594' : '#2B3440');
-      $('#gen', house).style.opacity = g ? 1 : .35;
-      const lit = mode !== 'day';
-      ['#w1', '#w2'].forEach(w => $(w, house).setAttribute('fill', lit ? '#FFD98A' : '#9FB3C8'));
-      $('#battfill', house).setAttribute('height', mode === 'day' ? 44 : mode === 'night' ? 26 : g ? 34 : 14);
-      $('#battfill', house).setAttribute('y', mode === 'day' ? 318 : mode === 'night' ? 336 : g ? 328 : 348);
-      if (mode === 'day') on(['f-sun-home', 'f-sun-batt', 'f-home-grid']);
-      else if (mode === 'night') on(['f-batt-home', 'f-grid-home']);
-      else on(g ? ['f-gen-home', 'f-gen-batt'] : ['f-batt-home']);
-      txt.textContent = mode === 'outage' && g ? T.outageGen : T[mode];
+      const dash = g ? ['gen-home', 'gen-batt'] : m.dash;
+      $$('.ef-dash').forEach(d => d.classList.toggle('on', dash.includes(d.id.slice(2))));
+      const on = g ? [...m.on, 'gen'] : m.on;
+      $$('.ef-node').forEach(n => n.classList.toggle('on', on.includes(n.dataset.n)));
+      Object.entries(m.v).forEach(([k, v]) => { $('#v-' + k).textContent = k === 'gen' ? (gen.checked ? (g ? 'Running' : 'Standby') : 'Not added') : (g && k === 'batt' ? 'Recharging' : v); });
+      txt.textContent = g ? 'Long outage with a generator: when the battery runs low or clouds roll in, the generator starts, runs the home and recharges the battery.' : m.t;
     };
     $$('.modes button').forEach(b => b.addEventListener('click', () => { set(b.dataset.mode); track('cta_click', 'flow-' + b.dataset.mode); }));
-    gen.addEventListener('change', () => set(house.dataset.mode));
+    gen.addEventListener('change', () => set(ph.dataset.mode === 'day' && gen.checked ? 'outage' : ph.dataset.mode));
     set('day');
   }
 
