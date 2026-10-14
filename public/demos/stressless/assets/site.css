@@ -657,3 +657,4 @@ body:has(.dz) .mbar{display:none!important}
 .dzb:active{transform:scale(.99)}
 @media (hover:hover) and (pointer:fine){.dzb:hover .btn{background:var(--orange-h)}}
 @media (max-width:760px){.dzb{grid-template-columns:1fr}.dzb img{min-height:0;aspect-ratio:16/9}.dzb>div{padding:20px}}
+.dz-chip img[hidden]{display:none}

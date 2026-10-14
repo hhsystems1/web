@@ -34,7 +34,7 @@
   let started = false;
   const start = () => { if (!started) { started = true; track('design_start'); } };
 
-  const swatch = cols => cols ? `<i class="sw" style="background:radial-gradient(circle at 20% 30%,${cols[0]} 0 18%,transparent 19%),radial-gradient(circle at 70% 25%,${cols[1]} 0 16%,transparent 17%),radial-gradient(circle at 45% 70%,${cols[2]} 0 20%,transparent 21%),radial-gradient(circle at 80% 75%,${cols[0]} 0 12%,transparent 13%),radial-gradient(circle at 15% 80%,${cols[1]} 0 13%,transparent 14%),${cols[2]}"></i>` : '<i class="sw sw-s" aria-hidden="true">S</i>';
+  const swatch = cols => !cols ? '' : `<i class="sw" style="background:radial-gradient(circle at 20% 30%,${cols[0]} 0 18%,transparent 19%),radial-gradient(circle at 70% 25%,${cols[1]} 0 16%,transparent 17%),radial-gradient(circle at 45% 70%,${cols[2]} 0 20%,transparent 21%),radial-gradient(circle at 80% 75%,${cols[0]} 0 12%,transparent 13%),radial-gradient(circle at 15% 80%,${cols[1]} 0 13%,transparent 14%),${cols[2]}"></i>`;
 
   const renderOpts = () => {
     const sv = SURF[st.surface];
