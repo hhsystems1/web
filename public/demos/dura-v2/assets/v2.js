@@ -52,3 +52,9 @@
     catch (_) { $('#nl-msg').textContent = 'That didn\'t go through. Try again in a moment.'; }
   });
 })();
+/* copy coupon code */
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-copy]'); if (!b) return;
+  const code = b.dataset.copy, done = () => { b.textContent = 'Copied ' + code; setTimeout(() => { b.textContent = 'Copy code ' + code; }, 2000); };
+  if (navigator.clipboard) navigator.clipboard.writeText(code).then(done, () => { b.textContent = 'Code: ' + code; }); else b.textContent = 'Code: ' + code;
+});

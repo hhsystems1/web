@@ -36,13 +36,20 @@
   const failHTML = (what = 'products') => `<div class="fail">The live ${what} didn't load. <a class="link" href="${STORE}/collections/all" target="_blank" rel="noopener">Shop on dura-coating.com →</a></div>`;
   const skel = n => Array.from({ length: n }, () => '<div class="skel" aria-hidden="true"></div>').join('');
 
+  const saveTag = v => v.c > v.p ? `<em class="save">Save ${Math.round((1 - v.p / v.c) * 100)}%</em>` : '';
+  const blurb = p => { const l = (p.d || '').split(/\n|(?<=[.!?])\s+/).map(x => x.trim()).find(x => x.length > 18 && x.length < 160); return l || C.cats[p.cat]?.name || ''; };
   function card(p, badge = '') {
+    const v = from(p), one = p.v.length === 1, multi = new Set(p.v.map(x => x.p)).size > 1;
+    const plus = soldOut(p) ? '' : one ? `<button class="qadd" data-add="${v.id}" data-h="${p.h}" aria-label="Add ${esc(p.name)} to cart">+</button>` : `<a class="qadd" href="product.html#${p.h}" aria-label="Choose a size of ${esc(p.name)}">+</a>`;
+    return `<article class="pcard cg">${plus}<a class="ph" href="product.html#${p.h}" tabindex="-1" aria-hidden="true">${badge ? `<span class="badge">${badge}</span>` : ''}<img src="${img(p.imgs[0], 480)}" alt="" loading="lazy"></a>
+      <div class="t"><h3><a href="product.html#${p.h}">${esc(p.name)}</a></h3><p class="bl">${esc(blurb(p))}</p>
+      <div class="p">${soldOut(p) ? '<span class="so">Sold out</span>' : `${multi ? '<small>From </small>' : ''}<b>${money(v.p)}</b>${v.c > v.p ? `<s>${money(v.c)}</s>` : ''}${saveTag(v)}`}</div></div></article>`;
+  }
+  function row(p, btn = 'Add to cart') {
     const v = from(p), one = p.v.length === 1;
-    const btn = soldOut(p) ? '<button class="btn btn-line btn-sm add" disabled>Sold out</button>'
-      : one ? `<button class="btn btn-red btn-sm add" data-add="${v.id}" data-h="${p.h}">Add to cart</button>`
-      : `<a class="btn btn-line btn-sm add" href="product.html#${p.h}">Choose size</a>`;
-    return `<article class="pcard"><a class="ph" href="product.html#${p.h}" tabindex="-1" aria-hidden="true">${badge ? `<span class="badge${badge === 'Made in USA' ? ' alt' : ''}">${badge}</span>` : ''}<img src="${img(p.imgs[0], 480)}" alt="" loading="lazy"></a>
-      <div class="t"><h3><a href="product.html#${p.h}">${esc(p.name)}</a></h3><div class="p">${priceHTML(p)}</div>${btn}</div></article>`;
+    const b = soldOut(p) ? '<button class="v2-btn out sm" disabled>Sold out</button>' : one ? `<button class="v2-btn out sm" data-add="${v.id}" data-h="${p.h}">${btn}</button>` : `<a class="v2-btn out sm" href="product.html#${p.h}">Choose size</a>`;
+    return `<div class="prow"><a href="product.html#${p.h}" class="pi"><img src="${img(p.imgs[0], 200)}" alt="" loading="lazy"></a><div><h4><a href="product.html#${p.h}">${esc(p.name)}</a></h4>
+      <div class="p"><b>${money(v.p)}</b>${v.c > v.p ? `<s>${money(v.c)}</s>` : ''}${saveTag(v)}</div>${b}</div></div>`;
   }
 
   /* ---------------- cart (stored here, checkout on their Shopify) ---------------- */
@@ -91,7 +98,17 @@
 
   /* ---------------- chrome ---------------- */
   const burger = $('#burger'), mnav = $('#mnav');
-  burger.addEventListener('click', () => { const o = mnav.hidden; mnav.hidden = !o; burger.setAttribute('aria-expanded', o); });
+  const setMenu = o => { if (o) mnav.style.setProperty('--mt', Math.max(0, burger.getBoundingClientRect().bottom + 8) + 'px'); mnav.hidden = !o; burger.setAttribute('aria-expanded', o); document.documentElement.classList.toggle('menu-open', o); burger.innerHTML = o ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>' : burger.dataset.icon; };
+  burger.dataset.icon = burger.innerHTML;
+  burger.addEventListener('click', () => setMenu(mnav.hidden));
+  $$('#mnav a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  $$('#mnav .mx').forEach(b => b.addEventListener('click', async () => {
+    const s = b.closest('.mrow').nextElementSibling; const o = s.hidden; s.hidden = !o; b.setAttribute('aria-expanded', o); b.textContent = o ? '−' : '+';
+    if (o && !s.dataset.done) { try { const cat = await catalog(); const k = s.dataset.msub; const c = C.cats[k];
+      const items = c.order.map(h => cat[h]).filter(Boolean).slice(0, 6);
+      s.innerHTML = items.map(p => `<a href="product.html#${p.h}">${esc(p.name)}</a>`).join('') + `<a class="all" href="shop.html#${k}">Shop all ${esc(c.name)} →</a>`; s.dataset.done = 1;
+      $$('a', s).forEach(a => a.addEventListener('click', () => setMenu(false))); } catch (e) {} }
+  }));
   if (!still && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }), { rootMargin: '0px 0px -8% 0px' });
     $$('.rv').forEach(el => io.observe(el));
@@ -150,37 +167,59 @@
     const p = cat[h];
     if (!p) { box.innerHTML = `<div class="fail">We couldn't find that product. <a class="link" href="shop.html">Back to the shop</a></div>`; return; }
     document.title = `${p.name} | Dura-Coating`;
-    $('#crumb-cat').textContent = C.cats[p.cat].name; $('#crumb-cat').href = 'shop.html#' + p.cat;
-    let v = from(p), q = 1;
-    box.innerHTML = `<div class="gallery"><div class="main"><img id="main-img" src="${img(p.imgs[0], 900)}" alt="${esc(p.name)}"></div>
-      ${p.imgs.length > 1 ? `<div class="thumbs">${p.imgs.map((s, i) => `<button type="button" data-i="${i}" aria-label="Photo ${i + 1}"${i ? '' : ' aria-current="true"'}><img src="${img(s, 160)}" alt=""></button>`).join('')}</div>` : ''}</div>
-      <div class="buy"><p class="meta" style="margin:0 0 10px">${esc(C.cats[p.cat].name)}</p><h1>${esc(p.name)}</h1>
-      <div class="price num" id="pp" style="margin-top:14px"></div>
-      ${p.v.length > 1 ? `<div class="label">Size / option</div><div class="opts">${p.v.map(x => `<button type="button" class="opt" data-v="${x.id}" aria-pressed="${x.id === v.id}"${x.a ? '' : ' disabled'}>${esc(x.t)} · ${money(x.p)}</button>`).join('')}</div>` : ''}
-      <div class="btns"><div class="qty"><button type="button" id="qm" aria-label="One less">−</button><input id="qv" value="1" aria-label="Quantity" inputmode="numeric"><button type="button" id="qp" aria-label="One more">+</button></div>
-      <button class="btn btn-red" id="buy" style="flex:1">Add to cart</button></div>
-      <div class="assure"><div>${C.check}<span><b>Dura-Sure guarantee.</b> 100% money back if it doesn't outperform what you use now.</span></div><div>${C.check}<span><b>Free US ground shipping</b> on orders over $150 with code FREESHIP.</span></div><div>${C.check}<span>Made and tested in Naples, Florida by a family-run detail shop.</span></div></div>
-      ${p.d ? `<div class="label">About this product</div><div class="desc">${esc(p.d)}</div>` : ''}</div>`;
-    const paint = () => { $('#pp').innerHTML = `${money(v.p)}${v.c > v.p ? `<s>${money(v.c)}</s>` : ''}`; const b = $('#buy'); b.disabled = !v.a; b.textContent = v.a ? 'Add to cart' : 'Sold out'; };
+    $('#crumb-cat').textContent = C.cats[p.cat].name; $('#crumb-cat').href = 'shop.html#' + p.cat; $('#crumb-p').textContent = p.name;
+    let v = from(p);
+    const pool = Object.values(cat).filter(x => x.cat === p.cat && x.h !== p.h && !soldOut(x));
+    const pairs = (C.pairs[p.cat] || []).map(x => cat[x]).filter(x => x && x.h !== p.h && !soldOut(x)).concat(pool).filter((x, i, a) => a.indexOf(x) === i);
+    const addon = pairs.find(x => x.v.length === 1);
+    const lines = (p.d || '').split('\n').map(x => x.trim()).filter(Boolean);
+    const bullets = lines.filter(x => x.length > 14 && x.length < 90 && !/[:]$/.test(x)).slice(0, 3);
+    const tireish = p.cat === 'tires';
+    box.innerHTML = `<div class="g2"><div class="g2-track" id="g2t">${p.imgs.map((s, i) => `<div class="g2-slide"><img src="${img(s, 900)}" alt="${i ? '' : esc(p.name)}"${i ? ' loading="lazy"' : ''}></div>`).join('')}</div>
+      ${p.imgs.length > 1 ? `<div class="g2-ctl"><div class="g2-bar"><i id="g2b" style="width:${100 / p.imgs.length}%"></i></div><button type="button" class="g2-arr" id="g2p" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m15 6-6 6 6 6"/></svg></button><button type="button" class="g2-arr" id="g2n" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m9 6 6 6-6 6"/></svg></button></div>` : ''}</div>
+      <div class="buy2">${tireish ? '<a class="seek" href="tire-coating.html">▶ See how Dura-Dressing works</a>' : `<p class="seek">${esc(C.cats[p.cat].name)}</p>`}
+      <h1>${esc(p.name)}</h1>
+      <div class="pr" id="pp"></div>
+      ${bullets.length ? `<ul class="ticks">${bullets.map(b => `<li>${C.check}<span>${esc(b)}</span></li>`).join('')}</ul>` : ''}
+      ${p.v.length > 1 ? `<p class="lbl">Size / option</p><div class="opts2">${p.v.map(x => `<button type="button" class="opt2" data-v="${x.id}" aria-pressed="${x.id === v.id}"${x.a ? '' : ' disabled'}>${esc(x.t)}</button>`).join('')}</div>` : ''}
+      ${addon ? `<p class="lbl">Popular add-on</p><label class="addon"><img src="${img(addon.imgs[0], 160)}" alt=""><span><b>${esc(addon.name)}</b><span class="p"><b>${money(from(addon).p)}</b>${from(addon).c > from(addon).p ? `<s>${money(from(addon).c)}</s>` : ''}${saveTag(from(addon))}</span><a href="product.html#${addon.h}">View details</a></span><input type="checkbox" id="addon" role="switch" aria-label="Add ${esc(addon.name)}"><i class="sw" aria-hidden="true"></i></label>` : ''}
+      <button class="v2-btn red wide" id="buy">Add to cart</button>
+      <p class="v2-note">Free US ground shipping over $150 · code FREESHIP</p>
+      <div class="perks"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg><span>Free shipping<br>over $150</span></div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><span>Dura-Sure<br>money-back</span></div></div>
+      <div class="acc">
+        ${p.d ? `<details><summary>Details</summary><div class="desc">${esc(p.d)}</div></details>` : ''}
+        <details><summary>How to use</summary><div class="desc">${tireish ? 'Clean the tire with Dura-Cleaner first so the coating can bond, let it dry, then brush on a thin coat. Full steps, amounts per vehicle and care tips are on the <a class="link" href="tire-coating.html">Dura-Dressing guide</a>.' : `Step-by-step videos for this product are on the <a class="link" href="https://www.youtube.com/@duracoatingtechnology" target="_blank" rel="noopener">Dura-Coating YouTube channel</a>. Questions? <a class="link" href="help.html#contact">Ask the shop</a>.`}</div></details>
+        <details><summary>Shipping & returns</summary><div class="desc">Free US ground shipping on orders over $150 with code FREESHIP at checkout. Returns are accepted within 30 days of purchase per the <a class="link" href="https://dura-coating.com/policies/refund-policy" target="_blank" rel="noopener">store's refund policy</a>, and the Dura-Sure guarantee gives 100% money back if it doesn't outperform what you use now.</div></details>
+      </div></div>`;
+    const paint = () => { $('#pp').innerHTML = `<b>${money(v.p)}</b>${v.c > v.p ? `<s>${money(v.c)}</s>` : ''}${saveTag(v)}`; const b = $('#buy'); b.disabled = !v.a; b.textContent = v.a ? 'Add to cart' : 'Sold out'; sticky(); };
+    const sb = $('#sbar');
+    const sticky = () => { if (!sb) return; sb.innerHTML = `<img src="${img(p.imgs[0], 120)}" alt=""><div><b>${esc(p.name)}</b><span class="p"><b>${money(v.p)}</b>${v.c > v.p ? `<s>${money(v.c)}</s>` : ''}${saveTag(v)}</span></div><button class="v2-btn red sm" id="sbuy"${v.a ? '' : ' disabled'}>${v.a ? 'Add' : 'Sold out'}</button>`; $('#sbuy').onclick = () => $('#buy').click(); };
     paint();
-    $$('.opt', box).forEach(o => o.addEventListener('click', () => { v = p.v.find(x => String(x.id) === o.dataset.v); $$('.opt', box).forEach(x => x.setAttribute('aria-pressed', x === o)); paint(); }));
-    $$('.thumbs button', box).forEach(t => t.addEventListener('click', () => { $('#main-img').src = img(p.imgs[+t.dataset.i], 900); $$('.thumbs button', box).forEach(x => x.removeAttribute('aria-current')); t.setAttribute('aria-current', 'true'); }));
-    const qv = $('#qv'); const setQ = n => { q = Math.max(1, Math.min(99, n || 1)); qv.value = q; };
-    $('#qm').onclick = () => setQ(q - 1); $('#qp').onclick = () => setQ(q + 1); qv.onchange = () => setQ(parseInt(qv.value, 10));
-    $('#buy').onclick = () => add(p, v.id, q);
-    const rel = Object.values(cat).filter(x => x.cat === p.cat && x.h !== p.h).slice(0, 4).map(x => x.h);
-    grid($('#related'), (C.pairs[p.cat] || []).filter(x => x !== p.h).concat(rel).slice(0, 4));
+    if (sb && 'IntersectionObserver' in window) new IntersectionObserver(([e]) => sb.classList.toggle('on', !e.isIntersecting && e.boundingClientRect.top < 0)).observe($('#buy'));
+    $$('.opt2', box).forEach(o => o.addEventListener('click', () => { v = p.v.find(x => String(x.id) === o.dataset.v); $$('.opt2', box).forEach(x => x.setAttribute('aria-pressed', x === o)); paint(); }));
+    const t = $('#g2t');
+    if (t && p.imgs.length > 1) {
+      const n = p.imgs.length, at = () => Math.round(t.scrollLeft / t.clientWidth);
+      t.addEventListener('scroll', () => { $('#g2b').style.width = ((at() + 1) / n * 100) + '%'; }, { passive: true });
+      $('#g2p').onclick = () => t.scrollTo({ left: (at() - 1) * t.clientWidth, behavior: still ? 'auto' : 'smooth' });
+      $('#g2n').onclick = () => t.scrollTo({ left: ((at() + 1) % n) * t.clientWidth, behavior: still ? 'auto' : 'smooth' });
+    }
+    $('#buy').onclick = () => { add(p, v.id, 1); const a = $('#addon'); if (a && a.checked) add(addon, from(addon).id, 1); };
+    const uw = $('#usewith'); if (uw) { uw.closest('section').hidden = !pairs.length; uw.innerHTML = pairs.slice(0, 3).map(x => row(x)).join(''); }
+    const rel = pool.filter(x => !pairs.slice(0, 3).includes(x)).slice(0, 4).map(x => x.h);
+    const rb = $('#related'); rb.closest('section').hidden = !rel.length; if (rel.length) grid(rb, rel);
+    scrollTo(0, 0);
   }
   addEventListener('hashchange', () => { if (document.body.dataset.page === 'product') product(); });
 
   /* ---------------- shop ---------------- */
   async function shop() {
     const box = $('#bands');
-    box.innerHTML = `<div class="grid" style="margin-top:32px">${skel(8)}</div>`;
+    box.innerHTML = `<div class="grid v2-grid" style="margin-top:24px">${skel(6)}</div>`;
     let cat; try { cat = await catalog(); } catch (e) { box.innerHTML = '<div style="margin-top:32px">' + failHTML() + '</div>'; return; }
     box.innerHTML = Object.entries(C.cats).map(([id, c]) => {
       const items = c.order.map(h => cat[h]).filter(Boolean).concat(Object.values(cat).filter(p => p.cat === id && !c.order.includes(p.h)));
-      return items.length ? `<section id="${id}" aria-labelledby="h-${id}" style="scroll-margin-top:140px"><div class="band-head"><div><h2 id="h-${id}">${c.name}</h2><p>${c.blurb}</p></div><span class="num" style="color:var(--muted)">${items.length} products</span></div><div class="grid">${items.map(p => card(p, c.badges?.[p.h])).join('')}</div></section>` : '';
+      return items.length ? `<section id="${id}" aria-labelledby="h-${id}" class="band2"><div class="band-head2"><h2 id="h-${id}">${c.name}</h2><span>${items.length} products</span></div><p class="bl2">${c.blurb}</p><div class="grid v2-grid">${items.map(p => card(p, c.badges?.[p.h])).join('')}</div></section>` : '';
     }).join('');
     const chips = $$('.chip');
     if ('IntersectionObserver' in window) {
@@ -188,6 +227,7 @@
       $$('#bands section').forEach(s => io.observe(s));
     }
     if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
+    chips.forEach(c => c.addEventListener('click', () => c.scrollIntoView({ inline: 'center', block: 'nearest' })));
   }
 
   /* ---------------- forms (Netlify Forms) ---------------- */
