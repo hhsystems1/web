@@ -683,3 +683,4 @@ body:has(.dz) .mbar{display:none!important}
 .dz-nav .btn{white-space:nowrap}
 body:has(.dz) .ch-tip{display:none!important}
 @media (max-width:760px){body:has(.dz) .ch-launch{bottom:calc(92px + env(safe-area-inset-bottom))}}
+@media (max-width:760px){.dz-chip{position:static;border-radius:0;box-shadow:none;background:#fff;border-top:1px solid var(--line)}.dz-stage.editing .dz-chip{opacity:.45}}

@@ -71,6 +71,7 @@
     $('dz-tools').hidden = false; $('dz-attach').hidden = false; $('dz-stage').classList.add('editing');
     tip(`Tap your ${SURF[st.surface].word} to select it`);
     track('design_upload', st.surface);
+    $('dz-next').textContent = 'Next →';
     await applyTexture(true);
   }
   let texToken = 0;
