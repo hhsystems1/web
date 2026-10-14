@@ -62,7 +62,7 @@
   function swatch() {
     const bl = PROD[st.product].blends[st.blend], el = $('dz-chip-sw');
     if (bl.src) { el.style.background = ''; el.style.backgroundImage = `url(${texURL(bl.src)})`; el.hidden = false; }
-    else if (bl.colors) { el.style.background = chipBg(bl.colors); el.hidden = false; }
+    else if (bl.colors) { el.style.background = `url(${renderURL('drive', 'rubber', st.blend)}) 50% 88% / 520% auto`; el.hidden = false; }
     else el.hidden = true;
   }
   const chipBg = c => `radial-gradient(circle at 25% 30%,${c[0]} 0 14%,transparent 15%),radial-gradient(circle at 70% 25%,${c[1]} 0 13%,transparent 14%),radial-gradient(circle at 45% 70%,${c[0]} 0 12%,transparent 13%),radial-gradient(circle at 80% 72%,${c[1]} 0 11%,transparent 12%),radial-gradient(circle at 15% 78%,${c[2]} 0 12%,transparent 13%),radial-gradient(circle at 55% 45%,${c[2]} 0 10%,transparent 11%),${c[1]}`;
@@ -90,7 +90,7 @@
     form.querySelector('[data-k=blend]').innerHTML = pd.blends.map((bl, i) => `<button type="button" data-v="${i}" aria-pressed="${i === st.blend}" title="${bl.n}" aria-label="${bl.n}"><i class="sw" data-sw="${i}"></i><span>${bl.n}</span></button>`).join('');
     pd.blends.forEach((bl, i) => {
       const el = form.querySelector(`[data-sw="${i}"]`);
-      if (bl.src) el.style.backgroundImage = `url(${texURL(bl.src)})`; else if (bl.colors) el.style.background = chipBg(bl.colors); else el.classList.add('sw-none');
+      if (bl.src) el.style.backgroundImage = `url(${texURL(bl.src)})`; else if (bl.colors) el.style.background = `url(${renderURL('drive', 'rubber', i)}) 50% 88% / 520% auto`; else el.classList.add('sw-none');
     });
     $('dz-why').textContent = pd.why; $('dz-bnote').textContent = pd.bnote; $('dz-bname').textContent = pd.blends[st.blend].n;
     $('dz-what').textContent = sv.word;

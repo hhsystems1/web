@@ -743,4 +743,4 @@ body:has(.dz) .ch-tip{display:none!important}
   .dz-title{font-size:30px}
 }
 .dz-upg[hidden]{display:none}.dz-row input[type=range]{width:100%;accent-color:var(--green);height:28px}
-.dz-card .dz-quote{grid-template-columns:1fr}.dz-card .dz-quote ul{border-left:0;padding:8px 0 0;border-top:1px solid #ffffff2e}.dz-card .dz-quote b{font-size:clamp(24px,3vw,32px)}.dz-chip>i{background-size:cover!important;background-position:center!important}
+.dz-card .dz-quote{grid-template-columns:1fr}.dz-card .dz-quote ul{border-left:0;padding:8px 0 0;border-top:1px solid #ffffff2e}.dz-card .dz-quote b{font-size:clamp(24px,3vw,32px)}
