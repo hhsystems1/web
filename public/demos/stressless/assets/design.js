@@ -13,7 +13,8 @@
   // Sample photos and their AI-rendered versions (one per Rubber Stone / VUBA Stone blend), rendered from the real photo
   const RENDERS = ["hf_20261014_130933_c7528bfe-cd93-4643-832a-6097480aadeb", "hf_20261014_131103_86521a79-d3c7-4711-9aef-f7ab7d17bb4b", "hf_20261014_130934_3ce679dd-f6f1-4bbb-8b66-e28f5eb4ee24", "hf_20261014_130935_1d28baf0-21ae-4e1e-9e25-ce6ad57acfdc", "hf_20261014_130727_74bef1f6-9997-4e97-91a5-6cba03da7acd", "hf_20261014_131104_35100240-a02e-497e-94fc-5846d7a821a6", "hf_20261014_130935_83a5eca7-39ab-41e8-ba74-6b9f5ea8fcac", "hf_20261014_131104_ed829b78-6a06-4e71-8c0f-342db581a033", "hf_20261014_130934_8f78e7b2-41a5-4e73-b36e-fb155e3ce8e2", "hf_20261014_131105_6f1d37ec-2762-41f9-8ec8-686b3023c718", "hf_20261014_130937_f2e029d2-a2ab-4f1b-a857-2b3736fb3425", "hf_20261014_130936_28a160d0-ca10-4b55-b677-b3c79dbb1ed1", "hf_20261014_130934_fd7a7d91-ae38-4716-ab29-fb314f482e84", "hf_20261014_131123_c4184540-edbb-4a3e-a79a-8431a7263a7c", "hf_20261014_131122_73b66ecc-52fc-4f9f-8ab6-c2f42ad6f964", "hf_20261014_131124_8e9cef3f-4e12-4e1c-a7d9-357ae986b4ea", "hf_20261014_131123_8e1aa18c-c949-4b42-895c-718968f1c609", "hf_20261014_131148_efc74cfb-97d3-4a1c-8947-14c17933cf09", "hf_20261014_131149_4c638262-7a6e-4650-9527-76ec419ccea1", "hf_20261014_131148_f51ec029-2581-419a-b73a-eb72f4ea7048", "hf_20261014_131148_f2377af8-1168-42a2-b93a-9c0b5bf2321f", "hf_20261014_131235_d13368d0-0abe-407d-a5b8-a6cded1cdcaa", "hf_20261014_131236_2360be0a-427e-4b48-a5e2-04702b806758", "hf_20261014_131235_ef9c388e-2993-40c4-abda-c36ea36ccd13"];
   const ORDER = ['pool', 'patio', 'drive', 'garage'];
-  const renderURL = (s, p, b) => { if (p !== 'rubber' && p !== 'vuba') return null; const f = RENDERS[ORDER.indexOf(s) * 6 + (p === 'vuba' ? 3 : 0) + b]; return f ? `viz/r/${f}.png` : null; };
+  const SIERRA = ["hf_20261014_135056_fd42cf31-d291-44c3-bc66-10cf4bb7b2ea", "hf_20261014_135056_6bc41717-0b6f-4445-9a3e-39289de32b1d", "hf_20261014_135057_7b4b7ca0-a1c5-4a65-8b1d-f5f6027cd2f0", "hf_20261014_135056_19f4e222-f4ac-4bc0-869b-ee2c77efa1c3", "hf_20261014_135115_f83231e4-010f-41a3-88ec-5bc7d56ad565", "hf_20261014_135114_318495e7-2c7b-4e1c-a84f-a787d08b7ced", "hf_20261014_135113_dc6d067a-c52d-4673-8664-8505c1b02445", "hf_20261014_135114_dcc36118-6ba7-4a5b-9602-6ec0de81e52e", "hf_20261014_135130_ad47a49b-abe2-43a0-8f26-be4fae66e282", "hf_20261014_135131_80af94f0-e5ac-4a61-a6a1-ab0a9adbd601", "hf_20261014_135130_277316de-f04b-438c-874f-0ce91fee7143", "hf_20261014_135131_5669b4a6-2ce2-459d-ae54-3929f15ea8fa"];
+  const renderURL = (s, p, b) => { const f = p === 'sierra' ? SIERRA[ORDER.indexOf(s) * 3 + b] : (p === 'rubber' || p === 'vuba') ? RENDERS[ORDER.indexOf(s) * 6 + (p === 'vuba' ? 3 : 0) + b] : null; return f ? `viz/r/${f}.png` : null; };
   const SURF = {
     pool: { name: 'Pool deck', word: 'pool deck', cap: 'A StressLess pool deck', size: 600, prods: ['rubber', 'vuba', 'sierra'] },
     patio: { name: 'Patio', word: 'patio', cap: 'A StressLess courtyard patio', size: 400, prods: ['rubber', 'vuba', 'sierra'] },
@@ -28,7 +29,8 @@
       blends: [{ n: 'Ipanema Beach', src: 'IpanemaBeach_33e848c2-5ab9-40f9-97fd-a09500befe27.webp?width=600' }, { n: 'Poseidon', src: 'Poseidon_b4daa220-16bf-4598-9d14-163e0a2eb543.webp?width=600' }, { n: 'Manhattan', src: 'OG_Manhattan_final_1.webp?width=600' }],
       scale: 0.18, bnote: 'Our three most popular VUBA Stone blends, shown with the manufacturer\'s swatches.' },
     sierra: { name: 'Sierra Stone', why: 'Natural stone aggregates in industrial-grade epoxy. Indoors and out; resists stains and chemicals.',
-      blends: [{ n: 'Blend 1' }, { n: 'Blend 2' }], bnote: 'Sierra Stone comes in two color blends that we show in person, so the photo shows the surface before.' },
+      blends: [{ n: 'Coral / Sunset', img: 'assets/sierra-coral-sunset.jpg' }, { n: 'Sunset / Ebony', img: 'assets/sierra-sunset-ebony.jpg' }, { n: 'Mini Pearl / Ebony', img: 'assets/sierra-pearl-ebony.jpg' }],
+      bnote: 'Three Sierra Stone two-color blends, shown with the manufacturer\'s swatches. More blends at your consultation.' },
     epoxy: { name: 'Epoxy', why: 'A smooth, glossy garage finish with strong adhesion to concrete.', blends: [{ n: 'Chosen at consultation' }], bnote: 'Epoxy colors are chosen with your consultant, so the photo shows the floor before.' },
   };
   const RATE = { 'pool:rubber': [13, 16], 'patio:rubber': [13, 16], 'pool:vuba': [11, 13], 'patio:vuba': [11, 13], 'garage:vuba': [8, 10], 'garage:epoxy': [4, 7] };
@@ -56,12 +58,12 @@
     } else { rend.hidden = true; $('dz-cmp').hidden = true; }
     $('dz-cap').textContent = after ? sv.cap + ' · preview' : sv.cap;
     // warm the other blends for this surface so switching is instant
-    [0, 1, 2].forEach(b => { warm(renderURL(st.surface, 'rubber', b)); warm(renderURL(st.surface, 'vuba', b)); });
+    [0, 1, 2].forEach(b => ['rubber', 'vuba', 'sierra'].forEach(p => warm(renderURL(st.surface, p, b))));
     swatch();
   }
   function swatch() {
     const bl = PROD[st.product].blends[st.blend], el = $('dz-chip-sw');
-    if (bl.src) { el.style.background = ''; el.style.backgroundImage = `url(${texURL(bl.src)})`; el.hidden = false; }
+    if (bl.src || bl.img) { el.style.background = ''; el.style.backgroundImage = `url(${bl.img || texURL(bl.src)})`; el.hidden = false; }
     else if (bl.colors) { el.style.background = `url(${renderURL('drive', 'rubber', st.blend)}) 50% 88% / 520% auto`; el.hidden = false; }
     else el.hidden = true;
   }
@@ -90,7 +92,7 @@
     form.querySelector('[data-k=blend]').innerHTML = pd.blends.map((bl, i) => `<button type="button" data-v="${i}" aria-pressed="${i === st.blend}" title="${bl.n}" aria-label="${bl.n}"><i class="sw" data-sw="${i}"></i><span>${bl.n}</span></button>`).join('');
     pd.blends.forEach((bl, i) => {
       const el = form.querySelector(`[data-sw="${i}"]`);
-      if (bl.src) el.style.backgroundImage = `url(${texURL(bl.src)})`; else if (bl.colors) el.style.background = `url(${renderURL('drive', 'rubber', i)}) 50% 88% / 520% auto`; else el.classList.add('sw-none');
+      if (bl.src || bl.img) el.style.backgroundImage = `url(${bl.img || texURL(bl.src)})`; else if (bl.colors) el.style.background = `url(${renderURL('drive', 'rubber', i)}) 50% 88% / 520% auto`; else el.classList.add('sw-none');
     });
     $('dz-why').textContent = pd.why; $('dz-bnote').textContent = pd.bnote; $('dz-bname').textContent = pd.blends[st.blend].n;
     $('dz-what').textContent = sv.word;
