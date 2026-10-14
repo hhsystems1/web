@@ -132,12 +132,12 @@ footer{color:var(--muted);font-size:13px;padding:24px 0 40px}
     const t = d.totals, leads = t.forms + t.calls + t.chat + t.other;
     $('range').textContent = sample ? `Sample report · last ${d.days} days` : `Last ${d.days} days · ${d.from} to ${d.to}`;
     $('k-views').textContent = fmt(t.views); $('k-leads').textContent = fmt(leads); $('k-forms').textContent = fmt(t.forms); $('k-calls').textContent = fmt(t.calls);
-    $('k-leads-s').textContent = `${fmt(t.forms)} forms · ${fmt(t.calls)} calls · ${fmt(t.chat)} chat`;
+    $('k-leads-s').textContent = `${fmt(t.forms)} form${t.forms === 1 ? '' : 's'} · ${fmt(t.calls)} call${t.calls === 1 ? '' : 's'} · ${fmt(t.chat)} chat`;
     $('k-conv').textContent = t.views ? (leads / t.views * 100).toFixed(1) + '%' : '–';
     const f0 = Math.max(1, d.funnel[0].count);
     $('funnel').innerHTML = d.funnel.map((s, i) => {
       const prev = i ? d.funnel[i - 1].count : 0, lost = i && prev ? Math.round((1 - s.count / prev) * 100) : 0;
-      return (i && prev ? `<div class="drop">−${lost}% dropped off</div>` : '') + `<div class="fs"><span>${STEP[s.stage]}</span><div class="t"><div class="f" style="width:${(s.count / f0 * 100).toFixed(1)}%"></div></div><b>${fmt(s.count)}</b></div>`;
+      return (i && prev && lost > 0 ? `<div class="drop">−${lost}% dropped off</div>` : '') + `<div class="fs"><span>${STEP[s.stage]}</span><div class="t"><div class="f" style="width:${(s.count / f0 * 100).toFixed(1)}%"></div></div><b>${fmt(s.count)}</b></div>`;
     }).join('');
     bars($('dropoff'), d.dropoff, k => FIELD[k] || k);
     bars($('sources'), d.sources, k => k === 'none' ? 'direct' : k);
