@@ -748,3 +748,4 @@ body:has(.dz) .ch-tip{display:none!important}
 @media(max-width:1420px){.nav .call span{display:none}}
 @media(max-width:1200px){nav.main>a,.dd>button{padding:10px 8px;font-size:14.5px}}
 @media(max-width:1100px){.nav .wrap{gap:10px}.nav .btn.hdr-cta{padding-inline:16px}}
+@media(max-width:1099px){nav.main{display:none}.burger{display:flex}.nav .call{margin-left:auto}}
