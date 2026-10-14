@@ -70,6 +70,11 @@ document.addEventListener('click', e => {
   const set = st => { hx.classList.toggle('after', st === 'after'); btns.forEach(b => b.setAttribute('aria-pressed', b.dataset.ba === st)); };
   const count = k => { n.textContent = k; bar.style.width = (k / 15 * 100) + '%'; };
   const pulse = () => { hx.classList.remove('pulse'); void hx.offsetWidth; hx.classList.add('pulse'); };
+  const frame = document.getElementById('hx-frame'), src = frame.querySelector('img').src;
+  const fit = () => { const fw = frame.offsetWidth; hx.querySelectorAll('.hx-wheel').forEach(w => { const d = w.querySelector('.dull');
+    d.style.backgroundImage = `url("${src}")`; d.style.backgroundSize = `${fw}px ${fw}px`;
+    d.style.backgroundPosition = `${-(w.offsetLeft - w.offsetWidth / 2)}px ${-(w.offsetTop - w.offsetHeight / 2) - fw * 0.28125}px`; }); };
+  fit(); addEventListener('resize', fit);
   function play() {
     clear(); set('before'); count(0);
     if (still) { set('after'); count(15); return; }
