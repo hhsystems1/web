@@ -4,7 +4,7 @@
 <meta name="theme-color" content="#081627">
 <meta property="og:title" content="Helping Hands Solar | See solar on your roof, understand your bill"><meta property="og:description" content="Map your roof, read your electric bill and compare solar, battery and backup options with the assumptions shown. Free home analysis.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="assets/site.css">
 </head><body class="" data-page="index">
 <div class="pnote">Preview site by Helping Hands Systems. Requests sent here go to our test inbox while we finish setup.</div><header class="hdr"><div class="wrap">
@@ -14,19 +14,45 @@
 <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
 </div><nav class="mnav" id="mnav" hidden aria-label="Mobile"><p>Solar solutions</p><a href="residential-solar.html">Residential solar</a><a href="solar-battery.html">Solar + battery</a><a href="how-it-works.html">How it works</a><p>More</p><a href="financing.html">Financing</a><a href="solar-battery.html#backup">Backup Power</a><a href="about.html">About</a><a href="contact.html">Contact</a><a class="btn btn-p arrow" style="margin-top:16px" href="analyze.html" data-cta="mnav">Analyze my home</a></nav></header>
 <main id="main">
-<section class="hero"><picture class="bg"><img src="img/az-home-sunset-wide.webp" alt="Stucco home near Phoenix with black solar panels on a clay tile roof at sunset" fetchpriority="high"></picture>
-<div class="wrap hero-grid"><div class="copy">
-<h1 style="margin-top:14px">Solar that fits your roof and your bill.</h1>
-<p class="lead">See your panel layout on your own roof, a plain read of your electric bill, and every option side by side. No sales call unless you ask.</p>
-<div class="hero-notes"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4 10-10"/></svg>Free, about 5 minutes</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4 10-10"/></svg>Assumptions shown</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Your bill stays private</span></div></div>
-<form class="qcard" action="analyze.html" method="get" data-addr="hero">
-<p class="qh">Start your home analysis</p>
-<label class="f"><span class="lbl">Home address</span><input name="addr" autocomplete="street-address" placeholder="123 Main St, City, State" required></label>
-<label class="f"><span class="lbl">Average electric bill <b class="tnum" id="q-bill-v">$180/mo</b></span><input type="range" name="bill" id="q-bill" min="40" max="600" step="10" value="180"></label>
-<div class="q-own" role="group" aria-label="Do you own this home?"><span class="lbl">Do you own this home?</span><label><input type="radio" name="own" value="yes" checked><span>Yes</span></label><label><input type="radio" name="own" value="no"><span>No, I rent</span></label></div>
-<button class="btn btn-p arrow" type="submit">See my roof</button>
-<p class="qfine">Takes about 5 minutes. A person reviews every report.</p></form></div></div></section>
-<div class="strip"><div class="wrap">
+<section class="dz-sec"><div class="wrap">
+<h1 class="dz-title">Design your solar. <em>See it. Size it.</em></h1>
+<div class="dz-grid">
+<div class="dz-view">
+<div class="dz-stage" id="sz-stage">
+<img class="dz-img" id="sz-before" src="/.netlify/images?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_32HmnlrLmAdtc9VabobL9Kk51Ae%2Fhf_20261014_165509_36fb9215-ddb6-4b3e-8d4d-794eba95a82a.png&w=1400&fm=webp&q=72" alt="Arizona home before solar" fetchpriority="high">
+<img class="dz-img dz-top" data-sys="solar" src="img/az-home-sunset-wide.webp" alt="The same home with black solar panels on the roof">
+<img class="dz-img dz-top hide" data-sys="battery" src="/.netlify/images?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_32HmnlrLmAdtc9VabobL9Kk51Ae%2Fhf_20261014_165508_0a85b05e-eb3d-43ec-a0b7-7c1a9e4e293d.png&w=1400&fm=webp&q=72" alt="The same home with solar panels and a wall-mounted battery by the garage" loading="lazy">
+<img class="dz-img dz-top hide" data-sys="gen" src="/.netlify/images?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_32HmnlrLmAdtc9VabobL9Kk51Ae%2Fhf_20261014_165508_a6443608-c07f-4c56-8e60-46b9f71b1b4f.png&w=1400&fm=webp&q=72" alt="The same home with solar, a wall battery and a standby generator" loading="lazy">
+<span class="dz-cap">A typical Arizona home · preview</span>
+<button type="button" class="dz-cmp" id="sz-cmp">Hold for before</button>
+<div class="dz-chip"><i class="sz-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg></i><div><b id="sz-name">Solar only</b><span id="sz-sub">10.3 kW · 24 panels</span></div><strong id="sz-cov">~98%<small>of your use</small></strong></div>
+</div>
+<p class="dz-vnote">AI-rendered preview of a typical home. Your report uses a satellite view of your actual roof.</p>
+</div>
+<form class="dz-card" id="sz-form" action="analyze.html" method="get" data-addr="configurator">
+<div class="dz-row"><div class="dz-lbl">Where</div>
+<div class="dz-seg" data-k="region" style="grid-template-columns:repeat(2,1fr)"><button type="button" data-v="az" aria-pressed="true">Arizona</button><button type="button" data-v="tx" aria-pressed="false">Texas</button></div></div>
+<div class="dz-row"><div class="dz-lbl">System</div>
+<div class="dz-opts" data-k="sys" style="grid-template-columns:repeat(3,1fr)">
+<button type="button" data-v="solar" aria-pressed="true">Solar only<small>Lowest cost</small></button>
+<button type="button" data-v="battery" aria-pressed="false">Solar + battery<small>Backup for outages</small></button>
+<button type="button" data-v="gen" aria-pressed="false">+ Generator<small>Multi-day outages</small></button></div>
+<p class="dz-why" id="sz-why"></p></div>
+<div class="dz-row"><div class="dz-lbl">Your electric bill <b id="sz-bill-v">$180/mo</b></div>
+<input type="range" id="sz-bill" min="40" max="600" step="10" value="180" aria-label="Average monthly electric bill">
+<div class="dz-quick"><button type="button" class="pill" data-b="120">$120</button><button type="button" class="pill" data-b="180">$180 · typical</button><button type="button" class="pill" data-b="300">$300</button><span>We read your real bill for free.</span></div></div>
+<div class="dz-row" id="sz-backup-row" hidden><div class="dz-lbl">Backup</div>
+<div class="dz-seg" data-k="backup" style="grid-template-columns:repeat(2,1fr)"><button type="button" data-v="ess" aria-pressed="true">Essential circuits</button><button type="button" data-v="whole" aria-pressed="false">Whole home</button></div></div>
+<div class="dz-row"><div class="dz-lbl">How you'd pay</div>
+<div class="dz-seg" data-k="pay"><button type="button" data-v="cash" aria-pressed="false">Cash</button><button type="button" data-v="loan" aria-pressed="true">Loan</button><button type="button" data-v="lease" aria-pressed="false">Lease</button><button type="button" data-v="ppa" aria-pressed="false">PPA</button></div>
+<p class="dz-why" id="sz-pay-why"></p></div>
+<div class="dz-quote"><div><small>Your estimated system</small><b id="sz-big">10.3 kW · 24 panels</b><span id="sz-prod">About 17,500 kWh a year</span></div>
+<ul id="sz-list"></ul></div>
+<label class="dz-addr"><span>Home address</span><input name="addr" autocomplete="street-address" placeholder="123 Main St, City, State" required></label>
+<input type="hidden" name="bill" id="sz-bill-h" value="180"><input type="hidden" name="goal" id="sz-goal-h" value="save"><input type="hidden" name="gen" id="sz-gen-h" value="" disabled>
+<button class="btn btn-p dz-cta" type="submit">See it on my roof</button>
+<p class="dz-fine">Estimates use typical production for your state and about $0.15 per kWh. Your real roof, bill and price come in a reviewed proposal.</p>
+</form></div></div></section><div class="strip"><div class="wrap">
 <div><b>Your roof, mapped</b><span>Satellite view of your actual home</span></div>
 <div><b>Your bill, explained</b><span>How your utility charges you</span></div>
 <div><b>Assumptions shown</b><span>Every number says what it's based on</span></div>
@@ -127,5 +153,5 @@
 <div><h4>Company</h4><a href="about.html">About</a><a href="contact.html">Contact</a><a href="contact.html">Talk with us</a><a href="privacy.html">Privacy &amp; terms</a></div>
 </div><p class="fine">Estimates on this site are planning numbers, not offers. Final system size, price and savings come from a reviewed proposal based on your roof, your utility and your bill. © 2026 Helping Hands Systems.</p></div></footer>
 <div class="mbar"><a class="btn btn-p arrow" href="analyze.html" data-cta="sticky">Analyze my home</a><a class="btn btn-o" href="contact.html" data-cta="sticky-talk">Talk</a></div>
-<script src="assets/site.js" defer></script>
+<script src="assets/site.js" defer></script><script src="assets/sizer.js" defer></script>
 </body></html>
