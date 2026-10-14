@@ -83,6 +83,10 @@ footer{color:var(--muted);font-size:13px;padding:24px 0 40px}
     <section class="card"><h2>Estimate form funnel</h2><p class="note">Where people stop on the two-step form.</p><div class="funnel" id="funnel"></div></section>
     <section class="card"><h2>Where they quit the form</h2><p class="note">The last field touched before leaving without submitting.</p><div class="bars" id="dropoff"></div></section>
   </div>
+  <div class="grid">
+    <section class="card"><h2>Design builder</h2><p class="note">People designing their surface and seeing a price.</p><div class="funnel" id="dfunnel"></div></section>
+    <section class="card"><h2>Designs saved</h2><p class="note">Surface and coating on designs sent to StressLess.</p><div class="bars" id="designs"></div></section>
+  </div>
   <section class="card" style="margin-top:12px"><h2>Visits and leads by day</h2><div class="legend"><span><i style="background:var(--bar2)"></i>Visits (left scale)</span><span><i style="background:var(--green)"></i>Leads (right scale)</span></div><div id="daily"></div></section>
   <div class="grid">
     <section class="card"><h2>Pages</h2><p class="note">Which pages bring in leads, not just traffic.</p><table><thead><tr><th>Page</th><th class="n">Visits</th><th class="n">Leads</th><th class="n">Rate</th></tr></thead><tbody id="pages"></tbody></table></section>
@@ -100,15 +104,17 @@ footer{color:var(--muted);font-size:13px;padding:24px 0 40px}
   const $ = id => document.getElementById(id);
   const fmt = n => Number(n || 0).toLocaleString('en-US');
   const NAMES = { index: 'Home', 'pool-decks': 'Pool decks', driveways: 'Driveways', patios: 'Patios', 'garage-floors': 'Garage floors', 'concrete-coatings': 'Concrete coatings', countertops: 'Countertops', 'cabinet-refacing': 'Cabinet refacing', 'kitchen-remodel': 'Kitchen remodel', 'bathroom-remodel': 'Bathroom remodel', showers: 'Showers', commercial: 'Commercial', book: 'Book page', gallery: 'Gallery', reviews: 'Reviews', pricing: 'Pricing', contact: 'Contact' };
-  const STEP = { form_start: 'Started the form', form_step1: 'Finished step 1', form_step2: 'Started step 2', form_submit: 'Submitted' };
+  const STEP = { form_start: 'Started the form', form_step1: 'Finished step 1', form_step2: 'Started step 2', form_submit: 'Submitted', design_start: 'Started designing', design_quote: 'Asked for exact price', lead_design: 'Saved the design' };
+  const DZ = { pool: 'Pool deck', patio: 'Patio', drive: 'Driveway', garage: 'Garage', rubber: 'Rubber Stone', vuba: 'VUBA Stone', sierra: 'Sierra Stone', epoxy: 'Epoxy' };
   const FIELD = { project: 'Project choice', zip: 'ZIP code', first: 'First name', last: 'Last name', phone: 'Phone', email: 'Email', message: 'Message', sms_consent: 'Text consent' };
   const WHERE = { 'sticky-bar': 'Phone sticky bar', header: 'Header', hero: 'Top of page', closing: 'Closing section', footer: 'Footer', body: 'Page body', estimate: 'Estimate section' };
-  const SAMPLE = { days: 30, totals: { views: 2480, forms: 41, calls: 57, chat: 9, other: 4, cta: 312 },
+  const SAMPLE = { days: 30, totals: { views: 2480, forms: 41, calls: 57, chat: 9, other: 23, cta: 312 },
     funnel: [{ stage: 'form_start', count: 168 }, { stage: 'form_step1', count: 112 }, { stage: 'form_step2', count: 74 }, { stage: 'form_submit', count: 41 }],
     dropoff: [['email', 19], ['phone', 11], ['zip', 9], ['project', 6]],
     pages: [{ page: 'index', views: 980, leads: 38 }, { page: 'pool-decks', views: 512, leads: 31 }, { page: 'book', views: 141, leads: 22 }, { page: 'garage-floors', views: 236, leads: 8 }, { page: 'countertops', views: 198, leads: 6 }, { page: 'gallery', views: 233, leads: 3 }],
     devices: [['mobile', 1712], ['desktop', 768]], sources: [['google.com', 1104], ['direct', 642], ['facebook-ads', 388], ['instagram.com', 214], ['bing.com', 72]],
     ctas: [['sticky-bar', 121], ['hero', 96], ['header', 58], ['closing', 44], ['footer', 6]], scroll: { half: 1320, most: 610 },
+    design: [{ stage: 'design_start', count: 214 }, { stage: 'design_quote', count: 63 }, { stage: 'lead_design', count: 19 }], designs: [['pool-rubber', 9], ['patio-vuba', 4], ['garage-vuba', 4], ['drive-rubber', 2]],
     daily: Array.from({ length: 30 }, (_, i) => ({ day: new Date(Date.now() - (29 - i) * 864e5).toISOString().slice(0, 10), views: Math.round(70 + 25 * Math.sin(i / 3) + (i % 7 === 5 ? -30 : 0) + i), leads: Math.max(0, Math.round(3 + 1.8 * Math.sin(i / 2.5) + (i % 7 === 5 ? -2 : 0))) })) };
   let days = 30, sample = false;
 
@@ -132,13 +138,16 @@ footer{color:var(--muted);font-size:13px;padding:24px 0 40px}
     const t = d.totals, leads = t.forms + t.calls + t.chat + t.other;
     $('range').textContent = sample ? `Sample report · last ${d.days} days` : `Last ${d.days} days · ${d.from} to ${d.to}`;
     $('k-views').textContent = fmt(t.views); $('k-leads').textContent = fmt(leads); $('k-forms').textContent = fmt(t.forms); $('k-calls').textContent = fmt(t.calls);
-    $('k-leads-s').textContent = `${fmt(t.forms)} form${t.forms === 1 ? '' : 's'} · ${fmt(t.calls)} call${t.calls === 1 ? '' : 's'} · ${fmt(t.chat)} chat`;
+    $('k-leads-s').textContent = `${fmt(t.forms)} form${t.forms === 1 ? '' : 's'} · ${fmt(t.calls)} call${t.calls === 1 ? '' : 's'} · ${fmt(t.chat)} chat · ${fmt(t.other)} other`;
     $('k-conv').textContent = t.views ? (leads / t.views * 100).toFixed(1) + '%' : '–';
-    const f0 = Math.max(1, d.funnel[0].count);
-    $('funnel').innerHTML = d.funnel.map((s, i) => {
-      const prev = i ? d.funnel[i - 1].count : 0, lost = i && prev ? Math.round((1 - s.count / prev) * 100) : 0;
+    const funnel = (el, fl) => { const f0 = Math.max(1, fl[0].count);
+    el.innerHTML = fl.map((s, i) => {
+      const prev = i ? fl[i - 1].count : 0, lost = i && prev ? Math.round((1 - s.count / prev) * 100) : 0;
       return (i && prev && lost > 0 ? `<div class="drop">−${lost}% dropped off</div>` : '') + `<div class="fs"><span>${STEP[s.stage]}</span><div class="t"><div class="f" style="width:${(s.count / f0 * 100).toFixed(1)}%"></div></div><b>${fmt(s.count)}</b></div>`;
-    }).join('');
+    }).join(''); };
+    funnel($('funnel'), d.funnel);
+    funnel($('dfunnel'), d.design || [{ stage: 'design_start', count: 0 }, { stage: 'design_quote', count: 0 }, { stage: 'lead_design', count: 0 }]);
+    bars($('designs'), d.designs || [], k => k.split('-').map(x => DZ[x] || x).join(' · '));
     bars($('dropoff'), d.dropoff, k => FIELD[k] || k);
     bars($('sources'), d.sources, k => k === 'none' ? 'direct' : k);
     bars($('ctas'), d.ctas, k => WHERE[k] || k.replace(/-/g, ' '));

@@ -25,7 +25,7 @@
     const body = JSON.stringify({ site: 'stressless', e, p: PAGE, d: DEV, x: x || '' });
     try { if (!(navigator.sendBeacon && navigator.sendBeacon('/api/track', new Blob([body], { type: 'application/json' })))) fetch('/api/track', { method: 'POST', body, keepalive: true }); } catch (_) {}
   };
-  window.slTrack = track;
+  window.slTrack = track; window.slSend = d => send(d);
   {
     const q = new URLSearchParams(location.search);
     let src = q.get('utm_source') || (q.get('gclid') ? 'google-ads' : q.get('fbclid') ? 'facebook-ads' : '');

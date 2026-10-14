@@ -29,7 +29,7 @@ export default async (req: Request) => {
       forms: count((r) => r[2] === "form_submit"),
       calls: count((r) => r[2] === "call_tap"),
       chat: count((r) => r[2] === "lead_chat"),
-      other: count((r) => ["lead_contact", "lead_referral"].includes(r[2])),
+      other: count((r) => ["lead_contact", "lead_referral", "lead_design"].includes(r[2])),
       cta: count((r) => r[2] === "cta_click"),
     },
     funnel: ["form_start", "form_step1", "form_step2", "form_submit"].map((s) => ({ stage: s, count: count((r) => r[2] === s) })),
@@ -39,6 +39,8 @@ export default async (req: Request) => {
     sources: by((r) => r[2] === "page_view", 5).slice(0, 8),
     ctas: by((r) => r[2] === "cta_click" || r[2] === "call_tap", 5).slice(0, 8),
     scroll: { half: count((r) => r[2] === "scroll_50"), most: count((r) => r[2] === "scroll_90") },
+    design: ["design_start", "design_quote", "lead_design"].map((s) => ({ stage: s, count: count((r) => r[2] === s) })),
+    designs: by((r) => r[2] === "lead_design", 5).slice(0, 8),
     daily: dayList.map((d) => ({ day: d, views: count((r) => r[1] === d && r[2] === "page_view"), leads: count((r) => r[1] === d && isLead(r)) })),
   };
   return new Response(JSON.stringify(body), { headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
