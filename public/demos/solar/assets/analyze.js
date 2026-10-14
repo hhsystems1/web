@@ -52,7 +52,7 @@
     drawPanels();
   };
   const moved = () => { const p = pin.getLatLng(); st.lat = p.lat; st.lng = p.lng; drawPanels(); };
-  const nPanels = () => Math.max(1, Math.round((st.kw || defaultKw()) / PANEL_W));
+  const nPanels = () => (!st.kw && st.step < 5) ? 12 : Math.max(1, Math.round((st.kw || defaultKw()) / PANEL_W));
   const drawPanels = () => {
     if (!layer || st.lat == null) return;
     layer.clearLayers();
@@ -95,7 +95,7 @@
     const b = e.target.closest('button'); if (!b) return;
     setChip(fs.dataset.k, b.dataset.v);
     if (['goal', 'battery', 'pay'].includes(fs.dataset.k)) { track('option_selected', fs.dataset.k + '-' + b.dataset.v); eduGoal(); }
-    if (fs.dataset.k === 'facing' || fs.dataset.k === 'shade') eduRoof();
+    if (fs.dataset.k === 'facing' || fs.dataset.k === 'shade') { st.kw = null; eduRoof(); }
     save();
   }));
 
@@ -185,7 +185,7 @@
     $('#az-use-note').textContent = m === 'kwh' ? 'Find it on your bill as "kWh used". If you only know the dollar amount, switch to Monthly bill $.' : `We'll estimate your usage at about $${RATE_GUESS.toFixed(2)} per kWh until we read your bill.`;
   };
   $$('.az-seg button').forEach(b => b.addEventListener('click', () => { setMode(b.dataset.u); save(); }));
-  useIn.addEventListener('input', () => { st.useVal = useIn.value; save(); });
+  useIn.addEventListener('input', () => { st.useVal = useIn.value; st.kw = null; save(); });
   $('#az-bill-ok').addEventListener('click', () => {
     const v = Number(st.useVal);
     const ok = st.useMode === 'kwh' ? v >= 100 && v <= 20000 : v >= 20 && v <= 3000;
