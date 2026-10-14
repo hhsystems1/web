@@ -10,17 +10,15 @@
   const texURL = f => `viz/tex/${f}`;
 
   // Sample photos: tap points (as fractions of the photo) that select the coated surface
-  // Sample photos: the coated area traced by hand (fractions of the photo); holes cut out (pool water)
+  // Sample photos and their AI-rendered versions (one per Rubber Stone / VUBA Stone blend), rendered from the real photo
+  const RENDERS = ["hf_20261014_130933_c7528bfe-cd93-4643-832a-6097480aadeb", "hf_20261014_131103_86521a79-d3c7-4711-9aef-f7ab7d17bb4b", "hf_20261014_130934_3ce679dd-f6f1-4bbb-8b66-e28f5eb4ee24", "hf_20261014_130935_1d28baf0-21ae-4e1e-9e25-ce6ad57acfdc", "hf_20261014_130727_74bef1f6-9997-4e97-91a5-6cba03da7acd", "hf_20261014_131104_35100240-a02e-497e-94fc-5846d7a821a6", "hf_20261014_130935_83a5eca7-39ab-41e8-ba74-6b9f5ea8fcac", "hf_20261014_131104_ed829b78-6a06-4e71-8c0f-342db581a033", "hf_20261014_130934_8f78e7b2-41a5-4e73-b36e-fb155e3ce8e2", "hf_20261014_131105_6f1d37ec-2762-41f9-8ec8-686b3023c718", "hf_20261014_130937_f2e029d2-a2ab-4f1b-a857-2b3736fb3425", "hf_20261014_130936_28a160d0-ca10-4b55-b677-b3c79dbb1ed1", "hf_20261014_130934_fd7a7d91-ae38-4716-ab29-fb314f482e84", "hf_20261014_131123_c4184540-edbb-4a3e-a79a-8431a7263a7c", "hf_20261014_131122_73b66ecc-52fc-4f9f-8ab6-c2f42ad6f964", "hf_20261014_131124_8e9cef3f-4e12-4e1c-a7d9-357ae986b4ea", "hf_20261014_131123_8e1aa18c-c949-4b42-895c-718968f1c609", "hf_20261014_131148_efc74cfb-97d3-4a1c-8947-14c17933cf09", "hf_20261014_131149_4c638262-7a6e-4650-9527-76ec419ccea1", "hf_20261014_131148_f51ec029-2581-419a-b73a-eb72f4ea7048", "hf_20261014_131148_f2377af8-1168-42a2-b93a-9c0b5bf2321f", "hf_20261014_131235_d13368d0-0abe-407d-a5b8-a6cded1cdcaa", "hf_20261014_131236_2360be0a-427e-4b48-a5e2-04702b806758", "hf_20261014_131235_ef9c388e-2993-40c4-abda-c36ea36ccd13"];
+  const ORDER = ['pool', 'patio', 'drive', 'garage'];
+  const renderURL = (s, p, b) => { if (p !== 'rubber' && p !== 'vuba') return null; const f = RENDERS[ORDER.indexOf(s) * 6 + (p === 'vuba' ? 3 : 0) + b]; return f ? `viz/r/${f}.png` : null; };
   const SURF = {
-    pool: { name: 'Pool deck', word: 'pool deck', cap: 'A StressLess pool deck', size: 600, prods: ['rubber', 'vuba', 'sierra'],
-      area: [[[0.03, 0.66], [0.06, 0.58], [0.15, 0.54], [0.25, 0.5], [0.29, 0.465], [0.36, 0.445], [0.5, 0.44], [0.62, 0.443], [0.75, 0.452], [0.83, 0.47], [0.88, 0.51], [0.905, 0.56], [0.9, 0.62], [0.87, 0.655], [0.8, 0.675], [0.72, 0.695], [0.6, 0.71], [0.45, 0.72], [0.3, 0.725], [0.2, 0.735], [0.1, 0.73], [0.05, 0.7]]],
-      holes: [[[0.19, 0.6], [0.22, 0.555], [0.3, 0.525], [0.37, 0.5], [0.42, 0.472], [0.55, 0.462], [0.65, 0.47], [0.72, 0.5], [0.76, 0.55], [0.755, 0.6], [0.7, 0.632], [0.6, 0.652], [0.5, 0.672], [0.4, 0.69], [0.3, 0.692], [0.22, 0.672], [0.19, 0.64]]] },
-    patio: { name: 'Patio', word: 'patio', cap: 'A StressLess courtyard patio', size: 400, prods: ['rubber', 'vuba', 'sierra'],
-      area: [[[0, 0.405], [0.1, 0.415], [0.2, 0.3], [0.45, 0.27], [0.6, 0.275], [0.7, 0.3], [0.77, 0.36], [0.79, 0.45], [0.76, 0.55], [0.74, 0.63], [0.72, 0.75], [0.7, 0.86], [0.69, 1], [0, 1]]], holes: [] },
-    drive: { name: 'Driveway / walkway', word: 'driveway', cap: 'A StressLess driveway', size: 600, prods: ['rubber', 'vuba', 'sierra'],
-      area: [[[0, 0.215], [0.1, 0.195], [0.25, 0.125], [0.4, 0.075], [0.55, 0.035], [0.7, 0], [0.92, 0], [0.89, 0.05], [0.86, 0.12], [0.855, 0.19], [0.885, 0.26], [0.95, 0.32], [1, 0.35], [1, 1], [0, 1]]], holes: [] },
-    garage: { name: 'Garage floor', word: 'garage floor', cap: 'A StressLess garage floor', size: 450, prods: ['vuba', 'rubber', 'sierra', 'epoxy'],
-      area: [[[0, 0.665], [0.27, 0.645], [0.3, 0.575], [0.34, 0.575], [0.36, 0.625], [0.42, 0.625], [0.45, 0.605], [0.6, 0.605], [0.63, 0.635], [0.7, 0.665], [0.75, 0.625], [0.86, 0.585], [0.875, 0.61], [0.875, 0.7], [0.85, 0.735], [0.9, 0.765], [1, 0.765], [1, 1], [0, 1]]], holes: [] },
+    pool: { name: 'Pool deck', word: 'pool deck', cap: 'A StressLess pool deck', size: 600, prods: ['rubber', 'vuba', 'sierra'] },
+    patio: { name: 'Patio', word: 'patio', cap: 'A StressLess courtyard patio', size: 400, prods: ['rubber', 'vuba', 'sierra'] },
+    drive: { name: 'Driveway / walkway', word: 'driveway', cap: 'A StressLess driveway', size: 600, prods: ['rubber', 'vuba', 'sierra'] },
+    garage: { name: 'Garage floor', word: 'garage floor', cap: 'A StressLess garage floor', size: 450, prods: ['vuba', 'rubber', 'sierra', 'epoxy'] },
   };
   const PROD = {
     rubber: { name: 'Rubber Stone', why: 'Cooler underfoot, cushioned and slip-resistant. Flexes with your concrete instead of cracking.',
@@ -30,8 +28,8 @@
       blends: [{ n: 'Ipanema Beach', src: 'IpanemaBeach_33e848c2-5ab9-40f9-97fd-a09500befe27.webp?width=600' }, { n: 'Poseidon', src: 'Poseidon_b4daa220-16bf-4598-9d14-163e0a2eb543.webp?width=600' }, { n: 'Manhattan', src: 'OG_Manhattan_final_1.webp?width=600' }],
       scale: 0.18, bnote: 'Our three most popular VUBA Stone blends, shown with the manufacturer\'s swatches.' },
     sierra: { name: 'Sierra Stone', why: 'Natural stone aggregates in industrial-grade epoxy. Indoors and out; resists stains and chemicals.',
-      blends: [{ n: 'Blend 1' }, { n: 'Blend 2' }], bnote: 'Sierra Stone comes in two color blends. We show them in person, so the preview keeps your current surface.' },
-    epoxy: { name: 'Epoxy', why: 'A smooth, glossy garage finish with strong adhesion to concrete.', blends: [{ n: 'Chosen at consultation' }], bnote: 'Epoxy colors are chosen with your consultant, so the preview keeps your current floor.' },
+      blends: [{ n: 'Blend 1' }, { n: 'Blend 2' }], bnote: 'Sierra Stone comes in two color blends that we show in person, so the photo shows the surface before.' },
+    epoxy: { name: 'Epoxy', why: 'A smooth, glossy garage finish with strong adhesion to concrete.', blends: [{ n: 'Chosen at consultation' }], bnote: 'Epoxy colors are chosen with your consultant, so the photo shows the floor before.' },
   };
   const RATE = { 'pool:rubber': [13, 16], 'patio:rubber': [13, 16], 'pool:vuba': [11, 13], 'patio:vuba': [11, 13], 'garage:vuba': [8, 10], 'garage:epoxy': [4, 7] };
   const warranty = (s, p) => p === 'vuba' && s === 'garage' ? 'Lifetime warranty on VUBA Stone garage floors'
@@ -39,77 +37,49 @@
   const price = (s, p, sq) => { const r = RATE[s + ':' + p]; return r ? [r[0] * sq, r[1] * sq] : null; };
 
   const st = { step: 0, surface: 'pool', product: 'rubber', blend: 0, sqft: 600, adds: [], own: false, ownFile: null, tool: 'add' };
-  const stage = window.SLViz.Stage($('dz-canvas'));
   const form = $('dz-form'), panes = [...form.querySelectorAll('.dz-pane')], dots = [...form.querySelectorAll('.dz-steps li')];
   let started = false; const start = () => { if (!started) { started = true; track('design_start'); } };
 
-  // ---------- photo + texture ----------
-  async function loadSample() {
+  // ---------- photo preview ----------
+  const orig = $('dz-orig'), rend = $('dz-render');
+  const preload = {};
+  const warm = u => { if (u && !preload[u]) { preload[u] = new Image(); preload[u].src = u; } };
+  function showPreview() {
     const sv = SURF[st.surface];
-    $('dz-load').hidden = false;
-    try {
-      await stage.setPhoto(photoURL(st.surface));
-      stage.setMaskFrom((lab, w, h) => {
-        const c = document.createElement('canvas'); c.width = w; c.height = h; const x = c.getContext('2d');
-        const poly = pts => { x.beginPath(); pts.forEach(([fx, fy], i) => i ? x.lineTo(fx * w, fy * h) : x.moveTo(fx * w, fy * h)); x.closePath(); };
-        x.fillStyle = '#000'; sv.area.forEach(p => { poly(p); x.fill(); });
-        x.globalCompositeOperation = 'destination-out'; sv.holes.forEach(p => { poly(p); x.fill(); });
-        const d = x.getImageData(0, 0, w, h).data, m = new Uint8Array(w * h);
-        for (let i = 0; i < w * h; i++) m[i] = d[i * 4 + 3] > 127 ? 1 : 0;
-        return m;
-      });
-      st.own = false; $('dz-cap').textContent = sv.cap; $('dz-cap').hidden = false;
-      await applyTexture();
-    } catch (e) { $('dz-load').textContent = 'Photo unavailable right now.'; return; }
-    $('dz-load').hidden = true;
+    const before = photoURL(st.surface);
+    if (orig.dataset.src !== before) { orig.dataset.src = before; $('dz-load').hidden = false; orig.onload = () => { $('dz-load').hidden = true; }; orig.src = before; orig.alt = sv.cap + ', before'; }
+    const after = renderURL(st.surface, st.product, st.blend);
+    if (after) {
+      if (rend.dataset.src !== after) { rend.dataset.src = after; rend.classList.add('fade'); rend.onload = () => rend.classList.remove('fade'); rend.src = after; }
+      rend.hidden = false; rend.alt = `${sv.cap} in ${PROD[st.product].name} ${PROD[st.product].blends[st.blend].n}`;
+      $('dz-cmp').hidden = false;
+    } else { rend.hidden = true; $('dz-cmp').hidden = true; }
+    $('dz-cap').textContent = after ? sv.cap + ' · preview' : sv.cap;
+    // warm the other blends for this surface so switching is instant
+    [0, 1, 2].forEach(b => { warm(renderURL(st.surface, 'rubber', b)); warm(renderURL(st.surface, 'vuba', b)); });
+    swatch();
   }
-  async function loadOwn(file) {
-    $('dz-load').hidden = false; $('dz-load').textContent = 'Loading your photo…';
-    const url = URL.createObjectURL(file);
-    try { await stage.setPhoto(url); } catch (e) { $('dz-load').textContent = 'That photo could not be opened. Try a JPG or PNG.'; return; }
-    st.own = true; st.ownFile = file; $('dz-cap').textContent = 'Your photo'; $('dz-load').hidden = true;
-    $('dz-tools').hidden = false; $('dz-attach').hidden = false; $('dz-stage').classList.add('editing');
-    tip(`Tap your ${SURF[st.surface].word} to select it`);
+  function swatch() {
+    const bl = PROD[st.product].blends[st.blend], el = $('dz-chip-sw');
+    if (bl.src) { el.style.backgroundImage = `url(${texURL(bl.src)})`; el.hidden = false; }
+    else if (bl.colors) { el.style.backgroundImage = chipBg(bl.colors); el.hidden = false; }
+    else el.hidden = true;
+  }
+  const chipBg = c => `radial-gradient(circle at 25% 30%,${c[0]} 0 14%,transparent 15%),radial-gradient(circle at 70% 25%,${c[1]} 0 13%,transparent 14%),radial-gradient(circle at 45% 70%,${c[0]} 0 12%,transparent 13%),radial-gradient(circle at 80% 72%,${c[1]} 0 11%,transparent 12%),radial-gradient(circle at 15% 78%,${c[2]} 0 12%,transparent 13%),radial-gradient(circle at 55% 45%,${c[2]} 0 10%,transparent 11%),${c[1]}`;
+  function tip(text) { const t = $('dz-tip'); if (text) { t.textContent = text; t.hidden = false; } else t.hidden = true; }
+  const cmp = $('dz-cmp');
+  const before = on => { rend.classList.toggle('hide', on); cmp.classList.toggle('on', on); };
+  ['pointerdown'].forEach(ev => cmp.addEventListener(ev, () => before(true)));
+  ['pointerup', 'pointerleave', 'pointercancel', 'blur'].forEach(ev => cmp.addEventListener(ev, () => before(false)));
+  cmp.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); before(true); } });
+  cmp.addEventListener('keyup', () => before(false));
+  // Their own photo: kept in the browser until they send it with their request
+  function setOwn(file) {
+    st.own = true; st.ownFile = file;
+    $('dz-thumb').src = URL.createObjectURL(file); $('dz-mine').hidden = false; $('dz-attach').hidden = false;
     track('design_upload', st.surface);
     $('dz-next').textContent = 'Next →';
-    await applyTexture(true);
   }
-  let texToken = 0;
-  async function applyTexture(forceHighlight) {
-    const me = ++texToken, pd = PROD[st.product], bl = pd.blends[st.blend];
-    if (bl.colors || bl.src) {
-      const t = await window.SLViz.texture(st.product + st.blend, bl.colors ? bl : { src: texURL(bl.src) }).catch(() => null);
-      if (me !== texToken) return;
-      if (t) { stage.setTexture(t, pd.scale); swatch(t); return; }
-    }
-    swatch(null);
-    // no swatch for this coating: while choosing an area on your own photo, show the selection; otherwise keep the photo as is
-    if (st.own && (forceHighlight || st.step === 1)) stage.setTexture(window.SLViz.highlight(), 1); else stage.clearTexture();
-  }
-  function swatch(t) {
-    const el = $('dz-chip-sw');
-    if (t) { el.style.backgroundImage = `url(${t.toDataURL ? t.toDataURL('image/jpeg', 0.7) : t.src})`; el.hidden = false; } else el.hidden = true;
-  }
-  function tip(text) { const t = $('dz-tip'); if (text) { t.textContent = text; t.hidden = false; } else t.hidden = true; }
-
-  // ---------- canvas interaction (selection on your own photo) ----------
-  const cv = $('dz-canvas');
-  const frac = e => { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height]; };
-  let erasing = false;
-  cv.addEventListener('pointerdown', e => {
-    if (st.step !== 1 || !st.own) return;
-    const [fx, fy] = frac(e);
-    if (st.tool === 'add') { const cov = stage.selectAt(fx, fy, +$('dz-tol').value, true); tip(cov > 0.75 ? 'That grabbed a lot. Lower the sensitivity or tap Undo.' : 'Looks good? Tap more spots to add, or hit Next.'); start(); }
-    else { erasing = true; cv.setPointerCapture(e.pointerId); stage.beginStroke(); stage.erase(fx, fy, 0.035); }
-  });
-  cv.addEventListener('pointermove', e => { if (erasing) { const [fx, fy] = frac(e); stage.erase(fx, fy, 0.035); } });
-  cv.addEventListener('pointerup', () => { erasing = false; });
-  form.querySelectorAll('[data-tool]').forEach(b => b.addEventListener('click', () => { st.tool = b.dataset.tool; form.querySelectorAll('[data-tool]').forEach(x => x.setAttribute('aria-pressed', x === b)); cv.style.cursor = st.tool === 'erase' ? 'cell' : 'crosshair'; }));
-  $('dz-undo').addEventListener('click', () => stage.undo());
-  $('dz-clear').addEventListener('click', () => { stage.reset(); tip(`Tap your ${SURF[st.surface].word} to select it`); });
-  const cmp = $('dz-cmp');
-  ['pointerdown', 'keydown'].forEach(ev => cmp.addEventListener(ev, e => { if (ev === 'keydown' && e.key !== ' ' && e.key !== 'Enter') return; stage.compare(true); cmp.classList.add('on'); }));
-  ['pointerup', 'pointerleave', 'keyup', 'blur'].forEach(ev => cmp.addEventListener(ev, () => { stage.compare(false); cmp.classList.remove('on'); }));
 
   // ---------- form ----------
   function renderOpts() {
@@ -121,8 +91,7 @@
     form.querySelector('[data-k=blend]').innerHTML = pd.blends.map((bl, i) => `<button type="button" data-v="${i}" aria-pressed="${i === st.blend}"><i class="sw" data-sw="${i}"></i><span>${bl.n}</span></button>`).join('');
     pd.blends.forEach((bl, i) => {
       const el = form.querySelector(`[data-sw="${i}"]`);
-      if (!bl.colors && !bl.src) { el.remove(); return; }
-      window.SLViz.texture(st.product + i, bl.colors ? bl : { src: texURL(bl.src) }).then(t => { el.style.backgroundImage = `url(${t.toDataURL ? t.toDataURL('image/jpeg', 0.7) : t.src})`; }).catch(() => el.remove());
+      if (bl.src) el.style.backgroundImage = `url(${texURL(bl.src)})`; else if (bl.colors) el.style.backgroundImage = chipBg(bl.colors); else el.remove();
     });
     $('dz-why').textContent = pd.why; $('dz-bnote').textContent = pd.bnote;
     $('dz-what').textContent = sv.word;
@@ -149,7 +118,7 @@
   }
   const summary = () => {
     const sv = SURF[st.surface], pd = PROD[st.product], pr = price(st.surface, st.product, st.sqft);
-    return `${sv.name} · ${pd.name} · ${pd.blends[st.blend].n} · about ${st.sqft.toLocaleString('en-US')} sq ft` + (st.adds.length ? ` · plus ${st.adds.join(', ')}` : '') + (pr ? ` · typical ${fmt(pr[0])}–${fmt(pr[1])}` : '') + (st.own ? ' · customer photo attached' : '');
+    return `${sv.name} · ${pd.name} · ${pd.blends[st.blend].n} · about ${st.sqft.toLocaleString('en-US')} sq ft` + (st.adds.length ? ` · plus ${st.adds.join(', ')}` : '') + (pr ? ` · typical ${fmt(pr[0])}–${fmt(pr[1])}` : '') + (st.own ? ' · customer photo attached: send custom preview' : '');
   };
   function go(i) {
     st.step = Math.max(0, Math.min(5, i));
@@ -157,10 +126,8 @@
     dots.forEach((d, k) => { d.classList.toggle('on', k === st.step); d.classList.toggle('done', k < st.step); d.setAttribute('aria-current', k === st.step ? 'step' : 'false'); });
     $('dz-back').hidden = st.step === 0;
     $('dz-next').textContent = st.step === 5 ? 'Send my design' : st.step === 1 && !st.own ? 'Skip →' : 'Next →';
-    $('dz-stage').classList.toggle('editing', st.step === 1 && st.own);
-    if (st.step !== 1) tip(null); else if (st.own) tip('Tap to add more area, or hit Next.');
     if (st.step === 5) track('design_quote', st.surface + '-' + st.product);
-    applyTexture();
+    showPreview();
     if (innerWidth < 980 && st.step > 0) $('dz-stage').scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   }
   dots.forEach((d, k) => d.addEventListener('click', () => { if (k <= st.step || started) go(k); }));
@@ -172,18 +139,26 @@
     const b = e.target.closest('.dz-opts button'); if (!b) return;
     start();
     const k = b.parentElement.dataset.k;
-    if (k === 'surface') { const changed = st.surface !== b.dataset.v; st.surface = b.dataset.v; st.sqft = SURF[st.surface].size; if (changed) { st.blend = 0; renderOpts(); renderPrice(); if (!st.own) await loadSample(); } go(1); return; }
+    if (k === 'surface') { const changed = st.surface !== b.dataset.v; st.surface = b.dataset.v; st.sqft = SURF[st.surface].size; if (changed) { st.blend = 0; renderOpts(); renderPrice(); } go(1); return; }
     if (k === 'product') { st.product = b.dataset.v; st.blend = 0; track('design_product', st.product); }
     if (k === 'blend') st.blend = +b.dataset.v;
-    renderOpts(); renderPrice(); applyTexture();
+    renderOpts(); renderPrice(); showPreview();
   });
-  $('dz-upg-b').addEventListener('click', e => { track('design_upgrade', e.target.dataset.to); st.product = e.target.dataset.to; st.blend = 0; renderOpts(); renderPrice(); applyTexture(); });
-  $('dz-file').addEventListener('change', e => { const f = e.target.files[0]; if (f) { start(); loadOwn(f); } });
-  $('dz-sample').addEventListener('click', async () => { $('dz-tools').hidden = true; $('dz-attach').hidden = true; st.ownFile = null; await loadSample(); go(2); });
+  $('dz-upg-b').addEventListener('click', e => { track('design_upgrade', e.target.dataset.to); st.product = e.target.dataset.to; st.blend = 0; renderOpts(); renderPrice(); showPreview(); });
+  $('dz-file').addEventListener('change', e => { const f = e.target.files[0]; if (f) { start(); setOwn(f); } });
+  $('dz-remove').addEventListener('click', () => { st.own = false; st.ownFile = null; $('dz-mine').hidden = true; $('dz-attach').hidden = true; $('dz-file').value = ''; go(1); });
+  $('dz-sample').addEventListener('click', () => go(2));
   $('dz-range').addEventListener('input', e => { start(); st.sqft = +e.target.value; renderPrice(); });
   form.querySelectorAll('[data-sq]').forEach(b => b.addEventListener('click', () => { start(); st.sqft = +b.dataset.sq; renderPrice(); }));
   form.querySelectorAll('.dz-adds input').forEach(c => c.addEventListener('change', () => { st.adds = [...form.querySelectorAll('.dz-adds input:checked')].filter(i => !i.closest('[hidden]')).map(i => i.value); renderPrice(); }));
 
+  // Keep uploads small enough for the form (max ~1600px JPEG)
+  function shrink(file) {
+    return new Promise(res => {
+      const img = new Image(); img.onload = () => { const k = Math.min(1, 1600 / Math.max(img.naturalWidth, img.naturalHeight)); const c = document.createElement('canvas'); c.width = Math.round(img.naturalWidth * k); c.height = Math.round(img.naturalHeight * k); c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); c.toBlob(b => res(b || file), 'image/jpeg', 0.85); };
+      img.onerror = () => res(file); img.src = URL.createObjectURL(file);
+    });
+  }
   async function submit() {
     const msg = form.querySelector('.mf-msg'), btn = $('dz-next');
     const need = [['first', v => v.trim()], ['phone', v => v.replace(/\D/g, '').length >= 10], ['email', v => /^\S+@\S+\.\S+$/.test(v)], ['zip', v => /^\d{5}$/.test(v.trim())]];
@@ -195,11 +170,7 @@
     const fd = new FormData();
     const fields = { 'form-name': 'stressless-design', source: 'design builder', page: location.pathname, project: SURF[st.surface].name, zip: form.elements.zip.value.trim(), first: form.elements.first.value.trim(), phone: form.elements.phone.value.trim(), email: form.elements.email.value.trim(), sms_consent: form.elements.sms_consent.checked ? 'yes' : 'no', message: 'Design: ' + summary() };
     Object.entries(fields).forEach(([k, v]) => fd.append(k, v));
-    if (st.own && $('dz-sendphoto').checked) {
-      const out = await stage.blob(0.85).catch(() => null);
-      if (out) fd.append('design_photo', out, 'design.jpg');
-      if (st.ownFile && st.ownFile.size < 6e6) fd.append('original_photo', st.ownFile, st.ownFile.name || 'photo.jpg');
-    }
+    if (st.own && $('dz-sendphoto').checked && st.ownFile) fd.append('original_photo', await shrink(st.ownFile), 'customer-photo.jpg');
     try {
       const r = await fetch('forms.html', { method: 'POST', body: fd });
       if (!r.ok) throw new Error(r.status);
@@ -214,5 +185,5 @@
   const q = new URLSearchParams(location.search);
   if (SURF[q.get('s')]) { st.surface = q.get('s'); st.sqft = SURF[st.surface].size; }
   if (PROD[q.get('p')] && SURF[st.surface].prods.includes(q.get('p'))) st.product = q.get('p');
-  renderOpts(); renderPrice(); go(0); loadSample();
+  renderOpts(); renderPrice(); go(0);
 })();

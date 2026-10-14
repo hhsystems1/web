@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Design Your Pool Deck, Patio, Driveway or Garage Floor | StressLess Remodeling</title>
-<meta name="description" content="See Rubber Stone and VUBA Stone on your own pool deck, patio, driveway or garage photo, with a typical price. Save your design for an exact quote.">
+<meta name="description" content="See Rubber Stone and VUBA Stone blends on real StressLess projects, get a typical price, and upload your own photo for a custom preview.">
 <meta name="theme-color" content="#1d3a1f">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -30,27 +30,25 @@
   <div class="dz-grid">
     <div class="dz-view">
       <div class="dz-stage" id="dz-stage">
-        <canvas id="dz-canvas" width="1080" height="810" aria-label="Preview of your surface with the selected coating" role="img"></canvas>
+        <img id="dz-orig" class="dz-img" alt="" width="1168" height="876">
+        <img id="dz-render" class="dz-img dz-top" alt="" width="1168" height="876">
         <div class="dz-load" id="dz-load">Loading photo…</div>
         <span class="dz-cap" id="dz-cap">A StressLess pool deck</span>
-        <button type="button" class="dz-cmp" id="dz-cmp" aria-label="Hold to see the original photo">Hold to compare</button>
+        <button type="button" class="dz-cmp" id="dz-cmp" aria-label="Hold to see the photo before">Hold for before</button>
         <div class="dz-chip" id="dz-chip"><i id="dz-chip-sw" aria-hidden="true"></i><div><b id="dz-coat-name">Rubber Stone</b><span id="dz-blend-name">Brown / Cream / White</span></div><strong id="dz-chip-price">$7,800 – $9,600</strong></div>
         <p class="dz-tip" id="dz-tip" hidden></p>
       </div>
-      <p class="dz-vnote" id="dz-vnote">Preview only: real color and texture vary. We bring physical samples to your free consultation.</p>
+      <p class="dz-vnote" id="dz-vnote">AI-rendered preview of a real StressLess project photo. Actual color and texture vary; we bring physical samples to your free consultation.</p>
     </div>
     <form class="dz-card" id="dz-form" novalidate>
       <ol class="dz-steps" aria-label="Steps"><li data-i="0"><span>1</span><b>Space</b></li><li data-i="1"><span>2</span><b>Photo</b></li><li data-i="2"><span>3</span><b>Coating</b></li><li data-i="3"><span>4</span><b>Color</b></li><li data-i="4"><span>5</span><b>Size</b></li><li data-i="5"><span>6</span><b>Your price</b></li></ol>
       <div class="dz-pane" data-step="0"><h2>What are we coating?</h2><div class="dz-opts" data-k="surface">
         <button type="button" data-v="pool">Pool deck</button><button type="button" data-v="patio">Patio</button><button type="button" data-v="drive">Driveway / walkway</button><button type="button" data-v="garage">Garage floor</button></div></div>
-      <div class="dz-pane" data-step="1" hidden><h2>Use your own photo?</h2>
-        <p class="dz-sub">See the coating on <b>your</b> space. Snap or upload a photo, then tap the area to coat. Your photo stays on your device unless you send it with your design.</p>
+      <div class="dz-pane" data-step="1" hidden><h2>See it on your space?</h2>
+        <p class="dz-sub">Upload a photo of your <b id="dz-what">pool deck</b> and we'll send you a custom preview of <b>your</b> space with the coating and color you pick. Or keep browsing on our project photos.</p>
         <div class="dz-photo-btns"><label class="btn btn-o dz-up"><input type="file" id="dz-file" accept="image/*" hidden>Upload or take a photo</label><button type="button" class="btn btn-g" id="dz-sample">Use a StressLess photo</button></div>
-        <div class="dz-tools" id="dz-tools" hidden>
-          <p class="dz-sub"><b>Tap the <span id="dz-what">surface</span> in your photo.</b> Tap again to add more; switch to Erase to remove spots.</p>
-          <div class="dz-toolrow" role="group" aria-label="Selection tools"><button type="button" data-tool="add" aria-pressed="true">Tap to add</button><button type="button" data-tool="erase" aria-pressed="false">Erase</button><button type="button" id="dz-undo">Undo</button><button type="button" id="dz-clear">Start over</button></div>
-          <label class="dz-tol">Selection sensitivity<input type="range" id="dz-tol" min="8" max="40" value="20"></label>
-        </div></div>
+        <div class="dz-mine" id="dz-mine" hidden><img id="dz-thumb" alt="Your photo" width="96" height="72"><div><b>Got your photo.</b><span>Pick your coating and color next; your custom preview comes with your free quote.</span></div><button type="button" id="dz-remove">Remove</button></div>
+      </div>
       <div class="dz-pane" data-step="2" hidden><h2>Pick your coating</h2><div class="dz-opts dz-prods" data-k="product"></div><p class="dz-why" id="dz-why"></p>
         <div class="dz-upg" id="dz-upg" hidden><div><b id="dz-upg-t"></b><span id="dz-upg-d"></span></div><button type="button" class="btn btn-g" id="dz-upg-b">Upgrade</button></div></div>
       <div class="dz-pane" data-step="3" hidden><h2>Pick a color blend</h2><div class="dz-opts dz-blends" data-k="blend"></div><p class="dz-why" id="dz-bnote"></p></div>
@@ -66,16 +64,16 @@
         <h3 class="dz-h3">Get your exact price</h3><p class="dz-sub">We'll call within one business day to book a free in-home measure.</p>
         <div class="two"><label class="f">First name<input name="first" autocomplete="given-name"></label><label class="f">Phone<input name="phone" type="tel" autocomplete="tel"></label></div>
         <div class="two"><label class="f">Email<input name="email" type="email" autocomplete="email"></label><label class="f">ZIP code<input name="zip" inputmode="numeric" maxlength="5" autocomplete="postal-code"></label></div>
-        <label class="dz-attach" id="dz-attach" hidden><input type="checkbox" id="dz-sendphoto" checked> Send my photo and design with my request</label>
+        <label class="dz-attach" id="dz-attach" hidden><input type="checkbox" id="dz-sendphoto" checked> Send my photo so you can make my custom preview</label>
         <label class="sms"><input type="checkbox" name="sms_consent" value="yes"><span>Text me appointment reminders and updates from StressLess Remodeling. Up to 3–5 messages a day; message &amp; data rates may apply. Reply HELP for help, STOP to opt out. <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span></label>
         <label class="hp" aria-hidden="true">Leave empty<input name="bot-field" tabindex="-1" autocomplete="off"></label>
         <p class="mf-msg" aria-live="polite"></p>
         <p class="dz-fine">Typical ranges from StressLess's published pricing. Final price depends on size, surface condition and prep, set at your free consultation. Financing subject to credit approval.</p></div>
-      <div class="dz-done" id="dz-done" hidden tabindex="-1"><h2>Design sent!</h2><p>We'll call within one business day to book your free in-home measure and exact price. Need us sooner? <a href="tel:+16239395300">(623) 939-5300</a>.</p></div>
+      <div class="dz-done" id="dz-done" hidden tabindex="-1"><h2>Design sent!</h2><p>We'll call within one business day to book your free in-home measure and exact price. If you sent a photo, your custom preview comes with it. Need us sooner? <a href="tel:+16239395300">(623) 939-5300</a>.</p></div>
       <div class="dz-nav" id="dz-nav"><button type="button" class="btn btn-g" id="dz-back">← Back</button><button type="button" class="btn btn-o" id="dz-next">Next →</button></div>
     </form>
   </div></div></section>
-<script>window.DZ_PHOTOS = {"pool": "untitled_design_26_gg5zezs5h6lrq4jc2j3e9-1920x1440.jpg", "patio": "courtyard_hero__large__kouzn0qzomkdycp52olue7-1440x1080.jpg", "drive": "driveways_img_3250_nggpjdnln7ts3gcb3r5uks-1920x1440.jpg", "garage": "stressless_remodeling_garage_flooring_5b0pteaw0qnumo4573sq-1920x1440.jpg"};</script><script src="assets/viz.js" defer></script><script src="assets/design.js" defer></script></main>
+<script>window.DZ_PHOTOS = {"pool": "untitled_design_26_gg5zezs5h6lrq4jc2j3e9-1920x1440.jpg", "patio": "courtyard_hero__large__kouzn0qzomkdycp52olue7-1440x1080.jpg", "drive": "driveways_img_3250_nggpjdnln7ts3gcb3r5uks-1920x1440.jpg", "garage": "stressless_remodeling_garage_flooring_5b0pteaw0qnumo4573sq-1920x1440.jpg"};</script><script src="assets/design.js" defer></script></main>
 <footer class="site"><div class="wrap">
   <div><a href="index.html"><img src="https://www.stresslessremodels.com/_next/image?url=%2Fcdn--media%2Fstressless_remodeling_logo_1_wd2x4uk84fmmhsz9lgu77q-1920x742.png&w=640&q=75" alt="StressLess Remodeling" loading=lazy></a><p style="margin-top:14px;max-width:320px">Concrete coatings, countertops, cabinet refacing and bath updates for Arizona, New Mexico and California.</p><p style="margin-top:12px"><a href="tel:+16239395300"><b style="color:#fff">(623) 939-5300</b></a><br><a href="mailto:info@stresslessremodels.com">info@stresslessremodels.com</a><br>23910 N 19th Ave Suite 48, Phoenix, AZ 85085<br>Mon–Fri 8am–4pm · Sat–Sun closed</p><div class="fsoc" aria-label="StressLess on social media"><a href="https://www.facebook.com/StressLessRemodeling" target="_blank" rel="noopener" aria-label="StressLess on Facebook"><img src="https://www.google.com/s2/favicons?domain=facebook.com&sz=64" alt="" width="22" height="22" loading="lazy"></a><a href="https://www.instagram.com/stresslessremodeling/" target="_blank" rel="noopener" aria-label="StressLess on Instagram"><img src="https://www.google.com/s2/favicons?domain=instagram.com&sz=64" alt="" width="22" height="22" loading="lazy"></a><a href="https://www.tiktok.com/@stresslessremodeling" target="_blank" rel="noopener" aria-label="StressLess on TikTok"><img src="https://www.google.com/s2/favicons?domain=tiktok.com&sz=64" alt="" width="22" height="22" loading="lazy"></a><a href="https://www.youtube.com/@StressLessRemodeling" target="_blank" rel="noopener" aria-label="StressLess on YouTube"><img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=64" alt="" width="22" height="22" loading="lazy"></a><a href="https://www.pinterest.com/stresslessremodeling/" target="_blank" rel="noopener" aria-label="StressLess on Pinterest"><img src="https://www.google.com/s2/favicons?domain=pinterest.com&sz=64" alt="" width="22" height="22" loading="lazy"></a><a href="https://www.linkedin.com/company/stressless-remodeling" target="_blank" rel="noopener" aria-label="StressLess on LinkedIn"><img src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=64" alt="" width="22" height="22" loading="lazy"></a><a href="https://x.com/StressLessRemod" target="_blank" rel="noopener" aria-label="StressLess on X"><img src="https://www.google.com/s2/favicons?domain=x.com&sz=64" alt="" width="22" height="22" loading="lazy"></a></div></div>
   <div><h4>Outdoor</h4><ul><li><a href="concrete-coatings.html">Concrete coatings</a></li><li><a href="pool-decks.html">Pool decks</a></li><li><a href="driveways.html">Driveways &amp; walkways</a></li><li><a href="patios.html">Patios &amp; entryways</a></li><li><a href="garage-floors.html">Garage floors</a></li><li><a href="surfaces.html">Steps, porches &amp; more</a></li><li><a href="commercial.html">Commercial</a></li><li><a href="specialty.html">RVs, boats &amp; barns</a></li></ul></div>

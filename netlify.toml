@@ -7,6 +7,12 @@
   NODE_ENV = "production"
 
 [[redirects]]
+  from = "/demos/stressless/viz/r/:file"
+  to = "https://d8j0ntlcm91z4.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/:file"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/demos/stressless/viz/photo/:file"
   to = "https://www.stresslessremodels.com/_next/image?url=%2Fcdn--media%2F:file&w=1080&q=80"
   status = 200
