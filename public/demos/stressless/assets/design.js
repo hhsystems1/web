@@ -155,7 +155,7 @@
     panes.forEach(p => p.hidden = +p.dataset.step !== st.step);
     dots.forEach((d, k) => { d.classList.toggle('on', k === st.step); d.classList.toggle('done', k < st.step); d.setAttribute('aria-current', k === st.step ? 'step' : 'false'); });
     $('dz-back').hidden = st.step === 0;
-    $('dz-next').textContent = st.step === 5 ? 'Send my design' : st.step === 1 && !st.own ? 'Skip: use a sample photo →' : 'Next →';
+    $('dz-next').textContent = st.step === 5 ? 'Send my design' : st.step === 1 && !st.own ? 'Skip →' : 'Next →';
     $('dz-stage').classList.toggle('editing', st.step === 1 && st.own);
     if (st.step !== 1) tip(null); else if (st.own) tip('Tap to add more area, or hit Next.');
     if (st.step === 5) track('design_quote', st.surface + '-' + st.product);

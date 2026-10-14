@@ -679,3 +679,7 @@ body:has(.dz) .mbar{display:none!important}
 @media (max-width:760px){.dzb{grid-template-columns:1fr}.dzb img{min-height:0;aspect-ratio:16/9}.dzb>div{padding:20px}}
 .dz-chip img[hidden]{display:none}
 .dz-chip{pointer-events:none;transition:opacity .2s ease-out}.dz-stage.editing .dz-chip{opacity:0}
+.dz-stage{scroll-margin-top:76px}
+.dz-nav .btn{white-space:nowrap}
+body:has(.dz) .ch-tip{display:none!important}
+@media (max-width:760px){body:has(.dz) .ch-launch{bottom:calc(92px + env(safe-area-inset-bottom))}}
