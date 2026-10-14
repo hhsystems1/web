@@ -742,3 +742,4 @@ body:has(.dz) .ch-tip{display:none!important}
   .dz-sws button{width:80px}.dz-sws .sw{width:54px;height:54px}
   .dz-title{font-size:30px}
 }
+.dz-upg[hidden]{display:none}.dz-row input[type=range]{width:100%;accent-color:var(--green);height:28px}
