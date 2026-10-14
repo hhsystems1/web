@@ -58,3 +58,28 @@ document.addEventListener('click', e => {
   const code = b.dataset.copy, done = () => { b.textContent = 'Copied ' + code; setTimeout(() => { b.textContent = 'Copy code ' + code; }, 2000); };
   if (navigator.clipboard) navigator.clipboard.writeText(code).then(done, () => { b.textContent = 'Code: ' + code; }); else b.textContent = 'Code: ' + code;
 });
+/* animated hero: faded tire -> coat -> 15 washes, still shining */
+(() => {
+  const hx = document.getElementById('hx'); if (!hx) return;
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const n = document.getElementById('hx-n'), bar = document.getElementById('hx-bar');
+  const btns = [...hx.querySelectorAll('[data-ba]')];
+  let timers = [];
+  const clear = () => { timers.forEach(clearTimeout); timers = []; hx.classList.remove('washing', 'pulse'); };
+  const later = (f, ms) => timers.push(setTimeout(f, ms));
+  const set = st => { hx.classList.toggle('after', st === 'after'); btns.forEach(b => b.setAttribute('aria-pressed', b.dataset.ba === st)); };
+  const count = k => { n.textContent = k; bar.style.width = (k / 15 * 100) + '%'; };
+  const pulse = () => { hx.classList.remove('pulse'); void hx.offsetWidth; hx.classList.add('pulse'); };
+  function play() {
+    clear(); set('before'); count(0);
+    if (still) { set('after'); count(15); return; }
+    later(() => set('after'), 1300);            // coating wipes across the tire
+    later(pulse, 2350);
+    later(() => hx.classList.add('washing'), 2900);
+    for (let k = 1; k <= 15; k++) later(() => { count(k); if (k % 3 === 0) pulse(); }, 2900 + k * 230);
+    later(() => { hx.classList.remove('washing'); pulse(); }, 2900 + 16 * 230);
+  }
+  btns.forEach(b => b.addEventListener('click', () => { clear(); set(b.dataset.ba); if (b.dataset.ba === 'after') { count(15); pulse(); } else count(0); }));
+  document.getElementById('hx-rep').addEventListener('click', play);
+  if ('IntersectionObserver' in window) { let done = false; new IntersectionObserver(([e]) => { if (e.isIntersecting && !done) { done = true; play(); } }, { threshold: .3 }).observe(hx); } else play();
+})();
