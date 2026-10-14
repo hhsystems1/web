@@ -352,7 +352,7 @@ em.save{font-style:normal;background:var(--save);color:#fff;font:500 14px/1 var(
 .hx-frame::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 70% 60%,rgba(0,0,0,0) 40%,rgba(0,0,0,.55) 100%);pointer-events:none}
 @keyframes hx-kb{from{transform:scale(1.14)}to{transform:scale(1)}}
 .hx-wheel{position:absolute;border-radius:50%;transform:translate(-50%,-50%);z-index:1;
-  -webkit-mask:radial-gradient(closest-side,transparent 66%,#000 70%,#000 97%,transparent 100%);mask:radial-gradient(closest-side,transparent 66%,#000 70%,#000 97%,transparent 100%)}
+  -webkit-mask:radial-gradient(closest-side,transparent 73%,#000 76%,#000 97%,transparent 100%);mask:radial-gradient(closest-side,transparent 73%,#000 76%,#000 97%,transparent 100%)}
 .hx-wheel.w1{left:72.75%;top:69.7%;width:15.8%;height:35.6%}
 .hx-wheel.w2{left:13.25%;top:67.3%;width:14.9%;height:33.6%}
 .hx-wheel i{position:absolute;inset:0;border-radius:50%}
@@ -387,9 +387,9 @@ em.save{font-style:normal;background:var(--save);color:#fff;font:500 14px/1 var(
 @media(max-width:860px){
   .hx{display:flex;flex-direction:column}
   .hx-in{display:contents}
-  .hx-copy{order:1;padding:26px 16px 6px}
-  .hx-stage{order:2;position:relative;width:100%;top:auto;bottom:auto}
-  .hx-stage::before{background:linear-gradient(180deg,#000 0%,rgba(0,0,0,0) 26%),linear-gradient(0deg,#000 0%,rgba(0,0,0,0) 24%)}
+  .hx-copy{order:2;padding:0 16px 8px;margin-top:-56px;position:relative;z-index:3}
+  .hx-stage{order:1;position:relative;width:100%;top:auto;bottom:auto}
+  .hx-stage::before{background:linear-gradient(180deg,#000 0%,rgba(0,0,0,0) 18%),linear-gradient(0deg,#000 2%,rgba(0,0,0,0) 45%)}
   .hx-frame{width:180%;margin-left:-62%}
   .hx-hud{order:3;margin:0 16px 30px;width:auto;justify-self:stretch}
   .hx h1{font-size:clamp(50px,14.5vw,76px)}
