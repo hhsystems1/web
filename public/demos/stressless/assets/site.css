@@ -176,7 +176,7 @@ details p{padding:0 0 20px;color:var(--ink-2);max-width:640px}
 .final .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 footer.site{background:#101712;color:#b8c4b4;font-size:14.5px}
 footer.site .wrap{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:28px;padding-top:56px;padding-bottom:40px}
-footer.site img{height:56px;width:auto;background:#fff;border-radius:10px;padding:6px 10px}
+footer.site a:first-child>img{height:56px;width:auto;background:#fff;border-radius:10px;padding:6px 10px;box-sizing:content-box}
 footer.site h4{font:700 20px var(--head);text-transform:uppercase;color:#fff;margin:0 0 10px}
 footer.site ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
 footer.site a{text-decoration:none}footer.site a:hover{color:#fff}
@@ -576,3 +576,4 @@ html.pv-on{overflow:hidden}
 @media (max-width:760px){.ticks.cols2,.awards,.news,.docgrid,.colls,.posts,.where,.mini-form .two,.bens.five{grid-template-columns:1fr}.mini-form .three{grid-template-columns:1fr 1fr}.mini-form .three label:first-child{grid-column:1/-1}.tm{grid-template-columns:96px 1fr;gap:14px}.tm img,.tm-ph{width:96px;height:120px}}
 .f select{font:400 16px var(--body);padding:13px 14px;border:2px solid var(--line);border-radius:10px;width:100%;color:var(--ink);background:#fff}
 .nav .wrap{gap:18px}
+footer.site .fsoc img{width:20px;height:20px;padding:0;background:none;border-radius:4px;box-sizing:content-box}
