@@ -366,12 +366,14 @@ em.save{font-style:normal;background:var(--save);color:#fff;font:500 14px/1 var(
 .v2-btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}.v2-btn.ghost:hover{background:#fff;color:#000}
 @media(max-width:860px){
   .hz-in{grid-template-columns:minmax(0,1fr);gap:0;min-height:0}
-  .hz-copy{padding:30px 0 8px}
-  .hz h1{font-size:clamp(48px,13.5vw,72px)}
+  .hz-copy{display:contents}
+  .hz .kick{margin-top:28px}
+  .hz h1{font-size:clamp(46px,12.8vw,72px);max-width:none}
+  .hz-img{order:5}
+  .hz-stats{order:6;margin:4px 0 30px}
   .hz .sub{font-size:17px}
   .hz .v2-btns .v2-btn{flex:1 1 100%}
   .hz-img{margin:8px calc(50% - 50vw) 0;aspect-ratio:16/10}
-  .hz-stats{order:3}
   .hz-stats b{font-size:32px}
 }
 @media (prefers-reduced-motion:reduce){.hz-up,.hz-img img,.hz-sweep{animation:none;opacity:1}.hz-up{transform:none}.hz-sweep{display:none}}
