@@ -32,6 +32,7 @@ export default async (req: Request) => {
       other: count((r) => ["lead_contact", "lead_referral", "lead_design"].includes(r[2])),
       cta: count((r) => r[2] === "cta_click"),
     },
+    events: by(() => true, 2),
     funnel: ["form_start", "form_step1", "form_step2", "form_submit"].map((s) => ({ stage: s, count: count((r) => r[2] === s) })),
     dropoff: by((r) => r[2] === "form_abandon", 5).slice(0, 8),
     pages: pages.slice(0, 12),
