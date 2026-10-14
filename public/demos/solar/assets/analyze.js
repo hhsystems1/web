@@ -247,6 +247,11 @@
     drawPanels();
   };
   kwIn.addEventListener('input', () => { st.kw = Number(kwIn.value); renderLayout(); });
+  $$('#az-presets button').forEach(b => b.addEventListener('click', () => {
+    const base = defaultKw(), f = Number(b.dataset.f);
+    st.kw = +(Math.max(4, Math.round(base * f / PANEL_W)) * PANEL_W).toFixed(2); renderLayout(); save();
+    $$('#az-presets button').forEach(x => x.setAttribute('aria-pressed', x === b)); track('option_selected', 'size-' + b.dataset.k);
+  }));
   kwIn.addEventListener('change', () => { save(); track('option_selected', 'size'); });
   $('#az-layout-ok').addEventListener('click', () => show(6));
 
@@ -302,6 +307,8 @@
     initMap();
     const q = new URLSearchParams(location.search);
     const goal = q.get('goal'); if (goal) setChip('goal', goal);
+    const bill = Number(q.get('bill')); if (bill >= 20) { st.useMode = 'usd'; st.useVal = String(bill); setMode('usd'); useIn.value = bill; }
+    if (q.get('own') === 'no') { const n = $('#az-rent'); if (n) n.hidden = false; }
     if (q.get('gen')) { st.gen = true; gen.checked = true; }
     const saved = load();
     const addr = q.get('addr');

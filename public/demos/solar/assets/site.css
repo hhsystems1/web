@@ -410,3 +410,22 @@ footer{background:#081727}
   .goal p{font-size:1rem}
   section{padding-block:56px}
 }
+/* hero quote card (address + bill, Tesla/Palmetto pattern) */
+.hero .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.qcard{background:rgba(255,255,255,.97);color:var(--ink);border-radius:22px;padding:24px;display:grid;gap:16px;box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
+.qcard .qh{font:700 1.2rem/1.2 var(--display)}
+.qcard .lbl{display:flex;justify-content:space-between;font-weight:600;font-size:.95rem}
+.qcard .lbl b{color:var(--teal-ink);font-family:var(--display)}
+.qcard input[type=range]{border:0;padding:0;min-height:28px;accent-color:var(--amber);box-shadow:none}
+.q-own{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.q-own .lbl{grid-column:1/-1}
+.q-own label{position:relative}
+.q-own input{position:absolute;opacity:0}
+.q-own label span{display:block;text-align:center;padding:11px;border:1.5px solid var(--line);border-radius:11px;font-weight:600;cursor:pointer}
+.q-own input:checked+span{background:var(--navy);border-color:var(--navy);color:#fff}
+.q-own input:focus-visible+span{outline:3px solid var(--amber);outline-offset:2px}
+.qcard .btn{width:100%}
+.qfine{font-size:.85rem;color:var(--muted);text-align:center}
+.hero h1{font-size:clamp(2.4rem,5vw,3.9rem)}
+.hero .hero-notes{margin-top:22px}
+@media(max-width:900px){.hero .hero-grid{grid-template-columns:1fr;gap:26px}}

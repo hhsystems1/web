@@ -15,14 +15,17 @@
 </div><nav class="mnav" id="mnav" hidden aria-label="Mobile"><p>Solar solutions</p><a href="residential-solar.html">Residential solar</a><a href="solar-battery.html">Solar + battery</a><a href="how-it-works.html">How it works</a><p>More</p><a href="financing.html">Financing</a><a href="solar-battery.html#backup">Backup Power</a><a href="about.html">About</a><a href="contact.html">Contact</a><a class="btn btn-p arrow" style="margin-top:16px" href="analyze.html" data-cta="mnav">Analyze my home</a></nav></header>
 <main id="main">
 <section class="hero"><picture class="bg"><img src="img/az-home-sunset-wide.webp" alt="Stucco home near Phoenix with black solar panels on a clay tile roof at sunset" fetchpriority="high"></picture>
-<div class="wrap"><div class="copy"><span class="eyebrow">Solar, batteries &amp; backup power</span>
-<h1 style="margin-top:14px">See solar on your roof. <span>Understand your bill.</span> Compare your options.</h1>
-<p class="lead">Start with your address. We map your roof, read your electric bill, and show a panel layout with honest numbers and the assumptions behind them, before anyone asks you for a decision.</p>
-<form class="addr" action="analyze.html" method="get" data-addr="hero">
-<label class="hp" for="a-hero">Home address</label>
-<input id="a-hero" name="addr" autocomplete="street-address" placeholder="Enter your home address" required>
-<button class="btn btn-p arrow" type="submit">Analyze my home</button></form>
-<div class="hero-notes"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4 10-10"/></svg>Free, about 5 minutes</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4 10-10"/></svg>No sales call unless you ask</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Your bill stays private</span></div></div></div></section>
+<div class="wrap hero-grid"><div class="copy"><span class="eyebrow">Solar, batteries &amp; backup power</span>
+<h1 style="margin-top:14px">Solar that fits <span>your roof and your bill.</span></h1>
+<p class="lead">See your panel layout on your own roof, a plain read of your electric bill, and every option side by side. No sales call unless you ask.</p>
+<div class="hero-notes"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4 10-10"/></svg>Free, about 5 minutes</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4 10-10"/></svg>Assumptions shown</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Your bill stays private</span></div></div>
+<form class="qcard" action="analyze.html" method="get" data-addr="hero">
+<p class="qh">Start your home analysis</p>
+<label class="f"><span class="lbl">Home address</span><input name="addr" autocomplete="street-address" placeholder="123 Main St, City, State" required></label>
+<label class="f"><span class="lbl">Average electric bill <b class="tnum" id="q-bill-v">$180/mo</b></span><input type="range" name="bill" id="q-bill" min="40" max="600" step="10" value="180"></label>
+<div class="q-own" role="group" aria-label="Do you own this home?"><span class="lbl">Do you own this home?</span><label><input type="radio" name="own" value="yes" checked><span>Yes</span></label><label><input type="radio" name="own" value="no"><span>No, I rent</span></label></div>
+<button class="btn btn-p arrow" type="submit">See my roof</button>
+<p class="qfine">Takes about 5 minutes. A person reviews every report.</p></form></div></div></section>
 <div class="strip"><div class="wrap">
 <div><b>Your roof, mapped</b><span>Satellite view of your actual home</span></div>
 <div><b>Your bill, explained</b><span>How your utility charges you</span></div>

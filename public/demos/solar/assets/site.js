@@ -37,6 +37,9 @@
   const burger = $('.burger'), mnav = $('#mnav');
   burger && burger.addEventListener('click', () => { const o = mnav.hidden; mnav.hidden = !o; burger.setAttribute('aria-expanded', o); });
 
+  // ---- hero bill slider ----
+  const qb = $('#q-bill'); qb && qb.addEventListener('input', () => { $('#q-bill-v').textContent = '$' + qb.value + (qb.value == 600 ? '+' : '') + '/mo'; });
+
   // ---- address forms → analyzer ----
   $$('form[data-addr]').forEach(f => f.addEventListener('submit', () => track('address_entered', f.dataset.addr)));
 
