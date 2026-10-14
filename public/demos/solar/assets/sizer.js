@@ -19,7 +19,7 @@
   let started = false;
   const render = () => {
     const use = st.bill / RATE * 12;
-    const n = Math.min(60, Math.max(6, Math.round(use / YIELD[st.region] / PW)));
+    const n = Math.min(60, Math.max(6, Math.floor(use / YIELD[st.region] / PW)));
     const kw = n * PW, prod = kw * YIELD[st.region], cov = prod / use;
     $$('.dz-top').forEach(i => i.classList.toggle('hide', i.dataset.sys !== st.sys));
     $('#sz-name').textContent = SYS[st.sys][0];
