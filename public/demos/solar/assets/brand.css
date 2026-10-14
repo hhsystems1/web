@@ -186,3 +186,7 @@ footer a{color:#dbe6fb}footer h4{color:#fff}footer .fine{border-color:#13284f}
 .card,.goal,.trust>div,.guides a,.bill{border-radius:18px;border-color:var(--line)}
 .v3-report,.v3-bill{background:var(--paper)}
 .hs-band{overflow:hidden}
+.hs-hero h1{max-width:16ch}
+.hs-row.flip{grid-template-columns:1.15fr .85fr}
+@media(max-width:960px){.hs-row.flip{grid-template-columns:1fr}}
+.mk-bill .v3-lines li p{font-size:14px}
