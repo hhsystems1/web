@@ -37,7 +37,7 @@
   const price = (s, p, sq) => { const r = RATE[s + ':' + p]; return r ? [r[0] * sq, r[1] * sq] : null; };
 
   const st = { step: 0, surface: 'pool', product: 'rubber', blend: 0, sqft: 600, adds: [], own: false, ownFile: null, tool: 'add' };
-  const form = $('dz-form'), panes = [...form.querySelectorAll('.dz-pane')], dots = [...form.querySelectorAll('.dz-steps li')];
+  const form = $('dz-form');
   let started = false; const start = () => { if (!started) { started = true; track('design_start'); } };
 
   // ---------- photo preview ----------
@@ -78,31 +78,30 @@
     st.own = true; st.ownFile = file;
     $('dz-thumb').src = URL.createObjectURL(file); $('dz-mine').hidden = false; $('dz-attach').hidden = false;
     track('design_upload', st.surface);
-    $('dz-next').textContent = 'Next →';
   }
 
-  // ---------- form ----------
+  // ---------- one panel: every change updates the photo and price at once ----------
   function renderOpts() {
     const sv = SURF[st.surface];
     if (!sv.prods.includes(st.product)) { st.product = sv.prods[0]; st.blend = 0; }
     form.querySelectorAll('[data-k=surface] button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === st.surface));
-    form.querySelector('[data-k=product]').innerHTML = sv.prods.map(p => { const r = RATE[st.surface + ':' + p]; return `<button type="button" data-v="${p}" aria-pressed="${p === st.product}">${PROD[p].name}<small>${r ? `$${r[0]}–$${r[1]} / sq ft` : 'Priced in person'}</small></button>`; }).join('');
+    form.querySelector('[data-k=product]').innerHTML = sv.prods.map(p => { const r = RATE[st.surface + ':' + p]; return `<button type="button" data-v="${p}" aria-pressed="${p === st.product}">${PROD[p].name}<small>${r ? `$${r[0]}–$${r[1]}/sq ft` : 'Priced in person'}</small></button>`; }).join('');
     const pd = PROD[st.product];
-    form.querySelector('[data-k=blend]').innerHTML = pd.blends.map((bl, i) => `<button type="button" data-v="${i}" aria-pressed="${i === st.blend}"><i class="sw" data-sw="${i}"></i><span>${bl.n}</span></button>`).join('');
+    form.querySelector('[data-k=blend]').innerHTML = pd.blends.map((bl, i) => `<button type="button" data-v="${i}" aria-pressed="${i === st.blend}" title="${bl.n}" aria-label="${bl.n}"><i class="sw" data-sw="${i}"></i><span>${bl.n}</span></button>`).join('');
     pd.blends.forEach((bl, i) => {
       const el = form.querySelector(`[data-sw="${i}"]`);
-      if (bl.src) el.style.backgroundImage = `url(${texURL(bl.src)})`; else if (bl.colors) el.style.backgroundImage = chipBg(bl.colors); else el.remove();
+      if (bl.src) el.style.backgroundImage = `url(${texURL(bl.src)})`; else if (bl.colors) el.style.backgroundImage = chipBg(bl.colors); else el.classList.add('sw-none');
     });
-    $('dz-why').textContent = pd.why; $('dz-bnote').textContent = pd.bnote;
+    $('dz-why').textContent = pd.why; $('dz-bnote').textContent = pd.bnote; $('dz-bname').textContent = pd.blends[st.blend].n;
     $('dz-what').textContent = sv.word;
     form.querySelector('.pool-only').hidden = st.surface !== 'pool';
   }
   function renderPrice() {
-    const sv = SURF[st.surface], pd = PROD[st.product], pr = price(st.surface, st.product, st.sqft), r = RATE[st.surface + ':' + st.product];
+    const pd = PROD[st.product], pr = price(st.surface, st.product, st.sqft), r = RATE[st.surface + ':' + st.product];
     const txt = pr ? `${fmt(pr[0])} – ${fmt(pr[1])}` : 'Priced in person';
     $('dz-coat-name').textContent = pd.name; $('dz-blend-name').textContent = pd.blends[st.blend].n; $('dz-chip-price').textContent = txt;
     $('dz-price').textContent = pr ? txt : 'Priced at your free consultation';
-    $('dz-rate').textContent = pr ? `$${r[0]}–$${r[1]} / sq ft × ${st.sqft.toLocaleString('en-US')} sq ft` : `StressLess doesn't publish a typical ${pd.name} price for this space.`;
+    $('dz-rate').textContent = pr ? `$${r[0]}–$${r[1]}/sq ft × ${st.sqft.toLocaleString('en-US')} sq ft` : `StressLess doesn't publish a typical ${pd.name} price for this space.`;
     $('dz-mo').textContent = pr ? `About ${fmt((pr[0] + pr[1]) / 2 / 24)}/mo with 24 months same as cash` : '24 months same as cash available';
     $('dz-warr').textContent = warranty(st.surface, st.product);
     $('dz-sqft').textContent = st.sqft.toLocaleString('en-US'); $('dz-range').value = st.sqft;
@@ -120,37 +119,30 @@
     const sv = SURF[st.surface], pd = PROD[st.product], pr = price(st.surface, st.product, st.sqft);
     return `${sv.name} · ${pd.name} · ${pd.blends[st.blend].n} · about ${st.sqft.toLocaleString('en-US')} sq ft` + (st.adds.length ? ` · plus ${st.adds.join(', ')}` : '') + (pr ? ` · typical ${fmt(pr[0])}–${fmt(pr[1])}` : '') + (st.own ? ' · customer photo attached: send custom preview' : '');
   };
-  function go(i) {
-    st.step = Math.max(0, Math.min(5, i));
-    panes.forEach(p => p.hidden = +p.dataset.step !== st.step);
-    dots.forEach((d, k) => { d.classList.toggle('on', k === st.step); d.classList.toggle('done', k < st.step); d.setAttribute('aria-current', k === st.step ? 'step' : 'false'); });
-    $('dz-back').hidden = st.step === 0;
-    $('dz-next').textContent = st.step === 5 ? 'Send my design' : st.step === 1 && !st.own ? 'Skip →' : 'Next →';
-    if (st.step === 5) track('design_quote', st.surface + '-' + st.product);
-    showPreview();
-    if (innerWidth < 980 && st.step > 0) $('dz-stage').scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
-  }
-  dots.forEach((d, k) => d.addEventListener('click', () => { if (k <= st.step || started) go(k); }));
-  $('dz-back').addEventListener('click', () => go(st.step - 1));
-  $('dz-next').addEventListener('click', () => st.step === 5 ? submit() : go(st.step + 1));
-  form.addEventListener('submit', e => { e.preventDefault(); if (st.step === 5) submit(); });
+  const update = () => { renderOpts(); renderPrice(); showPreview(); };
 
-  form.addEventListener('click', async e => {
-    const b = e.target.closest('.dz-opts button'); if (!b) return;
+  form.addEventListener('click', e => {
+    const b = e.target.closest('[data-k] button'); if (!b) return;
     start();
-    const k = b.parentElement.dataset.k;
-    if (k === 'surface') { const changed = st.surface !== b.dataset.v; st.surface = b.dataset.v; st.sqft = SURF[st.surface].size; if (changed) { st.blend = 0; renderOpts(); renderPrice(); } go(1); return; }
-    if (k === 'product') { st.product = b.dataset.v; st.blend = 0; track('design_product', st.product); }
+    const k = b.closest('[data-k]').dataset.k;
+    if (k === 'surface' && st.surface !== b.dataset.v) { st.surface = b.dataset.v; st.sqft = SURF[st.surface].size; st.blend = 0; }
+    if (k === 'product' && st.product !== b.dataset.v) { st.product = b.dataset.v; st.blend = 0; track('design_product', st.product); }
     if (k === 'blend') st.blend = +b.dataset.v;
-    renderOpts(); renderPrice(); showPreview();
+    update();
   });
-  $('dz-upg-b').addEventListener('click', e => { track('design_upgrade', e.target.dataset.to); st.product = e.target.dataset.to; st.blend = 0; renderOpts(); renderPrice(); showPreview(); });
-  $('dz-file').addEventListener('change', e => { const f = e.target.files[0]; if (f) { start(); setOwn(f); } });
-  $('dz-remove').addEventListener('click', () => { st.own = false; st.ownFile = null; $('dz-mine').hidden = true; $('dz-attach').hidden = true; $('dz-file').value = ''; go(1); });
-  $('dz-sample').addEventListener('click', () => go(2));
+  $('dz-upg-b').addEventListener('click', e => { track('design_upgrade', e.target.dataset.to); st.product = e.target.dataset.to; st.blend = 0; update(); });
+  $('dz-file').addEventListener('change', e => { const f = e.target.files[0]; if (f) { start(); setOwn(f); renderPrice(); } });
+  $('dz-remove').addEventListener('click', () => { st.own = false; st.ownFile = null; $('dz-mine').hidden = true; $('dz-attach').hidden = true; $('dz-file').value = ''; renderPrice(); });
   $('dz-range').addEventListener('input', e => { start(); st.sqft = +e.target.value; renderPrice(); });
   form.querySelectorAll('[data-sq]').forEach(b => b.addEventListener('click', () => { start(); st.sqft = +b.dataset.sq; renderPrice(); }));
   form.querySelectorAll('.dz-adds input').forEach(c => c.addEventListener('change', () => { st.adds = [...form.querySelectorAll('.dz-adds input:checked')].filter(i => !i.closest('[hidden]')).map(i => i.value); renderPrice(); }));
+  $('dz-go').addEventListener('click', () => {
+    start(); track('design_quote', st.surface + '-' + st.product);
+    $('dz-contact').hidden = false; $('dz-go').hidden = true;
+    $('dz-contact').scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    setTimeout(() => form.elements.first.focus({ preventScroll: true }), 350);
+  });
+  form.addEventListener('submit', e => { e.preventDefault(); submit(); });
 
   // Keep uploads small enough for the form (max ~1600px JPEG)
   function shrink(file) {
@@ -160,7 +152,7 @@
     });
   }
   async function submit() {
-    const msg = form.querySelector('.mf-msg'), btn = $('dz-next');
+    const msg = form.querySelector('.mf-msg'), btn = $('dz-send');
     const need = [['first', v => v.trim()], ['phone', v => v.replace(/\D/g, '').length >= 10], ['email', v => /^\S+@\S+\.\S+$/.test(v)], ['zip', v => /^\d{5}$/.test(v.trim())]];
     form.querySelectorAll('[aria-invalid]').forEach(i => i.removeAttribute('aria-invalid'));
     const bad = need.filter(([n, ok]) => !ok(form.elements[n].value)).map(([n]) => form.elements[n]);
@@ -175,7 +167,7 @@
       const r = await fetch('forms.html', { method: 'POST', body: fd });
       if (!r.ok) throw new Error(r.status);
       track('lead_design', st.surface + '-' + st.product);
-      panes.forEach(p => p.hidden = true); $('dz-nav').hidden = true; $('dz-done').hidden = false; $('dz-done').focus();
+      $('dz-contact').hidden = true; $('dz-done').hidden = false; $('dz-done').focus();
     } catch (err) {
       msg.className = 'mf-msg err'; msg.innerHTML = `Sorry, that didn't go through. Please call <a href="tel:+16239395300">(623) 939-5300</a>.`;
     } finally { btn.disabled = false; }
@@ -185,5 +177,5 @@
   const q = new URLSearchParams(location.search);
   if (SURF[q.get('s')]) { st.surface = q.get('s'); st.sqft = SURF[st.surface].size; }
   if (PROD[q.get('p')] && SURF[st.surface].prods.includes(q.get('p'))) st.product = q.get('p');
-  renderOpts(); renderPrice(); go(0);
+  update();
 })();

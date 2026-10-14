@@ -41,36 +41,32 @@
       <p class="dz-vnote" id="dz-vnote">AI-rendered preview of a real StressLess project photo. Actual color and texture vary; we bring physical samples to your free consultation.</p>
     </div>
     <form class="dz-card" id="dz-form" novalidate>
-      <ol class="dz-steps" aria-label="Steps"><li data-i="0"><span>1</span><b>Space</b></li><li data-i="1"><span>2</span><b>Photo</b></li><li data-i="2"><span>3</span><b>Coating</b></li><li data-i="3"><span>4</span><b>Color</b></li><li data-i="4"><span>5</span><b>Size</b></li><li data-i="5"><span>6</span><b>Your price</b></li></ol>
-      <div class="dz-pane" data-step="0"><h2>What are we coating?</h2><div class="dz-opts" data-k="surface">
-        <button type="button" data-v="pool">Pool deck</button><button type="button" data-v="patio">Patio</button><button type="button" data-v="drive">Driveway / walkway</button><button type="button" data-v="garage">Garage floor</button></div></div>
-      <div class="dz-pane" data-step="1" hidden><h2>See it on your space?</h2>
-        <p class="dz-sub">Upload a photo of your <b id="dz-what">pool deck</b> and we'll send you a custom preview of <b>your</b> space with the coating and color you pick. Or keep browsing on our project photos.</p>
-        <div class="dz-photo-btns"><label class="btn btn-o dz-up"><input type="file" id="dz-file" accept="image/*" hidden>Upload or take a photo</label><button type="button" class="btn btn-g" id="dz-sample">Use a StressLess photo</button></div>
-        <div class="dz-mine" id="dz-mine" hidden><img id="dz-thumb" alt="Your photo" width="96" height="72"><div><b>Got your photo.</b><span>Pick your coating and color next; your custom preview comes with your free quote.</span></div><button type="button" id="dz-remove">Remove</button></div>
-      </div>
-      <div class="dz-pane" data-step="2" hidden><h2>Pick your coating</h2><div class="dz-opts dz-prods" data-k="product"></div><p class="dz-why" id="dz-why"></p>
+      <div class="dz-row"><span class="dz-lbl">Space</span><div class="dz-seg" data-k="surface">
+        <button type="button" data-v="pool">Pool deck</button><button type="button" data-v="patio">Patio</button><button type="button" data-v="drive">Driveway</button><button type="button" data-v="garage">Garage</button></div></div>
+      <div class="dz-row"><span class="dz-lbl">Coating</span><div class="dz-opts dz-prods" data-k="product"></div><p class="dz-why" id="dz-why"></p>
         <div class="dz-upg" id="dz-upg" hidden><div><b id="dz-upg-t"></b><span id="dz-upg-d"></span></div><button type="button" class="btn btn-g" id="dz-upg-b">Upgrade</button></div></div>
-      <div class="dz-pane" data-step="3" hidden><h2>Pick a color blend</h2><div class="dz-opts dz-blends" data-k="blend"></div><p class="dz-why" id="dz-bnote"></p></div>
-      <div class="dz-pane" data-step="4" hidden><h2>About how big? <span class="dz-sz"><b id="dz-sqft">600</b> sq ft</span></h2>
+      <div class="dz-row"><span class="dz-lbl">Color <b id="dz-bname"></b></span><div class="dz-sws" data-k="blend"></div><p class="dz-why" id="dz-bnote"></p></div>
+      <div class="dz-row"><span class="dz-lbl">Size <b><span id="dz-sqft">600</span> sq ft</b></span>
         <input type="range" id="dz-range" min="100" max="2000" step="25" value="600" aria-label="Square feet">
-        <div class="dz-quick"><button type="button" data-sq="300">Small · 300</button><button type="button" data-sq="600">Typical · 600</button><button type="button" data-sq="1000">Large · 1,000</button></div>
-        <p class="dz-why">Not sure? Most StressLess coating projects are 600–800 sq ft. We measure for free.</p>
-        <h3 class="dz-h3">Add to the project <span class="opt">(optional)</span></h3><div class="dz-adds">
-        <label><input type="checkbox" value="Steps"> Steps</label><label class="pool-only"><input type="checkbox" value="Pool coping / edge"> Pool coping / edge</label><label><input type="checkbox" value="Walkway or entry"> Walkway or entry</label><label><input type="checkbox" value="Crack repair"> Crack repair</label></div></div>
-      <div class="dz-pane" data-step="5" hidden><h2>Your design &amp; typical price</h2>
-        <div class="dz-quote"><small>Typical price for your design</small><b id="dz-price">–</b><span id="dz-rate"></span><ul><li id="dz-mo"></li><li>Up to $1,500 off when you book online</li><li id="dz-warr"></li></ul></div>
+        <div class="dz-quick"><button type="button" data-sq="300">300</button><button type="button" data-sq="600">600 · typical</button><button type="button" data-sq="1000">1,000</button><span>We measure for free.</span></div></div>
+      <div class="dz-row"><span class="dz-lbl">Add <span class="opt">(optional)</span></span><div class="dz-adds">
+        <label><input type="checkbox" value="Steps"> Steps</label><label class="pool-only"><input type="checkbox" value="Pool coping / edge"> Pool coping</label><label><input type="checkbox" value="Walkway or entry"> Walkway / entry</label><label><input type="checkbox" value="Crack repair"> Crack repair</label></div></div>
+      <div class="dz-row dz-own"><label class="dz-upbtn"><input type="file" id="dz-file" accept="image/*" hidden><b>See it on <u>your</u> <span id="dz-what">pool deck</span></b><span>Upload a photo and we'll send you a custom preview with this coating.</span></label>
+        <div class="dz-mine" id="dz-mine" hidden><img id="dz-thumb" alt="Your photo" width="96" height="72"><div><b>Photo added.</b><span>Your custom preview comes with your quote.</span></div><button type="button" id="dz-remove">Remove</button></div></div>
+      <div class="dz-quote"><div><small>Typical price for your design</small><b id="dz-price">–</b><span id="dz-rate"></span></div><ul><li id="dz-mo"></li><li>Up to $1,500 off when you book online</li><li id="dz-warr"></li></ul></div>
+      <button type="button" class="btn btn-o dz-cta" id="dz-go">Get my exact price →</button>
+      <div class="dz-contact" id="dz-contact" hidden>
         <p class="dz-sum" id="dz-sum"></p>
-        <h3 class="dz-h3">Get your exact price</h3><p class="dz-sub">We'll call within one business day to book a free in-home measure.</p>
         <div class="two"><label class="f">First name<input name="first" autocomplete="given-name"></label><label class="f">Phone<input name="phone" type="tel" autocomplete="tel"></label></div>
         <div class="two"><label class="f">Email<input name="email" type="email" autocomplete="email"></label><label class="f">ZIP code<input name="zip" inputmode="numeric" maxlength="5" autocomplete="postal-code"></label></div>
         <label class="dz-attach" id="dz-attach" hidden><input type="checkbox" id="dz-sendphoto" checked> Send my photo so you can make my custom preview</label>
         <label class="sms"><input type="checkbox" name="sms_consent" value="yes"><span>Text me appointment reminders and updates from StressLess Remodeling. Up to 3–5 messages a day; message &amp; data rates may apply. Reply HELP for help, STOP to opt out. <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span></label>
         <label class="hp" aria-hidden="true">Leave empty<input name="bot-field" tabindex="-1" autocomplete="off"></label>
+        <button type="submit" class="btn btn-o dz-cta" id="dz-send">Send my design</button>
         <p class="mf-msg" aria-live="polite"></p>
-        <p class="dz-fine">Typical ranges from StressLess's published pricing. Final price depends on size, surface condition and prep, set at your free consultation. Financing subject to credit approval.</p></div>
+      </div>
       <div class="dz-done" id="dz-done" hidden tabindex="-1"><h2>Design sent!</h2><p>We'll call within one business day to book your free in-home measure and exact price. If you sent a photo, your custom preview comes with it. Need us sooner? <a href="tel:+16239395300">(623) 939-5300</a>.</p></div>
-      <div class="dz-nav" id="dz-nav"><button type="button" class="btn btn-g" id="dz-back">← Back</button><button type="button" class="btn btn-o" id="dz-next">Next →</button></div>
+      <p class="dz-fine">Typical ranges from StressLess's published pricing. Final price depends on size, surface condition and prep, set at your free consultation. Financing subject to credit approval.</p>
     </form>
   </div></div></section>
 <script>window.DZ_PHOTOS = {"pool": "untitled_design_26_gg5zezs5h6lrq4jc2j3e9-1920x1440.jpg", "patio": "courtyard_hero__large__kouzn0qzomkdycp52olue7-1440x1080.jpg", "drive": "driveways_img_3250_nggpjdnln7ts3gcb3r5uks-1920x1440.jpg", "garage": "stressless_remodeling_garage_flooring_5b0pteaw0qnumo4573sq-1920x1440.jpg"};</script><script src="assets/design.js" defer></script></main>
