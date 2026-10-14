@@ -78,13 +78,22 @@ document.addEventListener('click', e => {
   function play() {
     clear(); set('before'); count(0);
     if (still) { set('after'); count(15); return; }
-    later(() => set('after'), 1300);            // coating wipes across the tire
-    later(pulse, 2350);
-    later(() => hx.classList.add('washing'), 2900);
-    for (let k = 1; k <= 15; k++) later(() => { count(k); if (k % 3 === 0) pulse(); }, 2900 + k * 230);
-    later(() => { hx.classList.remove('washing'); pulse(); }, 2900 + 16 * 230);
+    const three = hx.classList.contains('three');
+    if (three) hx.dispatchEvent(new CustomEvent('hx:play'));
+    const T = three ? Math.max(1500, (+hx.dataset.flight || 6000) - 500) : 1300;   // coat as the drone lands on the wheel
+    later(() => set('after'), T);
+    later(pulse, T + 1050);
+    later(() => hx.classList.add('washing'), T + 1600);
+    for (let k = 1; k <= 15; k++) later(() => { count(k); if (k % 3 === 0) pulse(); }, T + 1600 + k * 230);
+    later(() => { hx.classList.remove('washing'); pulse(); }, T + 1600 + 16 * 230);
   }
   btns.forEach(b => b.addEventListener('click', () => { clear(); set(b.dataset.ba); if (b.dataset.ba === 'after') { count(15); pulse(); } else count(0); }));
   document.getElementById('hx-rep').addEventListener('click', play);
-  if ('IntersectionObserver' in window) { let done = false; new IntersectionObserver(([e]) => { if (e.isIntersecting && !done) { done = true; play(); } }, { threshold: .3 }).observe(hx); } else play();
+  let started = false; const start = () => { if (!started) { started = true; play(); } };
+  const gl = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (e) { return false; } })();
+  if (hx.dataset.model && gl && !still) {
+    set('before');
+    hx.addEventListener('hx:ready', start); hx.addEventListener('hx:fail', start);
+    setTimeout(start, 12000);                       // slow connection: run the photo version
+  } else if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { if (e.isIntersecting) start(); }, { threshold: .3 }).observe(hx); else start();
 })();

@@ -361,7 +361,7 @@ em.save{font-style:normal;background:var(--save);color:#fff;font:500 14px/1 var(
 .hx-wheel .shine{background:linear-gradient(105deg,rgba(255,255,255,0) 35%,rgba(255,255,255,.85) 48%,rgba(255,255,255,0) 60%);background-size:300% 100%;background-position:120% 0;mix-blend-mode:screen;opacity:0}
 .hx.pulse .hx-wheel .shine{animation:hx-sh .55s ease-out}
 @keyframes hx-sh{0%{opacity:1;background-position:120% 0}100%{opacity:0;background-position:-20% 0}}
-.hx-rain{position:absolute;inset:-20% 0 0;z-index:1;opacity:0;transition:opacity .4s;pointer-events:none;
+.hx-rain{position:absolute;inset:0;z-index:3;opacity:0;transition:opacity .4s;pointer-events:none;
   background:repeating-linear-gradient(100deg,rgba(255,255,255,0) 0 22px,rgba(190,215,255,.16) 22px 23px,rgba(255,255,255,0) 23px 47px);background-size:100% 160px;animation:hx-rain .45s linear infinite}
 .hx.washing .hx-rain{opacity:1}
 @keyframes hx-rain{to{background-position:0 160px}}
@@ -396,3 +396,14 @@ em.save{font-style:normal;background:var(--save);color:#fff;font:500 14px/1 var(
   .hx .v2-btns .v2-btn{flex:1 1 100%}
 }
 @media (prefers-reduced-motion:reduce){.hx-frame,.hx-up{animation:none;opacity:1;transform:none}.hx-rain{display:none}.hx-wheel .dull{transition:none}}
+
+/* 3D drone hero */
+.hx-gl{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;opacity:0;transition:opacity .9s ease}
+.hx.three .hx-gl{opacity:1}
+.hx.three .hx-frame{display:none}
+.hx.three .hx-stage{left:0;width:auto}
+.hx.three .hx-stage::before{background:linear-gradient(90deg,#000 0%,rgba(0,0,0,.72) 26%,rgba(0,0,0,0) 48%),linear-gradient(0deg,#000 0%,rgba(0,0,0,0) 18%)}
+@media(max-width:860px){
+  .hx.three .hx-stage{height:min(66vh,520px)}
+  .hx.three .hx-stage::before{background:linear-gradient(180deg,#000 0%,rgba(0,0,0,0) 14%),linear-gradient(0deg,#000 3%,rgba(0,0,0,0) 34%)}
+}
