@@ -38,7 +38,7 @@
 .v2 .mnav a{color:#fff;text-decoration:none;padding:12px 0;border-bottom:1px solid #222;font:600 18px var(--display);text-transform:uppercase;letter-spacing:.04em}
 .v2 .mnav p{color:#ff6b63;font:700 13px var(--display);letter-spacing:.1em;text-transform:uppercase;margin:14px 0 2px}
 @media(max-width:1000px){.v2-top{gap:12px;min-height:64px;flex-wrap:wrap;padding-block:10px}.v2 .burger{display:flex}.v2-find,.v2-help{display:none}.v2-ico span:not(.cart-count){display:none}
-  .v2-logo{margin-right:auto}.v2-logo img{height:36px}.v2-search{order:5;flex-basis:100%}.v2-nav{display:none}}
+  .v2-logo{margin-right:auto}.v2-logo img{height:36px}.v2-search{order:5;flex:0 0 100%;width:100%;min-width:0;max-width:100%}.v2-search button{width:52px}.v2-nav{display:none}}
 /* ticker */
 .ticker{background:var(--grey);overflow:hidden;border-bottom:1px solid var(--line)}
 .tk{display:flex;gap:64px;width:max-content;padding:14px 0;animation:tick 40s linear infinite;font:500 16px var(--display);letter-spacing:.02em}
@@ -181,3 +181,7 @@
 .v2 .page-head{background:#000;color:#fff}
 .v2 .sec.dark,.v2 .sec.char{background:#000}
 .v2 .btn-red{background:var(--red)}
+/* phone safety: grid tracks never grow past the screen */
+.v2-foot .cols>*,.v2-cats>*,.v2-stats .wrap>*,.v2-spot>*,.v2-hero-in>*{min-width:0}
+.v2-foot a,.v2-foot h4{overflow-wrap:anywhere}
+@media(max-width:380px){.v2-foot .cols{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px 16px}}

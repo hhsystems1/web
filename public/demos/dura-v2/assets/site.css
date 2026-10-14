@@ -389,3 +389,5 @@ footer.site .fine{grid-column:1/-1;border-top:1px solid var(--edge);padding-top:
 .pdp>*,.picker>*,.split>*,.faq>*,.coatpick>*,.hero .wrap>*,.grid>*,.cats>*,.paths>*{min-width:0}
 .buy h1,.desc,.desc *{overflow-wrap:anywhere}
 img{max-width:100%}
+.oc{grid-template-columns:36px minmax(0,1fr) auto}
+@media(max-width:380px){.oc{grid-template-columns:32px minmax(0,1fr)}.oc em{grid-column:2}}
