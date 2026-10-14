@@ -10,19 +10,25 @@
   const texURL = f => `viz/tex/${f}`;
 
   // Sample photos: tap points (as fractions of the photo) that select the coated surface
+  // Sample photos: the coated area traced by hand (fractions of the photo); holes cut out (pool water)
   const SURF = {
-    pool: { name: 'Pool deck', word: 'pool deck', cap: 'A StressLess pool deck', size: 600, prods: ['rubber', 'vuba', 'sierra'], seeds: [[0.2, 0.78], [0.5, 0.8], [0.8, 0.62], [0.35, 0.55], [0.9, 0.78]], tol: 16 },
-    patio: { name: 'Patio', word: 'patio', cap: 'A StressLess patio', size: 400, prods: ['rubber', 'vuba', 'sierra'], seeds: [[0.3, 0.85], [0.6, 0.9], [0.15, 0.7], [0.8, 0.95]], tol: 18 },
-    drive: { name: 'Driveway / walkway', word: 'driveway', cap: 'A StressLess driveway', size: 600, prods: ['rubber', 'vuba', 'sierra'], seeds: [[0.3, 0.6], [0.5, 0.85], [0.15, 0.9], [0.7, 0.7]], tol: 18 },
-    garage: { name: 'Garage floor', word: 'garage floor', cap: 'A StressLess garage floor', size: 450, prods: ['vuba', 'rubber', 'sierra', 'epoxy'], seeds: [[0.5, 0.95], [0.15, 0.93], [0.85, 0.93]], tol: 15 },
+    pool: { name: 'Pool deck', word: 'pool deck', cap: 'A StressLess pool deck', size: 600, prods: ['rubber', 'vuba', 'sierra'],
+      area: [[[0.03, 0.66], [0.06, 0.58], [0.15, 0.54], [0.25, 0.5], [0.29, 0.465], [0.36, 0.445], [0.5, 0.44], [0.62, 0.443], [0.75, 0.452], [0.83, 0.47], [0.88, 0.51], [0.905, 0.56], [0.9, 0.62], [0.87, 0.655], [0.8, 0.675], [0.72, 0.695], [0.6, 0.71], [0.45, 0.72], [0.3, 0.725], [0.2, 0.735], [0.1, 0.73], [0.05, 0.7]]],
+      holes: [[[0.19, 0.6], [0.22, 0.555], [0.3, 0.525], [0.37, 0.5], [0.42, 0.472], [0.55, 0.462], [0.65, 0.47], [0.72, 0.5], [0.76, 0.55], [0.755, 0.6], [0.7, 0.632], [0.6, 0.652], [0.5, 0.672], [0.4, 0.69], [0.3, 0.692], [0.22, 0.672], [0.19, 0.64]]] },
+    patio: { name: 'Patio', word: 'patio', cap: 'A StressLess courtyard patio', size: 400, prods: ['rubber', 'vuba', 'sierra'],
+      area: [[[0, 0.405], [0.1, 0.415], [0.2, 0.3], [0.45, 0.27], [0.6, 0.275], [0.7, 0.3], [0.77, 0.36], [0.79, 0.45], [0.76, 0.55], [0.74, 0.63], [0.72, 0.75], [0.7, 0.86], [0.69, 1], [0, 1]]], holes: [] },
+    drive: { name: 'Driveway / walkway', word: 'driveway', cap: 'A StressLess driveway', size: 600, prods: ['rubber', 'vuba', 'sierra'],
+      area: [[[0, 0.215], [0.1, 0.195], [0.25, 0.125], [0.4, 0.075], [0.55, 0.035], [0.7, 0], [0.92, 0], [0.89, 0.05], [0.86, 0.12], [0.855, 0.19], [0.885, 0.26], [0.95, 0.32], [1, 0.35], [1, 1], [0, 1]]], holes: [] },
+    garage: { name: 'Garage floor', word: 'garage floor', cap: 'A StressLess garage floor', size: 450, prods: ['vuba', 'rubber', 'sierra', 'epoxy'],
+      area: [[[0, 0.665], [0.27, 0.645], [0.3, 0.575], [0.34, 0.575], [0.36, 0.625], [0.42, 0.625], [0.45, 0.605], [0.6, 0.605], [0.63, 0.635], [0.7, 0.665], [0.75, 0.625], [0.86, 0.585], [0.875, 0.61], [0.875, 0.7], [0.85, 0.735], [0.9, 0.765], [1, 0.765], [1, 1], [0, 1]]], holes: [] },
   };
   const PROD = {
     rubber: { name: 'Rubber Stone', why: 'Cooler underfoot, cushioned and slip-resistant. Flexes with your concrete instead of cracking.',
       blends: [{ n: 'Brown / Cream / White', colors: ['#6e4a30', '#e6d8bb', '#f6f4ee'], seed: 3 }, { n: 'Light Grey / Standard Grey / White', colors: ['#c9cccc', '#8b8f90', '#f6f4ee'], seed: 5 }, { n: 'Grey / Cream / White', colors: ['#8b8f90', '#e6d8bb', '#f6f4ee'], seed: 9 }],
-      scale: 0.8, bnote: 'Our three most popular Rubber Stone blends. We bring real samples to your consultation.' },
+      scale: 0.3, bnote: 'Our three most popular Rubber Stone blends. We bring real samples to your consultation.' },
     vuba: { name: 'VUBA Stone', why: 'Natural stone in clear, UV-stable resin. 100% permeable, so water drains through.',
       blends: [{ n: 'Ipanema Beach', src: 'IpanemaBeach_33e848c2-5ab9-40f9-97fd-a09500befe27.webp?width=600' }, { n: 'Poseidon', src: 'Poseidon_b4daa220-16bf-4598-9d14-163e0a2eb543.webp?width=600' }, { n: 'Manhattan', src: 'OG_Manhattan_final_1.webp?width=600' }],
-      scale: 0.5, bnote: 'Our three most popular VUBA Stone blends, shown with the manufacturer\'s swatches.' },
+      scale: 0.18, bnote: 'Our three most popular VUBA Stone blends, shown with the manufacturer\'s swatches.' },
     sierra: { name: 'Sierra Stone', why: 'Natural stone aggregates in industrial-grade epoxy. Indoors and out; resists stains and chemicals.',
       blends: [{ n: 'Blend 1' }, { n: 'Blend 2' }], bnote: 'Sierra Stone comes in two color blends. We show them in person, so the preview keeps your current surface.' },
     epoxy: { name: 'Epoxy', why: 'A smooth, glossy garage finish with strong adhesion to concrete.', blends: [{ n: 'Chosen at consultation' }], bnote: 'Epoxy colors are chosen with your consultant, so the preview keeps your current floor.' },
@@ -43,7 +49,15 @@
     $('dz-load').hidden = false;
     try {
       await stage.setPhoto(photoURL(st.surface));
-      stage.setMaskFrom((lab, w, h, wand, clean) => { const m = new Uint8Array(w * h); for (const [fx, fy] of sv.seeds) wand(lab, w, h, Math.round(fx * (w - 1)), Math.round(fy * (h - 1)), sv.tol, m); return clean(m, w, h); });
+      stage.setMaskFrom((lab, w, h) => {
+        const c = document.createElement('canvas'); c.width = w; c.height = h; const x = c.getContext('2d');
+        const poly = pts => { x.beginPath(); pts.forEach(([fx, fy], i) => i ? x.lineTo(fx * w, fy * h) : x.moveTo(fx * w, fy * h)); x.closePath(); };
+        x.fillStyle = '#000'; sv.area.forEach(p => { poly(p); x.fill(); });
+        x.globalCompositeOperation = 'destination-out'; sv.holes.forEach(p => { poly(p); x.fill(); });
+        const d = x.getImageData(0, 0, w, h).data, m = new Uint8Array(w * h);
+        for (let i = 0; i < w * h; i++) m[i] = d[i * 4 + 3] > 127 ? 1 : 0;
+        return m;
+      });
       st.own = false; $('dz-cap').textContent = sv.cap; $('dz-cap').hidden = false;
       await applyTexture();
     } catch (e) { $('dz-load').textContent = 'Photo unavailable right now.'; return; }

@@ -153,6 +153,9 @@ window.SLViz = (() => {
       if (showOrig || !tex || !mask) { ctx.putImageData(orig, 0, 0); return; }
       paintTexture();
       const P = paintX.getImageData(0, 0, W, H).data, M = maskX.getImageData(0, 0, W, H).data, O = orig.data;
+      let tr = 0, tg = 0, tb = 0, tn = 0; for (let j = 0; j < P.length; j += 4 * 13) { tr += P[j]; tg += P[j + 1]; tb += P[j + 2]; tn++; }
+      tr /= tn; tg /= tn; tb /= tn; const K = 0.62;
+      for (let j = 0; j < P.length; j += 4) { P[j] = tr + (P[j] - tr) * K; P[j + 1] = tg + (P[j + 1] - tg) * K; P[j + 2] = tb + (P[j + 2] - tb) * K; }
       let sum = 0, cnt = 0; for (let i = 0; i < W * H; i += 7) if (M[i * 4 + 3] > 200) { sum += lum[i]; cnt++; }
       const mean = cnt ? sum / cnt : 128;
       const out = ctx.createImageData(W, H), D = out.data;
