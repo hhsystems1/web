@@ -696,5 +696,5 @@ body:has(.dz) .ch-tip{display:none!important}
 .dz-mine img{width:72px;height:54px;object-fit:cover;border-radius:8px;flex:none}
 .dz-mine b{display:block}.dz-mine span{font-size:13.5px;color:var(--ink-2)}
 .dz-mine button{margin-left:auto;border:0;background:none;color:var(--green-d);font:600 13.5px var(--body);text-decoration:underline;cursor:pointer}
-@media (max-width:760px){.dz-stage{aspect-ratio:auto}.dz-stage .dz-img:first-child{aspect-ratio:4/3}.dz-top{bottom:auto;aspect-ratio:4/3}}
+@media (max-width:760px){.dz-stage{aspect-ratio:auto}.dz-stage .dz-img:first-child{aspect-ratio:4/3}.dz-top{bottom:auto;height:auto;aspect-ratio:4/3}.dz-stage .dz-img:first-child{height:auto}}
 @media (prefers-reduced-motion:reduce){.dz-top{transition:none}}
