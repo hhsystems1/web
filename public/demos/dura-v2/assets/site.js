@@ -37,7 +37,7 @@
   const skel = n => Array.from({ length: n }, () => '<div class="skel" aria-hidden="true"></div>').join('');
 
   const saveTag = v => v.c > v.p ? `<em class="save">Save ${Math.round((1 - v.p / v.c) * 100)}%</em>` : '';
-  const blurb = p => { const l = (p.d || '').split(/\n|(?<=[.!?])\s+/).map(x => x.trim()).find(x => x.length > 18 && x.length < 160); return l || C.cats[p.cat]?.name || ''; };
+  const blurb = p => { const l = (p.d || '').split(/\n|(?<=[.!?])\s+/).map(x => x.trim()).find(x => x.length > 18 && x.length < 160 && !/^["'“”]/.test(x) && x !== x.toUpperCase()); return l || C.cats[p.cat]?.name || ''; };
   function card(p, badge = '') {
     const v = from(p), one = p.v.length === 1, multi = new Set(p.v.map(x => x.p)).size > 1;
     const plus = soldOut(p) ? '' : one ? `<button class="qadd" data-add="${v.id}" data-h="${p.h}" aria-label="Add ${esc(p.name)} to cart">+</button>` : `<a class="qadd" href="product.html#${p.h}" aria-label="Choose a size of ${esc(p.name)}">+</a>`;
