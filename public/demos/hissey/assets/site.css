@@ -55,7 +55,7 @@ p{margin:0}
 }
 
 /* HERO: pick your cap */
-.select{position:relative;overflow:hidden;isolation:isolate;padding:34px 0 30px;min-height:calc(100svh - 100px);display:flex;flex-direction:column;justify-content:center}
+.select{position:relative;overflow:hidden;padding:34px 0 30px;min-height:calc(100svh - 100px);display:flex;flex-direction:column;justify-content:center}
 .select::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(42% 52% at 66% 50%,rgba(215,136,58,.28),rgba(239,230,214,0) 70%)}
 .bigname{position:absolute;left:0;right:0;top:50%;transform:translateY(-55%);z-index:-1;text-align:center;font:400 clamp(90px,17vw,250px)/.85 var(--display);text-transform:uppercase;color:transparent;-webkit-text-stroke:1.5px rgba(27,20,16,.13);white-space:nowrap;overflow:hidden;pointer-events:none;transition:opacity .3s var(--ease)}
 .bigname.swap{opacity:0}
