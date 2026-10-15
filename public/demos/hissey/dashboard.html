@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Hissey Owner Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ultra&family=Oswald:wght@500;600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.db{padding-block:40px 80px}
+.dtop{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.dtop h1{font-size:clamp(34px,5vw,56px)}
+.dtop p{color:var(--muted);margin-top:6px}
+.ctl{display:flex;gap:8px;flex-wrap:wrap}
+.sample{margin-top:18px;padding:10px 14px;border-radius:6px;background:#fff1d6;border:1px solid #e0b25e;font-size:14.5px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:24px}
+.k{background:var(--paper3);border:1px solid var(--line);border-radius:10px;padding:18px}
+.k small{display:block;font:500 12px var(--label);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.k b{display:block;font:400 40px/1.1 var(--display);margin-top:6px;font-variant-numeric:tabular-nums}
+.k span{font-size:13.5px;color:var(--muted)}
+.leak{margin-top:16px;background:var(--ink);color:var(--cream);border-radius:10px;padding:20px}
+.leak small{font:600 12px var(--label);letter-spacing:.18em;text-transform:uppercase;color:var(--whiskey2)}
+.leak p{margin-top:6px;font-size:18px}
+.panels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
+.pn{background:var(--paper3);border:1px solid var(--line);border-radius:10px;padding:18px;min-width:0}
+.pn h2{font:600 14px var(--label);letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}
+.pn.wide{grid-column:span 2}
+table{width:100%;border-collapse:collapse;font-size:14.5px;font-variant-numeric:tabular-nums}
+th{text-align:left;font:500 12px var(--label);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:6px 4px;border-bottom:1px solid var(--line)}
+td{padding:7px 4px;border-bottom:1px solid var(--line)}
+td.n,th.n{text-align:right}
+.bar{display:grid;grid-template-columns:minmax(0,1fr) 50px;gap:10px;align-items:center;font-size:14.5px;margin:7px 0}
+.bar i{display:block;height:8px;border-radius:4px;background:var(--whiskey);margin-top:4px}
+.bar b{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+.chart{overflow-x:auto}
+.chart svg{width:100%;min-width:520px;height:180px}
+.legend{display:flex;gap:16px;font-size:13px;color:var(--muted);margin-top:6px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+@media(max-width:860px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.panels{grid-template-columns:minmax(0,1fr)}.pn.wide{grid-column:auto}}
+</style>
+</head>
+<body>
+<div class="preview">Owner dashboard · counts only, no customer details are stored.</div>
+<main class="wrap db">
+ <div class="dtop"><div><h1>Store dashboard</h1><p id="range">Last 30 days</p></div>
+  <div class="ctl"><button class="btn btn-g sm" data-d="7">7 days</button><button class="btn btn-p sm" data-d="30">30 days</button><button class="btn btn-g sm" data-d="90">90 days</button><button class="btn btn-g sm" id="sm">Sample data</button></div></div>
+ <p class="sample" id="sbanner" hidden>Showing sample data for a walkthrough. These are not real visits.</p>
+ <div class="kpis">
+  <div class="k"><small>Visits</small><b id="kv">–</b><span>page views</span></div>
+  <div class="k"><small>Buy clicks</small><b id="kb">–</b><span>sent to checkout</span></div>
+  <div class="k"><small>Buy rate</small><b id="kr">–</b><span>of product views</span></div>
+  <div class="k"><small>Messages</small><b id="km">–</b><span>contact + restock asks</span></div>
+ </div>
+ <div class="leak"><small>This month's improvement</small><p id="leak">Waiting for data.</p></div>
+ <div class="panels">
+  <div class="pn wide"><h2>Daily</h2><div class="chart" id="chart"></div><div class="legend"><span><i style="background:#c9b89c"></i>Visits</span><span><i style="background:#b5651d"></i>Buy clicks</span></div></div>
+  <div class="pn wide"><h2>Products</h2><table><thead><tr><th>Product</th><th class="n">Views</th><th class="n">Buy clicks</th><th class="n">Rate</th></tr></thead><tbody id="prods"></tbody></table></div>
+  <div class="pn"><h2>Where buy clicks happen</h2><div id="pos"></div></div>
+  <div class="pn"><h2>Traffic sources</h2><div id="src"></div></div>
+  <div class="pn"><h2>Phone vs desktop</h2><div id="dev"></div></div>
+  <div class="pn"><h2>Hero swipes &amp; filters</h2><div id="eng"></div></div>
+ </div>
+</main>
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  let days = 30, sample = false;
+  const SAMPLE = (() => {
+    const d = [], now = Date.now();
+    for (let i = 29; i >= 0; i--) { const v = 60 + Math.round(40 * Math.sin(i / 4) + (i % 7 === 5 ? 50 : 0)); d.push({ day: new Date(now - i * 864e5).toISOString().slice(0, 10), views: v, buys: Math.round(v * .045) }); }
+    return { totals: { views: d.reduce((a, x) => a + x.views, 0), buys: d.reduce((a, x) => a + x.buys, 0), pviews: 1180, msgs: 9 }, daily: d,
+      products: [['the-goblin', 240, 19], ['batman-bronc-tee', 210, 6], ['buck-em-camo', 160, 12], ['the-hulk', 150, 11], ['bumblebee', 120, 10], ['heather-bronc-tee', 110, 3]],
+      positions: [['hero', 31], ['product', 24], ['sticky', 17]], sources: [['instagram.com', 820], ['direct', 640], ['tiktok-ad', 380], ['facebook-ad', 210], ['google.com', 90]],
+      devices: [['mobile', 1710], ['desktop', 430]], engage: [['hero_swipe', 512], ['filter_use', 140]] };
+  })();
+  const bars = (el, rows) => { const m = Math.max(1, ...rows.map(r => r[1])); $(el).innerHTML = rows.length ? rows.map(([k, v]) => `<div class="bar"><div>${k}<i style="width:${(v / m * 100).toFixed(1)}%"></i></div><b>${v}</b></div>`).join('') : '<p style="color:var(--muted)">No data yet.</p>'; };
+  const chart = d => {
+    const W = 600, H = 170, m = Math.max(1, ...d.map(x => x.views)), bw = W / d.length;
+    $('#chart').innerHTML = `<svg viewBox="0 0 ${W} ${H + 10}" preserveAspectRatio="none" role="img" aria-label="Daily visits and buy clicks">${d.map((x, i) => `<rect x="${i * bw + 1}" y="${H - x.views / m * H}" width="${bw - 2}" height="${x.views / m * H}" fill="#c9b89c"><title>${x.day}: ${x.views} visits</title></rect><rect x="${i * bw + bw * .25}" y="${H - x.buys / m * H}" width="${bw * .5}" height="${x.buys / m * H}" fill="#b5651d"><title>${x.day}: ${x.buys} buy clicks</title></rect>`).join('')}<line x1="0" x2="${W}" y1="${H}" y2="${H}" stroke="#1b1410" stroke-opacity=".3"/></svg>`;
+  };
+  const render = s => {
+    const t = s.totals, rate = t.pviews ? (t.buys / t.pviews * 100) : 0;
+    $('#kv').textContent = t.views.toLocaleString(); $('#kb').textContent = t.buys.toLocaleString(); $('#kr').textContent = rate.toFixed(1) + '%'; $('#km').textContent = t.msgs;
+    chart(s.daily);
+    $('#prods').innerHTML = s.products.length ? s.products.map(([h, v, b]) => `<tr><td><a href="product-page/${h}.html">${h.replace(/-/g, ' ')}</a></td><td class="n">${v}</td><td class="n">${b}</td><td class="n">${v ? (b / v * 100).toFixed(1) : 0}%</td></tr>`).join('') : '<tr><td colspan="4" style="color:var(--muted)">No product views yet.</td></tr>';
+    bars('#pos', s.positions); bars('#src', s.sources); bars('#dev', s.devices); bars('#eng', s.engage);
+    const cand = s.products.filter(p => p[1] >= 20).map(p => [p[0], p[2] / p[1], p[1]]).sort((a, b) => a[1] - b[1])[0];
+    $('#leak').textContent = cand ? `${cand[0].replace(/-/g, ' ')} gets ${cand[2]} views but only ${(cand[1] * 100).toFixed(1)}% click Buy. Next step: add a second photo and a size note to that page, then compare next month.` : 'Not enough product views yet to name the biggest leak.';
+  };
+  const load = async () => {
+    $('#sbanner').hidden = !sample; $('#range').textContent = `Last ${days} days`;
+    if (sample) return render(SAMPLE);
+    try {
+      const r = await fetch(`/api/stats?site=hissey&days=${days}`); if (!r.ok) throw 0; render(await r.json());
+    } catch (_) { $('#leak').textContent = 'Could not load live stats. Use "Sample data" to preview the layout.'; }
+  };
+  document.querySelectorAll('[data-d]').forEach(b => b.onclick = () => { days = +b.dataset.d; document.querySelectorAll('[data-d]').forEach(x => x.className = 'btn sm ' + (x === b ? 'btn-p' : 'btn-g')); load(); });
+  $('#sm').onclick = () => { sample = !sample; $('#sm').className = 'btn sm ' + (sample ? 'btn-p' : 'btn-g'); load(); };
+  load();
+})();
+</script>
+</body>
+</html>
