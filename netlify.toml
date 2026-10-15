@@ -6,6 +6,29 @@
   NEXT_TELEMETRY_DISABLED = "1"
   NODE_ENV = "production"
 
+# Dura-Coating preview: live catalog from their Shopify store through a same-origin proxy
+[[redirects]]
+  from = "/demos/dura/api/products.json"
+  to = "https://dura-coating.com/products.json?limit=250"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/demos/dura-v2/api/products.json"
+  to = "https://dura-coating.com/products.json?limit=250"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/demos/dura-v2/*"
+  to = "/demos/dura-v2/404.html"
+  status = 404
+
+[[redirects]]
+  from = "/demos/dura/*"
+  to = "/demos/dura/404.html"
+  status = 404
+
 [[redirects]]
   from = "/*"
   to = "/404.html"

@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Dura-Coating | Pick your protection</title>
+<meta name="description" content="Dura-Dressing tire coating, graphene and ceramic coatings and pro detailing products. Made in the USA.">
+<meta name="theme-color" content="#08080a">
+<link rel="icon" href="https://dura-coating.com/cdn/shop/files/favicon_32x32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08080a;--bg2:#0f0f12;--card:#141418;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.16);--fg:#f4f4f5;--dim:#a1a1aa;--dim2:#71717a;--red:#e2231a;--red2:#ff4b3e;--ease:cubic-bezier(.2,.75,.2,1);
+  --display:'Archivo',Impact,'Arial Narrow',sans-serif;--body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16.5px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit}
+[hidden]{display:none!important}
+h1,h2,h3{font-family:var(--display);font-stretch:85%;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;line-height:.92;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{width:min(1240px,100%);margin:0 auto;padding-inline:20px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font:700 12px var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--red)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:12px 26px;border-radius:999px;font:800 15px var(--display);font-stretch:100%;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .15s var(--ease),background .2s,box-shadow .2s}
+.btn:active{transform:scale(.97)}
+.btn-r{background:var(--red);color:#fff;box-shadow:0 10px 30px rgba(226,35,26,.35)}.btn-r:hover{background:var(--red2)}
+.btn-g{background:rgba(255,255,255,.05);color:#fff;border-color:var(--line2)}.btn-g:hover{background:rgba(255,255,255,.1)}
+.btn:disabled{opacity:.5;cursor:default}
+.preview{position:relative;z-index:60;background:#fff4d6;color:#5b4300;font-size:12.5px;text-align:center;padding:5px 12px}
+
+/* nav */
+.nav{position:fixed;top:calc(38px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:50;width:min(1200px,calc(100% - 24px));display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 8px 8px 18px;border-radius:999px;background:rgba(18,18,22,.6);border:1px solid var(--line);-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);transition:top .3s var(--ease)}
+.nav.up{top:calc(12px + env(safe-area-inset-top,0px))}
+.nav .logo img{height:28px;width:auto}
+.nav .links{display:flex;gap:2px}
+.nav .links a{text-decoration:none;color:var(--dim);font:600 14px var(--body);padding:9px 14px;border-radius:999px}
+.nav .links a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.nav .btn{min-height:40px;padding:8px 18px;font-size:13px}
+@media(max-width:860px){.nav .links{display:none}}
+
+/* CHARACTER SELECT HERO */
+.select{position:relative;min-height:100svh;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;justify-content:center;padding:120px 0 40px}
+.select::before{content:"";position:absolute;inset:0;z-index:-3;background:radial-gradient(50% 55% at 62% 52%,rgba(226,35,26,.32),rgba(8,8,10,0) 70%),radial-gradient(40% 40% at 20% 20%,rgba(255,255,255,.04),transparent 70%)}
+/* perspective floor grid like a game stage */
+.floor{position:absolute;left:-20%;right:-20%;bottom:-6%;height:46%;z-index:-2;background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:64px 64px;transform:perspective(600px) rotateX(62deg);transform-origin:50% 100%;-webkit-mask:linear-gradient(0deg,#000 10%,transparent 85%);mask:linear-gradient(0deg,#000 10%,transparent 85%);animation:floor 6s linear infinite}
+@keyframes floor{to{background-position:0 64px,0 0}}
+.bigname{position:absolute;left:0;right:0;top:50%;transform:translateY(-58%);z-index:-1;text-align:center;font:900 clamp(90px,19vw,300px)/.8 var(--display);font-stretch:75%;text-transform:uppercase;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.09);white-space:nowrap;overflow:hidden;pointer-events:none;transition:opacity .35s}
+.bigname.swap{opacity:0}
+.sel-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:center;gap:20px}
+.info{position:relative;z-index:3}
+.info .count{font:700 13px var(--body);letter-spacing:.2em;color:var(--dim2)}
+.info .count b{color:#fff}
+.info .cat{display:inline-block;margin-top:18px;font:700 12px var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--red2);border:1px solid rgba(226,35,26,.4);background:rgba(226,35,26,.08);padding:6px 12px;border-radius:999px}
+.info h1{font-size:clamp(46px,6.2vw,92px);margin-top:16px}
+.info .tag{color:#d4d4d8;font-size:clamp(17px,1.5vw,19px);margin-top:16px;max-width:30em}
+.info ul{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:10px}
+.info li{display:flex;gap:12px;color:#d4d4d8}
+.info li::before{content:"";flex:none;width:18px;height:18px;margin-top:3px;border-radius:5px;background:var(--red);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 6 9 17l-5-5' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat,linear-gradient(#000,#000);-webkit-mask-composite:source-out;mask-composite:exclude;background:var(--red)}
+.price{display:flex;align-items:baseline;gap:12px;margin-top:24px;font:800 40px/1 var(--display);font-stretch:85%}
+.price small{font:500 14px var(--body);color:var(--dim)}
+.price s{font:600 20px var(--display);color:var(--dim2)}
+.price em{font:700 13px var(--body);font-style:normal;background:#16a34a;color:#fff;padding:4px 9px;border-radius:999px;align-self:center}
+.info .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.info .t-in{transition:opacity .35s var(--ease),transform .45s var(--ease)}
+.info.swap .t-in{opacity:0;transform:translateY(12px)}
+.stage{position:relative;height:min(68svh,620px);touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.stage:active{cursor:grabbing}
+.item{position:absolute;left:50%;top:46%;width:min(440px,74%);aspect-ratio:1;transition:transform .7s var(--ease),opacity .6s var(--ease),filter .6s var(--ease);will-change:transform}
+.item .fl{width:100%;height:100%;display:grid;place-items:center}
+.item.c .fl{animation:bob 4.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-22px) rotate(1.5deg)}}
+.item img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 30px 40px rgba(0,0,0,.55));pointer-events:none;-webkit-user-drag:none}
+.shadow{position:absolute;left:50%;top:calc(46% + min(220px,37%));width:min(300px,50%);height:34px;transform:translate(-50%,0);border-radius:50%;background:radial-gradient(rgba(0,0,0,.7),transparent 70%);animation:shadow 4.2s ease-in-out infinite;z-index:-1}
+@keyframes shadow{50%{transform:translate(-50%,0) scale(.78);opacity:.6}}
+.ring{position:absolute;left:50%;top:calc(46% + min(232px,39%));width:min(420px,70%);height:70px;transform:translate(-50%,-50%);border-radius:50%;border:2px solid rgba(226,35,26,.55);box-shadow:0 0 40px rgba(226,35,26,.45),inset 0 0 30px rgba(226,35,26,.25);z-index:-1}
+.ctrl{position:absolute;left:0;right:0;bottom:4%;display:flex;justify-content:center;align-items:center;gap:14px;z-index:4}
+.arrow{width:54px;height:54px;border-radius:50%;border:1px solid var(--line2);background:rgba(20,20,24,.7);color:#fff;display:grid;place-items:center;cursor:pointer;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:background .2s,transform .15s}
+.arrow:hover{background:var(--red)}.arrow:active{transform:scale(.92)}
+.arrow svg{width:22px;height:22px}
+.hint{font:600 12px var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--dim2)}
+.roster{display:flex;gap:10px;justify-content:center;margin-top:22px;overflow-x:auto;scrollbar-width:none;padding:6px 20px 4px;scroll-snap-type:x proximity}
+.roster::-webkit-scrollbar{display:none}
+.roster button{flex:none;width:64px;height:64px;border-radius:16px;border:1px solid var(--line);background:var(--card);padding:6px;cursor:pointer;transition:border-color .2s,transform .2s,background .2s;scroll-snap-align:center}
+.roster button img{width:100%;height:100%;object-fit:contain}
+.roster button[aria-current=true]{border-color:var(--red);background:#1e1416;transform:translateY(-4px)}
+.roster button:hover{border-color:var(--line2)}
+@media(max-width:900px){
+  .select{padding-top:104px}
+  .sel-grid{grid-template-columns:minmax(0,1fr);gap:0}
+  .stage{order:-1;height:min(46svh,400px)}
+  .item{width:min(320px,70%)}
+  .info{text-align:left}
+  .info h1{font-size:clamp(40px,11vw,60px);margin-top:10px}
+  .info .cat{margin-top:10px}
+  .price{font-size:34px}
+  .info .btns .btn{flex:1 1 auto}
+  .ctrl{bottom:0}
+}
+
+/* strip */
+.strip{border-block:1px solid var(--line);overflow:hidden;padding:18px 0;background:var(--bg2)}
+.strip .t{display:flex;width:max-content;animation:marq 34s linear infinite}
+.strip span{display:flex;align-items:center;gap:40px;padding-right:40px;font:800 clamp(18px,2.2vw,26px) var(--display);font-stretch:80%;text-transform:uppercase;letter-spacing:.02em;white-space:nowrap}
+.strip span i{width:9px;height:9px;background:var(--red);transform:rotate(45deg)}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* pinned tire story */
+section.sec{padding-block:clamp(90px,12vw,150px)}
+.h{max-width:860px}
+.h h2{font-size:clamp(44px,6.4vw,96px);margin-top:16px}
+.h p{color:var(--dim);font-size:clamp(17px,1.5vw,19px);margin-top:18px;max-width:36em}
+.pin{position:relative;height:300vh}
+.pin .stick{position:sticky;top:0;height:100svh;display:grid;align-items:center;overflow:hidden}
+.story{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:50px;align-items:center}
+.steps3{display:grid;gap:26px;margin-top:30px}
+.s3{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 18px;opacity:.25;transition:opacity .5s var(--ease)}
+.s3.on{opacity:1}
+.s3 b{grid-row:span 2;font:900 64px/.8 var(--display);font-stretch:75%;color:var(--red);min-width:1.1em}
+.s3 h3{font-size:clamp(30px,3.4vw,46px)}
+.s3 p{color:var(--dim)}
+.visual{position:relative;aspect-ratio:1;border-radius:32px;overflow:hidden;background:#111;border:1px solid var(--line)}
+.visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .6s var(--ease),transform 1.2s var(--ease);opacity:0;transform:scale(1.08)}
+.visual img.on{opacity:1;transform:scale(1)}
+.visual .lbl{position:absolute;left:18px;bottom:18px;font:700 12px var(--body);letter-spacing:.14em;text-transform:uppercase;background:rgba(0,0,0,.6);padding:7px 12px;border-radius:999px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+@media(max-width:900px){.pin{height:auto}.pin .stick{position:static;height:auto;padding:90px 0}.story{grid-template-columns:minmax(0,1fr)}.s3{opacity:1}.visual{aspect-ratio:4/3}}
+
+/* vehicle picker */
+.veh{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:50px}
+.vb{position:relative;border-radius:28px;border:1px solid var(--line);background:linear-gradient(180deg,#17171b,#101013);padding:26px;text-align:left;color:#fff;cursor:pointer;display:grid;gap:10px;overflow:hidden;transition:border-color .25s,transform .25s var(--ease)}
+.vb:hover{border-color:rgba(226,35,26,.6);transform:translateY(-6px)}
+.vb img{height:180px;width:100%;object-fit:contain;transition:transform .5s var(--ease)}
+.vb:hover img{transform:scale(1.06) translateY(-6px)}
+.vb small{font:700 12px var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--red2)}
+.vb h3{font-size:30px}
+.vb p{color:var(--dim);font-size:15px}
+.vb .go{font:800 13px var(--display);font-stretch:100%;letter-spacing:.08em;text-transform:uppercase;color:#fff;display:flex;gap:8px;align-items:center}
+@media(max-width:760px){.veh{grid-template-columns:minmax(0,1fr)}}
+
+/* coating years */
+.years{position:relative;margin-top:60px;border-top:1px solid var(--line)}
+.yr{display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:20px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);text-decoration:none;transition:background .25s,padding .3s var(--ease)}
+.yr:hover{background:rgba(255,255,255,.02);padding-left:12px}
+.yr b{font:900 52px/.9 var(--display);font-stretch:75%;color:#fff}
+.yr b small{font-size:20px;color:var(--dim2)}
+.yr h3{font-size:clamp(22px,2.4vw,30px)}
+.yr p{color:var(--dim);font-size:15px;margin-top:4px}
+.yr .bar{width:min(240px,26vw);height:6px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden}
+.yr .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7f1d1d,var(--red));border-radius:6px;transition:width 1.2s var(--ease)}
+.yr.in .bar i{width:var(--w)}
+@media(max-width:700px){.yr{grid-template-columns:80px minmax(0,1fr)}.yr .bar{grid-column:1/-1;width:100%}.yr b{font-size:40px}}
+
+/* quote */
+.quote{position:relative;border-radius:36px;overflow:hidden;border:1px solid var(--line);min-height:520px;display:grid;align-items:end}
+.quote img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.quote::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(8,8,10,.95),rgba(8,8,10,.2) 70%)}
+.quote .q{position:relative;z-index:2;padding:clamp(24px,5vw,60px);max-width:900px}
+.quote blockquote{margin:0;font:800 clamp(28px,3.6vw,52px)/1 var(--display);font-stretch:85%;text-transform:uppercase}
+.quote cite{display:block;margin-top:18px;font-style:normal;color:var(--dim)}
+
+/* guarantee + cta */
+.cta{text-align:center;border-radius:36px;border:1px solid var(--line2);padding:clamp(30px,6vw,80px) 20px;background:radial-gradient(60% 80% at 50% 0%,rgba(226,35,26,.25),transparent 65%),var(--bg2)}
+.cta h2{font-size:clamp(44px,7vw,110px)}
+.cta p{color:var(--dim);margin:18px auto 0;max-width:34em}
+.cta .btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:24px;overflow:hidden;margin-top:40px}
+.facts div{background:var(--bg);padding:26px}
+.facts b{display:block;font:900 clamp(40px,5vw,64px)/.9 var(--display);font-stretch:75%}
+.facts span{color:var(--dim);font-size:15px}
+@media(max-width:700px){.facts{grid-template-columns:minmax(0,1fr)}}
+footer{padding:60px 0 40px;color:var(--dim2);font-size:14.5px;border-top:1px solid var(--line);margin-top:60px}
+footer .row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+footer nav{display:flex;gap:18px;flex-wrap:wrap}
+footer a{text-decoration:none;color:var(--dim)}footer a:hover{color:#fff}
+footer img{height:30px;width:auto}
+
+.rv{opacity:0;transform:translateY(26px);filter:blur(8px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease)}
+.rv.in{opacity:1;transform:none;filter:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none;filter:none}.pin{height:auto}.pin .stick{position:static;height:auto;padding:90px 0}.s3{opacity:1}}
+</style>
+</head>
+<body>
+<div class="preview">Preview by Helping Hands Systems · Version 3 · Prices load live; checkout opens Dura-Coating's real store.</div>
+<header class="nav" id="nav">
+ <a class="logo" href="#top" aria-label="Dura-Coating home"><img src="https://dura-coating.com/cdn/shop/files/duracoating-logo-reversed.png?width=420" alt="Dura-Coating Technology" width="140" height="35"></a>
+ <nav class="links" aria-label="Main"><a href="#top">Products</a><a href="#tires">Tire coating</a><a href="#coatings">Paint coatings</a><a href="../dura-v2/shop.html">Shop all</a></nav>
+ <a class="btn btn-r" href="../dura-v2/shop.html">Shop</a>
+</header>
+
+<main id="top">
+<section class="select" aria-label="Choose a product">
+ <div class="floor" aria-hidden="true"></div>
+ <div class="bigname" id="bigname" aria-hidden="true">Tire Kit</div>
+ <div class="wrap sel-grid">
+  <div class="info" id="info" aria-live="polite">
+   <p class="count t-in"><b id="ix">01</b> / <span id="tot">12</span> · Choose your product</p>
+   <span class="cat t-in" id="cat">Tire coating</span>
+   <h1 class="t-in" id="name">Total Tire Kit</h1>
+   <p class="tag t-in" id="tag"></p>
+   <ul class="t-in" id="pts"></ul>
+   <div class="price t-in" id="price">&nbsp;</div>
+   <div class="btns t-in"><a class="btn btn-r" id="buy" href="#" target="_blank" rel="noopener">Add to cart</a><a class="btn btn-g" id="more" href="#">Details</a></div>
+  </div>
+  <div class="stage" id="stage" aria-roledescription="carousel">
+   <div class="ring" aria-hidden="true"></div><div class="shadow" aria-hidden="true"></div>
+   <div id="items"></div>
+   <div class="ctrl"><button class="arrow" id="prev" aria-label="Previous product"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m15 6-6 6 6 6"/></svg></button><span class="hint">Swipe</span><button class="arrow" id="next" aria-label="Next product"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></button></div>
+  </div>
+ </div>
+ <div class="roster" id="roster" role="tablist" aria-label="All products"></div>
+</section>
+
+<div class="strip" aria-hidden="true"><div class="t"><span>Made in the USA<i></i>Dura-Sure money-back guarantee<i></i>Tested through 15 washes<i></i>Free shipping over $150<i></i></span><span>Made in the USA<i></i>Dura-Sure money-back guarantee<i></i>Tested through 15 washes<i></i>Free shipping over $150<i></i></span></div></div>
+
+<section class="pin" id="tires">
+ <div class="stick"><div class="wrap story">
+  <div>
+   <p class="eyebrow">Dura-Dressing tire coating</p>
+   <div class="h" style="margin-top:0"><h2>Tire shine that survives the car wash.</h2></div>
+   <div class="steps3" id="s3">
+    <div class="s3"><b>1</b><h3>Strip it</h3><p>Dura-Cleaner takes off old dressing and road film so the coating can bond to clean rubber.</p></div>
+    <div class="s3"><b>2</b><h3>Coat it</h3><p>Brush on a thin coat of Dura-Dressing. It dries and cures much like paint: no oils, no silicones, no sling.</p></div>
+    <div class="s3"><b>3</b><h3>Drive on</h3><p>It stays washable and waterproof for months. Reload with a thin coat every 6–10 weeks.</p></div>
+   </div>
+  </div>
+  <div class="visual" id="vis">
+   <img class="on" src="https://dura-coating.com/cdn/shop/files/home-video-thumb.jpg?width=1100" alt="A coated tire next to buckets of Dura-Cleaner" loading="lazy">
+   <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/e893098a-edcd-415c-a1f5-084fa6e7a3ed.webp" alt="Dura-Dressing Total Tire Kit" loading="lazy" style="object-fit:contain;padding:8%;background:radial-gradient(circle,#2a1214,#111 70%)">
+   <img src="https://dura-coating.com/cdn/shop/files/IMG_1031-Edited_1.png?width=1100" alt="Dura-Coating products" loading="lazy">
+   <span class="lbl" id="vlbl">Step 1 · Strip</span>
+  </div>
+ </div></div>
+</section>
+
+<section class="sec" style="padding-top:clamp(40px,6vw,80px)">
+ <div class="wrap">
+  <div class="h rv"><p class="eyebrow">Pick your vehicle</p><h2>The right kit, sized for your ride.</h2><p>Each kit has the dressing your vehicle needs plus the cleaner that makes it stick. Tap one to see it up close.</p></div>
+  <div class="veh">
+   <button class="vb rv" data-jump="dura-dressing-total-tire-kit"><img src="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/e893098a-edcd-415c-a1f5-084fa6e7a3ed.webp" alt="" loading="lazy"><small>Car</small><h3>Total Tire Kit</h3><p>1 standard car · 4 oz Dura-Dressing</p><span class="go">See it →</span></button>
+   <button class="vb rv" data-jump="dura-dressing-total-tire-kit-xl-kit"><img src="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/8312249f-c431-4f8e-8732-2d97d94f2fd3.webp" alt="" loading="lazy"><small>SUV / Pickup</small><h3>Total Tire Kit XL</h3><p>1 SUV, 1 pickup or 2 small cars · 8 oz</p><span class="go">See it →</span></button>
+   <button class="vb rv" data-jump="dura-dressing-big-rig-truck-motor-coach-tire-kit"><img src="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/5e8f524d-0206-4fb0-b860-97b199a4e3c1.webp" alt="" loading="lazy"><small>Semi / RV</small><h3>Big Rig Kit</h3><p>Semi tractor or motor coach · 16 oz</p><span class="go">See it →</span></button>
+  </div>
+ </div>
+</section>
+
+<section class="sec" id="coatings" style="background:var(--bg2);border-block:1px solid var(--line)">
+ <div class="wrap">
+  <div class="h rv"><p class="eyebrow">Paint coatings</p><h2>How long do you want it to last?</h2><p>Graphene and ceramic coatings, from a first coating to the longest-rated one they make. Prices on the live store.</p></div>
+  <div class="years" id="years">
+   <a class="yr rv" style="--w:17%" href="../dura-v2/product.html#graph-lite-1-5-2-year-10h-coating-30ml"><b>1.5<small>yr</small></b><div><h3>Graph-Lite graphene</h3><p>The entry coating. A good first coating, or for a car you trade often.</p></div><span class="bar"><i></i></span></a>
+   <a class="yr rv" style="--w:33%" href="../dura-v2/product.html#graph-flash-3-year-graphene-10h-coating"><b>3<small>yr</small></b><div><h3>Graph-Flash graphene</h3><p>Three years of protection for a daily driver.</p></div><span class="bar"><i></i></span></a>
+   <a class="yr rv" style="--w:56%" href="../dura-v2/product.html#graph-x6-6-year-graphene-coating-60ml"><b>5<small>yr</small></b><div><h3>Graph-X6 graphene</h3><p>Five years, in sizes from one car to shop quantities.</p></div><span class="bar"><i></i></span></a>
+   <a class="yr rv" style="--w:78%" href="../dura-v2/product.html#7yr-nano-x-7-50ml"><b>7<small>yr</small></b><div><h3>X-7 graphene ceramic</h3><p>Seven-year graphene ceramic for long-term owners.</p></div><span class="bar"><i></i></span></a>
+   <a class="yr rv" style="--w:100%" href="../dura-v2/product.html#10h-nano-pro-9-yr-ceramic-50ml"><b>9+<small>yr</small></b><div><h3>10H PURE ceramic</h3><p>The longest-rated coating they make.</p></div><span class="bar"><i></i></span></a>
+  </div>
+ </div>
+</section>
+
+<section class="sec">
+ <div class="wrap">
+  <div class="quote rv"><img src="https://dura-coating.com/cdn/shop/files/home-video-thumb.jpg?width=1600" alt="" loading="lazy"><div class="q"><p class="eyebrow">Real results</p><blockquote style="margin-top:16px">"It's not possible it can be this good. I swear I look at it every day and say 'not possible.'"</blockquote><cite>Will Sterns, Chicago</cite></div></div>
+ </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+ <div class="wrap">
+  <div class="cta rv">
+   <p class="eyebrow">Dura-Sure guarantee</p>
+   <h2 style="margin-top:16px">Try it on your own tires.</h2>
+   <p>If it doesn't outperform what you use now, their 100% money-back guarantee covers you. Free US ground shipping over $150 with code FREESHIP.</p>
+   <div class="btns"><a class="btn btn-r" href="#top">Pick a product</a><a class="btn btn-g" href="../dura-v2/shop.html">Shop everything</a></div>
+   <div class="facts"><div><b>USA</b><span>Made and tested by a family-run detail shop in Naples, Florida.</span></div><div><b>15</b><span>Washes every batch of Dura-Dressing is tested through.</span></div><div><b>100%</b><span>Money-back Dura-Sure guarantee.</span></div></div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer><div class="wrap row"><img src="https://dura-coating.com/cdn/shop/files/duracoating-logo-reversed.png?width=420" alt="Dura-Coating Technology" width="120" height="30"><nav aria-label="Footer"><a href="../dura-v2/shop.html">Shop</a><a href="../dura-v2/tire-coating.html">Tire coating</a><a href="../dura-v2/ceramic-coatings.html">Coatings</a><a href="../dura-v2/help.html">Help</a><a href="https://www.instagram.com/duracoatingtechnology/" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/@duracoatingtechnology" target="_blank" rel="noopener">YouTube</a></nav><span>© 2026 Dura-Coating Technology · Naples, FL · Preview redesign</span></div></footer>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const CF = 'https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/';
+  const P = [
+    { h: 'dura-dressing-total-tire-kit', img: 'e893098a-edcd-415c-a1f5-084fa6e7a3ed', cat: 'Tire coating', name: 'Total Tire Kit', big: 'Tire Kit', tag: 'Everything one car needs to coat its tires: Dura-Cleaner, Dura-Dressing, the brush and applicator.', pts: ['Fits 1 standard car', '4 oz Dura-Dressing', 'Dries like paint, won\'t sling'] },
+    { h: 'dura-dressing-total-tire-kit-xl-kit', img: '8312249f-c431-4f8e-8732-2d97d94f2fd3', cat: 'Tire coating', name: 'Total Tire Kit XL', big: 'Tire Kit XL', tag: 'The bigger kit for an SUV, a pickup or two small cars.', pts: ['Fits 1 SUV, 1 pickup or 2 cars', '8 oz Dura-Dressing', 'Cleaner, brush and applicators'] },
+    { h: 'dura-dressing-big-rig-truck-motor-coach-tire-kit', img: '5e8f524d-0206-4fb0-b860-97b199a4e3c1', cat: 'Tire coating', name: 'Big Rig Kit', big: 'Big Rig', tag: 'Sized for a semi tractor or a 45 ft motor coach.', pts: ['Semi or motor coach', '16 oz Dura-Dressing', 'Gallon of Dura-Cleaner'] },
+    { h: 'dura-dressing-re-load-kit', img: '40b55c20-7db5-40fe-81ae-22f40d8c3cc3', cat: 'Tire coating', name: 'Re-Load Kit', big: 'Re-Load', tag: 'Already coated? Add a thin coat every 6–10 weeks to keep the shine and UV protection fresh.', pts: ['For tires already coated', 'Dressing and applicator', 'Takes a minute or two per tire'] },
+    { h: '24oz-dura-cleaner-tire-cleaner-degreaser-worlds-best', img: 'd89ebde3-4a81-4e41-9eae-ed14976557c8', cat: 'Cleaner', name: 'Dura-Cleaner', big: 'Cleaner', tag: 'Strips old dressing, browning and road film so the coating bonds to clean rubber.', pts: ['Step 1 before coating', 'Also a deep clean every 2–3 months', 'Tire cleaner & degreaser'] },
+    { h: 'graph-x6-6-year-graphene-coating-60ml', img: '7270bb32-3830-4a96-a620-10469375ed72', cat: 'Paint coating', name: 'Graph-X6', big: 'Graph-X6', tag: 'A graphene paint coating for long-term gloss and protection.', pts: ['Graphene coating', 'Sizes from one car to shop quantities', 'Prep with polish first'] },
+    { h: '10h-nano-pro-9-yr-ceramic-50ml', img: '6291259c-b569-4c8e-810b-45bc3273b81f', cat: 'Paint coating', name: '10H PURE', big: '10H Pure', tag: 'The longest-rated ceramic coating they make.', pts: ['Rated 9+ years', 'Ceramic coating', 'Auto, marine and aviation'] },
+    { h: 'step-1-compound-step-2-final-polish-combo', img: 'cfa037ba-3c72-47c0-b978-b06d7b9c4f97', cat: 'Polish', name: 'Compound + Polish', big: 'Polish', tag: 'Step 1 compound and Step 2 final polish to take out swirls before you coat.', pts: ['Two-step correction', 'Prep for any coating', 'Use by hand or machine'] },
+    { h: 'crazy-suds-ceramic-safe-auto-wash-16oz', img: 'd40361b1-0289-4f2d-8ada-d153e45944fd', cat: 'Wash', name: 'Crazy Suds', big: 'Suds', tag: 'A coating-safe car wash that keeps a ceramic or graphene coating working.', pts: ['Ceramic-safe wash', 'Thick, slick suds', '16 oz concentrate'] },
+    { h: 'ice-hybrid-ceramic-spray-sealant-16oz', img: '27c3cc32-8e4c-45c2-a696-a29cdce1e3a1', cat: 'Protect', name: 'Cryo Spray', big: 'Cryo', tag: 'A ceramic spray wax and sealant to top up gloss between washes.', pts: ['Spray on, wipe off', 'Tops up a coating', 'Ceramic spray wax & sealant'] },
+    { h: 'wheel-brite-1-gallon-ready-to-use', img: '12812bf4-6d64-4160-8f52-8013486bc322', cat: 'Wheels', name: 'Wheel Cleaner', big: 'Wheels', tag: 'Ready-to-use wheel cleaner for brake dust and road grime.', pts: ['Ready to use', 'For brake dust and grime', 'Gallon size'] },
+    { h: 'engine-bay-cleaner-no-touch-no-scrub', img: 'ad8457d0-60aa-4306-b253-52e6e323770d', cat: 'Engine bay', name: 'No Touch X-Treme', big: 'Engine', tag: 'An engine bay cleaner made to work without scrubbing.', pts: ['No touch, no scrub', 'Engine bay cleaner', 'Spray, wait, rinse'] }
+  ];
+  const N = P.length;
+  $('#tot').textContent = String(N).padStart(2, '0');
+  const items = $('#items'), roster = $('#roster');
+  items.innerHTML = P.map((p, i) => `<div class="item" data-i="${i}"><div class="fl"><img src="${CF + p.img}.webp" alt="${p.name}" ${i > 2 && i < N - 2 ? 'loading="lazy"' : ''} draggable="false"></div></div>`).join('');
+  roster.innerHTML = P.map((p, i) => `<button role="tab" data-i="${i}" aria-label="${p.name}"><img src="${CF + p.img}.webp" alt="" loading="lazy"></button>`).join('');
+  const els = $$('.item'), tabs = $$('#roster button');
+  let cur = 0, drag = 0;
+  const off = i => { let d = i - cur; if (d > N / 2) d -= N; if (d < -N / 2) d += N; return d; };
+  const layout = (dx = 0) => {
+    const w = $('#stage').clientWidth, sp = Math.min(w * 0.46, 330);
+    els.forEach((el, i) => {
+      const d = off(i), x = d * sp + dx, a = Math.abs(d);
+      el.classList.toggle('c', d === 0);
+      el.style.transform = `translate(calc(-50% + ${x}px), -50%) scale(${d === 0 ? 1 : 0.58}) rotateY(${d * -18}deg)`;
+      el.style.opacity = a === 0 ? 1 : a === 1 ? (d < 0 && w > 860 ? .14 : .38) : 0;
+      el.style.filter = a === 0 ? 'none' : 'blur(2px) brightness(.7)';
+      el.style.zIndex = 10 - a;
+      el.style.pointerEvents = a <= 1 ? 'auto' : 'none';
+      el.style.transition = dx ? 'none' : '';
+    });
+  };
+  // live catalog prices
+  let CAT = {};
+  const money = n => '$' + Number(n).toFixed(2);
+  fetch('../dura-v2/api/products.json', { headers: { Accept: 'application/json' } }).then(r => r.json()).then(j => {
+    j.products.forEach(p => { CAT[p.handle] = p.variants.map(v => ({ id: v.id, p: +v.price, c: v.compare_at_price ? +v.compare_at_price : 0, a: v.available !== false, t: v.title })).sort((a, b) => a.p - b.p); });
+    info(true);
+  }).catch(() => {});
+  const info = quiet => {
+    const p = P[cur], box = $('#info');
+    const paint = () => {
+      $('#ix').textContent = String(cur + 1).padStart(2, '0'); $('#cat').textContent = p.cat; $('#name').textContent = p.name; $('#tag').textContent = p.tag;
+      $('#pts').innerHTML = p.pts.map(t => `<li>${t}</li>`).join('');
+      const vs = CAT[p.h], buy = $('#buy');
+      if (vs && vs.length) {
+        const v = vs.find(x => x.a) || vs[0], multi = new Set(vs.map(x => x.p)).size > 1;
+        $('#price').innerHTML = `${multi ? '<small>from</small>' : ''}${money(v.p)}${v.c > v.p ? `<s>${money(v.c)}</s><em>Save ${Math.round((1 - v.p / v.c) * 100)}%</em>` : ''}`;
+        if (multi) { buy.textContent = 'Choose size'; buy.href = '../dura-v2/product.html#' + p.h; buy.removeAttribute('target'); }
+        else { buy.textContent = v.a ? 'Add to cart' : 'Sold out'; buy.href = `https://dura-coating.com/cart/${v.id}:1`; buy.target = '_blank'; }
+      } else { $('#price').innerHTML = '<small>See price on the store</small>'; buy.textContent = 'View product'; buy.href = '../dura-v2/product.html#' + p.h; buy.removeAttribute('target'); }
+      $('#more').href = '../dura-v2/product.html#' + p.h;
+      const bn = $('#bigname'); bn.textContent = p.big;
+      tabs.forEach((t, i) => t.setAttribute('aria-current', i === cur));
+    };
+    if (quiet || still) { paint(); return; }
+    box.classList.add('swap'); $('#bigname').classList.add('swap');
+    setTimeout(() => { paint(); box.classList.remove('swap'); $('#bigname').classList.remove('swap'); }, 260);
+  };
+  const go = i => { cur = (i + N) % N; layout(); info(); const t = tabs[cur]; t && t.scrollIntoView({ block: 'nearest', inline: 'center', behavior: still ? 'auto' : 'smooth' }); };
+  $('#prev').onclick = () => go(cur - 1); $('#next').onclick = () => go(cur + 1);
+  tabs.forEach(t => t.onclick = () => go(+t.dataset.i));
+  els.forEach(el => el.addEventListener('click', () => { if (Math.abs(drag) < 6) { const d = off(+el.dataset.i); if (d) go(cur + d); } }));
+  $$('[data-jump]').forEach(b => b.onclick = () => { const i = P.findIndex(p => p.h === b.dataset.jump); if (i >= 0) { scrollTo({ top: 0, behavior: still ? 'auto' : 'smooth' }); go(i); } });
+  addEventListener('keydown', e => { if (e.target.closest('input,textarea')) return; if (scrollY < innerHeight) { if (e.key === 'ArrowRight') go(cur + 1); if (e.key === 'ArrowLeft') go(cur - 1); } });
+  // swipe / drag
+  const st = $('#stage'); let x0 = null, id = null;
+  st.addEventListener('pointerdown', e => { if (e.target.closest('.arrow')) return; x0 = e.clientX; drag = 0; id = e.pointerId; });
+  addEventListener('pointermove', e => { if (x0 === null || e.pointerId !== id) return; drag = e.clientX - x0; if (Math.abs(drag) > 6) layout(drag * .9); });
+  const end = () => { if (x0 === null) return; const d = drag; x0 = null; if (d < -50) go(cur + 1); else if (d > 50) go(cur - 1); else layout(); setTimeout(() => drag = 0, 0); };
+  addEventListener('pointerup', end); addEventListener('pointercancel', end);
+  addEventListener('resize', () => layout());
+  layout(); info(true);
+
+  // nav + pinned tire story
+  const nav = $('#nav'), pin = $('#tires'), s3 = $$('.s3'), vis = $$('#vis img'), vl = $('#vlbl'), labels = ['Step 1 · Strip', 'Step 2 · Coat', 'Step 3 · Drive on'];
+  const tick = () => {
+    nav.classList.toggle('up', scrollY > 40);
+    if (!still && innerWidth > 900) {
+      const r = pin.getBoundingClientRect(), p = Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
+      const k = Math.min(2, Math.floor(p * 3));
+      s3.forEach((s, i) => s.classList.toggle('on', i <= k)); vis.forEach((v, i) => v.classList.toggle('on', i === k)); vl.textContent = labels[k];
+    }
+  };
+  addEventListener('scroll', () => requestAnimationFrame(tick), { passive: true }); tick();
+  if ('IntersectionObserver' in window && !still) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -10% 0px' });
+    $$('.rv').forEach(el => io.observe(el));
+  } else $$('.rv').forEach(el => el.classList.add('in'));
+})();
+</script>
+</body>
+</html>
