@@ -1,0 +1,155 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Analyze my home | Helping Hands Solar</title><meta name="description" content="Map your roof, add your electric bill and see a solar panel layout with production and coverage estimates."><meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#081627">
+<meta property="og:title" content="Analyze my home | Helping Hands Solar"><meta property="og:description" content="Map your roof, add your electric bill and see a solar panel layout with production and coverage estimates.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/brand.css"><link rel="stylesheet" href="assets/vendor/leaflet.css"><link rel="stylesheet" href="assets/analyze.css">
+</head><body class="no-mbar" data-page="analyze">
+<div class="pnote">Preview site by Helping Hands Systems. Requests sent here go to our test inbox while we finish setup.</div><header class="hdr"><div class="wrap">
+<a class="logo" href="index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#0E2238"/><circle cx="20" cy="16" r="6" fill="#22CDBB"/><path d="M9 30h22M12 25.5h16" stroke="#22CDBB" stroke-width="2.6" stroke-linecap="round"/><path d="M20 5v3M31 16h-3M9 16h3M27.8 8.2l-2.1 2.1M12.2 8.2l2.1 2.1" stroke="#22CDBB" stroke-width="2" stroke-linecap="round" opacity=".7"/></svg><span>Helping Hands Solar<small>Understand it first</small></span></a>
+<nav class="main" aria-label="Main"><div class="dd"><button type="button" aria-expanded="false">Solar Solutions</button><div class="dd-m"><a href="residential-solar.html">Residential solar<small>How it works, roof fit, equipment, warranties</small></a><a href="solar-battery.html">Solar + battery<small>Storage, everyday use, backup options</small></a><a href="how-it-works.html">How it works<small>From analysis to switching on</small></a></div></div><a href="financing.html">Financing</a><a href="solar-battery.html#backup">Backup Power</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
+<a class="btn btn-p arrow" href="analyze.html" data-cta="header">Analyze my home</a>
+<button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</div><nav class="mnav" id="mnav" hidden aria-label="Mobile"><p>Solar solutions</p><a href="residential-solar.html">Residential solar</a><a href="solar-battery.html">Solar + battery</a><a href="how-it-works.html">How it works</a><p>More</p><a href="financing.html">Financing</a><a href="solar-battery.html#backup">Backup Power</a><a href="about.html">About</a><a href="contact.html">Contact</a><a class="btn btn-p arrow" style="margin-top:16px" href="analyze.html" data-cta="mnav">Analyze my home</a></nav></header>
+<main id="main"><div class="az">
+  <div class="az-map-col">
+    <div class="az-map-wrap">
+      <div id="az-map" class="az-map" aria-label="Satellite map of your home"></div>
+      <div class="az-map-empty" id="az-empty"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><p>Your roof shows up here once we find your address.</p></div></div>
+      <div class="az-maptip" id="az-maptip" hidden>Drag the <b>pin</b> onto your roof. The panels follow it.</div>
+      <div class="az-stats" id="az-stats" hidden>
+        <div><b class="tnum" id="st-panels">0</b><span>panels</span></div>
+        <div><b class="tnum" id="st-kw">0</b><span>kW system</span></div>
+        <div><b class="tnum" id="st-cov">0%</b><span>of yearly use</span></div>
+      </div>
+    </div>
+    <p class="az-attr">Imagery © Esri &amp; contributors · Search © OpenStreetMap contributors. Imagery may be out of date; a person confirms your roof.</p>
+  </div>
+
+  <div class="az-panel">
+    <div class="az-resume" id="az-resume" hidden><p><b>Welcome back.</b> Pick up your analysis where you left off?</p><div><button class="btn btn-p" type="button" id="az-resume-yes">Continue</button><button class="btn btn-ghost" type="button" id="az-resume-no">Start over</button></div></div>
+
+    <ol class="az-prog" id="az-prog" aria-label="Progress">
+      <li data-s="1">Address</li><li data-s="2">Roof</li><li data-s="3">Bill</li><li data-s="4">Goals</li><li data-s="5">Layout</li><li data-s="6">Proposal</li>
+    </ol>
+
+    <!-- 1 address -->
+    <section class="az-step" data-step="1" aria-labelledby="h1-s1">
+      <h1 id="h1-s1">Analyze my home</h1>
+      <p class="muted">Start with your address. We'll put your roof on a satellite map.</p>
+      <form id="az-find" class="az-find">
+        <label class="f"><span class="lbl">Home address</span><input id="az-addr" name="addr" autocomplete="street-address" placeholder="123 Main St, City, State" required></label>
+        <button class="btn btn-p arrow" type="submit" id="az-find-btn">Find my home</button>
+      </form>
+      <div class="az-results" id="az-results" hidden></div>
+      <p class="az-err" id="az-err" hidden></p>
+      <div class="az-edu" id="az-rent" hidden><b>Renting?</b><p>Solar usually needs the owner's approval. You can still run the analysis and share it with your landlord, or ask us about portable backup options.</p></div>
+    </section>
+
+    <!-- 2 roof -->
+    <section class="az-step" data-step="2" hidden aria-labelledby="h-s2">
+      <h2 id="h-s2">Confirm your roof</h2>
+      <p class="muted" id="az-found"></p>
+      <p>Drag the pin onto the roof section you'd put panels on, then turn the panels to line up with the roof edge.</p>
+      <label class="f"><span class="lbl">Line up the panels <span class="muted" id="az-ang-v">0°</span></span><input type="range" id="az-angle" min="-90" max="90" step="1" value="0"></label>
+      <fieldset class="az-chips" data-k="facing"><legend>Which way does that roof section face?</legend>
+        <button type="button" data-v="S">South</button><button type="button" data-v="W">West</button><button type="button" data-v="E">East</button><button type="button" data-v="N">North</button><button type="button" data-v="flat">Flat</button><button type="button" data-v="unsure">Not sure</button>
+      </fieldset>
+      <fieldset class="az-chips" data-k="shade"><legend>Shade on it during the day?</legend>
+        <button type="button" data-v="none">Little or none</button><button type="button" data-v="some">Some</button><button type="button" data-v="lots">A lot</button>
+      </fieldset>
+      <div class="az-edu" id="edu-roof"></div>
+      <div class="az-nav"><button class="btn btn-ghost" type="button" data-back>Back</button><button class="btn btn-p arrow" type="button" id="az-roof-ok">This is my roof</button></div>
+    </section>
+
+    <!-- 3 bill -->
+    <section class="az-step" data-step="3" hidden aria-labelledby="h-s3" id="bill">
+      <h2 id="h-s3">Add your electric bill</h2>
+      <p class="muted">A recent bill tells us your rate plan and how much power you use. A photo is fine.</p>
+      <label class="f"><span class="lbl">Your utility</span><select id="az-util"><option value="">Choose…</option>
+        <optgroup label="Arizona"><option>APS</option><option>SRP</option><option>TEP</option></optgroup>
+        <optgroup label="Texas"><option>AEP Texas</option><option>CenterPoint</option><option>Oncor</option><option>CPS Energy</option><option>Austin Energy</option><option>Electric co-op (Texas)</option></optgroup>
+        <option>Other</option></select></label>
+      <div class="az-edu" id="edu-util" hidden></div>
+      <label class="az-drop" id="az-drop"><input type="file" id="az-file" accept="image/*,application/pdf"><span class="az-drop-in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg><b id="az-file-name">Upload a photo or PDF of your bill</b><small>Stays private. Used only for your analysis.</small></span></label>
+      <div class="az-usage">
+        <p class="lbl">Confirm your usage <span class="muted">(we check it against your bill)</span></p>
+        <div class="az-seg" role="group" aria-label="Usage type"><button type="button" data-u="kwh" aria-pressed="true">Monthly kWh</button><button type="button" data-u="usd" aria-pressed="false">Monthly bill $</button></div>
+        <label class="f"><span class="lbl" id="az-use-lbl">Average kWh per month</span><input id="az-use" type="number" inputmode="numeric" min="50" max="20000" placeholder="e.g. 1,200"></label>
+        <p class="muted small" id="az-use-note">Find it on your bill as "kWh used". If you only know the dollar amount, switch to Monthly bill $.</p>
+      </div>
+      <p class="az-err" id="az-bill-err" hidden></p>
+      <div class="az-nav"><button class="btn btn-ghost" type="button" data-back>Back</button><button class="btn btn-p arrow" type="button" id="az-bill-ok">Continue</button></div>
+    </section>
+
+    <!-- 4 goals -->
+    <section class="az-step" data-step="4" hidden aria-labelledby="h-s4">
+      <h2 id="h-s4">What matters most?</h2>
+      <fieldset class="az-chips big" data-k="goal"><legend>Your main goal</legend>
+        <button type="button" data-v="save">Lower my costs</button><button type="button" data-v="backup">Outage protection</button><button type="button" data-v="both">Both</button>
+      </fieldset>
+      <fieldset class="az-chips" data-k="battery"><legend>Battery storage</legend>
+        <button type="button" data-v="yes">Yes, include it</button><button type="button" data-v="maybe">Show me</button><button type="button" data-v="no">Not now</button>
+      </fieldset>
+      <label class="az-check"><input type="checkbox" id="az-gen"> Plan for a backup generator for long outages</label>
+      <fieldset class="az-chips" data-k="pay"><legend>How would you like to pay?</legend>
+        <button type="button" data-v="cash">Cash</button><button type="button" data-v="loan">Loan</button><button type="button" data-v="lease">Lease</button><button type="button" data-v="ppa">PPA</button><button type="button" data-v="unsure">Not sure</button>
+      </fieldset>
+      <div class="az-edu" id="edu-goal" hidden></div>
+      <div class="az-nav"><button class="btn btn-ghost" type="button" data-back>Back</button><button class="btn btn-p arrow" type="button" id="az-goal-ok">See my layout</button></div>
+    </section>
+
+    <!-- 5 layout -->
+    <section class="az-step" data-step="5" hidden aria-labelledby="h-s5">
+      <h2 id="h-s5">Your proposed layout</h2>
+      <p class="muted" id="az-sum"></p>
+      <div class="az-chips" id="az-presets" role="group" aria-label="Size presets"><button type="button" data-k="small" data-f="0.7">Smaller budget</button><button type="button" data-k="match" data-f="1" aria-pressed="true">Match my use</button><button type="button" data-k="ev" data-f="1.3">Room for an EV</button></div>
+      <label class="f"><span class="lbl">System size <b class="tnum" id="az-kw-v"></b></span><input type="range" id="az-kw" min="0.43" max="25.8" step="0.43"></label>
+      <div class="az-out">
+        <div><span>Panels</span><b class="tnum" id="o-panels"></b></div>
+        <div><span>Yearly production</span><b class="tnum" id="o-prod"></b></div>
+        <div><span>Your yearly use</span><b class="tnum" id="o-use"></b></div>
+        <div><span>Roof area</span><b class="tnum" id="o-area"></b></div>
+      </div>
+      <div class="az-cov"><div class="az-cov-bar"><i id="o-covbar"></i><span class="az-cov-100"></span></div><p><b class="tnum" id="o-cov"></b> of your yearly electricity <span class="muted" id="o-cov-note"></span></p></div>
+      <div class="az-edu" id="edu-layout"></div>
+      <div class="az-price"><b>Price and savings</b><p class="muted">These depend on equipment, your exact rate plan and financing, so they come in your reviewed proposal rather than a guess here.</p></div>
+      <details class="az-assume"><summary>Assumptions behind these numbers</summary><ul id="o-assume"></ul></details>
+      <div class="az-nav"><button class="btn btn-ghost" type="button" data-back>Back</button><button class="btn btn-p arrow" type="button" id="az-layout-ok">Request my proposal</button></div>
+    </section>
+
+    <!-- 6 proposal -->
+    <section class="az-step" data-step="6" hidden aria-labelledby="h-s6">
+      <h2 id="h-s6">Get your reviewed proposal</h2>
+      <p class="muted">A person checks your roof, reads your bill and sends a proposal with exact equipment, price and payment options. No obligation.</p>
+      <form id="az-form" class="stack" novalidate>
+        <p class="hp"><label>Leave empty <input name="hp" tabindex="-1" autocomplete="off"></label></p>
+        <div class="fgrid"><label class="f"><span class="lbl">Name</span><input name="name" autocomplete="name" required></label>
+        <label class="f"><span class="lbl">Mobile phone</span><input name="phone" type="tel" autocomplete="tel" required></label></div>
+        <label class="f"><span class="lbl">Email</span><input name="email" type="email" autocomplete="email" required></label>
+        <label class="f"><span class="lbl">Anything we should know? <span class="muted">(optional)</span></span><textarea name="notes" placeholder="Roof age, HOA, EV or pool, outages in your area…"></textarea></label>
+        <label class="consent"><input type="checkbox" name="sms_consent" value="yes"><span>Text me about my proposal. Message and data rates may apply. Reply STOP to opt out. Not required.</span></label>
+        <p class="az-err" id="az-send-err" hidden></p>
+        <div class="az-nav"><button class="btn btn-ghost" type="button" data-back>Back</button><button class="btn btn-p" type="submit" id="az-send">Request my proposal</button></div>
+      </form>
+      <div class="az-done" id="az-done" hidden>
+        <h3>Your analysis is in.</h3>
+        <p>A person will review your roof and bill and reach out with your proposal. Your layout is saved on this device, so you can come back to it.</p>
+        <a class="btn btn-ghost arrow" href="financing.html">Compare financing while you wait</a>
+      </div>
+    </section>
+  </div>
+</div>
+</main>
+<footer><div class="wrap"><div class="cols">
+<div class="stack"><a class="logo" href="index.html" style="color:#fff"><svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#0E2238"/><circle cx="20" cy="16" r="6" fill="#22CDBB"/><path d="M9 30h22M12 25.5h16" stroke="#22CDBB" stroke-width="2.6" stroke-linecap="round"/><path d="M20 5v3M31 16h-3M9 16h3M27.8 8.2l-2.1 2.1M12.2 8.2l2.1 2.1" stroke="#22CDBB" stroke-width="2" stroke-linecap="round" opacity=".7"/></svg><span>Helping Hands Solar<small>Understand it first</small></span></a>
+<p>Solar, batteries and backup power explained plainly, with an analysis of your own home before anyone asks for a decision. A division of Helping Hands Systems, Victoria, TX.</p></div>
+<div><h4>Solutions</h4><a href="residential-solar.html">Residential solar</a><a href="solar-battery.html">Solar + battery</a><a href="solar-battery.html#backup">Backup power</a><a href="financing.html">Compare financing</a></div>
+<div><h4>Start here</h4><a href="analyze.html">Analyze my home</a><a href="how-it-works.html">How it works</a><a href="index.html#faq">FAQs</a></div>
+<div><h4>Company</h4><a href="about.html">About</a><a href="contact.html">Contact</a><a href="contact.html">Talk with us</a><a href="privacy.html">Privacy &amp; terms</a></div>
+</div><p class="fine">Estimates on this site are planning numbers, not offers. Final system size, price and savings come from a reviewed proposal based on your roof, your utility and your bill. © 2026 Helping Hands Systems.</p></div></footer>
+<div class="mbar"><a class="btn btn-p arrow" href="analyze.html" data-cta="sticky">Analyze my home</a><a class="btn btn-o" href="contact.html" data-cta="sticky-talk">Talk</a></div>
+<script src="assets/site.js" defer></script><script src="assets/vendor/leaflet.js" defer></script><script src="assets/analyze.js" defer></script>
+</body></html>
