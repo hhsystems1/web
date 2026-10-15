@@ -139,7 +139,7 @@
   const cf = $('#cform');
   if (cf) {
     const item = new URLSearchParams(location.search).get('item');
-    if (item) cf.message.value = `Is ${item.replace(/-/g, ' ')} coming back in stock?`;
+    if (item) cf.message.value = `Is ${item} coming back in stock?`;
     let started = false, done = false, lastF = '';
     cf.addEventListener('input', e => { if (!started) { started = true; track('form_start'); } lastF = e.target.name || lastF; });
     addEventListener('pagehide', () => { if (started && !done) track('form_abandon', lastF); });
