@@ -46,10 +46,9 @@
         const d = off(i), a = Math.abs(d);
         el.classList.toggle('c', d === 0);
         el.style.transform = `translate(calc(-50% + ${d * sp + dx}px), -50%) scale(${d === 0 ? 1 : 0.55}) rotate(${d * 6}deg)`;
-        el.style.opacity = a === 0 ? 1 : a === 1 ? (d < 0 && w > 600 ? .12 : .32) : 0;
-        el.style.filter = a === 0 ? 'none' : 'blur(1.5px) sepia(.4)';
-        el.style.zIndex = 10 - a;
-        el.style.pointerEvents = a <= 1 ? 'auto' : 'none';
+        el.style.opacity = a === 0 ? 1 : 0;
+                el.style.zIndex = 10 - a;
+        el.style.pointerEvents = a === 0 ? 'auto' : 'none';
         el.style.transition = dx ? 'none' : '';
       });
     };
