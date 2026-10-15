@@ -120,6 +120,7 @@ section.sec{padding-block:clamp(70px,9vw,120px)}
 .journey-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px;align-items:start}
 .journey .sticky{position:sticky;top:40px}
 .journey .sticky img{width:min(240px,60%);margin-top:28px}
+@media(max-width:640px){.path{padding-left:40px}.stop{grid-template-columns:minmax(0,1fr);padding:18px}.stop .tag{justify-self:start;order:-1}.stop::before{left:-40px;width:33px;height:33px}.path::before,.path .fill{left:15px}.stop h3{font-size:20px}}
 @media(max-width:900px){.journey-grid{grid-template-columns:minmax(0,1fr);gap:20px}.journey .sticky{position:static}.journey .sticky img{display:none}}
 
 /* divisions */
