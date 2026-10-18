@@ -9,6 +9,7 @@
 <link rel="canonical" href="https://helpinghandssystems.com/">
 <meta property="og:type" content="website"><meta property="og:title" content="Helping Hands Systems"><meta property="og:description" content="We fix the gaps where businesses lose customers."><meta property="og:image" content="/hhs-og.png">
 <meta name="theme-color" content="#04070f">
+<script>document.documentElement.classList.add('js')</script>
 <link rel="icon" href="/favicon-32x32.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -44,56 +45,41 @@ a{color:inherit}
 .btn-line{background:transparent;box-shadow:inset 0 0 0 1.5px var(--line2)}
 @media(hover:hover) and (pointer:fine){.btn:hover{background:var(--blue-h)}.btn-line:hover{background:rgba(255,255,255,.06)}}
 
-/* the field of points sits behind everything */
-#scene{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity 900ms ease}
-#scene.on{opacity:1}
-#scene canvas{width:100%;height:100%;display:block}
-main,footer{position:relative;z-index:1}
-
-/* chapter rail: where you are in the story */
-.rail{position:fixed;z-index:40;left:var(--g);top:50%;transform:translateY(-50%);display:none;list-style:none;margin:0;padding:0;gap:14px;flex-direction:column;transition:opacity 300ms ease}
-.rail.hide{opacity:0;pointer-events:none}
-.rail a{display:flex;align-items:center;gap:12px;text-decoration:none;font:500 13.5px var(--body);color:var(--dim2);transition:color 200ms ease}
-.rail a::before{content:"";width:22px;height:2px;border-radius:2px;background:var(--line2);transition:width 260ms var(--ease),background-color 260ms ease}
-.rail a.cur{color:var(--fg)}
-.rail a.cur::before{width:40px;background:var(--turq)}
-@media(min-width:1180px){.rail{display:flex}}
-.chip{position:fixed;z-index:45;top:var(--nav);left:var(--g);right:var(--g);height:3px;border-radius:3px;background:var(--line);overflow:hidden;opacity:0;transition:opacity 300ms ease}
-.chip.on{opacity:1}
-.chip i{display:block;height:100%;width:100%;background:var(--turq);transform-origin:0 50%;transform:scaleX(var(--p,0))}
-@media(min-width:1180px){.chip{display:none}}
-
-/* hero: who we are in one sentence, no form */
-.hero{min-height:100svh;display:flex;align-items:flex-end;padding-block:calc(var(--nav) + 40px) 72px}
-.hero h1{font:800 clamp(40px,7.2vw,104px)/.98 var(--display);letter-spacing:-.035em;margin:0;max-width:13ch;text-wrap:balance}
-.hero p{font-size:clamp(18px,1.6vw,21px);color:var(--dim);max-width:34em;margin:22px 0 0}
-.hero .what{display:flex;flex-wrap:wrap;gap:8px 20px;margin:26px 0 0;padding:0;list-style:none;font:500 15px var(--body);color:var(--fg)}
-.hero .what li{display:flex;align-items:center;gap:8px}
-.hero .what li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--turq)}
-.cue{margin-top:44px;width:2px;height:56px;border-radius:2px;background:var(--line2);position:relative;overflow:hidden}
-.cue::after{content:"";position:absolute;left:0;right:0;top:-40%;height:40%;background:var(--turq);animation:cue 1.8s var(--ease) infinite}
+/* the story: a phone and one line at a time, held on screen while you scroll */
+.js .story{position:relative}
+.stage{display:none}
+.js .stage{display:grid;position:sticky;top:0;height:100svh;z-index:1;grid-template-rows:minmax(0,1fr) auto;padding:calc(var(--nav) + 8px) var(--g) 0;overflow:hidden}
+.phone{position:relative;min-height:0}
+.phone canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.flat{position:absolute;left:50%;top:50%;height:94%;aspect-ratio:600/1300;transform:translate(-50%,-50%) rotate(-3deg);border-radius:12% / 5.5%;background:#1a2030;padding:2.2%;box-shadow:0 40px 80px -30px rgba(0,0,0,.8),inset 0 0 0 1.5px rgba(255,255,255,.1)}
+.flat canvas{position:static;width:100%;height:100%;border-radius:10% / 4.8%}
+.phone.is-3d .flat{display:none}
+.copy{padding-block:18px calc(56px + env(safe-area-inset-bottom,0px));min-height:38svh;display:flex;flex-direction:column;justify-content:flex-start}
+.say{font:700 clamp(28px,4.6vw,64px)/1.06 var(--display);letter-spacing:-.03em;margin:0;max-width:17ch;text-wrap:balance}
+.fix{font:500 clamp(18px,1.9vw,26px)/1.38 var(--body);color:var(--dim);margin:16px 0 0;max-width:30ch;text-wrap:pretty}
+.fix b{color:var(--turq);font-weight:600}
+.say .w,.fix .w{display:inline-block;white-space:pre}
+.copy .btn{align-self:flex-start;margin-top:24px}
+.ticks{position:absolute;right:var(--g);bottom:calc(22px + env(safe-area-inset-bottom,0px));display:flex;gap:6px}
+.ticks i{width:6px;height:6px;border-radius:50%;background:var(--line2);transition:background-color 200ms ease,transform 200ms var(--ease)}
+.ticks i.on{background:var(--turq);transform:scale(1.35)}
+.cue{width:2px;height:44px;border-radius:2px;background:var(--line2);position:relative;overflow:hidden;margin-top:26px}
+.cue::after{content:"";position:absolute;left:0;right:0;top:-40%;height:40%;background:var(--turq);animation:cue 1.6s var(--ease) infinite}
 @keyframes cue{to{top:100%}}
-@media(max-width:999px){.hero{align-items:flex-end;padding-top:46svh}}
-
-/* the story: one line at a time, held in the middle of the screen */
-.story{position:relative}
-.ch{position:relative}
-.beat{height:128svh;position:relative}
-.beat.title{height:110svh}
-.line{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;padding-inline:var(--g)}
-.line>div{width:100%;max-width:1280px;margin-inline:auto;opacity:calc(1 - var(--out,0));transform:translateY(calc(var(--out,0) * -48px));filter:blur(calc(var(--out,0) * 6px))}
-.line .in{max-width:min(15ch,100%)}
-@media(min-width:1180px){.line>div{padding-left:120px}}
-@media(max-width:999px){.line{justify-content:flex-end;padding-bottom:14svh}}
-.say{font:700 clamp(32px,5.4vw,78px)/1.04 var(--display);letter-spacing:-.03em;margin:0;max-width:16ch;text-wrap:balance}
-.fix{font:500 clamp(20px,2.3vw,32px)/1.3 var(--display);letter-spacing:-.01em;color:var(--turq);margin:22px 0 0;max-width:24ch;text-wrap:balance}
-.w{opacity:clamp(.1,calc(var(--in,1) * (var(--n,8) + 3) - var(--i,0)),1);transition:opacity 120ms linear}
-.fix .w{opacity:clamp(0,calc(var(--in2,1) * (var(--n,8) + 3) - var(--i,0)),1)}
-.title .say{font-size:clamp(52px,10vw,150px);letter-spacing:-.045em;color:transparent;-webkit-text-stroke:1.5px var(--fg)}
-.title .say .w{opacity:1}
-.title .say{background:linear-gradient(90deg,var(--fg) 0 calc(var(--in,1) * 100%),transparent 0);-webkit-background-clip:text;background-clip:text}
-.title .num{display:block;font:600 15px var(--body);color:var(--dim);margin-bottom:14px}
-@media(prefers-reduced-motion:reduce){.line>div{transform:none;filter:none}.w{transition:none}}
+@media(min-width:1000px){
+  .js .stage{grid-template-rows:none;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:center;padding:var(--nav) max(var(--g),calc((100vw - 1280px)/2 + var(--g))) 0}
+  .copy{order:-1;min-height:0;padding:0 0 40px;justify-content:center}
+  .phone{height:min(86svh,820px)}
+  .ticks{flex-direction:column;right:calc(var(--g) - 4px);top:50%;bottom:auto;transform:translateY(-50%)}
+}
+.beats{list-style:none;margin:0;padding:0}
+.js .beats{margin-top:-100svh}
+.js .beat{height:78svh}
+.js .beat:last-child{height:100svh}
+.js .beat>*{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.beat{padding:40px var(--g)}
+.beat .say{font-size:32px}
+@media(prefers-reduced-motion:reduce){.cue::after{animation:none}}
 
 /* plain sections after the story */
 .sec{padding-block:96px}
@@ -166,55 +152,19 @@ footer p{color:var(--dim2);font-size:14px;margin:18px 0 0}
 <div class="pv">Preview by Helping Hands Systems. Not public yet.</div>
 <header class="nav">
  <a class="logo" href="#top"><img src="assets/hhs-logo-dark.webp" alt="" width="30" height="30">Helping Hands Systems</a>
- <nav aria-label="Main"><a href="#who" data-ch="who">Who we are</a><a href="#what" data-ch="what">What we do</a><a href="#help" data-ch="help">Who we help</a><a href="#how" data-ch="how">How it works</a><a href="#divisions" data-ch="divisions">Divisions</a></nav>
+ <nav aria-label="Main"><a href="#divisions">Divisions</a><a href="#work">Recent work</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
  <a class="btn btn-sm" href="#contact">Get started</a>
 </header>
-<div id="scene" aria-hidden="true"></div>
-<ol class="rail" aria-label="Story chapters"><li><a href="#who" data-ch="who">Who we are</a></li><li><a href="#what" data-ch="what">What we do</a></li><li><a href="#help" data-ch="help">Who we help</a></li><li><a href="#how" data-ch="how">How it works</a></li></ol>
-<div class="chip" aria-hidden="true"><i></i></div>
-
 <main>
-<section class="hero"><div class="wrap">
- <h1>We fix the gaps where businesses lose customers.</h1>
- <p>Missed calls, slow follow-up, websites that just sit there, numbers nobody can see. Helping Hands Systems builds the systems that catch every lead and keep the work moving.</p>
- <ul class="what"><li>Websites</li><li>AI phone answering</li><li>CRM and follow-up</li><li>Owner dashboards</li><li>Solar</li></ul>
- <div class="cue" aria-hidden="true"></div>
-</div></section>
-
-<div class="story" id="story">
- <section class="ch" id="who" data-ch="who" aria-label="Who we are">
-  <div class="beat title" data-shape="hhs"><div class="line"><div><span class="num">Chapter 1 of 4</span><h2 class="say">Who we are</h2></div></div></div>
-  <div class="beat" data-shape="pin"><div class="line"><div><p class="say">Helping Hands Systems is based in Victoria, Texas.</p></div></div></div>
-  <div class="beat" data-shape="grid4"><div class="line"><div><p class="say">We build the systems behind small businesses.</p><p class="fix">The website, the phone, the follow-up and the numbers.</p></div></div></div>
-  <div class="beat" data-shape="team"><div class="line"><div><p class="say">You work with the people who build it.</p></div></div></div>
- </section>
-
- <section class="ch" id="what" data-ch="what" aria-label="What we do">
-  <div class="beat title" data-shape="cloud"><div class="line"><div><span class="num">Chapter 2 of 4</span><h2 class="say">What we do</h2></div></div></div>
-  <div class="beat" data-shape="phone"><div class="line"><div><p class="say">The phone rings after hours.</p><p class="fix">Our AI voice agent answers, books the job or takes the details, and sends it straight to you.</p></div></div></div>
-  <div class="beat" data-shape="browser"><div class="line"><div><p class="say">The website just sits there.</p><p class="fix">We build sites with quote forms, booking and payments, so visitors know what to do next.</p></div></div></div>
-  <div class="beat" data-shape="crm"><div class="line"><div><p class="say">Leads pile up in an inbox.</p><p class="fix">Every call, form and message lands in one CRM, with the next step and who owns it.</p></div></div></div>
-  <div class="beat" data-shape="dash"><div class="line"><div><p class="say">The owner is flying blind.</p><p class="fix">One dashboard shows calls, leads and jobs, and where they came from. Readable in ten seconds.</p></div></div></div>
-  <div class="beat" data-shape="sun"><div class="line"><div><p class="say">Solar pitches are confusing.</p><p class="fix">We explain power agreements and battery backup with your real bill. If it doesn’t fit, we say so.</p></div></div></div>
-  <div class="beat" data-shape="spark"><div class="line"><div><p class="say">Ideas never get done.</p><p class="fix">Sidekick is our AI helper team that plans, follows up and keeps projects moving. In development.</p></div></div></div>
- </section>
-
- <section class="ch" id="help" data-ch="help" aria-label="Who we help">
-  <div class="beat title" data-shape="team"><div class="line"><div><span class="num">Chapter 3 of 4</span><h2 class="say">Who we help</h2></div></div></div>
-  <div class="beat" data-shape="store"><div class="line"><div><p class="say">Local service businesses.</p><p class="fix">Remodelers, shops and salons that live on calls, quotes and bookings.</p></div></div></div>
-  <div class="beat" data-shape="house"><div class="line"><div><p class="say">Homeowners looking at solar.</p><p class="fix">A straight answer on power agreements and battery backup before anyone makes a commitment.</p></div></div></div>
-  <div class="beat" data-shape="box"><div class="line"><div><p class="say">Product brands.</p><p class="fix">Online stores, plus partner programs that track every referral and payout.</p></div></div></div>
-  <div class="beat" data-shape="spark"><div class="line"><div><p class="say">Small teams with big lists.</p><p class="fix">More gets done with the same people.</p></div></div></div>
- </section>
-
- <section class="ch" id="how" data-ch="how" aria-label="How it works">
-  <div class="beat title" data-shape="steps"><div class="line"><div><span class="num">Chapter 4 of 4</span><h2 class="say">How it works</h2></div></div></div>
-  <div class="beat" data-shape="steps"><div class="line"><div><p class="say">1. Find the gap.</p><p class="fix">We look at where leads come in today and where they get lost.</p></div></div></div>
-  <div class="beat" data-shape="browser"><div class="line"><div><p class="say">2. Build the fix.</p><p class="fix">Only the pieces you need, and you see a working preview before anything goes live.</p></div></div></div>
-  <div class="beat" data-shape="link"><div class="line"><div><p class="say">3. Connect it.</p><p class="fix">Website, phone, CRM and dashboard hand off to each other.</p></div></div></div>
-  <div class="beat" data-shape="dash"><div class="line"><div><p class="say">4. Measure it.</p><p class="fix">Tracking comes standard. You see what’s working, and we tune what isn’t.</p></div></div></div>
- </section>
-</div>
+<h1 class="sr-only">Helping Hands Systems: websites, AI phone answering, CRM and owner dashboards for small businesses, from Victoria, Texas</h1>
+<section class="story" id="story" aria-label="Where small businesses lose customers, and how we fix it">
+ <div class="stage" aria-hidden="true">
+  <div class="phone" id="phone"><div class="flat"><canvas id="flat"></canvas></div></div>
+  <div class="copy" id="copy"></div>
+  <div class="ticks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+ </div>
+ <ol class="beats" id="beats"><li class="beat" data-screen="incoming"><p class="say">It’s 7:42 on a Tuesday night.</p><p class="fix">You finally sat down to dinner, and the phone starts buzzing.</p></li><li class="beat" data-screen="missed"><p class="say">You let it go.</p><p class="fix">You’ll call them back in the morning. That’s what everyone does, right?</p></li><li class="beat" data-screen="search"><p class="say">Where do you think that caller went next?</p><p class="fix">Probably not to your voicemail.</p></li><li class="beat" data-screen="log"><p class="say">How many calls like that came in last month?</p><p class="fix">Have you ever actually counted them?</p></li><li class="beat" data-screen="inbox"><p class="say">And the people who filled out your website form…</p><p class="fix">How long did they wait before someone got back to them?</p></li><li class="beat" data-screen="think"><p class="say">What would change if every one of them heard back that same night?</p></li><li class="beat" data-screen="agent"><p class="say">Now it’s 7:42, and the call gets answered.</p><p class="fix">An <b>AI voice agent</b> picks up, gets the details, and sends them straight to your phone.</p></li><li class="beat" data-screen="site"><p class="say">Your website asks what they need.</p><p class="fix">A short <b>quiz-style form</b> turns a visitor into a request, instead of a back button.</p></li><li class="beat" data-screen="crm"><p class="say">Every lead lands in one place.</p><p class="fix">Each one has a <b>next step</b> and someone who owns it. Nothing waits in an inbox.</p></li><li class="beat" data-screen="dash"><p class="say">And you can finally see what’s working.</p><p class="fix">Calls, leads and jobs, and where they came from, on <b>one screen</b>.</p></li><li class="beat" data-screen="hhs"><p class="say">We’re Helping Hands Systems.</p><p class="fix">We build these systems for small businesses, from Victoria, Texas.</p></li><li class="beat" data-screen="preview"><p class="say">We find where your leads slip and build only what fixes it.</p><p class="fix">You see it <b>working</b> before anything goes live.</p></li><li class="beat" data-screen="ask"><p class="say">So what’s slipping for you right now?</p></li></ol>
+</section>
 
 <section class="sec" id="divisions" data-ch="divisions"><div class="wrap">
  <h2>One company, five divisions.</h2>
@@ -239,7 +189,7 @@ footer p{color:var(--dim2);font-size:14px;margin:18px 0 0}
  </div>
 </div></section>
 
-<section class="sec" style="padding-top:0"><div class="wrap team">
+<section class="sec" id="about" style="padding-top:0"><div class="wrap team">
  <div><h2>Based in Victoria, Texas.</h2><p class="lead">Helping Hands Systems is run by the people who build your system. No hand-offs to a call center.</p></div>
  <div class="pp"><div class="av">SC</div><div><b>Stephen Curry</b><span>Founder, systems and growth</span></div></div>
 </div></section>
@@ -288,47 +238,63 @@ footer p{color:var(--dim2);font-size:14px;margin:18px 0 0}
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const clamp = v => Math.min(1, Math.max(0, v));
 
-  // split story lines into words so each word lights up as the line arrives
-  $$('.beat .say, .beat .fix').forEach(el => {
-    if (el.closest('.title')) return;
-    const words = el.textContent.trim().split(/\s+/);
-    el.setAttribute('aria-label', el.textContent.trim());
-    el.innerHTML = words.map((w, i) => `<span class="w" aria-hidden="true" style="--i:${i}">${w}</span>`).join(' ');
-    el.style.setProperty('--n', words.length);
-  });
-
-  const beats = $$('.beat'), chs = $$('[data-ch]').filter(e => e.tagName === 'SECTION');
-  const links = $$('a[data-ch]'), rail = $('.rail'), chip = $('.chip'), story = $('#story');
+  // story: the beat nearest the reading line is the active one; text and phone change on a fixed clock,
+  // so the timing is the same whether someone scrolls slowly or flicks fast
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const beats = $$('.beat'), copy = $('#copy'), ticks = $$('.ticks i'), flat = $('#flat');
+  const E = 'cubic-bezier(.23,1,.32,1)';
+  let active = -1, phone = null, logo = null, draw = null;
+  const words = html => {
+    const t = document.createElement('template'); t.innerHTML = html; let n = 0;
+    const walk = node => [...node.childNodes].map(c => c.nodeType === 3
+      ? c.textContent.split(/(\s+)/).map(w => w.trim() ? `<span class="w" style="--i:${n++}">${w}</span>` : w).join('')
+      : `<${c.tagName.toLowerCase()}>${walk(c)}</${c.tagName.toLowerCase()}>`).join('');
+    return walk(t.content);
+  };
+  const render = i => {
+    const b = beats[i], say = b.querySelector('.say'), fix = b.querySelector('.fix');
+    copy.innerHTML = `<p class="say">${words(say.innerHTML)}</p>` + (fix ? `<p class="fix">${words(fix.innerHTML)}</p>` : '')
+      + (i === 0 ? '<div class="cue"></div>' : '') + (i === beats.length - 1 ? '<a class="btn" href="#contact" tabindex="-1">Tell us what’s slipping</a>' : '');
+    if (still) return;
+    const sw = copy.querySelectorAll('.say .w'), fw = copy.querySelectorAll('.fix .w');
+    sw.forEach((w, k) => w.animate([{ opacity: 0, transform: 'translateY(18px)', filter: 'blur(6px)' }, { opacity: 1, transform: 'none', filter: 'blur(0)' }], { duration: 460, delay: k * 34, easing: E, fill: 'backwards' }));
+    const base = Math.min(sw.length * 34, 380) + 140;
+    fw.forEach((w, k) => w.animate([{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }], { duration: 380, delay: base + k * 14, easing: E, fill: 'backwards' }));
+    const extra = copy.querySelector('.btn, .cue'); if (extra) extra.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: base + 200, fill: 'backwards' });
+  };
+  const flatShow = id => { if (draw) { draw(flat, id, { logo }); if (!still) flat.parentElement.animate([{ opacity: .4, transform: 'translate(-50%,-50%) rotate(-3deg) scale(.97)' }, { opacity: 1, transform: 'translate(-50%,-50%) rotate(-3deg)' }], { duration: 320, easing: E }); } };
+  const setActive = i => {
+    if (i === active) return;
+    const prev = active; active = i;
+    ticks.forEach((t, k) => t.classList.toggle('on', k === i));
+    const id = beats[i].dataset.screen;
+    if (phone) phone.show(id); else flatShow(id);
+    if (prev < 0 || still) { render(i); return; }
+    const old = copy.getAnimations({ subtree: true }); old.forEach(a => a.cancel());
+    let done = false; const fin = () => { if (done) return; done = true; if (active === i) render(i); };
+    copy.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(-12px)' }], { duration: 150, easing: 'ease-in' }).onfinish = fin; setTimeout(fin, 200);
+  };
   const tick = () => {
-    const vh = innerHeight;
-    for (const b of beats) {
-      const r = b.getBoundingClientRect();
-      if (r.bottom < -vh || r.top > vh * 2) continue;
-      const span = r.height - vh;                  // how long the line is held on screen
-      const t = clamp(-r.top / span);              // 0 when it arrives, 1 when it leaves
-      const arrive = clamp((vh - r.top) / vh);     // 0..1 while scrolling in
-      const line = b.firstElementChild;
-      line.style.setProperty('--in', clamp(arrive * 1.15 + t * 0.8).toFixed(3));
-      line.style.setProperty('--in2', clamp((t - 0.08) * 2.6).toFixed(3));
-      line.style.setProperty('--out', clamp((t - 0.72) / 0.28).toFixed(3));
-    }
-    // chapter state
-    const mid = vh * 0.5; let cur = '';
-    for (const c of chs) { const r = c.getBoundingClientRect(); if (r.top <= mid && r.bottom >= mid) cur = c.dataset.ch; }
-    links.forEach(a => a.classList.toggle('cur', a.dataset.ch === cur));
-    const sr = story.getBoundingClientRect(), inStory = sr.top < mid && sr.bottom > mid;
-    rail.classList.toggle('hide', !inStory); chip.classList.toggle('on', inStory);
-    chip.style.setProperty('--p', clamp((mid - sr.top) / sr.height).toFixed(3));
+    if (!beats.length) return;
+    const line = innerHeight * 0.5; let i = 0;
+    beats.forEach((b, k) => { if (b.getBoundingClientRect().top <= line) i = k; });
+    setActive(i);
   };
   let ticking = false;
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { tick(); ticking = false; }); } }, { passive: true });
-  addEventListener('resize', tick); tick();
 
-  // 3D field: only with WebGL and without Save-Data
-  const gl = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (_) { return false; } })();
-  if (gl && !(navigator.connection && navigator.connection.saveData)) {
-    import('./assets/hhs-scene.js?v=1').then(m => m.default($('#scene'), beats, { after: 'cloud' })).catch(() => {});
-  }
+  // load the screens, then the 3D phone if WebGL is available (the flat phone stays if not)
+  const img = new Image(); img.src = 'assets/hhs-logo-dark.webp';
+  const ready = Promise.all([document.fonts ? document.fonts.ready : 0, new Promise(r => { img.onload = img.onerror = r; })]);
+  import('./assets/hhs-screens.js?v=1').then(async m => {
+    await ready; logo = img.complete && img.naturalWidth ? img : null; draw = m.drawScreen; active = -1; tick();
+    const gl = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (_) { return false; } })();
+    if (!gl || (navigator.connection && navigator.connection.saveData)) return;
+    const p = await import('./assets/hhs-phone.js?v=1');
+    phone = p.default($('#phone'), { logo }); $('#phone').classList.add('is-3d');
+    phone.show(beats[Math.max(0, active)].dataset.screen);
+  }).catch(() => {});
+  tick();
 
   // contact quiz (Netlify form "contact")
   const q1 = $('#q1'), q2 = $('#q2'), ok = $('#ok'), bar = $('#qbar'), form = $('#quiz');
