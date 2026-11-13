@@ -12,10 +12,10 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          emerald: "#38b5ff",
-          green: "#1e40af", 
-          lime: "#bfdbfe",
-          blue: "#38b5ff",
+          emerald: "#50c878",
+          green: "#00702d",
+          lime: "#ecf87f",
+          forest: "#0a2e1c",
         },
         background: "var(--background)",
         foreground: "var(--foreground)",
@@ -38,8 +38,8 @@ const config: Config = {
           "100%": { transform: "translateY(0)", opacity: "1" },
         },
         glow: {
-          "0%": { boxShadow: "0 0 20px rgba(56, 181, 255, 0.3)" },
-          "100%": { boxShadow: "0 0 40px rgba(56, 181, 255, 0.6)" },
+          "0%": { boxShadow: "0 0 20px rgba(0, 112, 45, 0.3)" },
+          "100%": { boxShadow: "0 0 40px rgba(0, 112, 45, 0.6)" },
         },
       },
     },

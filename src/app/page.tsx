@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from 'react';
 import {
   Monitor,
   Calendar,
@@ -14,13 +15,16 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import NavIsland from '@/components/NavIsland';
 import HeroShowcase from '@/components/HeroShowcase';
 import Section from '@/components/Section';
 import DemoCard from '@/components/DemoCard';
+import FAQ from '@/components/FAQ';
 
-const services = [
+/* What's inside the one product — the old six services, reframed as included. */
+const included = [
   {
     icon: Monitor,
     title: "Trust-Building Website Design",
@@ -86,17 +90,8 @@ const funnelSteps = [
   }
 ];
 
-const whyChooseUs = [
-  { icon: Rocket, title: "Modern Builds", stat: "Latest Tech", description: "Built with cutting-edge technologies for maximum performance and future-proofing." },
-  { icon: Gauge, title: "Speed & Performance", stat: "Mobile-first", description: "Pages designed to load clearly and work on the devices your customers use." },
-  { icon: Shield, title: "SEO-Ready", stat: "Built-in SEO", description: "Search engine optimized from day one to help you rank higher and get found online." },
-  { icon: DollarSign, title: "Transparent Pricing", stat: "No Hidden Fees", description: "Clear, upfront pricing with no surprises. You know exactly what you're paying for." },
-  { icon: Headphones, title: "Dedicated Support", stat: "Real help", description: "Our team helps configure and maintain the system you use." },
-  { icon: Monitor, title: "Analytics Dashboard", stat: "Real-Time Data", description: "Every website includes a dashboard to track visitors, leads, and conversions." }
-];
-
 const demos = [
-  { industry: "restaurant" as const, title: "Restaurant & Cafe", description: "See how a restaurant website can showcase your menu, take reservations, and build a loyal customer base.", features: ["Online menu & ordering", "Reservation booking", "Customer reviews", "Photo gallery"], href: "https://demo926.netlify.app/" },
+  { industry: "restaurant" as const, title: "Restaurant & Cafe", description: "See how a restaurant website can showcase your menu, take reservations, and build a loyal customer base.", features: ["Online menu & ordering", "Reservation booking", "Customer reviews", "Photo gallery"], href: "/demos/restaurant" },
   { industry: "contractor" as const, title: "Contractor & Home Services", description: "Discover how a contractor site can generate quote requests, showcase projects, and grow your service area.", features: ["Quote request forms", "Project gallery", "Service area map", "Before & after showcase"], href: "/demos/contractor" },
   { industry: "medical" as const, title: "Medical & Dental Office", description: "Explore how a medical practice website can streamline appointments, build patient trust, and reduce no-shows.", features: ["Appointment booking", "Provider profiles", "Insurance info", "Patient FAQ"], href: "/demos/medical" }
 ];
@@ -107,7 +102,48 @@ const features = [
   { title: "CRM & Voice AI Integration", description: "Track page views, voice calls, and form submissions — all in one clean dashboard for total lead visibility.", points: ["AI Voice Agent", "CRM Lead Pipeline", "Conversion Analytics"] },
 ];
 
+const whyChooseUs = [
+  { icon: Rocket, title: "Modern Builds", stat: "Latest Tech", description: "Built with cutting-edge technologies for maximum performance and future-proofing." },
+  { icon: Gauge, title: "Speed & Performance", stat: "Mobile-first", description: "Pages designed to load clearly and work on the devices your customers use." },
+  { icon: Shield, title: "SEO-Ready", stat: "Built-in SEO", description: "Search engine optimized from day one to help you rank higher and get found online." },
+  { icon: DollarSign, title: "Transparent Pricing", stat: "No Hidden Fees", description: "Clear, upfront pricing with no surprises. You know exactly what you're paying for." },
+  { icon: Headphones, title: "Dedicated Support", stat: "Real help", description: "Our team helps configure and maintain the system you use." },
+  { icon: Monitor, title: "Analytics Dashboard", stat: "Real-Time Data", description: "Every website includes a dashboard to track visitors, leads, and conversions." }
+];
+
+const faqs = [
+  { question: "What exactly am I buying?", answer: "One product: a conversion-focused website for your local service business. It includes the design, lead capture and booking flows, follow-up support, and an analytics dashboard. There are no packages to decode — we scope it around your business and confirm the price before any payment." },
+  { question: "Can I try it before I buy?", answer: "Yes — try any of the 3 live demos above. They are working sites you can click through, so you see exactly what your business could look like before you talk to us." },
+  { question: "What is Rivryn?", answer: "Rivryn is the system that runs your website behind the scenes — it handles your leads, follow-up, and bookings in one place, so nothing a visitor does gets lost. Every Helping Hands website is powered by it." },
+  { question: "How long does it take to go live?", answer: "Pick a demo, tell us about your business, and we customize it with your branding and content. We confirm scope and timeline with you before building — no surprises." },
+  { question: "What happens after my site launches?", answer: "You get a dashboard to track visitors, leads, and bookings, and our team helps configure and maintain the system. If a visitor reaches out, you see it and can follow up while they are still interested." },
+];
+
+const quickStats = [
+  { value: "3", label: "live demos to try" },
+  { value: "< 24h", label: "response time" },
+  { value: "1", label: "product, no packages" },
+  { value: "24/7", label: "your site working" },
+];
+
 export default function Home() {
+  useEffect(() => {
+    const els = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    els.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   const scrollToWebsiteDemo = () => {
     document.getElementById('demos')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -117,113 +153,136 @@ export default function Home() {
       <NavIsland />
 
       <HeroShowcase
-        title="Turn Your Website Into a 24/7 Customer-Generating System"
-        subtitle="Helping Hands Systems builds conversion-focused websites for local service businesses — with live demos you can try, lead capture, booking flows, and a built-in analytics dashboard."
+        title={<>Turn your website into a <span className="lime-mark">24/7 customer-generating</span> system</>}
+        subtitle="Helping Hands Systems builds one thing: conversion-focused websites for local service businesses — with live demos you can try, lead capture, booking flows, and a built-in analytics dashboard. Powered by Rivryn."
         ctaText="See Live Demos"
         ctaAction={scrollToWebsiteDemo}
       />
 
-      {/* Powered-by Ribbon */}
+      {/* Powered-by Ribbon — Rivryn is the reference, HHS is the builder */}
       <section className="relative z-10 bg-[#faf8f5] px-6 py-5">
-        <div className="powered-lazy-susan" aria-label="Powered by Helping Hands Systems">
+        <div className="powered-lazy-susan" aria-label="Powered by Rivryn">
           <div className="powered-lazy-susan-track">
-            {Array.from({ length: 8 }).map((_, index) => (
-              <span className="powered-lazy-susan-item" key={`powered-${index}`}>
-                <span className="powered-lazy-susan-mark">✦</span>
-                Powered by Helping Hands Systems
+            {Array.from({ length: 4 }).map((_, index) => (
+              <span key={`powered-${index}`}>
+                <span className="powered-lazy-susan-item">
+                  <span className="powered-lazy-susan-mark">✦</span>
+                  Powered by Rivryn
+                </span>
+                <span className="powered-lazy-susan-item">
+                  <span className="powered-lazy-susan-mark">✦</span>
+                  Built by Helping Hands Systems
+                </span>
               </span>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Problem / Solution */}
-      <Section className="bg-gradient-to-b from-[#faf8f5] via-white to-gray-50">
+      {/* Problem / Solution — Turdy calls it out */}
+      <Section className="reveal">
+        <div className="mb-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <Image src="/turdy19.webp" alt="Turdy" width={72} height={72} className="turdy-bob-soft h-16 w-16 rounded-full border-2 border-[#00702d]/30 bg-[#e8f5ec] object-cover object-[50%_35%]" />
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#00702d]">Turdy&apos;s honest take</p>
+            <p className="mt-1 max-w-2xl text-xl font-semibold text-[#14261a]">Most business websites just sit there. Yours should work while you sleep.</p>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-stretch">
-          <div className="eclipse-border eclipse-red relative rounded-2xl border border-red-300/70 bg-red-50/50 p-8 shadow-xl shadow-red-100/20 backdrop-blur-xl">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-red-500">The problem</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-5">Most business websites just sit there.</h2>
-            <p className="text-lg text-gray-600 leading-relaxed mb-6">A lot of local business websites look fine, but they do not help the owner win the customer when someone is ready to take action.</p>
+          <div className="relative rounded-3xl border border-[#00702d]/15 bg-white p-8 shadow-xl shadow-[#00702d]/5">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#8a6d3b]">The problem</p>
+            <h2 className="mb-5 text-3xl font-bold text-gray-900 md:text-4xl">Most business websites just sit there.</h2>
+            <p className="mb-6 text-lg leading-relaxed text-gray-600">A lot of local business websites look fine, but they do not help the owner win the customer when someone is ready to take action.</p>
             <div className="space-y-3">
               {problemPoints.map((point) => (
-                <div key={point} className="flex items-start gap-3 rounded-lg border border-gray-200/60 bg-white/60 p-3 text-gray-600">
-                  <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-red-400" />
+                <div key={point} className="flex items-start gap-3 rounded-lg border border-gray-200/60 bg-[#faf8f5] p-3 text-gray-600">
+                  <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[#8a6d3b]" />
                   <span>{point}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div>
-            <div className="eclipse-border eclipse-blue relative rounded-2xl border border-blue-300/70 bg-blue-50/50 p-8 shadow-xl shadow-blue-100/20 backdrop-blur-xl">
-              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">The solution</p>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-5">What if your website actually worked for you?</h2>
-              <p className="text-lg text-gray-600 leading-relaxed mb-6">We build websites that act like a simple front-end sales system: clear offer, trust-building layout, lead capture, booking paths, and follow-up support.</p>
-              <div className="space-y-3">
-                {solutionPoints.map((point) => (
-                  <div key={point} className="flex items-start gap-3 rounded-lg border border-blue-200/50 bg-white/60 p-3 text-gray-700">
-                    <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-blue-500" />
-                    <span>{point}</span>
-                  </div>
-                ))}
-              </div>
+          <div className="forest relative rounded-3xl p-8 shadow-xl">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#ecf87f]">The solution</p>
+            <h2 className="mb-5 text-3xl font-bold text-white md:text-4xl">What if your website actually worked for you?</h2>
+            <p className="mb-6 text-lg leading-relaxed text-[#cdeeda]">We build websites that act like a simple front-end sales system: clear offer, trust-building layout, lead capture, booking paths, and follow-up support.</p>
+            <div className="space-y-3">
+              {solutionPoints.map((point) => (
+                <div key={point} className="flex items-start gap-3 rounded-lg border border-white/15 bg-white/10 p-3 text-white">
+                  <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-[#ecf87f]" />
+                  <span>{point}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </Section>
 
-      {/* Services */}
-      <Section id="services" className="bg-gradient-to-b from-white to-gray-50">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Built Specifically for Local Service Businesses</h2>
-          <p className="text-xl text-gray-500 max-w-3xl mx-auto">Contractors, shops, service providers, appointment-based businesses, and local teams need more than a brochure. They need a website that helps create calls, bookings, and follow-up.</p>
+      {/* The one product */}
+      <Section id="product" className="reveal">
+        <div className="text-center">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#00702d]">One product. No packages to decode.</p>
+          <h2 className="mx-auto max-w-3xl text-4xl font-black text-[#14261a] md:text-5xl">A website that turns visitors into customers</h2>
+          <p className="mx-auto mt-6 max-w-3xl text-xl text-gray-500">Everything below is included in the one product. Pick a demo, we customize it with your branding, and it goes live with a dashboard to prove it works.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
-            <div key={service.title} className="eclipse-border rounded-2xl">
-              <div className="group relative p-6 rounded-2xl glass hover:shadow-xl hover:shadow-blue-200/40 transition-shadow duration-200">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-blue-400 flex items-center justify-center mb-4 shadow-md shadow-blue-200/50">
-                  <service.icon size={24} className="text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{service.title}</h3>
-                <p className="text-gray-500 leading-relaxed">{service.description}</p>
-              </div>
+        <div className="mx-auto mt-10 grid max-w-4xl grid-cols-2 gap-4 lg:grid-cols-4">
+          {quickStats.map((stat) => (
+            <div key={stat.label} className="rounded-2xl border border-[#00702d]/15 bg-[#e8f5ec] p-5 text-center">
+              <div className="text-3xl font-black text-[#00702d]">{stat.value}</div>
+              <div className="mt-1 text-sm font-medium text-[#0a2e1c]">{stat.label}</div>
             </div>
           ))}
         </div>
+
+        <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {included.map((service) => (
+            <div key={service.title} className="card p-6">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#00702d] text-[#ecf87f] shadow-md shadow-[#00702d]/30">
+                <service.icon size={24} />
+              </div>
+              <h3 className="mb-3 text-xl font-semibold text-gray-900">{service.title}</h3>
+              <p className="leading-relaxed text-gray-500">{service.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-10 text-center">
+          <Link href="/packages" className="btn btn-primary">See what&apos;s inside →</Link>
+        </div>
       </Section>
 
-      {/* Funnel Flow */}      <Section className="bg-gradient-to-b from-gray-50 via-white to-gray-50">
+      {/* Funnel Flow — Turdy's checklist */}
+      <Section className="reveal">
         <div className="mx-auto mb-12 max-w-3xl text-center">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">Simple customer flow</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">From demo to your live website</h2>
-          <p className="text-xl text-gray-500 leading-relaxed">The goal is not just a nicer website. The goal is a clearer path from interest to action.</p>
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#00702d]">Turdy&apos;s checklist</p>
+          <h2 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">From demo to your live website</h2>
+          <p className="text-xl leading-relaxed text-gray-500">The goal is not just a nicer website. The goal is a clearer path from interest to action.</p>
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {funnelSteps.map((step, index) => (
-            <div key={step.title}>
-              <div className="eclipse-border relative rounded-2xl border border-gray-300/70 bg-white/60 p-6 shadow-xl shadow-gray-100/20 backdrop-blur-xl">
-                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-blue-400 text-lg font-bold text-white">{index + 1}</div>
-                <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
-                <p className="mt-3 text-gray-500 leading-relaxed">{step.description}</p>
-              </div>
+            <div key={step.title} className="card p-6">
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#00702d] text-lg font-black text-[#ecf87f]">{index + 1}</div>
+              <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
+              <p className="mt-3 leading-relaxed text-gray-500">{step.description}</p>
             </div>
           ))}
         </div>
       </Section>
 
-      {/* Demos */}
-      <Section id="demos" className="bg-gradient-to-b from-white via-gray-50 to-white">
+      {/* Demos — the inverted arc */}
+      <Section id="demos" className="reveal">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-12 max-w-3xl">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">Try it yourself</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Pick a live demo to explore</h2>
-            <p className="text-xl text-gray-500 leading-relaxed">Interact with real website demos built for your industry. Click through, test the booking flows, and see what your business could look like.</p>
+          <div className="mb-14 max-w-3xl">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#00702d]">Try it yourself</p>
+            <h2 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">Pick a live demo to explore</h2>
+            <p className="text-xl leading-relaxed text-gray-500">Interact with real website demos built for your industry. Click through, test the booking flows, and see what your business could look like. Turdy&apos;s favorite is the middle one — it rides the highest.</p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="arc-stage grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
             {demos.map((demo, index) => (
               <DemoCard key={demo.industry} {...demo} index={index} />
             ))}
@@ -232,28 +291,26 @@ export default function Home() {
       </Section>
 
       {/* Features */}
-      <Section className="bg-gradient-to-b from-white via-gray-50 to-white">
+      <Section className="reveal">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <div>
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">Built into every site</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">More than a good-looking homepage</h2>
-            <p className="text-xl text-gray-500 leading-relaxed">Your site can collect leads, book time, answer common questions, and track every visitor through your analytics dashboard.</p>
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#00702d]">Built into every site</p>
+            <h2 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">More than a good-looking homepage</h2>
+            <p className="text-xl leading-relaxed text-gray-500">Your site can collect leads, book time, answer common questions, and track every visitor through your analytics dashboard.</p>
           </div>
 
           <div className="grid grid-cols-1 gap-5">
             {features.map((highlight) => (
-              <div key={highlight.title}>
-                <div className="eclipse-border rounded-lg border border-gray-300/70 bg-white/60 p-6 shadow-xl shadow-gray-100/20 backdrop-blur-xl">
-                  <h3 className="text-2xl font-bold text-gray-900">{highlight.title}</h3>
-                  <p className="mt-3 text-gray-500 leading-relaxed">{highlight.description}</p>
-                  <div className="mt-5 flex flex-wrap gap-3">
-                    {highlight.points.map((point) => (
-                      <span key={point} className="inline-flex items-center gap-2 rounded-lg border border-blue-200/50 bg-blue-50 px-3 py-2 text-sm font-medium text-gray-700">
-                        <CheckCircle2 size={16} className="text-blue-500" />
-                        {point}
-                      </span>
-                    ))}
-                  </div>
+              <div key={highlight.title} className="card p-6">
+                <h3 className="text-2xl font-bold text-gray-900">{highlight.title}</h3>
+                <p className="mt-3 leading-relaxed text-gray-500">{highlight.description}</p>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  {highlight.points.map((point) => (
+                    <span key={point} className="inline-flex items-center gap-2 rounded-lg border border-[#00702d]/20 bg-[#e8f5ec] px-3 py-2 text-sm font-medium text-gray-700">
+                      <CheckCircle2 size={16} className="text-[#00702d]" />
+                      {point}
+                    </span>
+                  ))}
                 </div>
               </div>
             ))}
@@ -262,74 +319,76 @@ export default function Home() {
       </Section>
 
       {/* Why Choose Us */}
-      <Section className="bg-gradient-to-b from-gray-50 to-white">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Why Choose Helping Hands Systems?</h2>
-          <p className="text-xl text-gray-500 max-w-3xl mx-auto">We build websites that make follow-through easier to manage — with a dashboard to prove it.</p>
+      <Section className="reveal">
+        <div className="mb-16 text-center">
+          <h2 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">Why Choose Helping Hands Systems?</h2>
+          <p className="mx-auto max-w-3xl text-xl text-gray-500">We build websites that make follow-through easier to manage — with a dashboard to prove it.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {whyChooseUs.map((item) => (
-            <div key={item.title} className="eclipse-border rounded-2xl">
-              <div className="h-full text-center p-6 glass rounded-2xl hover:shadow-xl hover:shadow-blue-200/40 transition-shadow duration-200">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-blue-400 flex items-center justify-center mx-auto mb-4 shadow-md shadow-blue-200/50">
-                  <item.icon size={32} className="text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{item.title}</h3>
-                <div className="text-2xl font-bold text-blue-600 mb-2">{item.stat}</div>
-                <p className="text-gray-500">{item.description}</p>
+            <div key={item.title} className="card h-full p-6 text-center">
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#00702d] text-[#ecf87f] shadow-md shadow-[#00702d]/30">
+                <item.icon size={32} />
               </div>
+              <h3 className="mb-2 text-xl font-semibold text-gray-900">{item.title}</h3>
+              <div className="mb-2 text-2xl font-bold text-[#00702d]">{item.stat}</div>
+              <p className="text-gray-500">{item.description}</p>
             </div>
           ))}
         </div>
       </Section>
 
-      {/* CTA */}
-      <Section className="bg-gradient-to-b from-white to-gray-50">
-        <div className="eclipse-border rounded-3xl">
-          <div className="h-full text-center p-12 glass rounded-3xl relative overflow-hidden">
+      {/* FAQ */}
+      <Section className="reveal">
+        <FAQ items={faqs} title="Questions Turdy gets asked a lot" />
+      </Section>
+
+      {/* CTA — Turdy closes */}
+      <Section className="reveal">
+        <div className="forest relative overflow-hidden rounded-3xl p-12 text-center">
           <div className="relative z-10">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Ready to see what this could look like for your business?</h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Try a live demo, then customize it with your branding. Your new website is just a few clicks away.</p>
-            <Link href="/#demos" className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-500 via-blue-500 to-blue-400 rounded-full hover:shadow-2xl hover:shadow-blue-300/30 transition-all duration-300 hover:scale-105 border border-blue-400/30 hover:border-blue-400/60">
+            <Image src="/turdy19.webp" alt="Turdy" width={96} height={96} className="turdy-bob-soft mx-auto mb-6 h-24 w-24 rounded-full border-2 border-[#ecf87f]/50 bg-[#0f3d26] object-cover object-[50%_35%]" />
+            <h2 className="mx-auto max-w-3xl text-4xl font-black text-white md:text-5xl">Ready to see what this could look like for your business?</h2>
+            <p className="mx-auto mb-8 mt-6 max-w-2xl text-xl text-[#cdeeda]">Try a live demo, then customize it with your branding. Your new website is just a few clicks away — and Turdy will walk you through it.</p>
+            <Link href="/#demos" className="btn btn-lime text-lg">
               Explore Live Demos →
             </Link>
-          </div>
           </div>
         </div>
       </Section>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 py-12 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <footer className="forest border-t border-white/10 px-6 py-12">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-3">
             <div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Helping Hands Systems</h3>
-              <p className="text-gray-500 mb-4">Conversion-focused websites for local service businesses with live demos and analytics dashboards.</p>
-              <div className="space-y-2 text-gray-500">
-                <p>📞 (606) 660-6147</p>
-                <p>✉️ helpinghandsystems1@gmail.com</p>
+              <h3 className="mb-4 text-xl font-bold text-white">Helping Hands Systems</h3>
+              <p className="mb-4 text-[#cdeeda]">One product: conversion-focused websites for local service businesses, powered by Rivryn — the system that runs your leads, follow-up, and bookings.</p>
+              <div className="space-y-2 text-[#cdeeda]">
+                <p>Phone: (606) 660-6147</p>
+                <p>Email: helpinghandsystems1@gmail.com</p>
               </div>
             </div>
             <div>
-              <h4 className="font-semibold text-gray-900 mb-4">Live Demos</h4>
-              <ul className="space-y-2 text-gray-500">
-                <li><Link href="/demos/restaurant" className="hover:text-gray-900 transition-colors">Restaurant & Cafe</Link></li>
-                <li><Link href="/demos/contractor" className="hover:text-gray-900 transition-colors">Contractor & Home Services</Link></li>
-                <li><Link href="/demos/medical" className="hover:text-gray-900 transition-colors">Medical & Dental Office</Link></li>
+              <h4 className="mb-4 font-semibold text-white">Live Demos</h4>
+              <ul className="space-y-2 text-[#cdeeda]">
+                <li><Link href="/demos/restaurant" className="transition-colors hover:text-[#ecf87f]">Restaurant & Cafe</Link></li>
+                <li><Link href="/demos/contractor" className="transition-colors hover:text-[#ecf87f]">Contractor & Home Services</Link></li>
+                <li><Link href="/demos/medical" className="transition-colors hover:text-[#ecf87f]">Medical & Dental Office</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold text-gray-900 mb-4">Company</h4>
-              <ul className="space-y-2 text-gray-500">
-                <li><Link href="/packages" className="hover:text-gray-900 transition-colors">Website Package</Link></li>
-                <li><Link href="/contact" className="hover:text-gray-900 transition-colors">Contact</Link></li>
-                <li><Link href="/privacy" className="hover:text-gray-900 transition-colors">Privacy Policy</Link></li>
-                <li><Link href="/terms" className="hover:text-gray-900 transition-colors">Terms & Conditions</Link></li>
+              <h4 className="mb-4 font-semibold text-white">Company</h4>
+              <ul className="space-y-2 text-[#cdeeda]">
+                <li><Link href="/packages" className="transition-colors hover:text-[#ecf87f]">The Product</Link></li>
+                <li><Link href="/contact" className="transition-colors hover:text-[#ecf87f]">Contact</Link></li>
+                <li><Link href="/privacy" className="transition-colors hover:text-[#ecf87f]">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="transition-colors hover:text-[#ecf87f]">Terms & Conditions</Link></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-200 pt-8 text-center text-gray-500">
+          <div className="border-t border-white/10 pt-8 text-center text-[#cdeeda]">
             <p>&copy; 2026 Helping Hands Systems. All rights reserved.</p>
           </div>
         </div>

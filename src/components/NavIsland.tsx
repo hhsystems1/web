@@ -10,7 +10,7 @@ export default function NavIsland() {
 
   const navItems = [
     { href: '/#demos', label: 'Demos' },
-    { href: '/packages', label: 'Services' },
+    { href: '/packages', label: 'The Product' },
     { href: '/contact', label: 'Contact' },
   ];
 
@@ -22,9 +22,9 @@ export default function NavIsland() {
           style={{
             borderRadius: '9999px',
             backdropFilter: 'blur(24px)',
-            backgroundColor: 'rgba(255, 255, 255, 0.75)',
-            border: '1px solid rgba(56, 181, 255, 0.25)',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), 0 0 20px rgba(56, 181, 255, 0.08), 0 0 40px rgba(56, 181, 255, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+            backgroundColor: 'rgba(8, 31, 19, 0.82)',
+            border: '1px solid rgba(80, 200, 120, 0.35)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.28), 0 0 20px rgba(0, 112, 45, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.12)',
           }}
         >
           <div className="flex items-center justify-between w-full">
@@ -46,18 +46,17 @@ export default function NavIsland() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-gray-700 hover:text-blue-700 hover:scale-105 transition-all duration-300 relative group font-medium text-base lg:text-lg whitespace-nowrap px-3 py-2 rounded-full hover:bg-blue-50 hover:shadow-lg hover:shadow-blue-200/50"
+                  className="text-[#e8f5ec] hover:text-[#ecf87f] hover:scale-105 transition-all duration-300 relative group font-medium text-base lg:text-lg whitespace-nowrap px-3 py-2 rounded-full hover:bg-white/10 hover:shadow-lg"
                 >
                   {item.label}
-                  <span className="absolute -bottom-1 left-3 right-3 h-0.5 bg-gradient-to-r from-blue-500 to-blue-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                  <div className="absolute inset-0 rounded-full border border-transparent group-hover:border-blue-300/40 transition-all duration-300"></div>
+                  <span className="absolute -bottom-1 left-3 right-3 h-0.5 bg-[#ecf87f] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 </Link>
               ))}
             </div>
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden text-gray-700 p-2 hover:bg-blue-50 hover:text-blue-700 hover:scale-110 rounded-full transition-all duration-300 flex-shrink-0 hover:shadow-lg hover:shadow-blue-200/50"
+              className="md:hidden text-[#e8f5ec] p-2 hover:bg-white/10 hover:text-[#ecf87f] hover:scale-110 rounded-full transition-all duration-300 flex-shrink-0"
               aria-label="Toggle mobile menu"
             >
               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -67,7 +66,7 @@ export default function NavIsland() {
       </nav>
 
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl md:hidden animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-40 bg-[#081f13]/95 backdrop-blur-xl md:hidden animate-in fade-in duration-200">
           <div className="flex flex-col items-center justify-center min-h-screen space-y-6 px-4">
             {navItems.map((item, index) => (
               <div
@@ -78,7 +77,7 @@ export default function NavIsland() {
                 <Link
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-center text-xl sm:text-2xl text-gray-800 hover:text-blue-700 hover:scale-105 transition-all duration-300 py-3 px-6 rounded-full hover:bg-blue-50 hover:shadow-lg hover:shadow-blue-200/50 border border-transparent hover:border-blue-200/50"
+                  className="block text-center text-xl sm:text-2xl text-[#e8f5ec] hover:text-[#ecf87f] hover:scale-105 transition-all duration-300 py-3 px-6 rounded-full hover:bg-white/10 border border-transparent hover:border-[#50c878]/40"
                 >
                   {item.label}
                 </Link>
