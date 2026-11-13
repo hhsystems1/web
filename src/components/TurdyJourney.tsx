@@ -552,21 +552,19 @@ export default function TurdyJourney() {
       <canvas id="trail" aria-hidden="true" />
       <div id="ship" aria-hidden="true">
         <div className="bob">
-          {/* Ship + pose images are hotlinked from HHS's own hosts: the GitHub
-              connector cannot push binary files, so the .webp files live on
-              CloudFront / hhsdemos for now. Local copies are vendored in
-              staging public/ for a later in-repo commit from a real git push. */}
+          {/* Ship + pose images live in public/ — uploaded via the GitHub web
+              UI (the connector can't push binary files). */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="full"
-            src="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/c2c79907-ce04-4e07-a3ae-f8ff1b3db883.webp"
+            src="/ship-full.webp"
             alt=""
             decoding="async"
           />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="empty"
-            src="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/5f761eb9-b205-45a0-919a-107d0240f49d.webp"
+            src="/ship-empty.webp"
             alt=""
             decoding="async"
           />
@@ -574,17 +572,17 @@ export default function TurdyJourney() {
       </div>
       <div id="turdy" data-pose="wave" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="p-front" src="https://hhsdemos.netlify.app/front-office/assets/turdy-front.webp" alt="" />
+        <img className="p-front" src="/turdy-front.webp" alt="" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="p-right" src="https://hhsdemos.netlify.app/front-office/assets/turdy-right.webp" alt="" />
+        <img className="p-right" src="/turdy-right.webp" alt="" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="p-left" src="https://hhsdemos.netlify.app/front-office/assets/turdy-left.webp" alt="" />
+        <img className="p-left" src="/turdy-left.webp" alt="" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="p-back" src="https://hhsdemos.netlify.app/front-office/assets/turdy-back.webp" alt="" />
+        <img className="p-back" src="/turdy-back.webp" alt="" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="p-point"
-          src="https://d2ol7oe51mr4n9.cloudfront.net/user_32HmnlrLmAdtc9VabobL9Kk51Ae/52c11e14-3015-4288-ba01-c2a9223b8dad.webp"
+          src="/turdy-point.webp"
           alt=""
         />
       </div>
