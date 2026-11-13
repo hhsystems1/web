@@ -72,7 +72,7 @@ export default function PackagesPage() {
 
       <section className="mx-auto max-w-4xl px-5 pb-24">
         <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-          <Image src="/turdy19.webp" alt="Turdy" width={72} height={72} className="turdy-bob-soft h-16 w-16 rounded-full border-2 border-[#00702d]/30 bg-[#e8f5ec] object-cover object-[50%_35%]" />
+          <Image src="/turdy19.webp" alt="Turdy" width={72} height={72} className="h-16 w-16 rounded-full border-2 border-[#00702d]/30 bg-[#e8f5ec] object-cover object-[50%_35%]" />
           <p className="text-lg text-slate-600"><span className="font-bold text-[#14261a]">Turdy&apos;s note:</span> Rivryn is the system underneath — it is not sold separately here. Your website runs on it, and your leads, follow-up, and bookings live in it.</p>
         </div>
       </section>

@@ -19,6 +19,7 @@ import Image from 'next/image';
 
 import NavIsland from '@/components/NavIsland';
 import HeroShowcase from '@/components/HeroShowcase';
+import TurdyJourney from '@/components/TurdyJourney';
 import Section from '@/components/Section';
 import DemoCard from '@/components/DemoCard';
 import FAQ from '@/components/FAQ';
@@ -159,6 +160,10 @@ export default function Home() {
         ctaAction={scrollToWebsiteDemo}
       />
 
+      {/* Turdy's journey: ship arrival in the hero, then he rides the route past 01–05 and docks as chat */}
+      <div className="journey" id="journey">
+        <TurdyJourney />
+
       {/* Powered-by Ribbon — Rivryn is the reference, HHS is the builder */}
       <section className="relative z-10 bg-[#faf8f5] px-6 py-5">
         <div className="powered-lazy-susan" aria-label="Powered by Rivryn">
@@ -180,9 +185,10 @@ export default function Home() {
       </section>
 
       {/* Problem / Solution — Turdy calls it out */}
-      <Section className="reveal">
+      <Section className="reveal relative">
+        <span className="journey-node" data-node>01</span>
         <div className="mb-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-          <Image src="/turdy19.webp" alt="Turdy" width={72} height={72} className="turdy-bob-soft h-16 w-16 rounded-full border-2 border-[#00702d]/30 bg-[#e8f5ec] object-cover object-[50%_35%]" />
+          <Image src="/turdy19.webp" alt="Turdy" width={72} height={72} className="h-16 w-16 rounded-full border-2 border-[#00702d]/30 bg-[#e8f5ec] object-cover object-[50%_35%]" />
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#00702d]">Turdy&apos;s honest take</p>
             <p className="mt-1 max-w-2xl text-xl font-semibold text-[#14261a]">Most business websites just sit there. Yours should work while you sleep.</p>
@@ -221,7 +227,8 @@ export default function Home() {
       </Section>
 
       {/* The one product */}
-      <Section id="product" className="reveal">
+      <Section id="product" className="reveal relative">
+        <span className="journey-node" data-node>02</span>
         <div className="text-center">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#00702d]">One product. No packages to decode.</p>
           <h2 className="mx-auto max-w-3xl text-4xl font-black text-[#14261a] md:text-5xl">A website that turns visitors into customers</h2>
@@ -255,7 +262,8 @@ export default function Home() {
       </Section>
 
       {/* Funnel Flow — Turdy's checklist */}
-      <Section className="reveal">
+      <Section className="reveal relative">
+        <span className="journey-node" data-node>03</span>
         <div className="mx-auto mb-12 max-w-3xl text-center">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#00702d]">Turdy&apos;s checklist</p>
           <h2 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">From demo to your live website</h2>
@@ -274,7 +282,8 @@ export default function Home() {
       </Section>
 
       {/* Demos — the inverted arc */}
-      <Section id="demos" className="reveal">
+      <Section id="demos" className="reveal relative">
+        <span className="journey-node" data-node>04</span>
         <div className="mx-auto max-w-6xl">
           <div className="mb-14 max-w-3xl">
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#00702d]">Try it yourself</p>
@@ -340,7 +349,8 @@ export default function Home() {
       </Section>
 
       {/* FAQ */}
-      <Section className="reveal">
+      <Section className="reveal relative">
+        <span className="journey-node" data-node>05</span>
         <FAQ items={faqs} title="Questions Turdy gets asked a lot" />
       </Section>
 
@@ -348,7 +358,7 @@ export default function Home() {
       <Section className="reveal">
         <div className="forest relative overflow-hidden rounded-3xl p-12 text-center">
           <div className="relative z-10">
-            <Image src="/turdy19.webp" alt="Turdy" width={96} height={96} className="turdy-bob-soft mx-auto mb-6 h-24 w-24 rounded-full border-2 border-[#ecf87f]/50 bg-[#0f3d26] object-cover object-[50%_35%]" />
+            <Image src="/turdy19.webp" alt="Turdy" width={96} height={96} className="mx-auto mb-6 h-24 w-24 rounded-full border-2 border-[#ecf87f]/50 bg-[#0f3d26] object-cover object-[50%_35%]" />
             <h2 className="mx-auto max-w-3xl text-4xl font-black text-white md:text-5xl">Ready to see what this could look like for your business?</h2>
             <p className="mx-auto mb-8 mt-6 max-w-2xl text-xl text-[#cdeeda]">Try a live demo, then customize it with your branding. Your new website is just a few clicks away — and Turdy will walk you through it.</p>
             <Link href="/#demos" className="btn btn-lime text-lg">
@@ -357,6 +367,8 @@ export default function Home() {
           </div>
         </div>
       </Section>
+
+      </div>
 
       {/* Footer */}
       <footer className="forest border-t border-white/10 px-6 py-12">

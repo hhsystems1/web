@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import type { ReactNode } from 'react';
 import {
   ArrowRight,
@@ -28,7 +27,7 @@ const guideSteps = [
 
 export default function HeroShowcase({ title, subtitle, ctaText, ctaAction }: HeroShowcaseProps) {
   return (
-    <section className="forest relative min-h-[92vh] overflow-hidden px-4 pb-14 pt-28 sm:px-6 md:pt-36">
+    <section className="hero forest relative min-h-[92vh] overflow-hidden px-4 pb-14 pt-28 sm:px-6 md:pt-36">
       <div className="bg-grid absolute inset-0 opacity-40" aria-hidden="true" />
       <div className="absolute -left-24 top-24 h-72 w-72 rounded-full bg-[#50c878]/20 blur-3xl" aria-hidden="true" />
       <div className="absolute -right-16 bottom-10 h-80 w-80 rounded-full bg-[#ecf87f]/10 blur-3xl" aria-hidden="true" />
@@ -75,14 +74,8 @@ export default function HeroShowcase({ title, subtitle, ctaText, ctaAction }: He
           <div className="relative overflow-hidden rounded-[2.2rem] border border-[#50c878]/40 bg-[#0f3d26]/80 shadow-2xl shadow-black/40 backdrop-blur-xl">
             <div className="relative">
               <div className="relative flex h-72 items-center justify-center overflow-hidden bg-[#0f3d26] sm:h-80">
-                <Image
-                  src="/turdy19.webp"
-                  alt="Turdy — your website guide"
-                  width={400}
-                  height={400}
-                  className="turdy-alive h-full w-auto object-contain drop-shadow-2xl"
-                  priority
-                />
+                {/* Turdy's ship parks here — he flies in on load, then hops out on scroll */}
+                <div className="swirl-anchor" id="swirl" aria-hidden="true" />
                 <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0a2e1c] to-transparent" />
               </div>
 
@@ -106,6 +99,9 @@ export default function HeroShowcase({ title, subtitle, ctaText, ctaAction }: He
             </div>
           </div>
         </div>
+      </div>
+      <div className="scroll-cue" aria-hidden="true">
+        <span>Scroll to see how it works ↓</span>
       </div>
     </section>
   );

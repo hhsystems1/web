@@ -321,42 +321,289 @@ body::before {
   background-size: 60px 60px;
 }
 
-/* Turdy — friendly emoji-style bob and wave */
-.turdy-alive {
-  transform-origin: 50% 88%;
-  animation:
-    turdy-bob 3.4s ease-in-out infinite,
-    turdy-wave 6.5s ease-in-out infinite;
+/* Turdy's journey — from the Front Office demo. No idle wobble: he arrives
+   on his ship, hops out, rides the green route past each numbered stop,
+   and docks as the chat assistant. */
+.journey {
+  position: relative;
+}
+
+#route {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+
+#route .track {
+  fill: none;
+  stroke: #50c878;
+  stroke-opacity: 0.3;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+#route .glow {
+  fill: none;
+  stroke: #00702d;
+  stroke-width: 9;
+  stroke-linecap: round;
+  opacity: 0.45;
+  filter: url(#blur6);
+}
+
+#route .core {
+  fill: none;
+  stroke: url(#routeGrad);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+#route .spark {
+  fill: #ecf87f;
+  filter: url(#blur2);
+}
+
+.journey-node {
+  position: absolute;
+  left: 20px;
+  top: 24px;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 800;
+  color: #ecf87f;
+  background: radial-gradient(circle at 32% 28%, #50c878, #00702d 55%, #0a2e1c);
+  box-shadow: 0 0 0 5px #faf8f5, 0 0 0 6px #cdeeda, 0 0 26px #00702d55;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.journey-node.lit {
+  transform: scale(1.12);
+  box-shadow: 0 0 0 5px #faf8f5, 0 0 0 6px #ecf87f, 0 0 40px #50c878;
+}
+
+/* ---------- Arrival: Turdy flies in on his ship ---------- */
+#trail {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 38;
+  pointer-events: none;
+}
+
+#ship {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 39;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity;
+  transform-origin: 50% 50%;
+}
+
+#ship img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 18px #50c87888) drop-shadow(0 18px 24px #0008);
+}
+
+#ship .bob {
+  position: absolute;
+  inset: 0;
+}
+
+#ship .empty {
+  opacity: 0;
+}
+
+#turdy.in-ship {
+  opacity: 0 !important;
+}
+
+#ship.dropped .full {
+  opacity: 0;
+}
+
+#ship.dropped .empty {
+  opacity: 1;
+}
+
+/* ---------- Turdy ---------- */
+#turdy {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 40;
+  width: 80px;
+  height: 130px;
+  pointer-events: none;
   will-change: transform;
 }
 
-.turdy-bob-soft {
-  animation: turdy-bob-soft 4.2s ease-in-out infinite;
-  will-change: transform;
+#turdy img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  filter: drop-shadow(0 10px 14px #0a2e1c66);
 }
 
-@keyframes turdy-bob {
-  0%, 100% { translate: 0 0; }
-  50% { translate: 0 -8px; }
+#turdy[data-pose='wave'] .p-front,
+#turdy[data-pose='right'] .p-right,
+#turdy[data-pose='left'] .p-left,
+#turdy[data-pose='roll'] .p-back {
+  opacity: 1;
 }
 
-@keyframes turdy-wave {
-  0%, 82%, 100% { rotate: 0deg; }
-  86% { rotate: 5deg; }
-  90% { rotate: -4deg; }
-  94% { rotate: 2.5deg; }
-  98% { rotate: 0deg; }
+#turdy[data-pose='docked'] {
+  opacity: 0;
 }
 
-@keyframes turdy-bob-soft {
-  0%, 100% { translate: 0 0; }
-  50% { translate: 0 -4px; }
+#turdy .p-point {
+  inset: 0 auto auto 0;
+  width: auto;
+  height: 100%;
+  transform-origin: 50% 50%;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .turdy-alive,
-  .turdy-bob-soft {
-    animation: none;
+#turdy[data-pose='point'] .p-point {
+  opacity: 1;
+}
+
+#turdy.face-left .p-point {
+  left: auto;
+  right: 0;
+  transform: scaleX(-1);
+}
+
+.hey {
+  position: fixed;
+  z-index: 41;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+  color: #ecf87f;
+  transform: rotate(-8deg);
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  text-shadow: 0 2px 10px #000a;
+}
+
+.dock-greet {
+  position: fixed;
+  right: 132px;
+  bottom: 26px;
+  z-index: 40;
+  max-width: 230px;
+  padding: 13px 16px;
+  border-radius: 18px 18px 4px 18px;
+  background: #fff;
+  color: #0a2e1c;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  box-shadow: 0 14px 34px #0a2e1c44;
+  border: 1px solid #cdeeda;
+  opacity: 0;
+  transform: translateY(10px) scale(0.95);
+  transform-origin: 100% 100%;
+  transition: opacity 0.35s, transform 0.35s ease;
+  pointer-events: none;
+}
+
+.dock-greet.show {
+  opacity: 1;
+  transform: none;
+}
+
+/* Ship hover spot inside the hero showcase frame */
+.swirl-anchor {
+  position: relative;
+  height: 100%;
+}
+
+.scroll-cue {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 8px;
+  color: #cdeeda;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Idle motion only when the visitor hasn't asked for reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  #ship.idle .bob {
+    animation: ship-bob 3s ease-in-out infinite;
+  }
+
+  #turdy[data-pose='wave'] .p-front {
+    animation: wave-bob 2.4s ease-in-out infinite;
+    transform-origin: 50% 90%;
+  }
+
+  #turdy[data-pose='point'] .p-point {
+    animation: point-nudge 1.6s ease-in-out infinite;
+  }
+
+  #turdy.face-left[data-pose='point'] .p-point {
+    animation-name: point-nudge-l;
+  }
+}
+
+@keyframes ship-bob {
+  50% { transform: translateY(-7px) rotate(-1.2deg); }
+}
+
+@keyframes wave-bob {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(3deg) translateY(-3px); }
+}
+
+@keyframes point-nudge {
+  50% { transform: translateX(3px) rotate(1.5deg); }
+}
+
+@keyframes point-nudge-l {
+  0%, 100% { transform: scaleX(-1); }
+  50% { transform: scaleX(-1) translateX(3px) rotate(1.5deg); }
+}
+
+/* On tablets and phones the route runs down a left gutter; content steps in */
+@media (max-width: 980px) {
+  .journey > section {
+    padding-left: 64px;
+  }
+
+  .journey-node {
+    left: 12px;
+    top: 20px;
+    width: 36px;
+    height: 36px;
+    font-size: 12.5px;
+  }
+
+  .dock-greet {
+    display: none;
   }
 }
 
