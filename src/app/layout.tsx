@@ -10,9 +10,9 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://web.helpinghandssystems.com"),
-  title: "Helping Hands Systems - Web Development",
-  description: "Conversion-focused websites for local service businesses with live demos, lead capture, booking flows, and a built-in analytics dashboard.",
-  keywords: "web development, website design, booking systems, lead capture, local business websites, analytics dashboard",
+  title: "Helping Hands Systems - One Website That Works For You",
+  description: "One product: conversion-focused websites for local service businesses — live demos, lead capture, booking flows, and a built-in analytics dashboard, powered by Rivryn.",
+  keywords: "web development, website design, booking systems, lead capture, local business websites, analytics dashboard, Rivryn",
   icons: {
     icon: [
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },

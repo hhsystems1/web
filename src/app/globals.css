@@ -2,10 +2,18 @@
 
 :root {
   --background: #faf8f5;
-  --foreground: #1a1a2e;
-  --accent: #38b5ff;
-  --accent-blue: #38b5ff;
-  --accent-lime: #a3e635;
+  --foreground: #14261a;
+  --cream: #faf8f5;
+  --forest-950: #081f13;
+  --forest-900: #0a2e1c;
+  --forest-800: #0f3d26;
+  --green-700: #00702d;
+  --green-600: #00853a;
+  --emerald: #50c878;
+  --lime: #ecf87f;
+  --sage: #e8f5ec;
+  --sage-deep: #cdeeda;
+  --accent: #00702d;
 }
 
 html {
@@ -22,10 +30,9 @@ html, body {
 body {
   background-color: #faf8f5;
   background:
-    radial-gradient(circle at 20% 80%, rgba(56, 181, 255, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(56, 181, 255, 0.04) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(163, 230, 53, 0.03) 0%, transparent 50%),
-    linear-gradient(135deg, #faf8f5 0%, #f5f0eb 50%, #ede6dd 100%);
+    radial-gradient(circle at 20% 80%, rgba(0, 112, 45, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(80, 200, 120, 0.05) 0%, transparent 50%),
+    linear-gradient(135deg, #faf8f5 0%, #f3f6ef 50%, #e9f2e6 100%);
   color: var(--foreground);
   font-family: system-ui, -apple-system, sans-serif;
   min-height: 100vh;
@@ -37,77 +44,87 @@ body::before {
   content: none;
 }
 
-/* Button styles — light theme */
+/* Dark forest sections — Turtle Island ground */
+.forest {
+  background:
+    radial-gradient(circle at 85% 10%, rgba(80, 200, 120, 0.14) 0%, transparent 45%),
+    radial-gradient(circle at 10% 90%, rgba(236, 248, 127, 0.07) 0%, transparent 40%),
+    linear-gradient(160deg, #0a2e1c 0%, #081f13 100%);
+  color: #f2f7f0;
+}
+
+/* Lime highlight — the one loud accent. One word, one mark, never a rainbow. */
+.lime-mark {
+  color: #ecf87f;
+}
+.lime-underline {
+  background-image: linear-gradient(transparent 62%, rgba(236, 248, 127, 0.55) 62%);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding: 0 0.08em;
+}
+
+/* Button styles — flat green, no gradients */
 .btn {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 14px 32px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 16px;
   border-radius: 9999px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: linear-gradient(135deg, rgba(56, 181, 255, 0.12) 0%, rgba(56, 181, 255, 0.12) 100%);
-  border: 1px solid rgba(56, 181, 255, 0.35);
-  color: #1a3a6c;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #ffffff;
+  border: 2px solid #00702d;
+  color: #00702d;
   text-decoration: none;
   overflow: hidden;
-  backdrop-filter: blur(12px);
-  box-shadow:
-    0 4px 15px rgba(56, 181, 255, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-}
-
-.btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.btn:hover::before {
-  left: 100%;
+  box-shadow: 0 4px 15px rgba(0, 112, 45, 0.12);
 }
 
 .btn:hover {
-  background: linear-gradient(135deg, rgba(56, 181, 255, 0.18) 0%, rgba(56, 181, 255, 0.18) 100%);
-  border-color: rgba(56, 181, 255, 0.6);
-  box-shadow:
-    0 8px 30px rgba(56, 181, 255, 0.2),
-    0 0 40px rgba(56, 181, 255, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  background: #e8f5ec;
+  border-color: #00702d;
+  box-shadow: 0 8px 30px rgba(0, 112, 45, 0.18);
   transform: translateY(-3px) scale(1.02);
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #38b5ff 0%, #38b5ff 100%);
-  border: 1px solid rgba(56, 181, 255, 0.5);
-  color: white;
+  background: #00702d;
+  border: 2px solid #00702d;
+  color: #ffffff;
   box-shadow:
-    0 6px 20px rgba(56, 181, 255, 0.25),
-    0 0 20px rgba(56, 181, 255, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 6px 20px rgba(0, 112, 45, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #2563eb 0%, #2563eb 100%) !important;
-  box-shadow:
-    0 10px 40px rgba(56, 181, 255, 0.35),
-    0 0 50px rgba(56, 181, 255, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
-  transform: translateY(-4px) scale(1.05) !important;
+  background: #005a24;
+  border-color: #005a24;
+  box-shadow: 0 10px 40px rgba(0, 112, 45, 0.4);
+  transform: translateY(-4px) scale(1.05);
 }
 
-/* Glass morphism — light theme */
+.btn-lime {
+  background: #ecf87f;
+  border: 2px solid #ecf87f;
+  color: #081f13;
+  box-shadow: 0 6px 24px rgba(236, 248, 127, 0.35);
+}
+
+.btn-lime:hover {
+  background: #f4ffb0;
+  border-color: #f4ffb0;
+  box-shadow: 0 10px 36px rgba(236, 248, 127, 0.45);
+  transform: translateY(-4px) scale(1.05);
+}
+
+/* Glass morphism — green-tinted, light theme */
 .glass {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(24px);
-  border: 1px solid rgba(56, 181, 255, 0.35);
+  border: 1px solid rgba(0, 112, 45, 0.18);
   position: relative;
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.06),
@@ -121,15 +138,15 @@ body::before {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(56, 181, 255, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 112, 45, 0.35), transparent);
 }
 
-/* Card styles — light theme */
+/* Card styles — green, flat, lift on hover */
 .card {
   position: relative;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(56, 181, 255, 0.12);
+  border: 1px solid rgba(0, 112, 45, 0.14);
   border-radius: 20px;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
@@ -138,47 +155,69 @@ body::before {
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(56, 181, 255, 0.5), transparent);
-  opacity: 0;
-  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 .card:hover {
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(56, 181, 255, 0.3);
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 112, 45, 0.35);
   box-shadow:
-    0 12px 48px rgba(56, 181, 255, 0.1),
-    0 0 30px rgba(56, 181, 255, 0.05),
+    0 12px 48px rgba(0, 112, 45, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
   transform: translateY(-8px) scale(1.02);
 }
 
-.card:hover::before {
-  opacity: 1;
+/* Scroll reveal — transform/opacity only, plays once */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
-/* No entrance animations — content loads instantly */
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-/* Floating particles — removed for performance */
+/* Demo arc — inverted arc carousel. Middle card rides high, sides dip. */
+.arc-stage {
+  perspective: 1200px;
+}
 
-/* Video container — light theme */
+.arc-card {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
+}
+
+@media (min-width: 1024px) {
+  .arc-card-0 {
+    transform: translateY(28px) rotate(-2.5deg);
+  }
+  .arc-card-1 {
+    transform: translateY(-18px) scale(1.04);
+    z-index: 2;
+  }
+  .arc-card-2 {
+    transform: translateY(28px) rotate(2.5deg);
+  }
+  .arc-card:hover {
+    transform: translateY(-8px) scale(1.03) rotate(0deg);
+  }
+  .arc-card-1:hover {
+    transform: translateY(-26px) scale(1.05) rotate(0deg);
+  }
+}
+
+/* Video container — green, light theme */
 .video-container {
   position: relative;
   border-radius: 24px;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(24px);
-  border: 1px solid rgba(56, 181, 255, 0.2);
+  border: 1px solid rgba(0, 112, 45, 0.2);
   box-shadow:
     0 24px 48px rgba(0, 0, 0, 0.08),
-    0 0 40px rgba(56, 181, 255, 0.06),
+    0 0 40px rgba(0, 112, 45, 0.06),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
@@ -189,22 +228,22 @@ body::before {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, transparent, rgba(56, 181, 255, 0.6), rgba(56, 181, 255, 0.6), transparent);
+  background: #50c878;
   z-index: 1;
 }
 
-/* Powered-by marquee ribbon — light theme */
+/* Powered-by marquee ribbon — green */
 .powered-lazy-susan {
   position: relative;
   width: min(100%, 960px);
   margin: 0 auto;
   overflow: hidden;
   border-radius: 9999px;
-  border: 1px solid rgba(56, 181, 255, 0.2);
-  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 112, 45, 0.25);
+  background: rgba(255, 255, 255, 0.55);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.8),
-    0 0 34px rgba(56, 181, 255, 0.06);
+    0 0 34px rgba(0, 112, 45, 0.07);
 }
 
 .powered-lazy-susan::before,
@@ -243,9 +282,9 @@ body::before {
   gap: 0.55rem;
   white-space: nowrap;
   border-radius: 9999px;
-  border: 1px solid rgba(56, 181, 255, 0.2);
-  background: linear-gradient(135deg, rgba(56, 181, 255, 0.08), rgba(56, 181, 255, 0.06));
-  color: #1a3a6c;
+  border: 1px solid rgba(0, 112, 45, 0.2);
+  background: #e8f5ec;
+  color: #0a2e1c;
   padding: 0.48rem 1rem;
   font-size: 0.78rem;
   font-weight: 700;
@@ -255,8 +294,7 @@ body::before {
 }
 
 .powered-lazy-susan-mark {
-  color: #38b5ff;
-  filter: drop-shadow(0 0 4px rgba(56, 181, 255, 0.4));
+  color: #00702d;
 }
 
 @keyframes lazy-susan-scroll {
@@ -268,117 +306,311 @@ body::before {
   .powered-lazy-susan-track {
     animation: none;
   }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
-/* Background grid pattern — light theme */
+/* Background grid pattern — green, light theme */
 .bg-grid {
   background-image:
-    linear-gradient(rgba(56, 181, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(56, 181, 255, 0.06) 1px, transparent 1px);
+    linear-gradient(rgba(0, 112, 45, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 112, 45, 0.06) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
-/* Solar eclipse border — spinning hue ring with soft halo */
-@property --eclipse-angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
-}
-
-.eclipse-border {
+/* Turdy's journey — from the Front Office demo. No idle wobble: he arrives
+   on his ship, hops out, rides the green route past each numbered stop,
+   and docks as the chat assistant. */
+.journey {
   position: relative;
-  --eclipse-colors: #fbbf24, #ec4899, #a855f7, #38bdf8, #34d399, #fbbf24;
 }
 
-.eclipse-border::before {
-  content: '';
+#route {
   position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1.5px;
-  background: conic-gradient(from var(--eclipse-angle), var(--eclipse-colors));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-          mask: linear-gradient(#fff 0 0) content-box exclude, linear-gradient(#fff 0 0);
-  animation: eclipse-spin 8s linear infinite;
+  left: 0;
+  top: 0;
+  width: 100%;
   pointer-events: none;
-  z-index: 5;
+  z-index: 1;
+  overflow: visible;
 }
 
-.eclipse-border::after {
-  content: '';
+#route .track {
+  fill: none;
+  stroke: #50c878;
+  stroke-opacity: 0.3;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+#route .glow {
+  fill: none;
+  stroke: #00702d;
+  stroke-width: 9;
+  stroke-linecap: round;
+  opacity: 0.45;
+  filter: url(#blur6);
+}
+
+#route .core {
+  fill: none;
+  stroke: url(#routeGrad);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+#route .spark {
+  fill: #ecf87f;
+  filter: url(#blur2);
+}
+
+.journey-node {
   position: absolute;
-  inset: -4px;
-  border-radius: inherit;
-  background: conic-gradient(from calc(var(--eclipse-angle) * -1), var(--eclipse-colors));
-  filter: blur(18px);
-  opacity: 0.22;
-  animation: eclipse-spin 8s linear infinite reverse;
+  left: 20px;
+  top: 24px;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 800;
+  color: #ecf87f;
+  background: radial-gradient(circle at 32% 28%, #50c878, #00702d 55%, #0a2e1c);
+  box-shadow: 0 0 0 5px #faf8f5, 0 0 0 6px #cdeeda, 0 0 26px #00702d55;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.journey-node.lit {
+  transform: scale(1.12);
+  box-shadow: 0 0 0 5px #faf8f5, 0 0 0 6px #ecf87f, 0 0 40px #50c878;
+}
+
+/* ---------- Arrival: Turdy flies in on his ship ---------- */
+#trail {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 38;
   pointer-events: none;
-  z-index: -1;
 }
 
-@keyframes eclipse-spin {
-  to { --eclipse-angle: 360deg; }
+#ship {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 39;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity;
+  transform-origin: 50% 50%;
 }
 
-/* Hue variants */
-.eclipse-red { --eclipse-colors: #f87171, #fb923c, #fbbf24, #f87171; }
-.eclipse-blue { --eclipse-colors: #38bdf8, #818cf8, #22d3ee, #38bdf8; }
-.eclipse-emerald { --eclipse-colors: #34d399, #2dd4bf, #a3e635, #34d399; }
-.eclipse-purple { --eclipse-colors: #c084fc, #f472b6, #818cf8, #c084fc; }
-.eclipse-gold { --eclipse-colors: #fbbf24, #fb923c, #fde047, #fbbf24; }
+#ship img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 18px #50c87888) drop-shadow(0 18px 24px #0008);
+}
 
-/* Turdy — friendly emoji-style bob and wave */
-.turdy-alive {
-  transform-origin: 50% 88%;
-  animation:
-    turdy-bob 3.4s ease-in-out infinite,
-    turdy-wave 6.5s ease-in-out infinite;
+#ship .bob {
+  position: absolute;
+  inset: 0;
+}
+
+#ship .empty {
+  opacity: 0;
+}
+
+#turdy.in-ship {
+  opacity: 0 !important;
+}
+
+#ship.dropped .full {
+  opacity: 0;
+}
+
+#ship.dropped .empty {
+  opacity: 1;
+}
+
+/* ---------- Turdy ---------- */
+#turdy {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 40;
+  width: 80px;
+  height: 130px;
+  pointer-events: none;
   will-change: transform;
 }
 
-.turdy-bob-soft {
-  animation: turdy-bob-soft 4.2s ease-in-out infinite;
-  will-change: transform;
+#turdy img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  filter: drop-shadow(0 10px 14px #0a2e1c66);
 }
 
-@keyframes turdy-bob {
-  0%, 100% { translate: 0 0; }
-  50% { translate: 0 -8px; }
+#turdy[data-pose='wave'] .p-front,
+#turdy[data-pose='right'] .p-right,
+#turdy[data-pose='left'] .p-left,
+#turdy[data-pose='roll'] .p-back {
+  opacity: 1;
 }
 
-@keyframes turdy-wave {
-  0%, 82%, 100% { rotate: 0deg; }
-  86% { rotate: 5deg; }
-  90% { rotate: -4deg; }
-  94% { rotate: 2.5deg; }
-  98% { rotate: 0deg; }
+#turdy[data-pose='docked'] {
+  opacity: 0;
 }
 
-@keyframes turdy-bob-soft {
-  0%, 100% { translate: 0 0; }
-  50% { translate: 0 -4px; }
+#turdy .p-point {
+  inset: 0 auto auto 0;
+  width: auto;
+  height: 100%;
+  transform-origin: 50% 50%;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .eclipse-border::before,
-  .eclipse-border::after {
-    animation: none;
+#turdy[data-pose='point'] .p-point {
+  opacity: 1;
+}
+
+#turdy.face-left .p-point {
+  left: auto;
+  right: 0;
+  transform: scaleX(-1);
+}
+
+.hey {
+  position: fixed;
+  z-index: 41;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+  color: #ecf87f;
+  transform: rotate(-8deg);
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  text-shadow: 0 2px 10px #000a;
+}
+
+.dock-greet {
+  position: fixed;
+  right: 132px;
+  bottom: 26px;
+  z-index: 40;
+  max-width: 230px;
+  padding: 13px 16px;
+  border-radius: 18px 18px 4px 18px;
+  background: #fff;
+  color: #0a2e1c;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  box-shadow: 0 14px 34px #0a2e1c44;
+  border: 1px solid #cdeeda;
+  opacity: 0;
+  transform: translateY(10px) scale(0.95);
+  transform-origin: 100% 100%;
+  transition: opacity 0.35s, transform 0.35s ease;
+  pointer-events: none;
+}
+
+.dock-greet.show {
+  opacity: 1;
+  transform: none;
+}
+
+/* Ship hover spot inside the hero showcase frame */
+.swirl-anchor {
+  position: relative;
+  height: 100%;
+}
+
+.scroll-cue {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 8px;
+  color: #cdeeda;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Idle motion only when the visitor hasn't asked for reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  #ship.idle .bob {
+    animation: ship-bob 3s ease-in-out infinite;
   }
-  .turdy-alive,
-  .turdy-bob-soft {
-    animation: none;
+
+  #turdy[data-pose='wave'] .p-front {
+    animation: wave-bob 2.4s ease-in-out infinite;
+    transform-origin: 50% 90%;
+  }
+
+  #turdy[data-pose='point'] .p-point {
+    animation: point-nudge 1.6s ease-in-out infinite;
+  }
+
+  #turdy.face-left[data-pose='point'] .p-point {
+    animation-name: point-nudge-l;
   }
 }
 
-/* Neon glow utilities for demo cards */
+@keyframes ship-bob {
+  50% { transform: translateY(-7px) rotate(-1.2deg); }
+}
+
+@keyframes wave-bob {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(3deg) translateY(-3px); }
+}
+
+@keyframes point-nudge {
+  50% { transform: translateX(3px) rotate(1.5deg); }
+}
+
+@keyframes point-nudge-l {
+  0%, 100% { transform: scaleX(-1); }
+  50% { transform: scaleX(-1) translateX(3px) rotate(1.5deg); }
+}
+
+/* On tablets and phones the route runs down a left gutter; content steps in */
+@media (max-width: 980px) {
+  .journey > section {
+    padding-left: 64px;
+  }
+
+  .journey-node {
+    left: 12px;
+    top: 20px;
+    width: 36px;
+    height: 36px;
+    font-size: 12.5px;
+  }
+
+  .dock-greet {
+    display: none;
+  }
+}
+
+/* Green glow utilities for demo cards — one family, no rainbow */
 .neon-glow-emerald {
-  box-shadow: 0 0 20px rgba(56, 181, 255, 0.3), 0 0 40px rgba(56, 181, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 112, 45, 0.25), 0 0 40px rgba(0, 112, 45, 0.08);
 }
-.neon-glow-blue {
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3), 0 0 40px rgba(59, 130, 246, 0.1);
-}
-.neon-glow-purple {
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3), 0 0 40px rgba(168, 85, 247, 0.1);
+.neon-glow-lime {
+  box-shadow: 0 0 20px rgba(236, 248, 127, 0.5), 0 0 40px rgba(236, 248, 127, 0.2);
 }

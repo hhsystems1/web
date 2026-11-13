@@ -98,11 +98,15 @@ src/
 
 ## 🎨 Design System
 
-### Colors
+### Colors — one green family, no rainbow
 - **Primary Emerald**: `#50C878`
 - **Deep Green**: `#00702d`
-- **Lime**: `#ecf87f`  
-- **Blue**: `#38b5ff`
+- **Forest Dark**: `#0a2e1c` (dark sections, nav pill)
+- **Lime**: `#ecf87f` (the one loud accent — highlights only)
+- **Cream**: `#faf8f5` (page background)
+- **Sage**: `#e8f5ec` (card tints)
+
+The old spinning rainbow ring (`.eclipse-border`) and the blue `#38b5ff` system are gone. Buttons are flat green; dark sections are forest; Turdy hosts the page.
 
 ### Typography
 - **Font**: Inter (variable)

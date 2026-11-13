@@ -20,24 +20,24 @@ export default function ContactPage() {
     <main className="relative min-h-screen bg-[#faf8f5]">
       <NavIsland />
 
-      <Section className="pt-32 bg-gradient-to-b from-[#faf8f5] to-white">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">Let&apos;s Build Something Amazing Together</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+      <Section className="bg-gradient-to-b from-[#faf8f5] to-white pt-32">
+        <div className="mb-16 text-center">
+          <h1 className="mb-6 text-5xl font-black text-gray-900 md:text-6xl">Let&apos;s Build Something Amazing Together</h1>
+          <p className="mx-auto max-w-3xl text-xl leading-relaxed text-gray-600">
             Ready to transform your online presence? We&apos;re here to help you create a website that not only looks incredible but actually grows your business.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="mb-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {contactInfo.map((info) => (
             <div key={info.title}>
-              <div className="text-center p-6 glass rounded-2xl hover:shadow-xl hover:shadow-blue-200/40 transition-shadow duration-200">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-blue-400 flex items-center justify-center mx-auto mb-4 shadow-md shadow-blue-200/50">
-                  <info.icon size={24} className="text-white" />
+              <div className="card p-6 text-center">
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#00702d] text-[#ecf87f] shadow-md shadow-[#00702d]/30">
+                  <info.icon size={24} />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{info.title}</h3>
-                <p className="text-blue-600 font-semibold mb-1">{info.value}</p>
-                <p className="text-gray-500 text-sm">{info.description}</p>
+                <h3 className="mb-2 text-lg font-semibold text-gray-900">{info.title}</h3>
+                <p className="mb-1 font-semibold text-[#00702d]">{info.value}</p>
+                <p className="text-sm text-gray-500">{info.description}</p>
               </div>
             </div>
           ))}
@@ -45,66 +45,62 @@ export default function ContactPage() {
       </Section>
 
       <Section className="bg-gradient-to-b from-white to-gray-50">
-        <div className="relative max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center">Start Your Project</h2>
-          <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto text-center">
+        <div className="relative mx-auto max-w-4xl">
+          <h2 className="mb-6 text-center text-3xl font-bold text-gray-900 md:text-4xl">Start Your Project</h2>
+          <p className="mx-auto mb-10 max-w-2xl text-center text-lg text-gray-600">
             Tell us about your vision and we&apos;ll show you how we can bring it to life with modern design and conversion-focused features.
           </p>
-          <div className="eclipse-border rounded-2xl">
-            <div className="h-full glass rounded-2xl p-6 md:p-10 shadow-xl shadow-blue-100/20">
-              <ContactForm />
-            </div>
+          <div className="glass rounded-2xl p-6 shadow-xl shadow-[#00702d]/10 md:p-10">
+            <ContactForm />
           </div>
         </div>
       </Section>
 
       <Section className="bg-gradient-to-b from-gray-50 to-white">
-        <div className="eclipse-border rounded-2xl">
-          <div className="h-full text-center p-12 glass rounded-2xl relative overflow-hidden">
-            <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Want to see what&apos;s possible?</h2>
-              <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-                Try one of our live demos to see exactly what your website could look like — then customize it with your branding.
-              </p>
-              <Link href="/#demos" className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-500 via-blue-500 to-blue-400 rounded-full hover:shadow-2xl hover:shadow-blue-300/30 transition-all duration-300 hover:scale-105 border border-blue-400/30 hover:border-blue-400/60">
-                View Live Demos →
-              </Link>
-            </div>
+        <div className="forest relative overflow-hidden rounded-2xl p-12 text-center">
+          <div className="relative z-10">
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Want to see what&apos;s possible?</h2>
+            <p className="mx-auto mb-8 max-w-2xl text-lg text-[#cdeeda]">
+              Try one of our live demos to see exactly what your website could look like — then customize it with your branding.
+            </p>
+            <Link href="/#demos" className="btn btn-lime text-lg">
+              View Live Demos →
+            </Link>
           </div>
         </div>
       </Section>
 
-      <footer className="bg-white border-t border-gray-200 py-12 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <footer className="forest border-t border-white/10 px-6 py-12">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-3">
             <div>
               <div className="mb-4">
                 <Image src="/hhs-metallic-logo.webp" alt="Helping Hands Systems Logo" width={150} height={80} className="h-16 w-auto" />
               </div>
-              <p className="text-gray-500 mb-4">Conversion-focused websites for local service businesses with live demos and analytics dashboards.</p>
-              <div className="space-y-2 text-gray-500">
-                <p>📞 (606) 660-6147</p>
-                <p>✉️ helpinghandsystems1@gmail.com</p>
+              <p className="mb-4 text-[#cdeeda]">One product: conversion-focused websites for local service businesses, powered by Rivryn.</p>
+              <div className="space-y-2 text-[#cdeeda]">
+                <p>Phone: (606) 660-6147</p>
+                <p>Email: helpinghandsystems1@gmail.com</p>
               </div>
             </div>
             <div>
-              <h4 className="font-semibold text-gray-900 mb-4">Live Demos</h4>
-              <ul className="space-y-2 text-gray-500">
-                <li><Link href="/demos/restaurant" className="hover:text-gray-900 transition-colors">Restaurant & Cafe</Link></li>
-                <li><Link href="/demos/contractor" className="hover:text-gray-900 transition-colors">Contractor & Home Services</Link></li>
-                <li><Link href="/demos/medical" className="hover:text-gray-900 transition-colors">Medical & Dental Office</Link></li>
+              <h4 className="mb-4 font-semibold text-white">Live Demos</h4>
+              <ul className="space-y-2 text-[#cdeeda]">
+                <li><Link href="/demos/restaurant" className="transition-colors hover:text-[#ecf87f]">Restaurant & Cafe</Link></li>
+                <li><Link href="/demos/contractor" className="transition-colors hover:text-[#ecf87f]">Contractor & Home Services</Link></li>
+                <li><Link href="/demos/medical" className="transition-colors hover:text-[#ecf87f]">Medical & Dental Office</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold text-gray-900 mb-4">Company</h4>
-              <ul className="space-y-2 text-gray-500">
-                <li><Link href="/contact" className="hover:text-gray-900 transition-colors">Contact</Link></li>
-                <li><Link href="/privacy" className="hover:text-gray-900 transition-colors">Privacy Policy</Link></li>
-                <li><Link href="/terms" className="hover:text-gray-900 transition-colors">Terms & Conditions</Link></li>
+              <h4 className="mb-4 font-semibold text-white">Company</h4>
+              <ul className="space-y-2 text-[#cdeeda]">
+                <li><Link href="/contact" className="transition-colors hover:text-[#ecf87f]">Contact</Link></li>
+                <li><Link href="/privacy" className="transition-colors hover:text-[#ecf87f]">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="transition-colors hover:text-[#ecf87f]">Terms & Conditions</Link></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-200 pt-8 text-center text-gray-500">
+          <div className="border-t border-white/10 pt-8 text-center text-[#cdeeda]">
             <p>&copy; 2026 Helping Hands Systems. All rights reserved.</p>
           </div>
         </div>

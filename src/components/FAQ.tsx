@@ -22,14 +22,14 @@ export default function FAQ({ items, title = "Frequently Asked Questions" }: FAQ
 
       <div className="space-y-4">
         {items.map((item, index) => (
-          <div key={index} className="eclipse-border rounded-xl">
+          <div key={index}>
             <div className="h-full glass rounded-xl overflow-hidden">
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-blue-50/50 transition-colors"
+                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-[#e8f5ec]/60 transition-colors"
               >
                 <span className="font-semibold text-gray-900 pr-4">{item.question}</span>
-                <Plus size={20} className={`text-blue-500 flex-shrink-0 transition-transform duration-200 ${openIndex === index ? 'rotate-45' : ''}`} />
+                <Plus size={20} className={`text-[#00702d] flex-shrink-0 transition-transform duration-200 ${openIndex === index ? 'rotate-45' : ''}`} />
               </button>
 
               {openIndex === index && (
