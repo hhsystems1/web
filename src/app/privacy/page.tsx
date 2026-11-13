@@ -28,8 +28,8 @@ export default function PrivacyPage() {
                   This Privacy Policy explains how we collect, use, and share information when you visit the Site, contact us, or engage us for web design/development and related services (the "Services"). If you have a separate written agreement with us (e.g., a Statement of Work or Master Services Agreement), that agreement controls to the extent it conflicts with this Policy.
                 </p>
                 
-                <div className="bg-primary-emerald/10 border border-primary-emerald/30 rounded-lg p-6 my-8">
-                  <p className="text-primary-emerald font-medium">
+                <div className="bg-royal/10 border border-royal/30 rounded-lg p-6 my-8">
+                  <p className="text-royal font-medium">
                     <strong>Short version:</strong> We use your information to respond to inquiries, scope and deliver projects, provide support, bill for subscriptions, and improve our Services. We don't sell personal information. When we handle end‑user data from your website as part of maintenance or support, we do so as your processor, under your instructions.
                   </p>
                 </div>

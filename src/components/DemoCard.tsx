@@ -26,33 +26,33 @@ export default function DemoCard({ industry, title, description, features, href,
 
   return (
     <div className={`arc-card arc-card-${index} group relative rounded-3xl`}>
-      <div className="relative h-full overflow-hidden rounded-3xl border border-[#00702d]/25 bg-white shadow-xl shadow-[#00702d]/10 transition-all duration-300 group-hover:border-[#00702d]/50 group-hover:shadow-2xl group-hover:shadow-[#00702d]/20">
-        <div className="flex h-48 items-center justify-center border-b border-[#00702d]/10 bg-[#e8f5ec]">
-          <span className="flex h-24 w-24 items-center justify-center rounded-full bg-[#00702d] text-[#ecf87f] shadow-lg shadow-[#00702d]/30 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
+      <div className="relative h-full overflow-hidden rounded-3xl border border-[#1f4bff]/25 bg-white shadow-xl shadow-[#1f4bff]/10 transition-all duration-300 group-hover:border-[#1f4bff]/50 group-hover:shadow-2xl group-hover:shadow-[#1f4bff]/20">
+        <div className="flex h-48 items-center justify-center border-b border-[#1f4bff]/10 bg-[#1f4bff14]">
+          <span className="flex h-24 w-24 items-center justify-center rounded-full bg-[#1f4bff] text-white shadow-lg shadow-[#1f4bff]/30 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
             <Icon size={44} />
           </span>
         </div>
 
         <div className="p-6">
           <div className="mb-3 flex items-center gap-3">
-            <span className="inline-flex items-center rounded-full border border-[#00702d]/25 bg-[#e8f5ec] px-2.5 py-0.5 text-xs font-semibold text-[#00702d]">
+            <span className="inline-flex items-center rounded-full border border-[#1f4bff]/25 bg-[#1f4bff14] px-2.5 py-0.5 text-xs font-semibold text-[#1f4bff]">
               {meta.label}
             </span>
-            <span className="text-xs font-medium uppercase tracking-wider text-[#00702d]">Live Demo</span>
+            <span className="text-xs font-medium uppercase tracking-wider text-[#1f4bff]">Live Demo</span>
           </div>
 
-          <h3 className="mb-2 text-xl font-bold text-[#14261a]">{title}</h3>
+          <h3 className="mb-2 text-xl font-bold text-[#0c0d10]">{title}</h3>
           <p className="mb-4 text-sm leading-relaxed text-gray-600">{description}</p>
 
           <div className="mb-5 flex flex-wrap gap-2">
             {features.map((feature) => (
-              <span key={feature} className="inline-flex items-center rounded-md bg-[#e8f5ec] px-2 py-1 text-xs font-medium text-[#0a2e1c]">
+              <span key={feature} className="inline-flex items-center rounded-md bg-[#1f4bff14] px-2 py-1 text-xs font-medium text-[#0c0d10]">
                 {feature}
               </span>
             ))}
           </div>
 
-          <Link href={href} className="inline-flex items-center gap-2 rounded-full bg-[#00702d] px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#005a24] hover:shadow-lg group-hover:scale-[1.02]">
+          <Link href={href} className="inline-flex items-center gap-2 rounded-full bg-[#1f4bff] px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#1a3fd6] hover:shadow-lg group-hover:scale-[1.02]">
             Try Live Demo
             <ExternalLink size={14} />
           </Link>

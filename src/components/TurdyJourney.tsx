@@ -75,9 +75,12 @@ export default function TurdyJourney() {
             h: SW * SRr,
           };
         } else {
-          const SW = vw <= 980 ? 250 : Math.min(330, swr.width * 0.62);
+          // Guard: a 0-wide anchor makes the ship 0x0 and invisible. The
+          // anchor is absolutely positioned now, but never trust a 0 measure.
+          const anchorW = Math.max(swr.width, 320);
+          const SW = vw <= 980 ? 250 : Math.min(330, anchorW * 0.62);
           shipRect = {
-            x: swr.left + scrollX + swr.width * 0.55 - SW / 2,
+            x: swr.left + scrollX + anchorW * 0.55 - SW / 2,
             y: Math.max(swr.top + scrollY - (vw <= 980 ? 10 : 70), 84),
             w: SW,
             h: SW * SRr,
@@ -533,9 +536,9 @@ export default function TurdyJourney() {
       <svg id="route" aria-hidden="true">
         <defs>
           <linearGradient id="routeGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#ecf87f" />
-            <stop offset="0.4" stopColor="#50c878" />
-            <stop offset="1" stopColor="#00702d" />
+            <stop offset="0" stopColor="#8fb0ff" />
+            <stop offset="0.4" stopColor="#5b83ff" />
+            <stop offset="1" stopColor="#1f4bff" />
           </linearGradient>
           <filter id="blur6" x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur stdDeviation="6" />
