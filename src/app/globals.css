@@ -531,10 +531,13 @@ body::before {
   transform: none;
 }
 
-/* Ship hover spot inside the hero showcase frame */
+/* Ship hover spot inside the hero showcase frame — fills the whole visual
+   area. It MUST have a real size: as an empty flex item it measured 0 wide,
+   which made the ship 0x0 and invisible (only the trail + "Hey there!"
+   showed). Absolute positioning takes it out of the flex layout. */
 .swirl-anchor {
-  position: relative;
-  height: 100%;
+  position: absolute;
+  inset: 0;
 }
 
 .scroll-cue {

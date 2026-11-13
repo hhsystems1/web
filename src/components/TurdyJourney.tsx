@@ -75,9 +75,12 @@ export default function TurdyJourney() {
             h: SW * SRr,
           };
         } else {
-          const SW = vw <= 980 ? 250 : Math.min(330, swr.width * 0.62);
+          // Guard: a 0-wide anchor makes the ship 0x0 and invisible. The
+          // anchor is absolutely positioned now, but never trust a 0 measure.
+          const anchorW = Math.max(swr.width, 320);
+          const SW = vw <= 980 ? 250 : Math.min(330, anchorW * 0.62);
           shipRect = {
-            x: swr.left + scrollX + swr.width * 0.55 - SW / 2,
+            x: swr.left + scrollX + anchorW * 0.55 - SW / 2,
             y: Math.max(swr.top + scrollY - (vw <= 980 ? 10 : 70), 84),
             w: SW,
             h: SW * SRr,
