@@ -1,24 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  --background: #faf8f5;
-  --foreground: #14261a;
-  --cream: #faf8f5;
-  --forest-950: #081f13;
-  --forest-900: #0a2e1c;
-  --forest-800: #0f3d26;
-  --green-700: #00702d;
-  --green-600: #00853a;
-  --emerald: #50c878;
-  --lime: #ecf87f;
-  --sage: #e8f5ec;
-  --sage-deep: #cdeeda;
-  --accent: #00702d;
+  --background: #f1efe9;
+  --foreground: #0c0d10;
+  --cream: #f1efe9;
+  --card: #faf9f6;
+  --ink: #0c0d10;
+  --body: #2c2f36;
+  --royal: #1f4bff;
+  --royal-dark: #1a3fd6;
+  --royal-tint: #1f4bff14;
+  --success: #2fbf59;
+  --accent: #1f4bff;
 }
 
 html {
   scroll-behavior: smooth;
-  background: #faf8f5;
+  background: #f1efe9;
 }
 
 html, body {
@@ -28,11 +26,11 @@ html, body {
 }
 
 body {
-  background-color: #faf8f5;
+  background-color: #f1efe9;
   background:
-    radial-gradient(circle at 20% 80%, rgba(0, 112, 45, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(80, 200, 120, 0.05) 0%, transparent 50%),
-    linear-gradient(135deg, #faf8f5 0%, #f3f6ef 50%, #e9f2e6 100%);
+    radial-gradient(circle at 20% 80%, rgba(31, 75, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(31, 75, 255, 0.04) 0%, transparent 50%),
+    linear-gradient(135deg, #f1efe9 0%, #f3efe7 50%, #e9edfb 100%);
   color: var(--foreground);
   font-family: system-ui, -apple-system, sans-serif;
   min-height: 100vh;
@@ -44,27 +42,27 @@ body::before {
   content: none;
 }
 
-/* Dark forest sections — Turtle Island ground */
-.forest {
+/* Dark sections — near-black, used only for the closing CTA and footer */
+.dark-section {
   background:
-    radial-gradient(circle at 85% 10%, rgba(80, 200, 120, 0.14) 0%, transparent 45%),
-    radial-gradient(circle at 10% 90%, rgba(236, 248, 127, 0.07) 0%, transparent 40%),
-    linear-gradient(160deg, #0a2e1c 0%, #081f13 100%);
-  color: #f2f7f0;
+    radial-gradient(circle at 85% 10%, rgba(31, 75, 255, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 10% 90%, rgba(31, 75, 255, 0.08) 0%, transparent 40%),
+    linear-gradient(160deg, #14161c 0%, #0c0d10 100%);
+  color: #f5f5f4;
 }
 
-/* Lime highlight — the one loud accent. One word, one mark, never a rainbow. */
-.lime-mark {
-  color: #ecf87f;
+/* Royal-blue highlight — the one loud accent. One word, one mark, never a rainbow. */
+.accent-mark {
+  color: #1f4bff;
 }
-.lime-underline {
-  background-image: linear-gradient(transparent 62%, rgba(236, 248, 127, 0.55) 62%);
+.accent-underline {
+  background-image: linear-gradient(transparent 62%, rgba(31, 75, 255, 0.28) 62%);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   padding: 0 0.08em;
 }
 
-/* Button styles — flat green, no gradients */
+/* Button styles — flat royal blue, no gradients */
 .btn {
   position: relative;
   display: inline-flex;
@@ -76,55 +74,41 @@ body::before {
   border-radius: 9999px;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   background: #ffffff;
-  border: 2px solid #00702d;
-  color: #00702d;
+  border: 2px solid #1f4bff;
+  color: #1f4bff;
   text-decoration: none;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 112, 45, 0.12);
+  box-shadow: 0 4px 15px rgba(31, 75, 255, 0.12);
 }
 
 .btn:hover {
-  background: #e8f5ec;
-  border-color: #00702d;
-  box-shadow: 0 8px 30px rgba(0, 112, 45, 0.18);
+  background: #1f4bff14;
+  border-color: #1f4bff;
+  box-shadow: 0 8px 30px rgba(31, 75, 255, 0.18);
   transform: translateY(-3px) scale(1.02);
 }
 
 .btn-primary {
-  background: #00702d;
-  border: 2px solid #00702d;
+  background: #1f4bff;
+  border: 2px solid #1f4bff;
   color: #ffffff;
   box-shadow:
-    0 6px 20px rgba(0, 112, 45, 0.3),
+    0 6px 20px rgba(31, 75, 255, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .btn-primary:hover {
-  background: #005a24;
-  border-color: #005a24;
-  box-shadow: 0 10px 40px rgba(0, 112, 45, 0.4);
+  background: #1a3fd6;
+  border-color: #1a3fd6;
+  box-shadow: 0 10px 40px rgba(31, 75, 255, 0.4);
   transform: translateY(-4px) scale(1.05);
 }
 
-.btn-lime {
-  background: #ecf87f;
-  border: 2px solid #ecf87f;
-  color: #081f13;
-  box-shadow: 0 6px 24px rgba(236, 248, 127, 0.35);
-}
-
-.btn-lime:hover {
-  background: #f4ffb0;
-  border-color: #f4ffb0;
-  box-shadow: 0 10px 36px rgba(236, 248, 127, 0.45);
-  transform: translateY(-4px) scale(1.05);
-}
-
-/* Glass morphism — green-tinted, light theme */
+/* Glass morphism — blue-tinted, light theme */
 .glass {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(24px);
-  border: 1px solid rgba(0, 112, 45, 0.18);
+  border: 1px solid rgba(31, 75, 255, 0.18);
   position: relative;
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.06),
@@ -138,15 +122,15 @@ body::before {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0, 112, 45, 0.35), transparent);
+  background: linear-gradient(90deg, transparent, rgba(31, 75, 255, 0.35), transparent);
 }
 
-/* Card styles — green, flat, lift on hover */
+/* Card styles — light, flat, lift on hover */
 .card {
   position: relative;
   background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 112, 45, 0.14);
+  border: 1px solid rgba(12, 13, 16, 0.10);
   border-radius: 20px;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
@@ -157,9 +141,9 @@ body::before {
 
 .card:hover {
   background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(0, 112, 45, 0.35);
+  border-color: rgba(31, 75, 255, 0.45);
   box-shadow:
-    0 12px 48px rgba(0, 112, 45, 0.12),
+    0 12px 48px rgba(31, 75, 255, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
   transform: translateY(-8px) scale(1.02);
 }
@@ -207,17 +191,17 @@ body::before {
   }
 }
 
-/* Video container — green, light theme */
+/* Video container — blue, light theme */
 .video-container {
   position: relative;
   border-radius: 24px;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(24px);
-  border: 1px solid rgba(0, 112, 45, 0.2);
+  border: 1px solid rgba(31, 75, 255, 0.2);
   box-shadow:
     0 24px 48px rgba(0, 0, 0, 0.08),
-    0 0 40px rgba(0, 112, 45, 0.06),
+    0 0 40px rgba(31, 75, 255, 0.06),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
@@ -228,22 +212,22 @@ body::before {
   left: 0;
   right: 0;
   height: 3px;
-  background: #50c878;
+  background: #1f4bff;
   z-index: 1;
 }
 
-/* Powered-by marquee ribbon — green */
+/* Powered-by marquee ribbon — blue */
 .powered-lazy-susan {
   position: relative;
   width: min(100%, 960px);
   margin: 0 auto;
   overflow: hidden;
   border-radius: 9999px;
-  border: 1px solid rgba(0, 112, 45, 0.25);
+  border: 1px solid rgba(31, 75, 255, 0.25);
   background: rgba(255, 255, 255, 0.55);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.8),
-    0 0 34px rgba(0, 112, 45, 0.07);
+    0 0 34px rgba(31, 75, 255, 0.07);
 }
 
 .powered-lazy-susan::before,
@@ -259,12 +243,12 @@ body::before {
 
 .powered-lazy-susan::before {
   left: 0;
-  background: linear-gradient(90deg, #faf8f5 0%, rgba(250, 248, 245, 0.86) 32%, transparent 100%);
+  background: linear-gradient(90deg, #f1efe9 0%, rgba(241, 239, 233, 0.86) 32%, transparent 100%);
 }
 
 .powered-lazy-susan::after {
   right: 0;
-  background: linear-gradient(270deg, #faf8f5 0%, rgba(250, 248, 245, 0.86) 32%, transparent 100%);
+  background: linear-gradient(270deg, #f1efe9 0%, rgba(241, 239, 233, 0.86) 32%, transparent 100%);
 }
 
 .powered-lazy-susan-track {
@@ -282,9 +266,9 @@ body::before {
   gap: 0.55rem;
   white-space: nowrap;
   border-radius: 9999px;
-  border: 1px solid rgba(0, 112, 45, 0.2);
-  background: #e8f5ec;
-  color: #0a2e1c;
+  border: 1px solid rgba(31, 75, 255, 0.2);
+  background: #1f4bff14;
+  color: #0c0d10;
   padding: 0.48rem 1rem;
   font-size: 0.78rem;
   font-weight: 700;
@@ -294,7 +278,7 @@ body::before {
 }
 
 .powered-lazy-susan-mark {
-  color: #00702d;
+  color: #1f4bff;
 }
 
 @keyframes lazy-susan-scroll {
@@ -313,16 +297,16 @@ body::before {
   }
 }
 
-/* Background grid pattern — green, light theme */
+/* Background grid pattern — blue, light theme */
 .bg-grid {
   background-image:
-    linear-gradient(rgba(0, 112, 45, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 112, 45, 0.06) 1px, transparent 1px);
+    linear-gradient(rgba(31, 75, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 75, 255, 0.07) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
 /* Turdy's journey — from the Front Office demo. No idle wobble: he arrives
-   on his ship, hops out, rides the green route past each numbered stop,
+   on his ship, hops out, rides the blue route past each numbered stop,
    and docks as the chat assistant. */
 .journey {
   position: relative;
@@ -340,7 +324,7 @@ body::before {
 
 #route .track {
   fill: none;
-  stroke: #50c878;
+  stroke: #1f4bff;
   stroke-opacity: 0.3;
   stroke-width: 3;
   stroke-linecap: round;
@@ -348,7 +332,7 @@ body::before {
 
 #route .glow {
   fill: none;
-  stroke: #00702d;
+  stroke: #1f4bff;
   stroke-width: 9;
   stroke-linecap: round;
   opacity: 0.45;
@@ -363,7 +347,7 @@ body::before {
 }
 
 #route .spark {
-  fill: #ecf87f;
+  fill: #1f4bff;
   filter: url(#blur2);
 }
 
@@ -379,15 +363,15 @@ body::before {
   border-radius: 50%;
   font-size: 14px;
   font-weight: 800;
-  color: #ecf87f;
-  background: radial-gradient(circle at 32% 28%, #50c878, #00702d 55%, #0a2e1c);
-  box-shadow: 0 0 0 5px #faf8f5, 0 0 0 6px #cdeeda, 0 0 26px #00702d55;
+  color: #ffffff;
+  background: radial-gradient(circle at 32% 28%, #5b83ff, #1f4bff 55%, #122a8f);
+  box-shadow: 0 0 0 5px #f1efe9, 0 0 0 6px rgba(31, 75, 255, 0.25), 0 0 26px rgba(31, 75, 255, 0.35);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .journey-node.lit {
   transform: scale(1.12);
-  box-shadow: 0 0 0 5px #faf8f5, 0 0 0 6px #ecf87f, 0 0 40px #50c878;
+  box-shadow: 0 0 0 5px #f1efe9, 0 0 0 6px #1f4bff, 0 0 40px rgba(31, 75, 255, 0.55);
 }
 
 /* ---------- Arrival: Turdy flies in on his ship ---------- */
@@ -416,7 +400,7 @@ body::before {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 0 18px #50c87888) drop-shadow(0 18px 24px #0008);
+  filter: drop-shadow(0 0 22px rgba(12, 13, 16, 0.4)) drop-shadow(0 18px 28px rgba(12, 13, 16, 0.35));
 }
 
 #ship .bob {
@@ -459,7 +443,7 @@ body::before {
   height: 100%;
   object-fit: contain;
   opacity: 0;
-  filter: drop-shadow(0 10px 14px #0a2e1c66);
+  filter: drop-shadow(0 10px 14px rgba(12, 13, 16, 0.35));
 }
 
 #turdy[data-pose='wave'] .p-front,
@@ -496,12 +480,12 @@ body::before {
   font-size: 28px;
   font-weight: 800;
   line-height: 1;
-  color: #ecf87f;
+  color: #1f4bff;
   transform: rotate(-8deg);
   white-space: nowrap;
   pointer-events: none;
   transition: opacity 0.3s;
-  text-shadow: 0 2px 10px #000a;
+  text-shadow: 0 2px 10px rgba(12, 13, 16, 0.3);
 }
 
 .dock-greet {
@@ -513,12 +497,12 @@ body::before {
   padding: 13px 16px;
   border-radius: 18px 18px 4px 18px;
   background: #fff;
-  color: #0a2e1c;
+  color: #0c0d10;
   font-size: 15px;
   font-weight: 700;
   line-height: 1.35;
-  box-shadow: 0 14px 34px #0a2e1c44;
-  border: 1px solid #cdeeda;
+  box-shadow: 0 14px 34px rgba(12, 13, 16, 0.25);
+  border: 1px solid rgba(31, 75, 255, 0.25);
   opacity: 0;
   transform: translateY(10px) scale(0.95);
   transform-origin: 100% 100%;
@@ -531,10 +515,13 @@ body::before {
   transform: none;
 }
 
-/* Ship hover spot inside the hero showcase frame */
+/* Ship hover spot inside the hero showcase frame — fills the whole visual
+   area. It MUST have a real size: as an empty flex item it measured 0 wide,
+   which made the ship 0x0 and invisible (only the trail + "Hey there!"
+   showed). Absolute positioning takes it out of the flex layout. */
 .swirl-anchor {
-  position: relative;
-  height: 100%;
+  position: absolute;
+  inset: 0;
 }
 
 .scroll-cue {
@@ -543,7 +530,7 @@ body::before {
   display: flex;
   justify-content: center;
   padding-bottom: 8px;
-  color: #cdeeda;
+  color: #2c2f36;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -607,10 +594,3 @@ body::before {
   }
 }
 
-/* Green glow utilities for demo cards — one family, no rainbow */
-.neon-glow-emerald {
-  box-shadow: 0 0 20px rgba(0, 112, 45, 0.25), 0 0 40px rgba(0, 112, 45, 0.08);
-}
-.neon-glow-lime {
-  box-shadow: 0 0 20px rgba(236, 248, 127, 0.5), 0 0 40px rgba(236, 248, 127, 0.2);
-}

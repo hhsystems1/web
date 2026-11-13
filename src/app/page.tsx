@@ -150,11 +150,11 @@ export default function Home() {
   };
 
   return (
-    <main className="relative min-h-screen bg-[#faf8f5]">
+    <main className="relative min-h-screen bg-[#f1efe9]">
       <NavIsland />
 
       <HeroShowcase
-        title={<>Turn your website into a <span className="lime-mark">24/7 customer-generating</span> system</>}
+        title={<>Turn your website into a <span className="accent-mark">24/7 customer-generating</span> system</>}
         subtitle="Helping Hands Systems builds one thing: conversion-focused websites for local service businesses — with live demos you can try, lead capture, booking flows, and a built-in analytics dashboard. Powered by Rivryn."
         ctaText="See Live Demos"
         ctaAction={scrollToWebsiteDemo}
@@ -165,7 +165,7 @@ export default function Home() {
         <TurdyJourney />
 
       {/* Powered-by Ribbon — Rivryn is the reference, HHS is the builder */}
-      <section className="relative z-10 bg-[#faf8f5] px-6 py-5">
+      <section className="relative z-10 bg-[#f1efe9] px-6 py-5">
         <div className="powered-lazy-susan" aria-label="Powered by Rivryn">
           <div className="powered-lazy-susan-track">
             {Array.from({ length: 4 }).map((_, index) => (
@@ -188,21 +188,21 @@ export default function Home() {
       <Section className="reveal relative">
         <span className="journey-node" data-node>01</span>
         <div className="mb-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-          <Image src="/turdy19.webp" alt="Turdy" width={72} height={72} className="h-16 w-16 rounded-full border-2 border-[#00702d]/30 bg-[#e8f5ec] object-cover object-[50%_35%]" />
+          <Image src="/turdy19.webp" alt="Turdy" width={72} height={72} className="h-16 w-16 rounded-full border-2 border-[#1f4bff]/30 bg-[#1f4bff14] object-cover object-[50%_35%]" />
           <div>
-            <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#00702d]">Turdy&apos;s honest take</p>
-            <p className="mt-1 max-w-2xl text-xl font-semibold text-[#14261a]">Most business websites just sit there. Yours should work while you sleep.</p>
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#1f4bff]">Turdy&apos;s honest take</p>
+            <p className="mt-1 max-w-2xl text-xl font-semibold text-[#0c0d10]">Most business websites just sit there. Yours should work while you sleep.</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-stretch">
-          <div className="relative rounded-3xl border border-[#00702d]/15 bg-white p-8 shadow-xl shadow-[#00702d]/5">
+          <div className="relative rounded-3xl border border-[#1f4bff]/15 bg-white p-8 shadow-xl shadow-[#1f4bff]/5">
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#8a6d3b]">The problem</p>
             <h2 className="mb-5 text-3xl font-bold text-gray-900 md:text-4xl">Most business websites just sit there.</h2>
             <p className="mb-6 text-lg leading-relaxed text-gray-600">A lot of local business websites look fine, but they do not help the owner win the customer when someone is ready to take action.</p>
             <div className="space-y-3">
               {problemPoints.map((point) => (
-                <div key={point} className="flex items-start gap-3 rounded-lg border border-gray-200/60 bg-[#faf8f5] p-3 text-gray-600">
+                <div key={point} className="flex items-start gap-3 rounded-lg border border-gray-200/60 bg-[#faf9f6] p-3 text-gray-600">
                   <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[#8a6d3b]" />
                   <span>{point}</span>
                 </div>
@@ -210,14 +210,14 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="forest relative rounded-3xl p-8 shadow-xl">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#ecf87f]">The solution</p>
-            <h2 className="mb-5 text-3xl font-bold text-white md:text-4xl">What if your website actually worked for you?</h2>
-            <p className="mb-6 text-lg leading-relaxed text-[#cdeeda]">We build websites that act like a simple front-end sales system: clear offer, trust-building layout, lead capture, booking paths, and follow-up support.</p>
+          <div className="relative rounded-3xl border border-[#1f4bff]/20 bg-[#1f4bff14] p-8 shadow-xl">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#1f4bff]">The solution</p>
+            <h2 className="mb-5 text-3xl font-bold text-[#0c0d10] md:text-4xl">What if your website actually worked for you?</h2>
+            <p className="mb-6 text-lg leading-relaxed text-[#2c2f36]">We build websites that act like a simple front-end sales system: clear offer, trust-building layout, lead capture, booking paths, and follow-up support.</p>
             <div className="space-y-3">
               {solutionPoints.map((point) => (
-                <div key={point} className="flex items-start gap-3 rounded-lg border border-white/15 bg-white/10 p-3 text-white">
-                  <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-[#ecf87f]" />
+                <div key={point} className="flex items-start gap-3 rounded-lg border border-[#1f4bff]/15 bg-white p-3 text-[#0c0d10]">
+                  <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-[#2fbf59]" />
                   <span>{point}</span>
                 </div>
               ))}
@@ -230,16 +230,16 @@ export default function Home() {
       <Section id="product" className="reveal relative">
         <span className="journey-node" data-node>02</span>
         <div className="text-center">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#00702d]">One product. No packages to decode.</p>
-          <h2 className="mx-auto max-w-3xl text-4xl font-black text-[#14261a] md:text-5xl">A website that turns visitors into customers</h2>
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#1f4bff]">One product. No packages to decode.</p>
+          <h2 className="mx-auto max-w-3xl text-4xl font-black text-[#0c0d10] md:text-5xl">A website that turns visitors into customers</h2>
           <p className="mx-auto mt-6 max-w-3xl text-xl text-gray-500">Everything below is included in the one product. Pick a demo, we customize it with your branding, and it goes live with a dashboard to prove it works.</p>
         </div>
 
         <div className="mx-auto mt-10 grid max-w-4xl grid-cols-2 gap-4 lg:grid-cols-4">
           {quickStats.map((stat) => (
-            <div key={stat.label} className="rounded-2xl border border-[#00702d]/15 bg-[#e8f5ec] p-5 text-center">
-              <div className="text-3xl font-black text-[#00702d]">{stat.value}</div>
-              <div className="mt-1 text-sm font-medium text-[#0a2e1c]">{stat.label}</div>
+            <div key={stat.label} className="rounded-2xl border border-[#1f4bff]/15 bg-[#1f4bff14] p-5 text-center">
+              <div className="text-3xl font-black text-[#1f4bff]">{stat.value}</div>
+              <div className="mt-1 text-sm font-medium text-[#0c0d10]">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -247,7 +247,7 @@ export default function Home() {
         <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {included.map((service) => (
             <div key={service.title} className="card p-6">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#00702d] text-[#ecf87f] shadow-md shadow-[#00702d]/30">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#1f4bff] text-white shadow-md shadow-[#1f4bff]/30">
                 <service.icon size={24} />
               </div>
               <h3 className="mb-3 text-xl font-semibold text-gray-900">{service.title}</h3>
@@ -265,7 +265,7 @@ export default function Home() {
       <Section className="reveal relative">
         <span className="journey-node" data-node>03</span>
         <div className="mx-auto mb-12 max-w-3xl text-center">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#00702d]">Turdy&apos;s checklist</p>
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#1f4bff]">Turdy&apos;s checklist</p>
           <h2 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">From demo to your live website</h2>
           <p className="text-xl leading-relaxed text-gray-500">The goal is not just a nicer website. The goal is a clearer path from interest to action.</p>
         </div>
@@ -273,7 +273,7 @@ export default function Home() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {funnelSteps.map((step, index) => (
             <div key={step.title} className="card p-6">
-              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#00702d] text-lg font-black text-[#ecf87f]">{index + 1}</div>
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#1f4bff] text-lg font-black text-white">{index + 1}</div>
               <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
               <p className="mt-3 leading-relaxed text-gray-500">{step.description}</p>
             </div>
@@ -286,7 +286,7 @@ export default function Home() {
         <span className="journey-node" data-node>04</span>
         <div className="mx-auto max-w-6xl">
           <div className="mb-14 max-w-3xl">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#00702d]">Try it yourself</p>
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#1f4bff]">Try it yourself</p>
             <h2 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">Pick a live demo to explore</h2>
             <p className="text-xl leading-relaxed text-gray-500">Interact with real website demos built for your industry. Click through, test the booking flows, and see what your business could look like. Turdy&apos;s favorite is the middle one — it rides the highest.</p>
           </div>
@@ -303,7 +303,7 @@ export default function Home() {
       <Section className="reveal">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <div>
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#00702d]">Built into every site</p>
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#1f4bff]">Built into every site</p>
             <h2 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">More than a good-looking homepage</h2>
             <p className="text-xl leading-relaxed text-gray-500">Your site can collect leads, book time, answer common questions, and track every visitor through your analytics dashboard.</p>
           </div>
@@ -315,8 +315,8 @@ export default function Home() {
                 <p className="mt-3 leading-relaxed text-gray-500">{highlight.description}</p>
                 <div className="mt-5 flex flex-wrap gap-3">
                   {highlight.points.map((point) => (
-                    <span key={point} className="inline-flex items-center gap-2 rounded-lg border border-[#00702d]/20 bg-[#e8f5ec] px-3 py-2 text-sm font-medium text-gray-700">
-                      <CheckCircle2 size={16} className="text-[#00702d]" />
+                    <span key={point} className="inline-flex items-center gap-2 rounded-lg border border-[#1f4bff]/20 bg-[#1f4bff14] px-3 py-2 text-sm font-medium text-gray-700">
+                      <CheckCircle2 size={16} className="text-[#2fbf59]" />
                       {point}
                     </span>
                   ))}
@@ -337,11 +337,11 @@ export default function Home() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {whyChooseUs.map((item) => (
             <div key={item.title} className="card h-full p-6 text-center">
-              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#00702d] text-[#ecf87f] shadow-md shadow-[#00702d]/30">
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#1f4bff] text-white shadow-md shadow-[#1f4bff]/30">
                 <item.icon size={32} />
               </div>
               <h3 className="mb-2 text-xl font-semibold text-gray-900">{item.title}</h3>
-              <div className="mb-2 text-2xl font-bold text-[#00702d]">{item.stat}</div>
+              <div className="mb-2 text-2xl font-bold text-[#1f4bff]">{item.stat}</div>
               <p className="text-gray-500">{item.description}</p>
             </div>
           ))}
@@ -356,12 +356,12 @@ export default function Home() {
 
       {/* CTA — Turdy closes */}
       <Section className="reveal">
-        <div className="forest relative overflow-hidden rounded-3xl p-12 text-center">
+        <div className="dark-section relative overflow-hidden rounded-3xl p-12 text-center">
           <div className="relative z-10">
-            <Image src="/turdy19.webp" alt="Turdy" width={96} height={96} className="mx-auto mb-6 h-24 w-24 rounded-full border-2 border-[#ecf87f]/50 bg-[#0f3d26] object-cover object-[50%_35%]" />
+            <Image src="/turdy19.webp" alt="Turdy" width={96} height={96} className="mx-auto mb-6 h-24 w-24 rounded-full border-2 border-white/30 bg-white/10 object-cover object-[50%_35%]" />
             <h2 className="mx-auto max-w-3xl text-4xl font-black text-white md:text-5xl">Ready to see what this could look like for your business?</h2>
-            <p className="mx-auto mb-8 mt-6 max-w-2xl text-xl text-[#cdeeda]">Try a live demo, then customize it with your branding. Your new website is just a few clicks away — and Turdy will walk you through it.</p>
-            <Link href="/#demos" className="btn btn-lime text-lg">
+            <p className="mx-auto mb-8 mt-6 max-w-2xl text-xl text-white/70">Try a live demo, then customize it with your branding. Your new website is just a few clicks away — and Turdy will walk you through it.</p>
+            <Link href="/#demos" className="btn btn-primary text-lg">
               Explore Live Demos →
             </Link>
           </div>
@@ -371,36 +371,36 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="forest border-t border-white/10 px-6 py-12">
+      <footer className="dark-section border-t border-white/10 px-6 py-12">
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-3">
             <div>
               <h3 className="mb-4 text-xl font-bold text-white">Helping Hands Systems</h3>
-              <p className="mb-4 text-[#cdeeda]">One product: conversion-focused websites for local service businesses, powered by Rivryn — the system that runs your leads, follow-up, and bookings.</p>
-              <div className="space-y-2 text-[#cdeeda]">
+              <p className="mb-4 text-white/70">One product: conversion-focused websites for local service businesses, powered by Rivryn — the system that runs your leads, follow-up, and bookings.</p>
+              <div className="space-y-2 text-white/70">
                 <p>Phone: (606) 660-6147</p>
                 <p>Email: helpinghandsystems1@gmail.com</p>
               </div>
             </div>
             <div>
               <h4 className="mb-4 font-semibold text-white">Live Demos</h4>
-              <ul className="space-y-2 text-[#cdeeda]">
-                <li><Link href="/demos/restaurant" className="transition-colors hover:text-[#ecf87f]">Restaurant & Cafe</Link></li>
-                <li><Link href="/demos/contractor" className="transition-colors hover:text-[#ecf87f]">Contractor & Home Services</Link></li>
-                <li><Link href="/demos/medical" className="transition-colors hover:text-[#ecf87f]">Medical & Dental Office</Link></li>
+              <ul className="space-y-2 text-white/70">
+                <li><Link href="/demos/restaurant" className="transition-colors hover:text-[#8fb0ff]">Restaurant & Cafe</Link></li>
+                <li><Link href="/demos/contractor" className="transition-colors hover:text-[#8fb0ff]">Contractor & Home Services</Link></li>
+                <li><Link href="/demos/medical" className="transition-colors hover:text-[#8fb0ff]">Medical & Dental Office</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="mb-4 font-semibold text-white">Company</h4>
-              <ul className="space-y-2 text-[#cdeeda]">
-                <li><Link href="/packages" className="transition-colors hover:text-[#ecf87f]">The Product</Link></li>
-                <li><Link href="/contact" className="transition-colors hover:text-[#ecf87f]">Contact</Link></li>
-                <li><Link href="/privacy" className="transition-colors hover:text-[#ecf87f]">Privacy Policy</Link></li>
-                <li><Link href="/terms" className="transition-colors hover:text-[#ecf87f]">Terms & Conditions</Link></li>
+              <ul className="space-y-2 text-white/70">
+                <li><Link href="/packages" className="transition-colors hover:text-[#8fb0ff]">The Product</Link></li>
+                <li><Link href="/contact" className="transition-colors hover:text-[#8fb0ff]">Contact</Link></li>
+                <li><Link href="/privacy" className="transition-colors hover:text-[#8fb0ff]">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="transition-colors hover:text-[#8fb0ff]">Terms & Conditions</Link></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-white/10 pt-8 text-center text-[#cdeeda]">
+          <div className="border-t border-white/10 pt-8 text-center text-white/70">
             <p>&copy; 2026 Helping Hands Systems. All rights reserved.</p>
           </div>
         </div>

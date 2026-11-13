@@ -52,8 +52,8 @@ function TurtleCharacter({ compact = false }: { compact?: boolean }) {
 
   return (
     <div className={`relative ${compact ? 'h-12 w-12' : 'h-16 w-16'}`} aria-hidden="true">
-      <div className="absolute inset-0 rounded-full bg-[#50c878]/25 blur-xl" />
-      <div className="relative h-full w-full overflow-hidden rounded-full border-2 border-[#50c878]/60 bg-white/80 shadow-lg shadow-[#00702d]/15">
+      <div className="absolute inset-0 rounded-full bg-[#1f4bff]/20 blur-xl" />
+      <div className="relative h-full w-full overflow-hidden rounded-full border-2 border-[#1f4bff]/40 bg-white/80 shadow-lg shadow-[#1f4bff]/15">
         <Image
           src="/hhs-turdy-new.webp"
           alt=""
@@ -98,17 +98,17 @@ export default function TurtleChatWidget() {
   return (
     <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
       {isOpen && (
-        <div className="w-[min(calc(100vw-2rem),390px)] overflow-hidden rounded-3xl border border-[#00702d]/20 bg-white/95 shadow-2xl shadow-[#00702d]/15 backdrop-blur-2xl">
-          <div className="flex items-center gap-3 border-b border-gray-200/60 bg-[#e8f5ec]/60 p-4">
+        <div className="w-[min(calc(100vw-2rem),390px)] overflow-hidden rounded-3xl border border-[#1f4bff]/20 bg-white/95 shadow-2xl shadow-[#1f4bff]/15 backdrop-blur-2xl">
+          <div className="flex items-center gap-3 border-b border-gray-200/60 bg-[#1f4bff14] p-4">
             <TurtleCharacter compact />
             <div className="min-w-0 flex-1">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#00702d]">Demo chat</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#1f4bff]">Demo chat</p>
               <h2 className="text-lg font-bold text-gray-900">Ask Turdy</h2>
             </div>
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="rounded-full border border-gray-200 p-2 text-gray-400 transition hover:border-[#50c878] hover:text-gray-700"
+              className="rounded-full border border-gray-200 p-2 text-gray-400 transition hover:border-[#1f4bff] hover:text-gray-700"
               aria-label="Close chat demo"
             >
               <X size={18} />
@@ -121,7 +121,7 @@ export default function TurtleChatWidget() {
                 key={`${message.role}-${index}`}
                 className={`rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                   message.role === 'assistant'
-                    ? 'mr-6 border border-[#00702d]/20 bg-[#e8f5ec] text-gray-800'
+                    ? 'mr-6 border border-[#1f4bff]/20 bg-[#1f4bff14] text-gray-800'
                     : 'ml-8 bg-gray-100 text-gray-800'
                 }`}
               >
@@ -137,7 +137,7 @@ export default function TurtleChatWidget() {
                   key={question}
                   type="button"
                   onClick={() => sendMessage(question)}
-                  className="rounded-full border border-[#00702d]/20 bg-[#e8f5ec] px-3 py-1.5 text-left text-xs font-medium text-[#005a24] transition hover:border-[#00702d] hover:bg-[#cdeeda]"
+                  className="rounded-full border border-[#1f4bff]/25 bg-[#1f4bff14] px-3 py-1.5 text-left text-xs font-medium text-[#1f4bff] transition hover:border-[#1f4bff] hover:bg-[#1f4bff]/20"
                 >
                   {question}
                 </button>
@@ -155,11 +155,11 @@ export default function TurtleChatWidget() {
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
                 placeholder="Ask about your website..."
-                className="min-w-0 flex-1 rounded-full border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-800 placeholder:text-gray-400 outline-none transition focus:border-[#00702d] focus:ring-2 focus:ring-[#cdeeda]"
+                className="min-w-0 flex-1 rounded-full border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-800 placeholder:text-gray-400 outline-none transition focus:border-[#1f4bff] focus:ring-2 focus:ring-[#1f4bff]/30"
               />
               <button
                 type="submit"
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#00702d] text-white shadow-lg shadow-[#00702d]/20 transition hover:scale-105"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#1f4bff] text-white shadow-lg shadow-[#1f4bff]/25 transition hover:scale-105"
                 aria-label="Send chat message"
               >
                 <Send size={18} />
@@ -173,7 +173,7 @@ export default function TurtleChatWidget() {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="hidden max-w-xs rounded-2xl border border-[#00702d]/20 bg-white/90 px-4 py-3 text-left text-sm text-gray-700 shadow-xl shadow-[#00702d]/15 backdrop-blur-xl transition hover:border-[#50c878] md:block"
+          className="hidden max-w-xs rounded-2xl border border-[#1f4bff]/20 bg-white/90 px-4 py-3 text-left text-sm text-gray-700 shadow-xl shadow-[#1f4bff]/15 backdrop-blur-xl transition hover:border-[#1f4bff] md:block"
         >
           {latestAssistantText}
         </button>
@@ -182,7 +182,7 @@ export default function TurtleChatWidget() {
       <button
         type="button"
         onClick={() => setIsOpen((current) => !current)}
-        className="group flex items-center gap-3 rounded-full border border-[#00702d]/20 bg-white/90 p-2 pr-4 text-gray-700 shadow-2xl shadow-[#00702d]/15 backdrop-blur-xl transition hover:border-[#50c878] hover:bg-[#e8f5ec]"
+        className="group flex items-center gap-3 rounded-full border border-[#1f4bff]/20 bg-white/90 p-2 pr-4 text-gray-700 shadow-2xl shadow-[#1f4bff]/15 backdrop-blur-xl transition hover:border-[#1f4bff] hover:bg-[#1f4bff14]"
         aria-label="Open Turdy chat demo"
       >
         <TurtleCharacter compact />

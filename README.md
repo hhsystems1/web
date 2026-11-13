@@ -98,20 +98,20 @@ src/
 
 ## 🎨 Design System
 
-### Colors — one green family, no rainbow
-- **Primary Emerald**: `#50C878`
-- **Deep Green**: `#00702d`
-- **Forest Dark**: `#0a2e1c` (dark sections, nav pill)
-- **Lime**: `#ecf87f` (the one loud accent — highlights only)
-- **Cream**: `#faf8f5` (page background)
-- **Sage**: `#e8f5ec` (card tints)
+### Colors — light like HHS v2: cream, near-black, one royal-blue accent
+- **Royal Blue**: `#1f4bff` (the one loud accent — buttons, links, headline highlights, route)
+- **Near-black**: `#0c0d10` (headlines; dark closing CTA + footer only)
+- **Body**: `#2c2f36` (body text)
+- **Cream**: `#f1efe9` (page background)
+- **Card**: `#faf9f6` (cards)
+- **Success Green**: `#2fbf59` (checkmarks / done states only)
 
-The old spinning rainbow ring (`.eclipse-border`) and the blue `#38b5ff` system are gone. Buttons are flat green; dark sections are forest; Turdy hosts the page.
+The old spinning rainbow ring (`.eclipse-border`) and the blue `#38b5ff` system are gone. Buttons are flat royal blue; dark sections are near-black and used only for the closing CTA and footer; Turdy hosts the page.
 
 ### Typography
 - **Font**: Inter (variable)
-- **Headings**: Semibold, white
-- **Body**: Regular, gray-300
+- **Headings**: Semibold, near-black `#0c0d10`
+- **Body**: Regular, charcoal `#2c2f36`
 
 ### Components
 - **Glass**: `backdrop-blur-xl` + `bg-white/5`
