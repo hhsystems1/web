@@ -7,12 +7,12 @@ import { useEffect } from 'react';
  * (hhsdemos site/front-office/index.html, single-file build).
  *
  * The ship flies in from deep space and hovers in the hero with Turdy
- * aboard. On scroll the empty ship flies away, Turdy hops out with a
- * somersault, lands on node 01, and rides a glowing green route down
- * the page past each numbered stop (data-node), pointing at the copy.
- * After the last stop he hops into the bottom-right corner and docks
- * as the chat assistant. No idle wobble anywhere — he is always
- * either in the ship, travelling, or docked.
+ * aboard. On scroll the empty ship flies away, Turdy jumps out, tucks
+ * into a ball mid-air, and lands on node 01. He rolls down the glowing
+ * route as a ball past each numbered stop (data-node), popping up to
+ * wave at the copy at each one. After the last stop he hops into the
+ * bottom-right corner and docks as the chat assistant. No idle wobble
+ * anywhere — he is always either in the ship, travelling, or docked.
  *
  * Reduced motion: the ship and Turdy sit still in the hero, the route
  * is fully drawn, no arrival, no journey.
@@ -251,17 +251,16 @@ export default function TurdyJourney() {
       spark!.setAttribute('cx', String(pt.x));
       spark!.setAttribute('cy', String(pt.y));
       nodesEls.forEach((n) => n.el.classList.toggle('lit', drawn >= n.l - 6));
-      // body position (viewport coords): feet on the route. Upright while travelling,
-      // one somersault between sections, and at each numbered stop he points at the words.
+      // body position (viewport coords): feet on the route. He rolls as a
+      // ball between stops, and pops up to wave at each numbered stop.
       let vx = pt.x - W / 2 - scrollX;
       let vy = pt.y + top0 - scrollY - H * 0.92;
       let h = H;
       let rot = 0;
       let pose = 'wave';
       let face = 1;
-      const flipRot = (qq: number) => 360 * (qq < 0.5 ? 2 * qq * qq : 1 - Math.pow(-2 * qq + 2, 2) / 2);
       if (fall < 1) {
-        // hop out of the cockpit, somersault, land on node 01 where the line begins
+        // jump out of the cockpit, tuck into a ball mid-air, land on node 01
         const hx = heroSpot.x - W / 2 - scrollX;
         const hy = heroSpot.y - scrollY - H * 0.92;
         // curve: drop down on the ship's side first, then sweep over to 01 below the headline
@@ -273,25 +272,25 @@ export default function TurdyJourney() {
         vx = u * u * hx + 2 * u * fe * cx + fe * fe * nx;
         vy = u * u * hy + 2 * u * fe * cy + fe * fe * ny - Math.sin(fe * Math.PI) * (mobile ? 30 : 50);
         face = vx < hx - 2 ? -1 : 1;
-        pose = q <= 0 ? 'wave' : face > 0 ? 'right' : 'left';
-        if (fe > 0.2 && fe < 0.7) rot = flipRot((fe - 0.2) / 0.5) * face;
+        pose = q <= 0 ? 'wave' : fe < 0.45 ? (face > 0 ? 'right' : 'left') : 'ball';
       } else {
         const st = stopAt(y);
         if (st.at >= 0) {
-          // standing at a stop: just above the number, pointing toward its text
+          // standing at a stop: just above the number, waving at its text
           const n = nodesEls[st.at];
           face = n.side;
           vx = n.x - W / 2 - scrollX - face * W * 0.45;
           vy = n.y + top0 - scrollY - H - (mobile ? 18 : 24);
-          pose = 'point';
+          pose = 'wave';
         } else {
-          // travelling between stops: hop along the line with one somersault mid-way
+          // travelling between stops: roll along the line as a ball, one
+          // full roll per leg — a roll, not a somersault
           const a = pointAt(drawn - 12);
           const b = pointAt(drawn + 12);
           face = b.x - a.x < -2 ? -1 : 1;
-          pose = face > 0 ? 'right' : 'left';
-          vy -= Math.sin(st.k * Math.PI) * H * 0.55;
-          if (st.k > 0.3 && st.k < 0.7) rot = flipRot((st.k - 0.3) / 0.4) * face;
+          pose = 'ball';
+          vy -= Math.sin(st.k * Math.PI) * H * 0.18;
+          rot = st.k * 360 * face;
         }
       }
       // after the last stop, hop into the chat dock (bottom-right, where Ask Turdy lives)
@@ -308,6 +307,8 @@ export default function TurdyJourney() {
         pose = k > 0.96 ? 'docked' : ex > vx ? 'right' : 'left';
         rot = 0;
       }
+      // the route gutter is near the left edge: never let him slide off it
+      vx = Math.max(vx, 8);
       const w = h / RATIO;
       turdy!.style.width = w + 'px';
       turdy!.style.height = h + 'px';
@@ -582,6 +583,8 @@ export default function TurdyJourney() {
         <img className="p-left" src="/turdy-left.webp" alt="" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="p-back" src="/turdy-back.webp" alt="" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="p-ball" src="/turdy-ball.webp" alt="" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="p-point"

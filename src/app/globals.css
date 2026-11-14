@@ -353,7 +353,7 @@ body::before {
 
 .journey-node {
   position: absolute;
-  left: 20px;
+  left: 56px;
   top: 24px;
   z-index: 4;
   display: grid;
@@ -449,7 +449,8 @@ body::before {
 #turdy[data-pose='wave'] .p-front,
 #turdy[data-pose='right'] .p-right,
 #turdy[data-pose='left'] .p-left,
-#turdy[data-pose='roll'] .p-back {
+#turdy[data-pose='roll'] .p-back,
+#turdy[data-pose='ball'] .p-ball {
   opacity: 1;
 }
 
@@ -582,7 +583,7 @@ body::before {
   }
 
   .journey-node {
-    left: 12px;
+    left: 30px;
     top: 20px;
     width: 36px;
     height: 36px;
