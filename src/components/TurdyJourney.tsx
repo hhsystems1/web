@@ -576,7 +576,9 @@ export default function TurdyJourney() {
       </div>
       <div id="turdy" data-pose="wave" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="p-front" src="/turdy-front.webp" alt="" />
+        <img className="p-wave-a" src="/turdy-wave-a.webp" alt="" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="p-wave-b" src="/turdy-wave-b.webp" alt="" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="p-right" src="/turdy-right.webp" alt="" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
