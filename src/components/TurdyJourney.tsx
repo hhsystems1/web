@@ -14,6 +14,11 @@ import { useEffect } from 'react';
  * bottom-right corner and docks as the chat assistant. No idle wobble
  * anywhere — he is always either in the ship, travelling, or docked.
  *
+ * The fly-in only plays when the page is entered at the top. On a
+ * refresh the browser restores the scroll position, so a load that
+ * lands mid-page gets no fly-in at all — the rocket never streaks
+ * across the middle of the page.
+ *
  * Reduced motion: the ship and Turdy sit still in the hero, the route
  * is fully drawn, no arrival, no journey.
  */
@@ -333,14 +338,13 @@ export default function TurdyJourney() {
       const ship = shipEl;
       const trail = $('#trail') as HTMLCanvasElement | null;
       if (!ship || !trail) return;
-      if (scrollY > 30 && !location.hash) {
-        try {
-          scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
-        } catch {
-          /* ignore */
-        }
-      }
       const R = () => ({ x: shipRect.x - scrollX, y: shipRect.y - scrollY, w: shipRect.w, h: shipRect.h });
+      // The fly-in only plays when the page is entered at the top. On a
+      // refresh the browser restores the scroll position — sometimes after
+      // this runs — so a fly-in started at the top would streak across the
+      // middle of the page. If we're already scrolled down, skip it and
+      // place everything where the scroll actually is; the visitor stays
+      // where they were, no rocket.
       if (reduce || scrollY > 30) {
         trail.remove();
         ship.style.opacity = '1';
@@ -360,8 +364,16 @@ export default function TurdyJourney() {
         shipBusy = false;
         trail.remove();
         ['wheel', 'touchmove', 'keydown'].forEach((ev) => removeEventListener(ev, end));
+        removeEventListener('scroll', onJump);
         place();
       };
+      const onJump = () => {
+        // scroll restoration can land mid-page after this starts (it fires
+        // a scroll event but no wheel/touch/key): kill the fly-in at once
+        // so the rocket never streaks across the middle of the page
+        if (scrollY > 30) end();
+      };
+      addEventListener('scroll', onJump, { passive: true });
       ['wheel', 'touchmove', 'keydown'].forEach((ev) => addEventListener(ev, end, { passive: true })); // scrolling takes over immediately
       const load = (img: HTMLImageElement) =>
         new Promise<void>((res, rej) => {
