@@ -446,11 +446,16 @@ body::before {
   filter: drop-shadow(0 10px 14px rgba(12, 13, 16, 0.35));
 }
 
-#turdy[data-pose='wave'] .p-front,
 #turdy[data-pose='right'] .p-right,
 #turdy[data-pose='left'] .p-left,
 #turdy[data-pose='roll'] .p-back,
 #turdy[data-pose='ball'] .p-ball {
+  opacity: 1;
+}
+
+/* wave: frame A is the resting frame; the swap animation (motion-safe,
+   below) alternates it with frame B so only the raised arm moves */
+#turdy[data-pose='wave'] .p-wave-a {
   opacity: 1;
 }
 
@@ -544,9 +549,12 @@ body::before {
     animation: ship-bob 3s ease-in-out infinite;
   }
 
-  #turdy[data-pose='wave'] .p-front {
-    animation: wave-bob 2.4s ease-in-out infinite;
-    transform-origin: 50% 90%;
+  #turdy[data-pose='wave'] .p-wave-a {
+    animation: wave-swap-a 0.9s steps(1) infinite;
+  }
+
+  #turdy[data-pose='wave'] .p-wave-b {
+    animation: wave-swap-b 0.9s steps(1) infinite;
   }
 
   #turdy[data-pose='point'] .p-point {
@@ -562,9 +570,15 @@ body::before {
   50% { transform: translateY(-7px) rotate(-1.2deg); }
 }
 
-@keyframes wave-bob {
-  0%, 100% { transform: rotate(-2deg); }
-  50% { transform: rotate(3deg) translateY(-3px); }
+/* hard swap, no fade: the two wave frames are pixel-identical except the arm */
+@keyframes wave-swap-a {
+  0%, 49.9% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes wave-swap-b {
+  0%, 49.9% { opacity: 0; }
+  50%, 100% { opacity: 1; }
 }
 
 @keyframes point-nudge {
