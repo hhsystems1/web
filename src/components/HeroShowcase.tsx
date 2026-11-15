@@ -33,6 +33,17 @@ export default function HeroShowcase({ title, subtitle, ctaText, ctaAction }: He
       <div className="absolute -right-16 bottom-10 h-80 w-80 rounded-full bg-[#1f4bff]/10 blur-3xl" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
+        {/* Phone-first: the ship's stage sits above the headline on small
+            screens, so the fly-in plays where the visitor is looking instead
+            of below the fold. Hidden on desktop, where the showcase card
+            below holds it. */}
+        <div className="relative overflow-hidden rounded-[2rem] border border-[#1f4bff]/20 bg-[#e9edfc] shadow-xl shadow-[#0c0d10]/10 lg:hidden">
+          <div className="relative flex h-60 items-center justify-center overflow-hidden">
+            <div className="swirl-anchor" id="swirl-m" aria-hidden="true" />
+            <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[#faf9f6] to-transparent" />
+          </div>
+        </div>
+
         <div>
           <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-[#1f4bff]/40 bg-white/70 px-4 py-2 text-sm font-semibold text-[#1f4bff] backdrop-blur-md">
             <Sparkles size={16} />
@@ -73,7 +84,10 @@ export default function HeroShowcase({ title, subtitle, ctaText, ctaAction }: He
 
           <div className="relative overflow-hidden rounded-[2.2rem] border border-[#1f4bff]/20 bg-[#faf9f6] shadow-2xl shadow-[#0c0d10]/10">
             <div className="relative">
-              <div className="relative flex h-72 items-center justify-center overflow-hidden bg-[#e9edfc] sm:h-80">
+              {/* Desktop only: on phones the ship's stage is the compact visual
+                  above the headline, so this one hides (otherwise it is a big
+                  empty band once the ship flies away). */}
+              <div className="relative hidden h-72 items-center justify-center overflow-hidden bg-[#e9edfc] sm:h-80 lg:flex">
                 {/* Turdy's ship parks here — he flies in on load, then hops out on scroll */}
                 <div className="swirl-anchor" id="swirl" aria-hidden="true" />
                 <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#faf9f6] to-transparent" />
