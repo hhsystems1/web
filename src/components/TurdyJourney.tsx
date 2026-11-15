@@ -70,12 +70,16 @@ export default function TurdyJourney() {
         const SRr = 528 / 760;
         const swr = $('#swirl')!.getBoundingClientRect();
         if (vw <= 760) {
-          const btn = $('.hero .btn')!.getBoundingClientRect();
-          const cue = $('.scroll-cue')!.getBoundingClientRect();
+          // Phones: the ship parks in the compact visual above the headline —
+          // centered in its own anchor, always inside the screen. (The old
+          // formula parked it right of the full-width CTA button, which put
+          // it 136px off the right edge and below the fold.)
+          const swr = $('#swirl-m')!.getBoundingClientRect();
           const SW = Math.min(150, vw * 0.38);
+          const anchorW = Math.max(swr.width, 320);
           shipRect = {
-            x: Math.max(btn.right + 4, vw - SW - 6) + scrollX,
-            y: Math.max(btn.bottom - 6, cue.top - SW * SRr * 0.45) + scrollY,
+            x: swr.left + scrollX + (anchorW - SW) / 2,
+            y: swr.top + scrollY + Math.max(8, (swr.height - SW * SRr) / 2),
             w: SW,
             h: SW * SRr,
           };
@@ -321,9 +325,11 @@ export default function TurdyJourney() {
       turdy!.classList.toggle('face-left', face < 0);
       turdy!.classList.toggle('in-ship', !!shipEl && fall <= HOP);
       turdy!.style.transform = `translate(${vx.toFixed(1)}px,${vy.toFixed(1)}px) rotate(${rot.toFixed(1)}deg)`;
-      // greeting in the hero, above the ship
+      // greeting in the hero, above the ship (clamped so it can never run
+      // off the right edge on a phone)
       hey!.style.opacity = y < 30 && !shipBusy ? '1' : '0';
-      hey!.style.left = shipRect.x - scrollX + (mobile ? -6 : -40) + 'px';
+      const heyX = shipRect.x - scrollX + (mobile ? -6 : -40);
+      hey!.style.left = Math.max(8, Math.min(heyX, innerWidth - 160)) + 'px';
       hey!.style.top = shipRect.y - scrollY - (mobile ? 18 : 8) + 'px';
       setDocked(y > lastS + dockSpan * 0.96);
     }
@@ -586,7 +592,9 @@ export default function TurdyJourney() {
           />
         </div>
       </div>
-      <div id="turdy" data-pose="wave" aria-hidden="true">
+      {/* docked = hidden until the journey places him; the default used to be
+          wave, which flashed a giant turtle at the top-left before hydration */}
+      <div id="turdy" data-pose="docked" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="p-wave-a" src="/turdy-wave-a.webp" alt="" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
