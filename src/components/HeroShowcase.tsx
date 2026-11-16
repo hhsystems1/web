@@ -50,7 +50,9 @@ export default function HeroShowcase({ title, subtitle, ctaText, ctaAction }: He
             One website. Built to generate more customers.
           </div>
 
-          <h1 className="max-w-2xl text-5xl font-black leading-[0.98] tracking-tight text-[#0c0d10] sm:text-6xl md:text-7xl">
+          {/* Phones: 48px splits "customer-generating" at its hyphen
+              ("customer-" / "generating"). 30px keeps the word on one line. */}
+          <h1 className="max-w-2xl text-3xl font-black leading-[0.98] tracking-tight text-[#0c0d10] sm:text-6xl md:text-7xl">
             {title}
           </h1>
 

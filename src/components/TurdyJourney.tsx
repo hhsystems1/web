@@ -54,6 +54,7 @@ export default function TurdyJourney() {
     let docked = false;
     let greeted = false;
     let gT: ReturnType<typeof setTimeout> | null = null;
+    let revealObs: IntersectionObserver | null = null;
 
     const docXY = (el: Element) => {
       const r = el.getBoundingClientRect();
@@ -103,17 +104,23 @@ export default function TurdyJourney() {
       });
       if (!nodes.length) return;
       const n1 = nodes[0];
-      let d = `M${n1.x},${n1.y}`;
+      // Phones: the badge column sits at x 30-66 (centers 48) and the ball
+      // is 36 wide, so a route through the badge centers parks the ball
+      // right on top of each number as it rolls past. Shift the whole path
+      // right so the ball clears the badges; the lit badge still marks the
+      // stop, the line just runs beside it instead of through it.
+      const GX = mobile ? 50 : 0;
+      let d = `M${n1.x + GX},${n1.y}`;
       for (let i = 1; i < nodes.length; i++) {
         const a = nodes[i - 1];
         const b = nodes[i];
         const dy = b.y - a.y;
         if (i === 1 && !mobile) {
           // 01 -> 02: straight down the gutter, then curve over to the next stop
-          d += ` C${a.x},${a.y + dy * 0.75} ${b.x},${b.y - dy * 0.3} ${b.x},${b.y}`;
+          d += ` C${a.x + GX},${a.y + dy * 0.75} ${b.x + GX},${b.y - dy * 0.3} ${b.x + GX},${b.y}`;
         } else {
-          const sw = mobile ? (i % 2 ? 14 : -14) : (i % 2 ? 46 : -46);
-          d += ` C${a.x + sw},${a.y + dy * 0.5} ${b.x + sw},${b.y - dy * 0.5} ${b.x},${b.y}`;
+          const sw = mobile ? (i % 2 ? 8 : -8) : (i % 2 ? 46 : -46);
+          d += ` C${a.x + GX + sw},${a.y + dy * 0.5} ${b.x + GX + sw},${b.y - dy * 0.5} ${b.x + GX},${b.y}`;
         }
       }
       const h = journey!.offsetHeight;
@@ -289,7 +296,9 @@ export default function TurdyJourney() {
           const n = nodesEls[st.at];
           face = n.side;
           vx = n.x - W / 2 - scrollX - face * W * 0.45;
-          vy = n.y + top0 - scrollY - H - (mobile ? 18 : 24);
+          // Phones: the lit badge grows to 40px, so the old 18px gap left his
+          // feet 2px inside its top edge. 28px clears it.
+          vy = n.y + top0 - scrollY - H - (mobile ? 28 : 24);
           pose = 'wave';
         } else {
           // travelling between stops: roll along the line as a ball, one
@@ -535,6 +544,24 @@ export default function TurdyJourney() {
     } else {
       addEventListener('scroll', onScroll, { passive: true });
       addEventListener('resize', onResize);
+      // Journey sections reveal on scroll (translateY(24px) -> 0). build()
+      // measures node positions at load, while sections are still unrevealed,
+      // so a revealed badge sits 24px above where build() put it — and Turdy
+      // would stand on it. Rebuild once each journey section finishes
+      // revealing (transition is 0.7s), so his stops track the live badges.
+      revealObs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              revealObs!.unobserve(entry.target);
+              clearTimeout(rT);
+              rT = setTimeout(init, 800);
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+      $$('#journey .reveal').forEach((el) => revealObs!.observe(el));
       document.fonts?.ready.then(init);
       addEventListener('load', init);
       // images loading later can shift section heights: rebuild once settled
@@ -546,6 +573,7 @@ export default function TurdyJourney() {
     return () => {
       removeEventListener('scroll', onScroll);
       removeEventListener('resize', onResize);
+      revealObs?.disconnect();
       if (gT) clearTimeout(gT);
     };
   }, []);
