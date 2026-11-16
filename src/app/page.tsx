@@ -154,7 +154,7 @@ export default function Home() {
       <NavIsland />
 
       <HeroShowcase
-        title={<>Turn your website into a <span className="accent-mark">24/7 customer-generating</span> system</>}
+        title={<>Turn your website into a <span className="accent-mark">24/7 <span className="whitespace-nowrap sm:whitespace-normal">customer-generating</span></span> system</>}
         subtitle="Helping Hands Systems builds one thing: conversion-focused websites for local service businesses — with live demos you can try, lead capture, booking flows, and a built-in analytics dashboard. Powered by Rivryn."
         ctaText="See Live Demos"
         ctaAction={scrollToWebsiteDemo}
@@ -371,7 +371,9 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="dark-section border-t border-white/10 px-6 py-12">
+      {/* Footer — extra bottom padding on phones so the copyright clears
+          the fixed chat bubble (66px tall + 20px offset) */}
+      <footer className="dark-section border-t border-white/10 px-6 pb-28 pt-12 sm:py-12">
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-3">
             <div>
