@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import SiteBeacon from "@/components/SiteBeacon";
 import TurtleChatWidget from "@/components/TurtleChatWidget";
 
 const inter = Inter({
@@ -33,6 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
+        <SiteBeacon />
         {children}
         <TurtleChatWidget />
       </body>

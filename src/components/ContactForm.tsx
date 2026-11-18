@@ -13,12 +13,28 @@ export default function ContactForm() {
     setError(false);
     const form = event.currentTarget;
     try {
-      const response = await fetch('/__forms.html', {
+      const data = new FormData(form);
+      // Posts same-origin to /api/contact (Netlify Function), which forwards
+      // to Rivryn (hhs-core2) with the server-side lead token. The browser
+      // never sees the token. company_website is the honeypot: bots fill it,
+      // humans never see it; hhs-core2 silently drops filled submissions.
+      const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(new FormData(form) as unknown as URLSearchParams).toString(),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.get('name'),
+          email: data.get('email'),
+          phone: data.get('phone'),
+          company: data.get('company'),
+          message: data.get('message'),
+          company_website: data.get('company_website'),
+          page_url: window.location.href,
+        }),
       });
-      if (!response.ok) throw new Error('Submission failed');
+      const result: unknown = await response.json().catch(() => null);
+      if (!response.ok || (result as { ok?: unknown } | null)?.ok !== true) {
+        throw new Error('Submission failed');
+      }
       form.reset();
       setSuccess(true);
     } catch {
@@ -41,16 +57,11 @@ export default function ContactForm() {
       <form
         name="contact"
         method="POST"
-        data-netlify="true"
-        data-netlify-honeypot="bot-field"
-        action="/__forms.html"
         className="space-y-6"
         onSubmit={submit}
       >
-        <input type="hidden" name="form-name" value="contact" />
-        <input type="hidden" name="source" value="contact-page" />
         <p className="hidden">
-          <label>{"Don't fill this out if you're human:"} <input name="bot-field" /></label>
+          <label>{"Don't fill this out if you're human:"} <input name="company_website" tabIndex={-1} autoComplete="off" /></label>
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
